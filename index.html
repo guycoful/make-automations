@@ -90,6 +90,7 @@
       const [guideOpen, setGuideOpen] = useState(false);
       const [guideLoading, setGuideLoading] = useState(false);
       const [guide, setGuide] = useState(null);
+      const [docUrls, setDocUrls] = useState({});
 
       const getShareUrl = () => {
         try {
@@ -122,24 +123,34 @@
         setGuideOpen(true);
         setGuideLoading(true);
         try {
+          const triggerApp = item.trigger?.app || '';
+          const actionApp = item.action?.app || '';
           const data = await callGemini(apiKey,
-            `You are a Make.com expert. Return ONLY valid JSON: {"steps":[{"title":"...","description":"..."}]}`,
-            `אתה מדריך משתמש שכבר פתח טמפלייט Make.com מוכן.
-הטמפלייט כבר מכיל את כל המודולים בנויים: טריגר "${item.trigger?.name}" של ${item.trigger?.app} ופעולה "${item.action?.name}" של ${item.action?.app}.
-המשתמש צריך רק להגדיר אותו — לא ליצור מאפס.
+            `You are a Make.com expert. Return ONLY valid JSON with this exact structure:
+{"steps":[{"title":"string","description":"string"}],"triggerDocUrl":"string","actionDocUrl":"string"}
+- triggerDocUrl: the official Make.com help URL for ${triggerApp} (format: https://www.make.com/en/help/app/APPSLUG)
+- actionDocUrl: the official Make.com help URL for ${actionApp}
+- steps: preparation and configuration steps`,
+            `המשתמש פתח טמפלייט Make.com מוכן עם:
+- טריגר: "${item.trigger?.name}" של ${triggerApp}
+- פעולה: "${item.action?.name}" של ${actionApp}
 
-צור מדריך הגדרה בעברית בן 6-8 צעדים עם כותרת ותיאור מפורט.
-הצעדים צריכים לכלול:
-1. כיצד להיכנס לטמפלייט (לחיצה על "Use template" / "Try it" ב-Make.com)
-2. חיבור חשבון ${item.trigger?.app} — ציין בדיוק: האם OAuth (כפתור "Sign in with ${item.trigger?.app}") או API key (איפה מוצאים אותו בממשק של ${item.trigger?.app})
-3. הגדרת פרמטרי הטריגר "${item.trigger?.name}" — אילו שדות למלא, מה הם אומרים
-4. חיבור חשבון ${item.action?.app} — ציין בדיוק: OAuth או API key
-5. הגדרת פרמטרי הפעולה "${item.action?.name}" — אילו שדות נדרשים וכיצד לממפ נתונים מהטריגר
-6. הגדרת לוח הזמנים (schedule) — כמה פעמים לרוץ
-7. לחיצה על "Run once" לבדיקה ראשונה — מה לצפות לראות
-8. הפעלת הסצנריו (toggle ON)`
+כל המודולים כבר בנויים — הוא צריך רק להגדיר אישורים ופרמטרים.
+
+צור 5-6 צעדים בעברית. חשוב מאוד:
+❌ אל תנחש שמות כפתורים ספציפיים ב-Make.com (הם משתנים)
+✅ תאר מה המשתמש צריך להכין/לדעת לפני ובמהלך ההגדרה
+
+הצעדים:
+1. "הכנה לפני Make.com" — מה צריך שיהיה פתוח/מוכן: האם נדרש חשבון ${triggerApp} עם הרשאות ספציפיות? האם ${actionApp} דורש API key (ואיפה למצוא אותו בממשק של ${actionApp} עצמו)?
+2. "סוג החיבור של ${triggerApp}" — האם OAuth (כניסה עם חשבון) או API key? אילו הרשאות ${triggerApp} ידרוש לאשר?
+3. "סוג החיבור של ${actionApp}" — OAuth או API key? מה בדיוק צריך להעתיק/להזין?
+4. "הגדרת הטריגר '${item.trigger?.name}'" — אילו נתונים Make.com ידרוש: שם חברה? ID? URL? תאר מה כל שדה אומר
+5. "הגדרת הפעולה '${item.action?.name}'" — אילו שדות למלא, איך הנתונים מהטריגר ממופים לפעולה
+6. "בדיקה והפעלה" — לחץ Run once לראות אם עובד, ואז הפעל`
           );
           setGuide(data.steps || []);
+          setDocUrls({ trigger: data.triggerDocUrl, action: data.actionDocUrl });
         } catch {
           setGuide([{ title: "שגיאה", description: "לא ניתן לטעון את המדריך. בדוק את מפתח ה-API ונסה שוב." }]);
         }
@@ -207,7 +218,7 @@
               <h4 className="font-black text-slate-700 mb-3 text-sm">
                 ⚙️ הגדרת הטמפלייט: {item.trigger?.app} → {item.action?.app}
               </h4>
-              <ol className="space-y-3">
+              <ol className="space-y-3 mb-4">
                 {guide.map((step, i) => (
                   <li key={i} className="flex gap-3">
                     <span className="bg-blue-600 text-white text-xs font-black rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -220,6 +231,22 @@
                   </li>
                 ))}
               </ol>
+              {/* Official Make.com docs links */}
+              <div className="border-t border-slate-200 pt-3 flex flex-wrap gap-2">
+                <span className="text-xs text-slate-400 w-full mb-1">📚 תיעוד רשמי Make.com:</span>
+                {docUrls.trigger && (
+                  <a href={docUrls.trigger} target="_blank" rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-xs bg-orange-50 text-orange-700 border border-orange-200 px-3 py-1.5 rounded-lg font-bold hover:bg-orange-100 transition-colors">
+                    ⚡ {item.trigger?.app} – תיעוד
+                  </a>
+                )}
+                {docUrls.action && (
+                  <a href={docUrls.action} target="_blank" rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-xs bg-blue-50 text-blue-700 border border-blue-200 px-3 py-1.5 rounded-lg font-bold hover:bg-blue-100 transition-colors">
+                    🎯 {item.action?.app} – תיעוד
+                  </a>
+                )}
+              </div>
             </div>
           )}
 
