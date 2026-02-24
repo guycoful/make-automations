@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>מוצא אוטומציות מייק</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spin { animation: spin 0.8s linear infinite; }
+  </style>
+</head>
+<body class="bg-slate-50">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    // ─── SVG Icons ─────────────────────────────────────────────────────────
+    const Icon = ({ d, size = 20, fill = "none", viewBox = "0 0 24 24", children, ...props }) => (
+      <svg width={size} height={size} viewBox={viewBox} fill={fill} stroke="currentColor"
+        strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+        {d ? <path d={d} /> : children}
+      </svg>
+    );
+
+    const SearchIcon = ({size=22}) => <Icon size={size}><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></Icon>;
+    const ZapIcon = ({size=24, fill="none"}) => <Icon size={size} fill={fill}><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></Icon>;
+    const TargetIcon = ({size=16}) => <Icon size={size}><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></Icon>;
+    const ChevronLeft = ({size=20}) => <Icon size={size}><polyline points="15 18 9 12 15 6"/></Icon>;
+    const ChevronDown = ({size=16}) => <Icon size={size}><polyline points="6 9 12 15 18 9"/></Icon>;
+    const ShareIcon = ({size=15}) => <Icon size={size}><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></Icon>;
+    const CheckIcon = ({size=15}) => <Icon size={size}><polyline points="20 6 9 17 4 12"/></Icon>;
+    const BookIcon = ({size=15}) => <Icon size={size}><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></Icon>;
+    const AlertIcon = ({size=28}) => <Icon size={size}><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></Icon>;
+    const GearIcon = ({size=18}) => <Icon size={size}><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></Icon>;
+    const XIcon = ({size=20}) => <Icon size={size}><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></Icon>;
+
+    const Spinner = ({size=22, color="currentColor"}) => (
+      <div className="spin" style={{
+        width: size, height: size, borderRadius: '50%',
+        border: `2px solid transparent`,
+        borderTopColor: color, display: 'inline-block', flexShrink: 0
+      }}/>
+    );
+
+    const WAIcon = ({size=15}) => (
+      <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+    );
+
+    // ─── Gemini API ────────────────────────────────────────────────────────
+    async function callGemini(apiKey, systemPrompt, userQuery) {
+      let delay = 1000;
+      for (let i = 0; i < 5; i++) {
+        try {
+          const res = await fetch(
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`,
+            {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] },
+                generationConfig: { responseMimeType: "application/json" }
+              })
+            }
+          );
+          if (!res.ok) throw new Error('API ' + res.status);
+          const data = await res.json();
+          const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+          return JSON.parse(text);
+        } catch (err) {
+          if (i === 4) throw err;
+          await new Promise(r => setTimeout(r, delay));
+          delay *= 2;
+        }
+      }
+    }
+
+    // ─── Template Card ─────────────────────────────────────────────────────
+    const TemplateCard = ({ item, apiKey, singleView = false }) => {
+      const [copied, setCopied] = useState(false);
+      const [guideOpen, setGuideOpen] = useState(false);
+      const [guideLoading, setGuideLoading] = useState(false);
+      const [guide, setGuide] = useState(null);
+
+      const getShareUrl = () => {
+        try {
+          const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(item))));
+          return `${window.location.origin}${window.location.pathname}#${encoded}`;
+        } catch { return window.location.href; }
+      };
+
+      const copyLink = () => {
+        navigator.clipboard.writeText(getShareUrl()).then(() => {
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2500);
+        });
+      };
+
+      const shareWA = () => {
+        const url = getShareUrl();
+        const text =
+          `🤖 *${item.name}*\n\n` +
+          `${item.description}\n\n` +
+          `⚡ *טריגר:* ${item.trigger?.app} → ${item.trigger?.name}\n` +
+          `🎯 *פעולה:* ${item.action?.app} → ${item.action?.name}\n\n` +
+          `🔗 *פתח ב-Make.com:*\n${item.link}\n\n` +
+          `📖 *מדריך חיבור (עם קישור ישיר):*\n${url}`;
+        window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+      };
+
+      const fetchGuide = async () => {
+        if (guide) { setGuideOpen(o => !o); return; }
+        setGuideOpen(true);
+        setGuideLoading(true);
+        try {
+          const data = await callGemini(apiKey,
+            `You are a Make.com expert. Return ONLY valid JSON: {"steps":[{"title":"...","description":"..."}]}`,
+            `צור מדריך מפורט בעברית לחיבור ${item.trigger?.app} ו-${item.action?.app} ב-Make.com.\n` +
+            `6-8 צעדים עם כותרת ותיאור לכל אחד.\n` +
+            `כלול: יצירת חשבון Make.com, חיבור ${item.trigger?.app} (OAuth או API key - פרט בדיוק), ` +
+            `חיבור ${item.action?.app}, יצירת סצנריו עם הטריגר "${item.trigger?.name}" והפעולה "${item.action?.name}".`
+          );
+          setGuide(data.steps || []);
+        } catch {
+          setGuide([{ title: "שגיאה", description: "לא ניתן לטעון את המדריך. בדוק את מפתח ה-API ונסה שוב." }]);
+        }
+        setGuideLoading(false);
+      };
+
+      return (
+        <div className={`bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all ${singleView ? 'ring-2 ring-blue-300' : ''}`}>
+          {singleView && (
+            <div className="bg-blue-50 text-blue-700 text-sm font-bold px-3 py-2 rounded-lg mb-4 inline-flex items-center gap-2">
+              <ShareIcon size={13}/> טמפלייט שותף איתך
+            </div>
+          )}
+
+          <h3 className="text-2xl font-black text-slate-800 mb-2">{item.name}</h3>
+          <p className="text-slate-500 text-lg leading-relaxed mb-5">{item.description}</p>
+
+          {/* Trigger / Action */}
+          <div className="bg-slate-50 rounded-xl p-4 mb-4 border border-slate-100 flex flex-col md:flex-row gap-4">
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-1.5">
+                <ZapIcon size={15} fill="currentColor" className="text-orange-500"/>
+                <span className="text-xs font-bold uppercase tracking-wider text-orange-500">טריגר נדרש</span>
+              </div>
+              <div className="font-bold text-slate-700">{item.trigger?.app}</div>
+              <code className="text-slate-500 text-xs mt-1 bg-white border border-slate-200 px-2 py-1 rounded block w-fit" dir="ltr">
+                {item.trigger?.name}
+              </code>
+            </div>
+            <div className="hidden md:flex items-center justify-center text-slate-300">
+              <ChevronLeft size={22}/>
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-1.5">
+                <TargetIcon size={15} className="text-blue-500"/>
+                <span className="text-xs font-bold uppercase tracking-wider text-blue-500">פעולה נדרשת</span>
+              </div>
+              <div className="font-bold text-slate-700">{item.action?.app}</div>
+              <code className="text-slate-500 text-xs mt-1 bg-white border border-slate-200 px-2 py-1 rounded block w-fit" dir="ltr">
+                {item.action?.name}
+              </code>
+            </div>
+          </div>
+
+          {/* Action buttons */}
+          <div className="flex flex-wrap gap-2 mb-3">
+            <button onClick={copyLink}
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-bold transition-all ${copied ? 'bg-green-100 text-green-700' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'}`}>
+              {copied ? <><CheckIcon/> הועתק!</> : <><ShareIcon/> העתק לינק</>}
+            </button>
+            <button onClick={shareWA}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-bold bg-green-100 text-green-700 hover:bg-green-200 transition-all">
+              <WAIcon/> שתף ב-WhatsApp
+            </button>
+            <button onClick={fetchGuide}
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-bold transition-all ${guideOpen ? 'bg-purple-100 text-purple-700' : 'bg-blue-50 text-blue-700 hover:bg-blue-100'}`}>
+              {guideLoading ? <Spinner size={15} color="#7c3aed"/> : <BookIcon/>}
+              {guideOpen && !guideLoading ? <><ChevronDown size={13}/> סגור מדריך</> : ' איך לחבר?'}
+            </button>
+          </div>
+
+          {/* Connection guide accordion */}
+          {guideOpen && !guideLoading && guide && (
+            <div className="border border-slate-100 rounded-xl p-4 mb-3 bg-slate-50">
+              <h4 className="font-black text-slate-700 mb-3 text-sm">
+                מדריך חיבור: {item.trigger?.app} + {item.action?.app}
+              </h4>
+              <ol className="space-y-3">
+                {guide.map((step, i) => (
+                  <li key={i} className="flex gap-3">
+                    <span className="bg-blue-600 text-white text-xs font-black rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      {i + 1}
+                    </span>
+                    <div>
+                      <div className="font-bold text-slate-800 text-sm">{step.title}</div>
+                      <div className="text-slate-600 text-sm">{step.description}</div>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          )}
+
+          {/* Open in Make */}
+          <button onClick={() => window.open(item.link, '_blank', 'noopener,noreferrer')}
+            className="w-full flex items-center justify-center gap-2 bg-slate-900 text-white px-6 py-4 rounded-xl font-black hover:bg-blue-600 transition-colors group">
+            <span>פתח ב-Make ובחר את האפשרויות הנ"ל</span>
+            <ChevronLeft size={18}/>
+          </button>
+        </div>
+      );
+    };
+
+    // ─── API Key Setup Screen ───────────────────────────────────────────────
+    const ApiKeyScreen = ({ onSave }) => {
+      const [key, setKey] = useState('');
+      return (
+        <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6" dir="rtl">
+          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 max-w-md w-full">
+            <div className="w-14 h-14 bg-blue-600 text-white rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg rotate-3">
+              <ZapIcon size={28} fill="currentColor"/>
+            </div>
+            <h2 className="text-2xl font-black text-center mb-2">ברוך הבא!</h2>
+            <p className="text-slate-500 text-center mb-6">
+              הכנס את מפתח ה-API שלך מ-<a href="https://aistudio.google.com/apikey" target="_blank" className="text-blue-600 font-bold hover:underline">Google AI Studio</a>
+              <br/><span className="text-xs">המפתח יישמר בדפדפן שלך בלבד</span>
+            </p>
+            <input
+              type="password"
+              className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-blue-300 mb-4"
+              placeholder="AIza..."
+              value={key}
+              onChange={e => setKey(e.target.value)}
+              dir="ltr"
+            />
+            <button
+              onClick={() => { if (key.trim()) { localStorage.setItem('gemini_key', key.trim()); onSave(key.trim()); }}}
+              disabled={!key.trim()}
+              className="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 disabled:opacity-40 transition-all">
+              התחל
+            </button>
+          </div>
+        </div>
+      );
+    };
+
+    // ─── Main App ───────────────────────────────────────────────────────────
+    const App = () => {
+      const [apiKey, setApiKey] = useState(() => localStorage.getItem('gemini_key') || '');
+      const [query, setQuery] = useState('');
+      const [results, setResults] = useState([]);
+      const [loading, setLoading] = useState(false);
+      const [error, setError] = useState(null);
+      const [sharedTemplate, setSharedTemplate] = useState(null);
+      const [showSettings, setShowSettings] = useState(false);
+
+      // Load shared template from URL hash
+      useEffect(() => {
+        if (window.location.hash && window.location.hash.length > 1) {
+          try {
+            const decoded = JSON.parse(decodeURIComponent(escape(atob(window.location.hash.substring(1)))));
+            if (decoded?.name) setSharedTemplate(decoded);
+          } catch {}
+        }
+      }, []);
+
+      if (!apiKey) return <ApiKeyScreen onSave={setApiKey}/>;
+
+      const SYSTEM_PROMPT = `You are a Make.com expert.
+Analyze the user's request in Hebrew and generate a JSON list of 6 matching automation workflows.
+Each workflow MUST have:
+- name: Professional Hebrew name.
+- description: Professional Hebrew description.
+- app_slugs: Array of exactly 2 Make.com official URL slugs (e.g., ["facebook-lead-ads", "green-api"]).
+- trigger: {"app": "Display name", "name": "Exact Make.com trigger name in English"}
+- action: {"app": "Display name", "name": "Exact Make.com action name in English"}
+
+Return ONLY JSON:
+{"templates":[{"name":"...","description":"...","app_slugs":["...","..."],"trigger":{"app":"...","name":"..."},"action":{"app":"...","name":"..."}}]}`;
+
+      const search = async (e) => {
+        e.preventDefault();
+        if (!query.trim()) return;
+        setLoading(true);
+        setError(null);
+        setSharedTemplate(null);
+        history.replaceState(null, '', window.location.pathname);
+        try {
+          const data = await callGemini(apiKey, SYSTEM_PROMPT, query);
+          setResults((data.templates || []).map(t => ({
+            ...t,
+            link: t.app_slugs?.length > 0
+              ? `https://www.make.com/en/integrations/${t.app_slugs.slice(0,2).join('/')}`
+              : 'https://www.make.com/en/templates'
+          })));
+        } catch {
+          setError("שגיאה בחיבור לשרת. בדוק שמפתח ה-API תקין ונסה שוב.");
+        }
+        setLoading(false);
+      };
+
+      // Single template view (opened via shared link)
+      if (sharedTemplate) {
+        return (
+          <div className="min-h-screen bg-slate-50 text-slate-900 p-4 md:p-10 font-sans" dir="rtl">
+            <div className="max-w-2xl mx-auto">
+              <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center shadow-lg">
+                    <ZapIcon size={20} fill="currentColor"/>
+                  </div>
+                  <span className="text-xl font-black">מייק אוטומציות</span>
+                </div>
+                <button
+                  onClick={() => { setSharedTemplate(null); history.replaceState(null, '', window.location.pathname); }}
+                  className="flex items-center gap-1.5 text-slate-500 hover:text-slate-800 font-bold text-sm border border-slate-200 px-3 py-2 rounded-lg hover:bg-slate-100 transition-all">
+                  <XIcon size={15}/> חפש אוטומציה אחרת
+                </button>
+              </div>
+              <TemplateCard item={sharedTemplate} apiKey={apiKey} singleView={true}/>
+            </div>
+          </div>
+        );
+      }
+
+      return (
+        <div className="min-h-screen bg-slate-50 text-slate-900 p-4 md:p-10 font-sans selection:bg-blue-100" dir="rtl">
+          <div className="max-w-4xl mx-auto">
+
+            {/* Header */}
+            <div className="text-center mb-10 relative">
+              <button onClick={() => setShowSettings(s => !s)}
+                className="absolute left-0 top-0 text-slate-400 hover:text-slate-600 p-2 rounded-lg hover:bg-slate-100 transition-all">
+                <GearIcon/>
+              </button>
+              {showSettings && (
+                <div className="absolute left-0 top-10 bg-white border border-slate-200 rounded-xl shadow-lg p-4 w-72 z-10 text-right">
+                  <p className="text-xs text-slate-500 mb-2">החלף מפתח API:</p>
+                  <input type="password" dir="ltr" placeholder="AIza..."
+                    className="w-full border border-slate-200 rounded-lg px-3 py-2 text-xs outline-none focus:ring-2 focus:ring-blue-300 mb-2"
+                    onKeyDown={e => { if (e.key === 'Enter' && e.target.value.trim()) {
+                      localStorage.setItem('gemini_key', e.target.value.trim());
+                      setApiKey(e.target.value.trim());
+                      setShowSettings(false);
+                    }}}/>
+                  <p className="text-xs text-slate-400">לחץ Enter לשמירה</p>
+                </div>
+              )}
+
+              <div className="w-16 h-16 bg-blue-600 text-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl shadow-blue-200 rotate-3">
+                <ZapIcon size={32} fill="currentColor"/>
+              </div>
+              <h1 className="text-4xl font-black text-slate-900 mb-2">תכנון אוטומציות במייק</h1>
+              <p className="text-slate-500 text-lg">תתאר את התהליך, המערכת תספק לך את ההגדרות המדויקות.</p>
+            </div>
+
+            {/* Search */}
+            <form onSubmit={search} className="relative group mb-12">
+              <div className="absolute inset-0 bg-blue-600 rounded-3xl blur opacity-10 group-focus-within:opacity-20 transition-opacity"/>
+              <div className="relative flex bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden p-2">
+                <input type="text"
+                  className="flex-grow px-6 py-4 text-xl outline-none bg-transparent"
+                  placeholder="למשל: יצירת לקוח ב-CRM כשיש ליד חדש בפייסבוק..."
+                  value={query}
+                  onChange={e => setQuery(e.target.value)}
+                />
+                <button type="submit" disabled={loading}
+                  className="bg-blue-600 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 hover:bg-blue-700 active:scale-95 transition-all disabled:opacity-50">
+                  {loading ? <Spinner size={22} color="white"/> : <SearchIcon size={22}/>}
+                  <span>חפש</span>
+                </button>
+              </div>
+            </form>
+
+            {/* Error */}
+            {error && (
+              <div className="bg-red-50 border-2 border-red-100 text-red-700 p-5 rounded-2xl flex items-center gap-4 mb-8">
+                <AlertIcon size={24}/>
+                <p className="font-bold">{error}</p>
+              </div>
+            )}
+
+            {/* Results */}
+            <div className="grid gap-6">
+              {loading ? (
+                <div className="text-center py-24">
+                  <Spinner size={50} color="#2563eb"/>
+                  <p className="text-slate-500 text-xl font-bold mt-6">הבינה המלאכותית מנתחת את השלבים המדויקים...</p>
+                </div>
+              ) : results.length > 0 ? (
+                results.map((item, idx) => (
+                  <TemplateCard key={idx} item={item} apiKey={apiKey}/>
+                ))
+              ) : !error && (
+                <div className="text-center py-32 border-4 border-dashed border-slate-200 rounded-[40px]">
+                  <SearchIcon size={56} className="mx-auto text-slate-300"/>
+                  <p className="text-slate-400 text-2xl font-black mt-6">מנוע החיפוש מוכן. מה תרצה לאוטומט היום?</p>
+                </div>
+              )}
+            </div>
+
+          </div>
+        </div>
+      );
+    };
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+  </script>
+</body>
+</html>
