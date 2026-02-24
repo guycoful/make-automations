@@ -124,10 +124,20 @@
         try {
           const data = await callGemini(apiKey,
             `You are a Make.com expert. Return ONLY valid JSON: {"steps":[{"title":"...","description":"..."}]}`,
-            `צור מדריך מפורט בעברית לחיבור ${item.trigger?.app} ו-${item.action?.app} ב-Make.com.\n` +
-            `6-8 צעדים עם כותרת ותיאור לכל אחד.\n` +
-            `כלול: יצירת חשבון Make.com, חיבור ${item.trigger?.app} (OAuth או API key - פרט בדיוק), ` +
-            `חיבור ${item.action?.app}, יצירת סצנריו עם הטריגר "${item.trigger?.name}" והפעולה "${item.action?.name}".`
+            `אתה מדריך משתמש שכבר פתח טמפלייט Make.com מוכן.
+הטמפלייט כבר מכיל את כל המודולים בנויים: טריגר "${item.trigger?.name}" של ${item.trigger?.app} ופעולה "${item.action?.name}" של ${item.action?.app}.
+המשתמש צריך רק להגדיר אותו — לא ליצור מאפס.
+
+צור מדריך הגדרה בעברית בן 6-8 צעדים עם כותרת ותיאור מפורט.
+הצעדים צריכים לכלול:
+1. כיצד להיכנס לטמפלייט (לחיצה על "Use template" / "Try it" ב-Make.com)
+2. חיבור חשבון ${item.trigger?.app} — ציין בדיוק: האם OAuth (כפתור "Sign in with ${item.trigger?.app}") או API key (איפה מוצאים אותו בממשק של ${item.trigger?.app})
+3. הגדרת פרמטרי הטריגר "${item.trigger?.name}" — אילו שדות למלא, מה הם אומרים
+4. חיבור חשבון ${item.action?.app} — ציין בדיוק: OAuth או API key
+5. הגדרת פרמטרי הפעולה "${item.action?.name}" — אילו שדות נדרשים וכיצד לממפ נתונים מהטריגר
+6. הגדרת לוח הזמנים (schedule) — כמה פעמים לרוץ
+7. לחיצה על "Run once" לבדיקה ראשונה — מה לצפות לראות
+8. הפעלת הסצנריו (toggle ON)`
           );
           setGuide(data.steps || []);
         } catch {
@@ -187,7 +197,7 @@
             <button onClick={fetchGuide}
               className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-bold transition-all ${guideOpen ? 'bg-purple-100 text-purple-700' : 'bg-blue-50 text-blue-700 hover:bg-blue-100'}`}>
               {guideLoading ? <Spinner size={15} color="#7c3aed"/> : <BookIcon/>}
-              {guideOpen && !guideLoading ? <><ChevronDown size={13}/> סגור מדריך</> : ' איך לחבר?'}
+              {guideOpen && !guideLoading ? <><ChevronDown size={13}/> סגור מדריך</> : ' איך להגדיר?'}
             </button>
           </div>
 
@@ -195,7 +205,7 @@
           {guideOpen && !guideLoading && guide && (
             <div className="border border-slate-100 rounded-xl p-4 mb-3 bg-slate-50">
               <h4 className="font-black text-slate-700 mb-3 text-sm">
-                מדריך חיבור: {item.trigger?.app} + {item.action?.app}
+                ⚙️ הגדרת הטמפלייט: {item.trigger?.app} → {item.action?.app}
               </h4>
               <ol className="space-y-3">
                 {guide.map((step, i) => (
