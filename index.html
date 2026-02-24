@@ -278,6 +278,340 @@
           'חבר ל-Facebook Page (Instagram Settings → Linked Accounts)',
           'ב-Make.com: OAuth → אשר גישה ל-Instagram ול-Facebook Page'
         ]
+      },
+      // ── Communication ──────────────────────────────────────────────────────
+      'Discord': {
+        docUrl: 'https://www.make.com/en/help/app/discord',
+        authType: 'Bot Token או OAuth',
+        connectionTypes: [
+          { name: 'Discord (Bot)', desc: 'Bot Token — הבוט שולח הודעות לשרת' },
+          { name: 'Discord (OAuth)', desc: 'כניסה עם חשבון אישי' }
+        ],
+        advancedFields: [
+          { field: 'Bot Token', where: 'discord.com/developers/applications → בחר אפליקציה → Bot → Reset Token → העתק', required: true }
+        ],
+        setupSteps: [
+          'discord.com/developers/applications → New Application → שם',
+          'לשונית Bot → Add Bot → Reset Token → העתק',
+          'לשונית OAuth2 → URL Generator → בחר scopes: bot → הרשאות: Send Messages, Read Message History',
+          'פתח ה-URL שנוצר → הוסף את הבוט לשרת שלך',
+          'ב-Make.com הדבק ב-"Bot Token"'
+        ]
+      },
+      'Microsoft Teams': {
+        docUrl: 'https://www.make.com/en/help/app/microsoft-teams',
+        authType: 'OAuth עם Microsoft 365',
+        connectionTypes: [{ name: 'Microsoft Teams', desc: 'OAuth — כניסה עם חשבון Microsoft 365/Entra' }],
+        advancedFields: [],
+        setupSteps: ['לחץ Add/Connect → Save → נפתח Microsoft → היכנס עם חשבון 365 → אשר הרשאות']
+      },
+      'Twilio': {
+        docUrl: 'https://www.make.com/en/help/app/twilio',
+        authType: 'Account SID + Auth Token',
+        connectionTypes: [{ name: 'Twilio', desc: 'Account SID + Auth Token מה-Dashboard' }],
+        advancedFields: [
+          { field: 'Account SID', where: 'console.twilio.com → Dashboard → בלוק "Account Info" → Account SID', required: true },
+          { field: 'Auth Token', where: 'console.twilio.com → Dashboard → לחץ על העין ליד Auth Token', required: true }
+        ],
+        setupSteps: [
+          'console.twilio.com → Dashboard',
+          'העתק Account SID ו-Auth Token מה-"Account Info" בלוק',
+          'ב-Make.com הדבק שניהם'
+        ]
+      },
+      'Zoom': {
+        docUrl: 'https://www.make.com/en/help/app/zoom',
+        authType: 'OAuth',
+        connectionTypes: [{ name: 'Zoom', desc: 'OAuth — כניסה עם חשבון Zoom' }],
+        advancedFields: [],
+        setupSteps: ['לחץ Add/Connect → Save → נפתח Zoom → Sign In → Authorize']
+      },
+      // ── E-commerce & Payments ──────────────────────────────────────────────
+      'Stripe': {
+        docUrl: 'https://www.make.com/en/help/app/stripe',
+        authType: 'Secret API Key',
+        connectionTypes: [{ name: 'Stripe', desc: 'Secret Key מה-Dashboard (שונה מה-Publishable Key!)' }],
+        advancedFields: [
+          { field: 'API Key (Secret)', where: 'dashboard.stripe.com → Developers → API keys → Secret key → Reveal → העתק. שים לב: זה ה-sk_live_... ולא ה-pk_live_...', required: true }
+        ],
+        setupSteps: [
+          'dashboard.stripe.com → Developers (בתפריט שמאל) → API keys',
+          'לחץ "Reveal" ליד Secret key (sk_live_...)',
+          'ב-Make.com הדבק — שים לב לא להשתמש ב-Publishable key (pk_live_...)'
+        ]
+      },
+      'Shopify': {
+        docUrl: 'https://www.make.com/en/help/app/shopify',
+        authType: 'Custom App API Key + Secret',
+        connectionTypes: [
+          { name: 'Shopify', desc: 'Custom App credentials — דורש יצירת Private App בחנות' }
+        ],
+        advancedFields: [
+          { field: 'API Key', where: 'Shopify Admin → Settings → Apps → Develop apps → Create app → API credentials → Admin API access token', required: true },
+          { field: 'API Secret Key', where: 'אותה דף — API secret key', required: true },
+          { field: 'Store URL', where: 'הכתובת של החנות בפורמט your-store.myshopify.com', required: true }
+        ],
+        setupSteps: [
+          'Shopify Admin → Settings → Apps and sales channels → Develop apps',
+          'Create an app → שם לאפליקציה',
+          'Configure Admin API scopes → בחר הרשאות נדרשות (למשל: read_orders, write_products)',
+          'Install app → API credentials → העתק Admin API access token (מופיע פעם אחת בלבד!)',
+          'ב-Make.com: הדבק API Key + Secret + כתובת החנות'
+        ]
+      },
+      'WooCommerce': {
+        docUrl: 'https://www.make.com/en/help/app/woocommerce',
+        authType: 'Consumer Key + Consumer Secret',
+        connectionTypes: [{ name: 'WooCommerce', desc: 'REST API Keys שנוצרות בלוח הבקרה של WordPress' }],
+        advancedFields: [
+          { field: 'Consumer Key', where: 'WordPress Admin → WooCommerce → Settings → Advanced → REST API → Add key → Generate API key', required: true },
+          { field: 'Consumer Secret', where: 'אותה דף — נוצר יחד עם ה-Consumer Key', required: true },
+          { field: 'Store URL', where: 'כתובת האתר שלך (https://yoursite.com)', required: true }
+        ],
+        setupSteps: [
+          'WordPress Admin → WooCommerce → Settings → Advanced → REST API',
+          'Add key → תן שם, בחר משתמש, הרשאות: Read/Write → Generate API key',
+          'שמור מיד את Consumer Key ו-Consumer Secret (לא יוצגו שוב!)',
+          'ב-Make.com הדבק Key + Secret + URL האתר'
+        ]
+      },
+      'PayPal': {
+        docUrl: 'https://www.make.com/en/help/app/paypal',
+        authType: 'Client ID + Client Secret (Sandbox או Live)',
+        connectionTypes: [
+          { name: 'PayPal (Live)', desc: 'לייצור — כרטיסי אשראי אמיתיים' },
+          { name: 'PayPal (Sandbox)', desc: 'לבדיקות — כסף פיקטיבי' }
+        ],
+        advancedFields: [
+          { field: 'Client ID', where: 'developer.paypal.com → Apps & Credentials → בחר Live/Sandbox → לחץ על האפליקציה → Client ID', required: true },
+          { field: 'Client Secret', where: 'אותה דף → Show Secret Key', required: true }
+        ],
+        setupSteps: [
+          'developer.paypal.com → My Apps & Credentials',
+          'בחר Sandbox (בדיקות) או Live (ייצור)',
+          'Create App או בחר קיימת → העתק Client ID',
+          'לחץ "Show" ליד Secret → העתק',
+          'ב-Make.com בחר Sandbox/Live ← הדבק Client ID + Secret'
+        ]
+      },
+      // ── Project Management ─────────────────────────────────────────────────
+      'Jira': {
+        docUrl: 'https://www.make.com/en/help/app/jira-software',
+        authType: 'API Token + Email + Domain',
+        connectionTypes: [
+          { name: 'Jira Cloud', desc: 'API Token — לחשבונות Atlassian Cloud' },
+          { name: 'Jira Server/DC', desc: 'Basic Auth — לשרתים עצמאיים' }
+        ],
+        advancedFields: [
+          { field: 'API Token', where: 'id.atlassian.com/manage-profile/security/api-tokens → Create API token → שם → Create → העתק', required: true },
+          { field: 'Email', where: 'כתובת האימייל שאיתה נכנסים ל-Jira', required: true },
+          { field: 'Domain', where: 'הכתובת של ה-Jira שלך: yourcompany.atlassian.net', required: true }
+        ],
+        setupSteps: [
+          'id.atlassian.com/manage-profile/security/api-tokens',
+          'Create API token → תן שם → Create → העתק מיד',
+          'ב-Make.com: הדבק API Token + האימייל שלך + הדומיין (yourcompany.atlassian.net)'
+        ]
+      },
+      'Asana': {
+        docUrl: 'https://www.make.com/en/help/app/asana',
+        authType: 'Personal Access Token',
+        connectionTypes: [{ name: 'Asana', desc: 'Personal Access Token' }],
+        advancedFields: [
+          { field: 'Personal Access Token', where: 'app.asana.com → תמונת פרופיל → My Settings → Apps → Manage Developer Apps → New access token', required: true }
+        ],
+        setupSteps: [
+          'app.asana.com → תמונת פרופיל → My Settings → Apps',
+          'Manage Developer Apps → New access token → שם → Create → העתק',
+          'ב-Make.com הדבק ב-"Personal access token"'
+        ]
+      },
+      'ClickUp': {
+        docUrl: 'https://www.make.com/en/help/app/clickup',
+        authType: 'API Key',
+        connectionTypes: [{ name: 'ClickUp', desc: 'API Key מ-Settings' }],
+        advancedFields: [
+          { field: 'API Key', where: 'app.clickup.com → Settings (תפריט שמאל תחתון) → Apps → API Token → Generate → העתק', required: true }
+        ],
+        setupSteps: ['app.clickup.com → Settings → Apps → API Token → Generate → העתק → הדבק ב-Make.com']
+      },
+      'Monday.com': {
+        docUrl: 'https://www.make.com/en/help/app/monday',
+        authType: 'API Token',
+        connectionTypes: [{ name: 'Monday.com', desc: 'API Token מה-Account' }],
+        advancedFields: [
+          { field: 'API Token', where: 'monday.com → לחץ על תמונת פרופיל (שמאל תחתון) → Developers → My access tokens → Copy', required: true }
+        ],
+        setupSteps: ['monday.com → תמונת פרופיל → Developers → My access tokens → Copy → הדבק ב-Make.com']
+      },
+      'Todoist': {
+        docUrl: 'https://www.make.com/en/help/app/todoist',
+        authType: 'OAuth',
+        connectionTypes: [{ name: 'Todoist', desc: 'OAuth' }],
+        advancedFields: [],
+        setupSteps: ['לחץ Add/Connect → Save → נפתח Todoist → Allow']
+      },
+      // ── CRM & Marketing ────────────────────────────────────────────────────
+      'Pipedrive': {
+        docUrl: 'https://www.make.com/en/help/app/pipedrive',
+        authType: 'API Token',
+        connectionTypes: [{ name: 'Pipedrive', desc: 'API Token' }],
+        advancedFields: [
+          { field: 'API Token', where: 'Pipedrive → לחץ על שם משתמש → Settings → Personal preferences → API → Your personal API token', required: true }
+        ],
+        setupSteps: ['Pipedrive → Settings → Personal preferences → API → העתק את ה-token → הדבק ב-Make.com']
+      },
+      'ActiveCampaign': {
+        docUrl: 'https://www.make.com/en/help/app/activecampaign',
+        authType: 'API URL + API Key',
+        connectionTypes: [{ name: 'ActiveCampaign', desc: 'API URL + Key — שניהם מ-Account Settings' }],
+        advancedFields: [
+          { field: 'API URL', where: 'ActiveCampaign → Settings → Developer → API Access → URL (בפורמט https://youracccount.api-us1.com)', required: true },
+          { field: 'API Key', where: 'אותה דף — Key', required: true }
+        ],
+        setupSteps: ['ActiveCampaign → Settings (בתפריט שמאל) → Developer → העתק API URL + API Key → הדבק ב-Make.com']
+      },
+      'Salesforce': {
+        docUrl: 'https://www.make.com/en/help/app/salesforce',
+        authType: 'OAuth (Connected App)',
+        connectionTypes: [{ name: 'Salesforce', desc: 'OAuth — יכול לעבוד ישירות OR דרך Connected App' }],
+        advancedFields: [],
+        setupSteps: [
+          'לחץ Add/Connect → Save → נפתח Salesforce Login',
+          'היכנס עם credentials של Salesforce → Allow',
+          'אם נדרש Connected App: Setup → App Manager → New Connected App (מורכב יותר — פנה לאדמין)'
+        ]
+      },
+      'Zoho CRM': {
+        docUrl: 'https://www.make.com/en/help/app/zoho-crm',
+        authType: 'OAuth',
+        connectionTypes: [{ name: 'Zoho CRM', desc: 'OAuth' }],
+        advancedFields: [],
+        setupSteps: ['לחץ Add/Connect → Save → נפתח Zoho → Accept']
+      },
+      'Zendesk': {
+        docUrl: 'https://www.make.com/en/help/app/zendesk',
+        authType: 'Email + API Token + Subdomain',
+        connectionTypes: [{ name: 'Zendesk', desc: 'Email + API Token + שם תת-דומיין' }],
+        advancedFields: [
+          { field: 'Subdomain', where: 'כתובת ה-Zendesk שלך: yourcompany.zendesk.com → רק "yourcompany"', required: true },
+          { field: 'Email', where: 'האימייל שאיתו נכנסים ל-Zendesk', required: true },
+          { field: 'API Token', where: 'Zendesk Admin Center → Apps and integrations → APIs → Zendesk API → Add API token', required: true }
+        ],
+        setupSteps: [
+          'Zendesk Admin Center → Apps and integrations → APIs → Zendesk API',
+          'הפעל "Token access" → Add API token → שם → Create → העתק',
+          'ב-Make.com: Subdomain (ללא zendesk.com) + Email + API Token'
+        ]
+      },
+      'Typeform': {
+        docUrl: 'https://www.make.com/en/help/app/typeform',
+        authType: 'Personal Access Token',
+        connectionTypes: [{ name: 'Typeform', desc: 'Personal Access Token' }],
+        advancedFields: [
+          { field: 'Personal Access Token', where: 'admin.typeform.com → לחץ על שם משתמש → Account → Personal tokens → Generate a new token', required: true }
+        ],
+        setupSteps: ['admin.typeform.com → Account → Personal tokens → Generate → העתק → הדבק ב-Make.com']
+      },
+      'Calendly': {
+        docUrl: 'https://www.make.com/en/help/app/calendly',
+        authType: 'Personal Access Token',
+        connectionTypes: [{ name: 'Calendly', desc: 'Personal Access Token' }],
+        advancedFields: [
+          { field: 'Personal Access Token', where: 'calendly.com → Integrations → API & Webhooks → Generate new token', required: true }
+        ],
+        setupSteps: ['calendly.com → Integrations → API & Webhooks → Generate new token → העתק → הדבק ב-Make.com']
+      },
+      // ── Storage & Files ────────────────────────────────────────────────────
+      'Dropbox': {
+        docUrl: 'https://www.make.com/en/help/app/dropbox',
+        authType: 'OAuth',
+        connectionTypes: [{ name: 'Dropbox', desc: 'OAuth' }],
+        advancedFields: [],
+        setupSteps: ['לחץ Add/Connect → Save → נפתח Dropbox → Allow']
+      },
+      'OneDrive': {
+        docUrl: 'https://www.make.com/en/help/app/onedrive',
+        authType: 'OAuth עם Microsoft',
+        connectionTypes: [{ name: 'OneDrive', desc: 'OAuth עם חשבון Microsoft' }],
+        advancedFields: [],
+        setupSteps: ['לחץ Add/Connect → Save → נפתח Microsoft → Sign in → Accept']
+      },
+      'Microsoft Excel': {
+        docUrl: 'https://www.make.com/en/help/app/microsoft-excel-365',
+        authType: 'OAuth עם Microsoft 365',
+        connectionTypes: [{ name: 'Microsoft Excel 365', desc: 'OAuth — דורש Microsoft 365 (לא Excel רגיל)' }],
+        advancedFields: [],
+        setupSteps: ['לחץ Add/Connect → Save → נפתח Microsoft 365 → Sign in → Accept']
+      },
+      // ── Social ────────────────────────────────────────────────────────────
+      'Twitter': {
+        docUrl: 'https://www.make.com/en/help/app/twitter',
+        authType: 'OAuth 2.0 עם Twitter Developer App',
+        connectionTypes: [
+          { name: 'Twitter (OAuth 2.0)', desc: 'מומלץ — כניסה עם חשבון Twitter' },
+          { name: 'Twitter (OAuth 1.0a)', desc: 'ישן יותר — דורש 4 מפתחות' }
+        ],
+        advancedFields: [
+          { field: 'Client ID', where: 'developer.twitter.com → Projects & Apps → Your App → Keys and tokens → OAuth 2.0 Client ID', required: false },
+          { field: 'Client Secret', where: 'אותה דף → Client Secret', required: false }
+        ],
+        setupSteps: [
+          'developer.twitter.com → פרויקט → App → Settings → User authentication settings',
+          'הפעל OAuth 2.0 → Type of app: Web App → Callback URL: https://www.integromat.com/oauth/cb/twitter2',
+          'Keys and tokens → Client ID + Client Secret → העתק',
+          'ב-Make.com הדבק Client ID + Secret'
+        ]
+      },
+      'YouTube': {
+        docUrl: 'https://www.make.com/en/help/app/youtube',
+        authType: 'OAuth עם Google',
+        connectionTypes: [{ name: 'YouTube', desc: 'OAuth עם חשבון Google שמחובר לערוץ YouTube' }],
+        advancedFields: [],
+        setupSteps: ['לחץ Add/Connect → Save → נפתח Google → בחר חשבון → Allow']
+      },
+      // ── Dev & Databases ────────────────────────────────────────────────────
+      'MySQL': {
+        docUrl: 'https://www.make.com/en/help/app/mysql',
+        authType: 'Host + Port + DB + Username + Password',
+        connectionTypes: [{ name: 'MySQL', desc: 'פרטי חיבור ישיר לשרת MySQL' }],
+        advancedFields: [
+          { field: 'Host', where: 'כתובת שרת ה-MySQL (IP או domain) — מסופק על ידי הוסטינג', required: true },
+          { field: 'Port', where: 'ברירת מחדל: 3306', required: true },
+          { field: 'Database', where: 'שם ה-database', required: true },
+          { field: 'Username / Password', where: 'משתמש MySQL עם הרשאות לאותה database', required: true }
+        ],
+        setupSteps: [
+          'ודא שה-MySQL חשוף לאינטרנט (או הגדר Whitelist ל-IPs של Make.com)',
+          'Make.com IPs לWhitelist: https://www.make.com/en/help/other/make-ip-addresses',
+          'ב-Make.com: Host + Port (3306) + Database + User + Password'
+        ]
+      },
+      'Google Forms': {
+        docUrl: 'https://www.make.com/en/help/app/google-forms',
+        authType: 'OAuth עם Google',
+        connectionTypes: [{ name: 'Google Forms', desc: 'OAuth — אותו חשבון Google שיצר את הטופס' }],
+        advancedFields: [],
+        setupSteps: ['לחץ Add/Connect → Save → נפתח Google → בחר חשבון → Allow']
+      },
+      'SendGrid': {
+        docUrl: 'https://www.make.com/en/help/app/sendgrid',
+        authType: 'API Key',
+        connectionTypes: [{ name: 'SendGrid', desc: 'API Key מ-Settings' }],
+        advancedFields: [
+          { field: 'API Key', where: 'app.sendgrid.com → Settings (שמאל) → API Keys → Create API Key → Full Access → Create & View → העתק מיד', required: true }
+        ],
+        setupSteps: ['app.sendgrid.com → Settings → API Keys → Create API Key → Full Access → Create & View → העתק מיד (לא יוצג שוב!) → הדבק ב-Make.com']
+      },
+      'Supabase': {
+        docUrl: 'https://www.make.com/en/help/app/supabase',
+        authType: 'API URL + anon/service key',
+        connectionTypes: [{ name: 'Supabase', desc: 'Project URL + API Key' }],
+        advancedFields: [
+          { field: 'Project URL', where: 'Supabase Dashboard → Settings → API → Project URL', required: true },
+          { field: 'API Key', where: 'אותה דף → Project API keys → anon (ציבורי) או service_role (מלא — זהיר!)', required: true }
+        ],
+        setupSteps: ['Supabase Dashboard → Settings → API → העתק Project URL + anon key → הדבק ב-Make.com']
       }
     };
 
@@ -294,10 +628,20 @@
       const aliases = {
         'google sheet': 'Google Sheets', 'sheets': 'Google Sheets',
         'google mail': 'Gmail', 'google calendar': 'Google Calendar',
+        'google drive': 'Google Drive', 'google form': 'Google Forms',
         'telegram': 'Telegram Bot', 'whatsapp cloud': 'WhatsApp',
         'green-api': 'WhatsApp', 'openai': 'OpenAI', 'gpt': 'OpenAI',
         'claude': 'Anthropic Claude', 'webhook': 'Webhooks',
-        'facebook': 'Facebook Pages', 'hubspot': 'HubSpot'
+        'facebook': 'Facebook Pages', 'hubspot': 'HubSpot',
+        'twitter': 'Twitter', 'x.com': 'Twitter',
+        'ms teams': 'Microsoft Teams', 'teams': 'Microsoft Teams',
+        'excel': 'Microsoft Excel', 'onedrive': 'OneDrive',
+        'woocommerce': 'WooCommerce', 'woo': 'WooCommerce',
+        'active campaign': 'ActiveCampaign',
+        'monday': 'Monday.com', 'click up': 'ClickUp',
+        'pipe drive': 'Pipedrive', 'zoho': 'Zoho CRM',
+        'send grid': 'SendGrid', 'twillio': 'Twilio',
+        'type form': 'Typeform', 'calendly': 'Calendly'
       };
       for (const [alias, key] of Object.entries(aliases)) {
         if (name.includes(alias)) return CONNECTION_DB[key];
