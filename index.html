@@ -53,6 +53,258 @@
       </svg>
     );
 
+    // ─── Make.com Connection Database ──────────────────────────────────────
+    // Real connection details for common apps - no AI guessing
+    const CONNECTION_DB = {
+      'LinkedIn': {
+        docUrl: 'https://www.make.com/en/help/app/linkedin',
+        authType: 'OAuth 2.0 עם אפליקציה מותאמת אישית',
+        connectionTypes: [
+          { name: 'LinkedIn (Standard)', desc: 'כניסה ישירה עם OAuth — עובד לגישה בסיסית בלבד' },
+          { name: 'LinkedIn (Custom OAuth App)', desc: 'מומלץ — דורש Client ID + Client Secret מ-LinkedIn Developers' }
+        ],
+        advancedFields: [
+          { field: 'Client ID', where: 'LinkedIn Developers → My Apps → בחר אפליקציה → לשונית Auth', required: true },
+          { field: 'Client Secret', where: 'אותה לשונית Auth, תחת "Application credentials"', required: true }
+        ],
+        setupSteps: [
+          'כנס ל-https://developer.linkedin.com/apps → לחץ "Create app"',
+          'מלא: שם אפליקציה, חבר לדף חברה ב-LinkedIn (אפשר לפתוח חדש), העלה לוגו',
+          'בלשונית "Products" הוסף: "Sign In with LinkedIn using OpenID Connect" + "Share on LinkedIn"',
+          'לשונית "Auth" → תחת OAuth 2.0 הוסף Redirect URL: https://www.integromat.com/oauth/cb/linkedin2',
+          'העתק את ה-Client ID וה-Client Secret מלשונית Auth',
+          'ב-Make.com בחלון Create connection → Advanced Settings → הדבק Client ID + Client Secret'
+        ],
+        scopes: ['openid', 'profile', 'email', 'w_member_social']
+      },
+      'Google Sheets': {
+        docUrl: 'https://www.make.com/en/help/app/google-sheets',
+        authType: 'OAuth 2.0 — פשוט',
+        connectionTypes: [{ name: 'Google Sheets', desc: 'לחץ Save → נפתח חלון Google → בחר חשבון → אשר הרשאות. זהו.' }],
+        advancedFields: [],
+        setupSteps: [
+          'ב-Make.com: לחץ Add/Connect → שם חיבור לפי רצונך → Save',
+          'נפתח חלון Google → בחר את חשבון Google הרצוי',
+          'אשר גישה ל-Google Sheets — לחץ "Continue" בכל שלב',
+          'חזור ל-Make.com — החיבור נוצר אוטומטית'
+        ]
+      },
+      'Gmail': {
+        docUrl: 'https://www.make.com/en/help/app/gmail',
+        authType: 'OAuth 2.0 — פשוט',
+        connectionTypes: [{ name: 'Gmail', desc: 'OAuth רגיל עם חשבון Google' }],
+        advancedFields: [],
+        setupSteps: [
+          'לחץ Add/Connect → שם → Save',
+          'חלון Google → בחר חשבון → אשר גישה ל-Gmail'
+        ]
+      },
+      'Google Calendar': {
+        docUrl: 'https://www.make.com/en/help/app/google-calendar',
+        authType: 'OAuth 2.0 — פשוט',
+        connectionTypes: [{ name: 'Google Calendar', desc: 'OAuth עם Google' }],
+        advancedFields: [],
+        setupSteps: ['לחץ Add/Connect → בחר חשבון Google → אשר הרשאות']
+      },
+      'Google Drive': {
+        docUrl: 'https://www.make.com/en/help/app/google-drive',
+        authType: 'OAuth 2.0 — פשוט',
+        connectionTypes: [{ name: 'Google Drive', desc: 'OAuth עם Google' }],
+        advancedFields: [],
+        setupSteps: ['לחץ Add/Connect → בחר חשבון Google → אשר הרשאות']
+      },
+      'Airtable': {
+        docUrl: 'https://www.make.com/en/help/app/airtable',
+        authType: 'API Key או OAuth',
+        connectionTypes: [
+          { name: 'Airtable (API Key)', desc: 'הדרך הקלה — מפתח מחשבון Airtable' },
+          { name: 'Airtable (OAuth)', desc: 'אישור OAuth ישיר' }
+        ],
+        advancedFields: [
+          { field: 'API Key', where: 'airtable.com → לחץ על תמונת פרופיל → Account → Developer Hub → Personal access tokens → Create token', required: true }
+        ],
+        setupSteps: [
+          'כנס ל-airtable.com → תמונת פרופיל → Account',
+          'Developer Hub → Personal access tokens → Create token',
+          'תן שם, בחר Scopes: data.records:read + data.records:write + schema.bases:read',
+          'לחץ Create token → העתק',
+          'ב-Make.com הדבק את ה-token בשדה API Key'
+        ]
+      },
+      'Slack': {
+        docUrl: 'https://www.make.com/en/help/app/slack',
+        authType: 'OAuth 2.0',
+        connectionTypes: [{ name: 'Slack', desc: 'OAuth — מאשרים גישה ל-workspace' }],
+        advancedFields: [],
+        setupSteps: [
+          'לחץ Add/Connect → Save',
+          'נפתח Slack → בחר workspace → לחץ Allow'
+        ]
+      },
+      'Notion': {
+        docUrl: 'https://www.make.com/en/help/app/notion',
+        authType: 'Internal Integration Token',
+        connectionTypes: [{ name: 'Notion', desc: 'דורש Internal Integration Token' }],
+        advancedFields: [
+          { field: 'Internal Integration Token', where: 'notion.so/my-integrations → New integration → Submit → העתק "Internal Integration Token"', required: true }
+        ],
+        setupSteps: [
+          'כנס ל-notion.so/my-integrations → New integration',
+          'תן שם, בחר workspace, הגדר הרשאות (Read/Insert/Update) → Submit',
+          'העתק את ה-Internal Integration Token',
+          'ב-Notion: פתח את ה-Database/Page → לחץ ⋯ → Connections → הוסף את ה-Integration שלך',
+          'ב-Make.com: הדבק את ה-Token בשדה המתאים'
+        ]
+      },
+      'Telegram Bot': {
+        docUrl: 'https://www.make.com/en/help/app/telegram-bot',
+        authType: 'Bot Token',
+        connectionTypes: [{ name: 'Telegram Bot', desc: 'דורש Bot Token מ-BotFather' }],
+        advancedFields: [
+          { field: 'Bot Token', where: 'Telegram → חפש @BotFather → /newbot → תן שם ו-username → העתק את ה-Token שנשלח', required: true }
+        ],
+        setupSteps: [
+          'ב-Telegram חפש @BotFather → שלח /newbot',
+          'תן שם לבוט (Display name) → תן username (חייב להסתיים ב-bot)',
+          'BotFather ישלח Token — העתק אותו',
+          'ב-Make.com הדבק ב-"Connection token"'
+        ]
+      },
+      'WhatsApp': {
+        docUrl: 'https://www.make.com/en/help/app/whatsapp-business-cloud',
+        authType: 'Meta Business → System User Token',
+        connectionTypes: [
+          { name: 'WhatsApp (Cloud API)', desc: 'דרך Meta Business Suite — מורכב יותר' },
+          { name: 'GREEN-API for WhatsApp', desc: 'הרבה פשוט יותר — API key מ-greenapi.com' }
+        ],
+        advancedFields: [
+          { field: 'Phone Number ID', where: 'Meta Business → WhatsApp → Getting Started', required: true },
+          { field: 'Access Token', where: 'Meta Business → System Users → Generate Token', required: true }
+        ],
+        setupSteps: [
+          'לחיבור פשוט: השתמש ב-GREEN-API במקום WhatsApp Cloud',
+          'ל-GREEN-API: כנס ל-greenapi.com → צור instance → קבל instanceId + apiToken',
+          'ב-Make.com בחר GREEN-API for WhatsApp → הדבק instanceId + apiToken'
+        ]
+      },
+      'OpenAI': {
+        docUrl: 'https://www.make.com/en/help/app/openai-gpt-3',
+        authType: 'API Key',
+        connectionTypes: [{ name: 'OpenAI', desc: 'API Key מ-platform.openai.com' }],
+        advancedFields: [
+          { field: 'API Key', where: 'platform.openai.com → API keys → Create new secret key → העתק מיד (לא יוצג שוב!)', required: true }
+        ],
+        setupSteps: [
+          'כנס ל-platform.openai.com → API keys (בתפריט שמאל)',
+          'Create new secret key → העתק מיד — לא יוצג שוב',
+          'ב-Make.com הדבק ב-"API Key"'
+        ]
+      },
+      'Anthropic Claude': {
+        docUrl: 'https://www.make.com/en/help/app/anthropic-claude',
+        authType: 'API Key',
+        connectionTypes: [{ name: 'Anthropic Claude', desc: 'API Key מ-console.anthropic.com' }],
+        advancedFields: [
+          { field: 'API Key', where: 'console.anthropic.com → API Keys → Create Key → העתק', required: true }
+        ],
+        setupSteps: ['console.anthropic.com → API Keys → Create Key → העתק → הדבק ב-Make.com']
+      },
+      'HTTP': {
+        docUrl: 'https://www.make.com/en/help/app/http',
+        authType: 'ללא חיבור',
+        connectionTypes: [{ name: 'HTTP', desc: 'לא דורש חיבור — מזין URL ישירות במודול' }],
+        advancedFields: [],
+        setupSteps: ['מודול HTTP לא דורש חיבור — מזינים URL ישירות בשדה ה-URL במודול']
+      },
+      'Webhooks': {
+        docUrl: 'https://www.make.com/en/help/app/webhooks',
+        authType: 'ללא חיבור',
+        connectionTypes: [{ name: 'Webhook', desc: 'Make.com מייצר URL ייחודי — מעתיקים ומדביקים בשירות החיצוני' }],
+        advancedFields: [],
+        setupSteps: [
+          'הוסף מודול Webhooks → Custom Webhook → Add',
+          'Make.com יוצר URL — העתק אותו',
+          'הדבק ב-שירות החיצוני שאמור לשלוח נתונים',
+          'שלח בקשת בדיקה → Make.com יזהה את המבנה אוטומטית'
+        ]
+      },
+      'HubSpot': {
+        docUrl: 'https://www.make.com/en/help/app/hubspot',
+        authType: 'OAuth 2.0',
+        connectionTypes: [{ name: 'HubSpot', desc: 'OAuth — כניסה עם חשבון HubSpot' }],
+        advancedFields: [],
+        setupSteps: ['לחץ Add/Connect → Save → נפתח HubSpot → בחר account → Grant access']
+      },
+      'Mailchimp': {
+        docUrl: 'https://www.make.com/en/help/app/mailchimp',
+        authType: 'OAuth 2.0',
+        connectionTypes: [{ name: 'Mailchimp', desc: 'OAuth' }],
+        advancedFields: [],
+        setupSteps: ['לחץ Add/Connect → Save → נפתח Mailchimp → Allow access']
+      },
+      'Trello': {
+        docUrl: 'https://www.make.com/en/help/app/trello',
+        authType: 'OAuth',
+        connectionTypes: [{ name: 'Trello', desc: 'OAuth' }],
+        advancedFields: [],
+        setupSteps: ['לחץ Add/Connect → Save → נפתח Trello → Allow']
+      },
+      'GitHub': {
+        docUrl: 'https://www.make.com/en/help/app/github',
+        authType: 'OAuth או Personal Access Token',
+        connectionTypes: [
+          { name: 'GitHub (OAuth)', desc: 'OAuth ישיר' },
+          { name: 'GitHub (PAT)', desc: 'Personal Access Token' }
+        ],
+        advancedFields: [
+          { field: 'Personal Access Token', where: 'GitHub → Settings → Developer settings → Personal access tokens → Generate new token', required: false }
+        ],
+        setupSteps: ['OAuth: לחץ Add/Connect → Save → Authorize GitHub', 'PAT: github.com → Settings → Developer settings → Personal access tokens → Generate']
+      },
+      'Facebook Pages': {
+        docUrl: 'https://www.make.com/en/help/app/facebook-pages',
+        authType: 'OAuth (Meta)',
+        connectionTypes: [{ name: 'Facebook Pages', desc: 'OAuth עם Meta — צריך להיות Admin של הדף' }],
+        advancedFields: [],
+        setupSteps: ['לחץ Add/Connect → Save → Facebook Login → בחר דפים להרשות → Done']
+      },
+      'Instagram': {
+        docUrl: 'https://www.make.com/en/help/app/instagram-for-business',
+        authType: 'OAuth דרך Meta Business',
+        connectionTypes: [{ name: 'Instagram for Business', desc: 'דורש חשבון Instagram Business + דף Facebook מקושר' }],
+        advancedFields: [],
+        setupSteps: [
+          'ודא שחשבון Instagram הוא Business/Creator',
+          'חבר ל-Facebook Page (Instagram Settings → Linked Accounts)',
+          'ב-Make.com: OAuth → אשר גישה ל-Instagram ול-Facebook Page'
+        ]
+      }
+    };
+
+    // Fuzzy match app name to DB key
+    function findAppInDB(appName) {
+      if (!appName) return null;
+      const name = appName.toLowerCase();
+      for (const key of Object.keys(CONNECTION_DB)) {
+        if (name.includes(key.toLowerCase()) || key.toLowerCase().includes(name)) {
+          return CONNECTION_DB[key];
+        }
+      }
+      // Common aliases
+      const aliases = {
+        'google sheet': 'Google Sheets', 'sheets': 'Google Sheets',
+        'google mail': 'Gmail', 'google calendar': 'Google Calendar',
+        'telegram': 'Telegram Bot', 'whatsapp cloud': 'WhatsApp',
+        'green-api': 'WhatsApp', 'openai': 'OpenAI', 'gpt': 'OpenAI',
+        'claude': 'Anthropic Claude', 'webhook': 'Webhooks',
+        'facebook': 'Facebook Pages', 'hubspot': 'HubSpot'
+      };
+      for (const [alias, key] of Object.entries(aliases)) {
+        if (name.includes(alias)) return CONNECTION_DB[key];
+      }
+      return null;
+    }
+
     // ─── xAI (Grok) API ────────────────────────────────────────────────────
     async function callGemini(apiKey, systemPrompt, userQuery) {
       let delay = 1000;
@@ -125,33 +377,53 @@
         try {
           const triggerApp = item.trigger?.app || '';
           const actionApp = item.action?.app || '';
+
+          // Look up real connection data from our DB
+          const triggerDB = findAppInDB(triggerApp);
+          const actionDB = findAppInDB(actionApp);
+
+          // Build verified context string for the AI
+          const buildDBContext = (app, db, role) => {
+            if (!db) return `${role}: ${app} — אין נתונים מאומתים במסד הנתונים שלנו, השתמש בידע הכללי שלך.`;
+            return `${role}: ${app}
+  - סוג אימות: ${db.authType}
+  - אפשרויות חיבור: ${db.connectionTypes.map(c => `"${c.name}": ${c.desc}`).join(' | ')}
+  ${db.advancedFields.length ? `- שדות Advanced Settings: ${db.advancedFields.map(f => `${f.field} (מיקום: ${f.where})`).join('; ')}` : '- אין שדות Advanced Settings נדרשים'}
+  - צעדי הכנה מאומתים: ${db.setupSteps.join(' → ')}`;
+          };
+
+          const triggerContext = buildDBContext(triggerApp, triggerDB, 'טריגר');
+          const actionContext = buildDBContext(actionApp, actionDB, 'פעולה');
+
           const data = await callGemini(apiKey,
-            `You are a Make.com expert. Return ONLY valid JSON with this exact structure:
+            `You are a Make.com configuration expert. Return ONLY valid JSON:
 {"steps":[{"title":"string","description":"string"}],"triggerDocUrl":"string","actionDocUrl":"string"}
-- triggerDocUrl: the official Make.com help URL for ${triggerApp} (format: https://www.make.com/en/help/app/APPSLUG)
-- actionDocUrl: the official Make.com help URL for ${actionApp}
-- steps: preparation and configuration steps`,
-            `המשתמש פתח טמפלייט Make.com מוכן עם:
-- טריגר: "${item.trigger?.name}" של ${triggerApp}
-- פעולה: "${item.action?.name}" של ${actionApp}
+Use ONLY the verified data provided in the user message. Do NOT invent button names or UI details.
+triggerDocUrl and actionDocUrl: use the docUrl from the verified data if available.`,
+            `טמפלייט Make.com מוכן: טריגר "${item.trigger?.name}" + פעולה "${item.action?.name}".
 
-כל המודולים כבר בנויים — הוא צריך רק להגדיר אישורים ופרמטרים.
+=== נתונים מאומתים מבסיס הנתונים שלנו ===
+${triggerContext}
 
-צור 5-6 צעדים בעברית. חשוב מאוד:
-❌ אל תנחש שמות כפתורים ספציפיים ב-Make.com (הם משתנים)
-✅ תאר מה המשתמש צריך להכין/לדעת לפני ובמהלך ההגדרה
+${actionContext}
+=== סוף נתונים מאומתים ===
 
-הצעדים:
-1. "הכנה לפני Make.com" — מה צריך שיהיה פתוח/מוכן: האם נדרש חשבון ${triggerApp} עם הרשאות ספציפיות? האם ${actionApp} דורש API key (ואיפה למצוא אותו בממשק של ${actionApp} עצמו)?
-2. "סוג החיבור של ${triggerApp}" — האם OAuth (כניסה עם חשבון) או API key? אילו הרשאות ${triggerApp} ידרוש לאשר?
-3. "סוג החיבור של ${actionApp}" — OAuth או API key? מה בדיוק צריך להעתיק/להזין?
-4. "הגדרת הטריגר '${item.trigger?.name}'" — אילו נתונים Make.com ידרוש: שם חברה? ID? URL? תאר מה כל שדה אומר
-5. "הגדרת הפעולה '${item.action?.name}'" — אילו שדות למלא, איך הנתונים מהטריגר ממופים לפעולה
-6. "בדיקה והפעלה" — לחץ Run once לראות אם עובד, ואז הפעל`
+בהתבסס אך ורק על הנתונים המאומתים לעיל, צור מדריך הגדרה בעברית עם 5-6 צעדים:
+1. מה להכין לפני פתיחת Make.com (חשבונות, API keys — בדיוק מהנתונים המאומתים)
+2. חיבור ${triggerApp} — הסבר את אפשרויות החיבור שמופיעות, מה כל אחת אומרת, ומה לבחור
+3. שדות Advanced Settings של ${triggerApp} — אם קיימים: מה למלא ואיפה מוצאים את הערכים
+4. חיבור ${actionApp} — אותו הדבר
+5. הגדרת פרמטרי הטריגר והפעולה עצמם
+6. Run once לבדיקה ואז הפעלה
+
+❌ אל תמציא שמות כפתורים שלא קיימים בנתונים המאומתים`
           );
           setGuide(data.steps || []);
-          setDocUrls({ trigger: data.triggerDocUrl, action: data.actionDocUrl });
-        } catch {
+          setDocUrls({
+            trigger: triggerDB?.docUrl || data.triggerDocUrl,
+            action: actionDB?.docUrl || data.actionDocUrl
+          });
+        } catch (err) {
           setGuide([{ title: "שגיאה", description: "לא ניתן לטעון את המדריך. בדוק את מפתח ה-API ונסה שוב." }]);
         }
         setGuideLoading(false);
