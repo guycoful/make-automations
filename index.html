@@ -59,7 +59,7 @@
       for (let i = 0; i < 5; i++) {
         try {
           const res = await fetch(
-            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`,
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
             {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
@@ -70,7 +70,7 @@
               })
             }
           );
-          if (!res.ok) throw new Error('API ' + res.status);
+          if (!res.ok) { const errText = await res.text(); throw new Error('API ' + res.status + ': ' + errText.substring(0, 200)); }
           const data = await res.json();
           const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
           return JSON.parse(text);
@@ -304,7 +304,7 @@ Return ONLY JSON:
               : 'https://www.make.com/en/templates'
           })));
         } catch {
-          setError("שגיאה בחיבור לשרת. בדוק שמפתח ה-API תקין ונסה שוב.");
+          setError("שגיאה: " + (err.message || 'Unknown error'));
         }
         setLoading(false);
       };
