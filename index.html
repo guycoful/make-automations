@@ -303,7 +303,7 @@ Return ONLY JSON:
               ? `https://www.make.com/en/integrations/${t.app_slugs.slice(0,2).join('/')}`
               : 'https://www.make.com/en/templates'
           })));
-        } catch {
+        } catch (err) {
           setError("שגיאה: " + (err.message || 'Unknown error'));
         }
         setLoading(false);
