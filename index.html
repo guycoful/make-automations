@@ -740,27 +740,49 @@
           const actionContext = buildDBContext(actionApp, actionDB, 'פעולה');
 
           const data = await callGemini(apiKey,
-            `You are a Make.com configuration expert. Return ONLY valid JSON:
-{"steps":[{"title":"string","description":"string"}],"triggerDocUrl":"string","actionDocUrl":"string"}
-Use ONLY the verified data provided in the user message. Do NOT invent button names or UI details.
-triggerDocUrl and actionDocUrl: use the docUrl from the verified data if available.`,
-            `טמפלייט Make.com מוכן: טריגר "${item.trigger?.name}" + פעולה "${item.action?.name}".
+            `You are a Make.com configuration expert for COMPLETE BEGINNERS who have never used automation before.
+Return ONLY valid JSON with this EXACT structure — no extra fields:
+{
+  "steps": [
+    {
+      "type": "prepare|connect|configure|test",
+      "title": "short title in Hebrew",
+      "description": "plain Hebrew explanation — no → arrows in description",
+      "path": ["step1","step2","step3"],
+      "fields": [{"field":"field name","where":"exact location","warning":"optional critical note"}],
+      "tip": "optional beginner tip in Hebrew",
+      "warning": "optional critical warning in Hebrew"
+    }
+  ],
+  "triggerDocUrl": "https://www.make.com/en/help/app/...",
+  "actionDocUrl": "https://www.make.com/en/help/app/..."
+}
 
-=== נתונים מאומתים מבסיס הנתונים שלנו ===
+Rules:
+- type "prepare" = things to do BEFORE opening Make.com (get credentials, accounts)
+- type "connect" = creating a connection inside Make.com (authentication)
+- type "configure" = setting module parameters
+- type "test" = Run once + activate
+- "path" array = navigation breadcrumbs (e.g. ["LinkedIn Developers","My Apps","Auth tab"])
+- "fields" array = form fields to fill (name, where to find value, optional warning)
+- Keep "description" SHORT (1-2 sentences max) — details go in path/fields
+- Use ONLY verified data provided. Do NOT invent button names.`,
+            `Make.com template: trigger "${item.trigger?.name}" + action "${item.action?.name}".
+The template modules are already built — user just needs credentials and config.
+
+=== VERIFIED DATA ===
 ${triggerContext}
 
 ${actionContext}
-=== סוף נתונים מאומתים ===
+=== END VERIFIED DATA ===
 
-בהתבסס אך ורק על הנתונים המאומתים לעיל, צור מדריך הגדרה בעברית עם 5-6 צעדים:
-1. מה להכין לפני פתיחת Make.com (חשבונות, API keys — בדיוק מהנתונים המאומתים)
-2. חיבור ${triggerApp} — הסבר את אפשרויות החיבור שמופיעות, מה כל אחת אומרת, ומה לבחור
-3. שדות Advanced Settings של ${triggerApp} — אם קיימים: מה למלא ואיפה מוצאים את הערכים
-4. חיבור ${actionApp} — אותו הדבר
-5. הגדרת פרמטרי הטריגר והפעולה עצמם
-6. Run once לבדיקה ואז הפעלה
-
-❌ אל תמציא שמות כפתורים שלא קיימים בנתונים המאומתים`
+Create 5-6 steps using ONLY the verified data above. Structure:
+1. type:prepare — what accounts/credentials to get before Make.com
+2. type:connect — connecting ${triggerApp} in Make.com (show connectionTypes as options, explain advanced fields)
+3. type:connect — connecting ${actionApp} (same)
+4. type:configure — setting up trigger module parameters
+5. type:configure — setting up action module parameters
+6. type:test — Run once to test, then toggle ON`
           );
           setGuide(data.steps || []);
           setDocUrls({
@@ -830,36 +852,108 @@ ${actionContext}
 
           {/* Connection guide accordion */}
           {guideOpen && !guideLoading && guide && (
-            <div className="border border-slate-100 rounded-xl p-4 mb-3 bg-slate-50">
-              <h4 className="font-black text-slate-700 mb-3 text-sm">
-                ⚙️ הגדרת הטמפלייט: {item.trigger?.app} → {item.action?.app}
-              </h4>
-              <ol className="space-y-3 mb-4">
-                {guide.map((step, i) => (
-                  <li key={i} className="flex gap-3">
-                    <span className="bg-blue-600 text-white text-xs font-black rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      {i + 1}
-                    </span>
-                    <div>
-                      <div className="font-bold text-slate-800 text-sm">{step.title}</div>
-                      <div className="text-slate-600 text-sm">{step.description}</div>
+            <div className="border-2 border-purple-100 rounded-2xl mb-3 overflow-hidden">
+              {/* Guide header */}
+              <div className="bg-gradient-to-l from-purple-600 to-blue-600 px-4 py-3 flex items-center gap-2">
+                <span className="text-white text-base">⚙️</span>
+                <span className="text-white font-black text-sm">מדריך הגדרה: {item.trigger?.app} → {item.action?.app}</span>
+                <span className="mr-auto bg-white/20 text-white text-xs px-2 py-0.5 rounded-full font-bold">{guide.length} צעדים</span>
+              </div>
+
+              <div className="p-4 space-y-3">
+                {guide.map((step, i) => {
+                  const typeStyles = {
+                    prepare: { bg: 'bg-amber-50', border: 'border-amber-200', badge: 'bg-amber-100 text-amber-800', icon: '📋', label: 'הכנה מראש' },
+                    connect: { bg: 'bg-blue-50',  border: 'border-blue-200',  badge: 'bg-blue-100 text-blue-800',  icon: '🔌', label: 'חיבור חשבון' },
+                    configure:{ bg: 'bg-violet-50',border:'border-violet-200',badge:'bg-violet-100 text-violet-800',icon:'🎛️',label:'הגדרות' },
+                    test:     { bg: 'bg-green-50', border: 'border-green-200', badge: 'bg-green-100 text-green-800', icon: '▶️', label: 'בדיקה והפעלה' }
+                  };
+                  const s = typeStyles[step.type] || typeStyles.configure;
+
+                  return (
+                    <div key={i} className={`${s.bg} border ${s.border} rounded-xl p-4`}>
+                      {/* Step header */}
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className={`text-xs font-black px-2 py-0.5 rounded-full ${s.badge}`}>
+                          {s.icon} {s.label}
+                        </span>
+                        <span className="text-slate-400 text-xs">שלב {i + 1}</span>
+                      </div>
+                      <div className="font-black text-slate-800 text-base mb-1">{step.title}</div>
+                      {step.description && (
+                        <p className="text-slate-600 text-sm leading-relaxed mb-2">{step.description}</p>
+                      )}
+
+                      {/* Navigation path breadcrumb */}
+                      {step.path && step.path.length > 0 && (
+                        <div className="flex flex-wrap items-center gap-1 mb-3 bg-white/70 rounded-lg px-3 py-2 border border-white">
+                          <span className="text-xs text-slate-400 ml-1">נווט:</span>
+                          {step.path.map((crumb, ci) => (
+                            <span key={ci} className="flex items-center gap-1">
+                              <code className="bg-slate-800 text-slate-100 text-xs px-2 py-0.5 rounded font-mono">{crumb}</code>
+                              {ci < step.path.length - 1 && <span className="text-slate-400 text-xs">›</span>}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Fields */}
+                      {step.fields && step.fields.length > 0 && (
+                        <div className="space-y-2 mb-2">
+                          {step.fields.map((f, fi) => (
+                            <div key={fi} className="bg-white rounded-lg border border-slate-200 overflow-hidden">
+                              <div className="flex items-center gap-2 px-3 py-2 bg-slate-700">
+                                <span className="text-slate-200 text-xs font-mono font-bold" dir="ltr">{f.field}</span>
+                                <span className="mr-auto text-slate-400 text-xs">← מלא כאן</span>
+                              </div>
+                              <div className="px-3 py-2">
+                                <span className="text-xs text-slate-500">📍 איפה מוצאים: </span>
+                                <span className="text-xs text-slate-700 font-medium">{f.where}</span>
+                                {f.warning && (
+                                  <div className="mt-1.5 flex items-start gap-1.5 bg-red-50 border border-red-200 rounded px-2 py-1.5">
+                                    <span className="text-red-500 text-xs flex-shrink-0">⚠️</span>
+                                    <span className="text-red-700 text-xs font-bold">{f.warning}</span>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Tip */}
+                      {step.tip && (
+                        <div className="flex items-start gap-2 bg-white/60 border border-current/10 rounded-lg px-3 py-2 mt-2">
+                          <span className="text-base flex-shrink-0">💡</span>
+                          <span className="text-slate-600 text-xs leading-relaxed">{step.tip}</span>
+                        </div>
+                      )}
+
+                      {/* Warning */}
+                      {step.warning && (
+                        <div className="flex items-start gap-2 bg-red-50 border border-red-200 rounded-lg px-3 py-2 mt-2">
+                          <span className="text-base flex-shrink-0">⚠️</span>
+                          <span className="text-red-700 text-xs font-bold leading-relaxed">{step.warning}</span>
+                        </div>
+                      )}
                     </div>
-                  </li>
-                ))}
-              </ol>
-              {/* Official Make.com docs links */}
-              <div className="border-t border-slate-200 pt-3 flex flex-wrap gap-2">
-                <span className="text-xs text-slate-400 w-full mb-1">📚 תיעוד רשמי Make.com:</span>
+                  );
+                })}
+              </div>
+
+              {/* Official docs */}
+              <div className="border-t border-purple-100 px-4 py-3 bg-slate-50 flex flex-wrap gap-2 items-center">
+                <span className="text-xs text-slate-400 font-bold">📚 תיעוד רשמי:</span>
                 {docUrls.trigger && (
                   <a href={docUrls.trigger} target="_blank" rel="noopener noreferrer"
                     className="flex items-center gap-1 text-xs bg-orange-50 text-orange-700 border border-orange-200 px-3 py-1.5 rounded-lg font-bold hover:bg-orange-100 transition-colors">
-                    ⚡ {item.trigger?.app} – תיעוד
+                    ⚡ {item.trigger?.app}
                   </a>
                 )}
                 {docUrls.action && (
                   <a href={docUrls.action} target="_blank" rel="noopener noreferrer"
                     className="flex items-center gap-1 text-xs bg-blue-50 text-blue-700 border border-blue-200 px-3 py-1.5 rounded-lg font-bold hover:bg-blue-100 transition-colors">
-                    🎯 {item.action?.app} – תיעוד
+                    🎯 {item.action?.app}
                   </a>
                 )}
               </div>
