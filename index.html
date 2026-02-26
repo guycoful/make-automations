@@ -58,18 +58,20 @@
     const CONNECTION_DB = {
       'LinkedIn': {
         docUrl: 'https://www.make.com/en/help/app/linkedin',
-        authType: 'OAuth 2.0 עם אפליקציה מותאמת אישית',
+        authType: 'OAuth 2.0 עם Developer App — חובה דף חברה',
+        accountWarning: '⚠️ כל גישת API ל-LinkedIn דורשת דף חברה (Company Page). גם אם הטריגר לכאורה "אישי" — יצירת Developer App דורשת לשייך דף חברה. אפשר ליצור חדש בחינם.',
         connectionTypes: [
-          { name: 'LinkedIn (Standard)', desc: 'כניסה ישירה עם OAuth — עובד לגישה בסיסית בלבד' },
-          { name: 'LinkedIn (Custom OAuth App)', desc: 'מומלץ — דורש Client ID + Client Secret מ-LinkedIn Developers' }
+          { name: 'LinkedIn (Standard)', desc: 'כניסה ישירה — מוגבל מאוד, לא מאפשר רוב הטריגרים' },
+          { name: 'LinkedIn (Custom OAuth App)', desc: 'חובה לרוב הפעולות — דורש Developer App + Company Page + Client ID/Secret' }
         ],
         advancedFields: [
-          { field: 'Client ID', where: 'LinkedIn Developers → My Apps → בחר אפליקציה → לשונית Auth', required: true },
+          { field: 'Client ID', where: 'LinkedIn Developers → My Apps → בחר אפליקציה → לשונית Auth → Application credentials', required: true },
           { field: 'Client Secret', where: 'אותה לשונית Auth, תחת "Application credentials"', required: true }
         ],
         setupSteps: [
+          '⚠️ דרישה מקדימה: צריך דף חברה (Company Page) ב-LinkedIn — אם אין לך, צור אחד בחינם: linkedin.com/company/setup/new',
           'כנס ל-https://developer.linkedin.com/apps → לחץ "Create app"',
-          'מלא: שם אפליקציה, חבר לדף חברה ב-LinkedIn (אפשר לפתוח חדש), העלה לוגו',
+          'מלא שם אפליקציה → שדה "LinkedIn Page" — הזן שם או URL של דף החברה שלך (חובה, לא ניתן לדלג)',
           'בלשונית "Products" הוסף: "Sign In with LinkedIn using OpenID Connect" + "Share on LinkedIn"',
           'לשונית "Auth" → תחת OAuth 2.0 הוסף Redirect URL: https://www.integromat.com/oauth/cb/linkedin2',
           'העתק את ה-Client ID וה-Client Secret מלשונית Auth',
@@ -173,18 +175,19 @@
       'WhatsApp': {
         docUrl: 'https://www.make.com/en/help/app/whatsapp-business-cloud',
         authType: 'Meta Business → System User Token',
+        accountWarning: '⚠️ WhatsApp Cloud API דורש חשבון Meta Business מאומת + מספר טלפון ייעודי (לא אישי). GREEN-API הרבה יותר פשוט.',
         connectionTypes: [
-          { name: 'WhatsApp (Cloud API)', desc: 'דרך Meta Business Suite — מורכב יותר' },
-          { name: 'GREEN-API for WhatsApp', desc: 'הרבה פשוט יותר — API key מ-greenapi.com' }
+          { name: 'WhatsApp (Cloud API)', desc: 'דרך Meta Business Suite — דורש חשבון עסקי מאומת + מספר ייעודי' },
+          { name: 'GREEN-API for WhatsApp', desc: '✅ מומלץ — פשוט, עובד עם מספר הטלפון הרגיל שלך' }
         ],
         advancedFields: [
-          { field: 'Phone Number ID', where: 'Meta Business → WhatsApp → Getting Started', required: true },
-          { field: 'Access Token', where: 'Meta Business → System Users → Generate Token', required: true }
+          { field: 'Phone Number ID', where: 'Meta Business → WhatsApp → Getting Started (רק ל-Cloud API)', required: true },
+          { field: 'Access Token', where: 'Meta Business → System Users → Generate Token (רק ל-Cloud API)', required: true }
         ],
         setupSteps: [
-          'לחיבור פשוט: השתמש ב-GREEN-API במקום WhatsApp Cloud',
-          'ל-GREEN-API: כנס ל-greenapi.com → צור instance → קבל instanceId + apiToken',
-          'ב-Make.com בחר GREEN-API for WhatsApp → הדבק instanceId + apiToken'
+          '✅ מומלץ: השתמש ב-GREEN-API (עובד עם המספר הרגיל שלך, ללא Meta Business)',
+          'ל-GREEN-API: greenapi.com → צור instance → סרוק QR → קבל instanceId + apiToken',
+          'ל-Cloud API: דורש Meta Business מאומת + מספר ייעודי (מורכב יותר)'
         ]
       },
       'OpenAI': {
@@ -270,22 +273,36 @@
       },
       'Instagram': {
         docUrl: 'https://www.make.com/en/help/app/instagram-for-business',
-        authType: 'OAuth דרך Meta Business',
-        connectionTypes: [{ name: 'Instagram for Business', desc: 'דורש חשבון Instagram Business + דף Facebook מקושר' }],
+        authType: 'OAuth דרך Meta Business — חובה חשבון Business',
+        accountWarning: '⚠️ Instagram API עובד רק עם חשבון Business או Creator המחובר לדף Facebook. חשבון אישי רגיל לא נתמך.',
+        connectionTypes: [{ name: 'Instagram for Business', desc: 'דורש חשבון Instagram Business/Creator + דף Facebook מקושר (Admin)' }],
         advancedFields: [],
         setupSteps: [
-          'ודא שחשבון Instagram הוא Business/Creator',
-          'חבר ל-Facebook Page (Instagram Settings → Linked Accounts)',
+          '⚠️ דרישה: חשבון Instagram חייב להיות Business או Creator (לא Personal)',
+          'ב-Instagram: Settings → Account → Switch to Professional Account',
+          'חבר ל-Facebook Page שאתה Admin שלו: Instagram Settings → Linked Accounts → Facebook',
           'ב-Make.com: OAuth → אשר גישה ל-Instagram ול-Facebook Page'
+        ]
+      },
+      'Facebook Pages': {
+        docUrl: 'https://www.make.com/en/help/app/facebook-pages',
+        authType: 'OAuth (Meta) — חובה Admin של דף',
+        accountWarning: '⚠️ כל טריגרי Facebook Pages דורשים שתהיה Admin או Editor של הדף. פרופיל אישי לא מספיק.',
+        connectionTypes: [{ name: 'Facebook Pages', desc: 'OAuth עם Meta — חובה Admin/Editor של הדף' }],
+        advancedFields: [],
+        setupSteps: [
+          '⚠️ דרישה: חייב להיות Admin או Editor של דף Facebook (לא פרופיל אישי)',
+          'ב-Make.com: Add/Connect → Save → Facebook Login → בחר דפים להרשות → Done'
         ]
       },
       // ── Communication ──────────────────────────────────────────────────────
       'Discord': {
         docUrl: 'https://www.make.com/en/help/app/discord',
-        authType: 'Bot Token או OAuth',
+        authType: 'Bot Token — חובה Admin של שרת',
+        accountWarning: '⚠️ Discord Bot דורש הרשאת Admin בשרת כדי להוסיף את הבוט. בוט לא יכול לפעול בשרת של מישהו אחר ללא הזמנה.',
         connectionTypes: [
-          { name: 'Discord (Bot)', desc: 'Bot Token — הבוט שולח הודעות לשרת' },
-          { name: 'Discord (OAuth)', desc: 'כניסה עם חשבון אישי' }
+          { name: 'Discord (Bot)', desc: 'Bot Token — חובה Admin בשרת כדי להוסיף' },
+          { name: 'Discord (OAuth)', desc: 'כניסה אישית — מוגבל מאוד' }
         ],
         advancedFields: [
           { field: 'Bot Token', where: 'discord.com/developers/applications → בחר אפליקציה → Bot → Reset Token → העתק', required: true }
@@ -342,9 +359,10 @@
       },
       'Shopify': {
         docUrl: 'https://www.make.com/en/help/app/shopify',
-        authType: 'Custom App API Key + Secret',
+        authType: 'Custom App — חובה Admin של החנות',
+        accountWarning: '⚠️ דורש גישת Admin לחנות Shopify. עובד רק בחנות שלך — לא ניתן לחבר חנות של מישהו אחר.',
         connectionTypes: [
-          { name: 'Shopify', desc: 'Custom App credentials — דורש יצירת Private App בחנות' }
+          { name: 'Shopify', desc: 'Custom App credentials — חובה Admin של החנות' }
         ],
         advancedFields: [
           { field: 'API Key', where: 'Shopify Admin → Settings → Apps → Develop apps → Create app → API credentials → Admin API access token', required: true },
@@ -361,8 +379,9 @@
       },
       'WooCommerce': {
         docUrl: 'https://www.make.com/en/help/app/woocommerce',
-        authType: 'Consumer Key + Consumer Secret',
-        connectionTypes: [{ name: 'WooCommerce', desc: 'REST API Keys שנוצרות בלוח הבקרה של WordPress' }],
+        authType: 'Consumer Key + Secret — חובה Admin WordPress',
+        accountWarning: '⚠️ דורש גישת Admin ללוח הבקרה של WordPress + WooCommerce מותקן. האתר חייב להיות נגיש מהאינטרנט (לא localhost).',
+        connectionTypes: [{ name: 'WooCommerce', desc: 'REST API Keys — חובה Admin WordPress' }],
         advancedFields: [
           { field: 'Consumer Key', where: 'WordPress Admin → WooCommerce → Settings → Advanced → REST API → Add key → Generate API key', required: true },
           { field: 'Consumer Secret', where: 'אותה דף — נוצר יחד עם ה-Consumer Key', required: true },
@@ -547,20 +566,21 @@
       // ── Social ────────────────────────────────────────────────────────────
       'Twitter': {
         docUrl: 'https://www.make.com/en/help/app/twitter',
-        authType: 'OAuth 2.0 עם Twitter Developer App',
+        authType: 'OAuth 2.0 עם Developer App — דורש אישור מפתחים',
+        accountWarning: '⚠️ Twitter/X API דורש חשבון Developer מאושר. תהליך האישור לוקח 24-48 שעות ודורש לתאר את השימוש. Free tier מוגבל ל-1,500 ציוצים/חודש.',
         connectionTypes: [
-          { name: 'Twitter (OAuth 2.0)', desc: 'מומלץ — כניסה עם חשבון Twitter' },
-          { name: 'Twitter (OAuth 1.0a)', desc: 'ישן יותר — דורש 4 מפתחות' }
+          { name: 'Twitter (OAuth 2.0)', desc: 'דורש Developer App — אישור 24-48 שעות' },
+          { name: 'Twitter (OAuth 1.0a)', desc: 'ישן יותר — דורש 4 מפתחות מ-Developer Portal' }
         ],
         advancedFields: [
-          { field: 'Client ID', where: 'developer.twitter.com → Projects & Apps → Your App → Keys and tokens → OAuth 2.0 Client ID', required: false },
-          { field: 'Client Secret', where: 'אותה דף → Client Secret', required: false }
+          { field: 'Client ID', where: 'developer.twitter.com → Projects & Apps → Your App → Keys and tokens → OAuth 2.0 Client ID', required: true },
+          { field: 'Client Secret', where: 'אותה דף → Client Secret', required: true }
         ],
         setupSteps: [
-          'developer.twitter.com → פרויקט → App → Settings → User authentication settings',
-          'הפעל OAuth 2.0 → Type of app: Web App → Callback URL: https://www.integromat.com/oauth/cb/twitter2',
-          'Keys and tokens → Client ID + Client Secret → העתק',
-          'ב-Make.com הדבק Client ID + Secret'
+          '⚠️ דרישה: חשבון Developer ב-developer.twitter.com (אישור 24-48 שעות)',
+          'Create App → Settings → User authentication settings → הפעל OAuth 2.0',
+          'Callback URL: https://www.integromat.com/oauth/cb/twitter2',
+          'Keys and tokens → Client ID + Client Secret → העתק → הדבק ב-Make.com'
         ]
       },
       'YouTube': {
@@ -650,30 +670,44 @@
     }
 
     // ─── xAI (Grok) API ────────────────────────────────────────────────────
-    async function callGemini(apiKey, systemPrompt, userQuery) {
+    // Fast model for search, full model for detailed guides
+    const MODEL_FAST = 'grok-3-mini-fast';
+    const MODEL_FULL = 'grok-4-latest';
+
+    async function callGemini(apiKey, systemPrompt, userQuery, useFastModel = false) {
+      const model = useFastModel ? MODEL_FAST : MODEL_FULL;
       let delay = 1000;
-      for (let i = 0; i < 5; i++) {
+      for (let i = 0; i < 3; i++) {
         try {
+          const body = {
+            model,
+            response_format: { type: 'json_object' },
+            messages: [
+              { role: 'system', content: systemPrompt },
+              { role: 'user', content: userQuery }
+            ]
+          };
+          if (useFastModel) body.max_tokens = 2000;
           const res = await fetch('https://api.x.ai/v1/chat/completions', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${apiKey}`
             },
-            body: JSON.stringify({
-              model: 'grok-4-latest',
-              response_format: { type: 'json_object' },
-              messages: [
-                { role: 'system', content: systemPrompt },
-                { role: 'user', content: userQuery }
-              ]
-            })
+            body: JSON.stringify(body)
           });
-          if (!res.ok) { const errText = await res.text(); throw new Error('API ' + res.status + ': ' + errText.substring(0, 200)); }
+          if (!res.ok) {
+            const errText = await res.text();
+            // If fast model not available, fall back to full model
+            if (useFastModel && (res.status === 400 || res.status === 404)) {
+              return callGemini(apiKey, systemPrompt, userQuery, false);
+            }
+            throw new Error('API ' + res.status + ': ' + errText.substring(0, 200));
+          }
           const data = await res.json();
           return JSON.parse(data.choices[0].message.content);
         } catch (err) {
-          if (i === 4) throw err;
+          if (i === 2) throw err;
           await new Promise(r => setTimeout(r, delay));
           delay *= 2;
         }
@@ -728,8 +762,9 @@
 
           // Build verified context string for the AI
           const buildDBContext = (app, db, role) => {
-            if (!db) return `${role}: ${app} — אין נתונים מאומתים במסד הנתונים שלנו, השתמש בידע הכללי שלך.`;
+            if (!db) return `${role}: ${app} — אין נתונים מאומתים. חשוב: ציין בכנות אם צריך דף עסקי, Admin, Developer App וכו'.`;
             return `${role}: ${app}
+  ${db.accountWarning ? `- ⚠️ אזהרת חשבון: ${db.accountWarning}` : ''}
   - סוג אימות: ${db.authType}
   - אפשרויות חיבור: ${db.connectionTypes.map(c => `"${c.name}": ${c.desc}`).join(' | ')}
   ${db.advancedFields.length ? `- שדות Advanced Settings: ${db.advancedFields.map(f => `${f.field} (מיקום: ${f.where})`).join('; ')}` : '- אין שדות Advanced Settings נדרשים'}
@@ -1164,8 +1199,19 @@ Each workflow MUST have:
   any = no special account needed
   webhook = triggered by external service, no login needed
 
-IMPORTANT: Prefer automations that work with PERSONAL accounts when possible.
-If the trigger requires a business page or special access, say so clearly — don't hide it.
+CRITICAL RULES for accountReq/triggerScope accuracy — DO NOT get these wrong:
+- LinkedIn: ALL API triggers require Developer App which REQUIRES a Company Page (triggerScope: "developer")
+- Facebook Pages: ALL triggers require Admin/Editor of the Page (triggerScope: "business_page")
+- Instagram: ALL triggers require Business/Creator account + linked Facebook Page (triggerScope: "business_page")
+- Twitter/X: ALL API access requires approved Developer account (triggerScope: "developer")
+- Discord bots: Require Admin of the Discord server (triggerScope: "admin")
+- Shopify/WooCommerce: Require store Admin access (triggerScope: "admin")
+- WhatsApp Cloud API: Requires Meta Business account (triggerScope: "business_page"). GREEN-API is personal.
+- Google apps (Sheets, Gmail, Calendar, Drive, Forms): Work with personal Google account (triggerScope: "personal")
+- Webhooks, RSS, HTTP: No account needed (triggerScope: "any" or "webhook")
+
+Prefer automations that work with PERSONAL accounts when possible.
+If the trigger requires a business page or special access, say so CLEARLY in accountReq — don't hide it or say "חשבון אישי".
 
 Return ONLY JSON:
 {"templates":[{"name":"...","description":"...","app_slugs":["...","..."],"trigger":{"app":"...","name":"..."},"action":{"app":"...","name":"..."},"accountReq":"...","triggerScope":"..."}]}`;
@@ -1179,7 +1225,7 @@ Return ONLY JSON:
         setActiveCategory(null);
         history.replaceState(null, '', window.location.pathname);
         try {
-          const data = await callGemini(apiKey, SYSTEM_PROMPT, query);
+          const data = await callGemini(apiKey, SYSTEM_PROMPT, query, true);
           setResults((data.templates || []).map(t => ({
             ...t,
             link: t.app_slugs?.length > 0
