@@ -1223,6 +1223,11 @@ Create 5-6 steps using ONLY the verified data above. Structure:
       const [sharedTemplate, setSharedTemplate] = useState(null);
       const [showSettings, setShowSettings] = useState(false);
       const [activeCategory, setActiveCategory] = useState(null);
+      const [personalOnly, setPersonalOnly] = useState(true);
+
+      // Filter function - personal = personal/any/webhook, business = business_page/admin/developer
+      const isPersonal = (t) => ['personal','any','webhook'].includes(t.triggerScope);
+      const filterTemplates = (list) => personalOnly ? list.filter(isPersonal) : list;
 
       // Load shared template from URL hash
       useEffect(() => {
@@ -1266,8 +1271,9 @@ CRITICAL RULES for accountReq/triggerScope accuracy — DO NOT get these wrong:
 - Google apps (Sheets, Gmail, Calendar, Drive, Forms): Work with personal Google account (triggerScope: "personal")
 - Webhooks, RSS, HTTP: No account needed (triggerScope: "any" or "webhook")
 
-Prefer automations that work with PERSONAL accounts when possible.
-If the trigger requires a business page or special access, say so CLEARLY in accountReq — don't hide it or say "חשבון אישי".
+PRIORITIZE automations that work with PERSONAL/FREE accounts. Place them FIRST in the list.
+If the trigger requires a business page or special access, say so CLEARLY in accountReq — NEVER say "חשבון אישי" when it's actually business/developer.
+At least 4 of the 6 results should work with personal accounts if possible.
 
 Return ONLY JSON:
 {"templates":[{"name":"...","description":"...","app_slugs":["...","..."],"trigger":{"app":"...","name":"..."},"action":{"app":"...","name":"..."},"accountReq":"...","triggerScope":"..."}]}`;
@@ -1367,6 +1373,24 @@ Return ONLY JSON:
               </div>
             </form>
 
+            {/* Personal filter toggle */}
+            <div className="flex items-center justify-center gap-3 mb-8 -mt-6">
+              <button onClick={() => setPersonalOnly(p => !p)}
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold transition-all border-2 ${
+                  personalOnly
+                    ? 'bg-green-50 border-green-300 text-green-800 shadow-sm'
+                    : 'bg-slate-50 border-slate-200 text-slate-500 hover:border-slate-300'
+                }`}>
+                <span className={`w-8 h-5 rounded-full flex items-center transition-all ${personalOnly ? 'bg-green-500 justify-end' : 'bg-slate-300 justify-start'}`}>
+                  <span className="w-4 h-4 bg-white rounded-full shadow mx-0.5"/>
+                </span>
+                {personalOnly ? '👤 מציג רק חשבון אישי' : '🔓 מציג הכל כולל עסקי/מפתחים'}
+              </button>
+              {personalOnly && (
+                <span className="text-xs text-slate-400">טמפלייטים שדורשים דף עסקי/Company Page מוסתרים</span>
+              )}
+            </div>
+
             {/* Error */}
             {error && (
               <div className="bg-red-50 border-2 border-red-100 text-red-700 p-5 rounded-2xl flex items-center gap-4 mb-8">
@@ -1383,9 +1407,18 @@ Return ONLY JSON:
                   <p className="text-slate-500 text-xl font-bold mt-6">הבינה המלאכותית מנתחת את השלבים המדויקים...</p>
                 </div>
               ) : results.length > 0 ? (
-                results.map((item, idx) => (
+                filterTemplates(results).length > 0 ? filterTemplates(results).map((item, idx) => (
                   <TemplateCard key={idx} item={item} apiKey={apiKey}/>
-                ))
+                )) : (
+                  <div className="text-center py-12 bg-orange-50 border-2 border-orange-200 rounded-2xl">
+                    <p className="text-orange-800 font-bold text-lg mb-2">כל התוצאות דורשות חשבון עסקי/מפתחים</p>
+                    <p className="text-orange-600 text-sm mb-3">כבה את הפילטר כדי לראות אותן, או חפש משהו אחר</p>
+                    <button onClick={() => setPersonalOnly(false)}
+                      className="bg-orange-100 text-orange-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-orange-200 transition-all">
+                      🔓 הצג בכל זאת
+                    </button>
+                  </div>
+                )
               ) : !error && (
                 <div>
                   {/* Category tabs */}
@@ -1407,25 +1440,39 @@ Return ONLY JSON:
                   </div>
 
                   {/* Show templates for selected category, or all categories preview */}
-                  {activeCategory ? (
-                    <div className="grid gap-6">
-                      {TEMPLATE_CATEGORIES.find(c => c.id === activeCategory)?.templates.map((t, idx) => (
-                        <TemplateCard key={idx} item={t} apiKey={apiKey}/>
-                      ))}
-                    </div>
-                  ) : (
+                  {activeCategory ? (() => {
+                    const filtered = filterTemplates(TEMPLATE_CATEGORIES.find(c => c.id === activeCategory)?.templates || []);
+                    return filtered.length > 0 ? (
+                      <div className="grid gap-6">
+                        {filtered.map((t, idx) => (
+                          <TemplateCard key={idx} item={t} apiKey={apiKey}/>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="text-center py-12 bg-orange-50 border-2 border-orange-200 rounded-2xl">
+                        <p className="text-orange-800 font-bold mb-2">כל הטמפלייטים בקטגוריה זו דורשים חשבון עסקי/מפתחים</p>
+                        <button onClick={() => setPersonalOnly(false)}
+                          className="bg-orange-100 text-orange-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-orange-200">
+                          🔓 הצג בכל זאת
+                        </button>
+                      </div>
+                    );
+                  })() : (
                     <div className="space-y-8">
-                      {TEMPLATE_CATEGORIES.map(cat => (
+                      {TEMPLATE_CATEGORIES.map(cat => {
+                        const filtered = filterTemplates(cat.templates);
+                        if (filtered.length === 0) return null;
+                        return (
                         <div key={cat.id}>
                           <div className="flex items-center justify-between mb-3">
                             <h3 className="font-black text-slate-700 text-lg">{cat.name}</h3>
                             <button onClick={() => setActiveCategory(cat.id)}
                               className="text-blue-600 text-xs font-bold hover:underline">
-                              הצג הכל ({cat.templates.length}) ←
+                              הצג הכל ({filtered.length}) ←
                             </button>
                           </div>
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            {cat.templates.slice(0, 2).map((t, idx) => (
+                            {filtered.slice(0, 2).map((t, idx) => (
                               <div key={idx} onClick={() => setActiveCategory(cat.id)}
                                 className="bg-white border border-slate-200 rounded-xl p-4 hover:border-blue-300 hover:shadow-md transition-all cursor-pointer group">
                                 <div className="font-bold text-slate-800 text-sm mb-1 group-hover:text-blue-700">{t.name}</div>
@@ -1434,17 +1481,14 @@ Return ONLY JSON:
                                   <span className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">{t.trigger.app}</span>
                                   <span className="text-slate-300 text-xs">→</span>
                                   <span className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">{t.action.app}</span>
-                                  {t.triggerScope === 'personal' || t.triggerScope === 'any' ? (
-                                    <span className="mr-auto text-xs bg-green-50 text-green-700 px-2 py-0.5 rounded-full">👤 אישי</span>
-                                  ) : (
-                                    <span className="mr-auto text-xs bg-orange-50 text-orange-700 px-2 py-0.5 rounded-full">🏢 עסקי</span>
-                                  )}
+                                  <span className="mr-auto text-xs bg-green-50 text-green-700 px-2 py-0.5 rounded-full">👤 אישי</span>
                                 </div>
                               </div>
                             ))}
                           </div>
                         </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   )}
                 </div>
