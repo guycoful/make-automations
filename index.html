@@ -804,7 +804,29 @@ Create 5-6 steps using ONLY the verified data above. Structure:
           )}
 
           <h3 className="text-2xl font-black text-slate-800 mb-2">{item.name}</h3>
-          <p className="text-slate-500 text-lg leading-relaxed mb-5">{item.description}</p>
+          <p className="text-slate-500 text-lg leading-relaxed mb-3">{item.description}</p>
+
+          {/* Account requirement badge */}
+          {item.accountReq && (() => {
+            const scopeStyles = {
+              personal:      { bg: 'bg-green-50',  border: 'border-green-200', text: 'text-green-800', icon: '👤', label: 'חשבון אישי' },
+              business_page: { bg: 'bg-orange-50', border: 'border-orange-200', text: 'text-orange-800', icon: '🏢', label: 'דף עסקי/חברה' },
+              admin:         { bg: 'bg-red-50',    border: 'border-red-200',    text: 'text-red-800',    icon: '🔑', label: 'הרשאת Admin' },
+              developer:     { bg: 'bg-purple-50', border: 'border-purple-200', text: 'text-purple-800', icon: '🛠️', label: 'חשבון מפתחים' },
+              any:           { bg: 'bg-green-50',  border: 'border-green-200', text: 'text-green-800', icon: '✅', label: 'פתוח לכולם' },
+              webhook:       { bg: 'bg-blue-50',   border: 'border-blue-200',  text: 'text-blue-800',  icon: '🔗', label: 'Webhook חיצוני' }
+            };
+            const s = scopeStyles[item.triggerScope] || scopeStyles.any;
+            return (
+              <div className={`${s.bg} border ${s.border} rounded-xl px-4 py-2.5 mb-4 flex items-start gap-2.5`}>
+                <span className="text-lg flex-shrink-0">{s.icon}</span>
+                <div>
+                  <span className={`text-xs font-black ${s.text}`}>דרישת חשבון: {s.label}</span>
+                  <p className="text-xs text-slate-600 mt-0.5">{item.accountReq}</p>
+                </div>
+              </div>
+            );
+          })()}
 
           {/* Trigger / Action */}
           <div className="bg-slate-50 rounded-xl p-4 mb-4 border border-slate-100 flex flex-col md:flex-row gap-4">
@@ -1033,9 +1055,22 @@ Each workflow MUST have:
 - app_slugs: Array of exactly 2 Make.com official URL slugs (e.g., ["facebook-lead-ads", "green-api"]).
 - trigger: {"app": "Display name", "name": "Exact Make.com trigger name in English"}
 - action: {"app": "Display name", "name": "Exact Make.com action name in English"}
+- accountReq: REQUIRED - Short Hebrew description of what account/page/access is needed to activate the trigger.
+  Examples: "חשבון אישי רגיל", "דף עסקי בניהולך", "חשבון Business מחובר ל-Facebook Page",
+  "חשבון מפתחים + אפליקציה", "ללא — Webhook חיצוני", "חשבון Pro/Premium"
+- triggerScope: REQUIRED — one of: "personal" | "business_page" | "admin" | "developer" | "any" | "webhook"
+  personal = works with any personal/free account
+  business_page = requires business page or company page you manage
+  admin = requires admin access to workspace/org
+  developer = requires developer app/credentials
+  any = no special account needed
+  webhook = triggered by external service, no login needed
+
+IMPORTANT: Prefer automations that work with PERSONAL accounts when possible.
+If the trigger requires a business page or special access, say so clearly — don't hide it.
 
 Return ONLY JSON:
-{"templates":[{"name":"...","description":"...","app_slugs":["...","..."],"trigger":{"app":"...","name":"..."},"action":{"app":"...","name":"..."}}]}`;
+{"templates":[{"name":"...","description":"...","app_slugs":["...","..."],"trigger":{"app":"...","name":"..."},"action":{"app":"...","name":"..."},"accountReq":"...","triggerScope":"..."}]}`;
 
       const search = async (e) => {
         e.preventDefault();
@@ -1154,6 +1189,43 @@ Return ONLY JSON:
                 <div className="text-center py-32 border-4 border-dashed border-slate-200 rounded-[40px]">
                   <SearchIcon size={56} className="mx-auto text-slate-300"/>
                   <p className="text-slate-400 text-2xl font-black mt-6">מנוע החיפוש מוכן. מה תרצה לאוטומט היום?</p>
+                </div>
+              )}
+
+              {/* More templates sources */}
+              {results.length > 0 && (
+                <div className="bg-gradient-to-l from-indigo-50 to-blue-50 border-2 border-indigo-100 rounded-2xl p-6 mt-2">
+                  <h3 className="font-black text-indigo-900 text-lg mb-4">🔎 איפה למצוא עוד טמפלייטים?</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <a href="https://www.make.com/en/templates" target="_blank" rel="noopener noreferrer"
+                      className="bg-white rounded-xl p-4 border border-indigo-100 hover:border-indigo-300 hover:shadow-md transition-all group">
+                      <div className="font-black text-slate-800 text-sm mb-1 group-hover:text-indigo-700">📦 ספריית הטמפלייטים של Make.com</div>
+                      <p className="text-xs text-slate-500">1,000+ טמפלייטים מוכנים לשימוש — חפש לפי אפליקציה או קטגוריה</p>
+                    </a>
+                    <a href="https://www.make.com/en/integrations" target="_blank" rel="noopener noreferrer"
+                      className="bg-white rounded-xl p-4 border border-indigo-100 hover:border-indigo-300 hover:shadow-md transition-all group">
+                      <div className="font-black text-slate-800 text-sm mb-1 group-hover:text-indigo-700">🔌 דף אינטגרציות</div>
+                      <p className="text-xs text-slate-500">בחר 2 אפליקציות וראה טמפלייטים שמחברים ביניהן</p>
+                    </a>
+                    <a href="https://community.make.com/c/share-your-scenarios/13" target="_blank" rel="noopener noreferrer"
+                      className="bg-white rounded-xl p-4 border border-indigo-100 hover:border-indigo-300 hover:shadow-md transition-all group">
+                      <div className="font-black text-slate-800 text-sm mb-1 group-hover:text-indigo-700">👥 קהילת Make.com</div>
+                      <p className="text-xs text-slate-500">סצנריות ששיתפו משתמשים אחרים — כולל JSON לייבוא ישיר</p>
+                    </a>
+                    <a href="https://www.make.com/en/templates?fromPublicLibrary=true" target="_blank" rel="noopener noreferrer"
+                      className="bg-white rounded-xl p-4 border border-indigo-100 hover:border-indigo-300 hover:shadow-md transition-all group">
+                      <div className="font-black text-slate-800 text-sm mb-1 group-hover:text-indigo-700">🌍 ספריה ציבורית</div>
+                      <p className="text-xs text-slate-500">טמפלייטים מהקהילה שעברו אישור — לפעמים מתקדמים ומפתיעים</p>
+                    </a>
+                  </div>
+                  <div className="bg-white/70 rounded-xl px-4 py-3 mt-3 border border-indigo-100">
+                    <p className="text-xs text-indigo-800">
+                      <span className="font-black">💡 טיפ ייבוא:</span> בכל טמפלייט ב-Make.com לחץ <code className="bg-indigo-100 px-1.5 py-0.5 rounded text-xs font-mono">"Use template"</code> →
+                      הוא ייפתח ישירות בחשבון שלך עם כל המודולים מוכנים. בקהילה — העתק את ה-JSON → ב-Make.com לחץ
+                      <code className="bg-indigo-100 px-1.5 py-0.5 rounded text-xs font-mono mx-1">⋯</code> →
+                      <code className="bg-indigo-100 px-1.5 py-0.5 rounded text-xs font-mono">Import Blueprint</code>
+                    </p>
+                  </div>
                 </div>
               )}
             </div>
