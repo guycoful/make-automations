@@ -1072,6 +1072,8 @@ Create 5-6 steps using ONLY the verified data above. Structure:
           { name: 'גיבוי אוטומטי מ-Google Drive ל-Dropbox', description: 'קובץ חדש ב-Drive מועתק מיד ל-Dropbox', app_slugs: ['google-drive','dropbox'], trigger: {app:'Google Drive',name:'Watch Files in a Folder'}, action: {app:'Dropbox',name:'Upload a File'}, accountReq: 'חשבון Google + Dropbox חינמי', triggerScope: 'personal' },
           { name: 'סיכום יומי של אירועי Google Calendar ל-Slack', description: 'כל בוקר ב-8:00 מקבלים סיכום יומן ל-Slack', app_slugs: ['google-calendar','slack'], trigger: {app:'Google Calendar',name:'Watch Events'}, action: {app:'Slack',name:'Create a Message'}, accountReq: 'חשבון Google + Slack (workspace)', triggerScope: 'personal' },
           { name: 'שמירת תשובות Google Forms ב-Google Sheets', description: 'כל תשובה חדשה נכתבת בשורה חדשה בגיליון', app_slugs: ['google-forms','google-sheets'], trigger: {app:'Google Forms',name:'Watch Responses'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'חשבון Google רגיל', triggerScope: 'personal' },
+          { name: 'שליחת קובץ מGmail לNotion', description: 'מייל עם קובץ מצורף → דף חדש ב-Notion עם הקובץ', app_slugs: ['gmail','notion'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'Notion',name:'Create a Database Item'}, accountReq: 'Gmail + Notion חינמי', triggerScope: 'personal' },
+          { name: 'יצירת אירוע מAirtable', description: 'רשומה חדשה עם תאריך ב-Airtable → אירוע ב-Google Calendar', app_slugs: ['airtable','google-calendar'], trigger: {app:'Airtable',name:'Watch Records'}, action: {app:'Google Calendar',name:'Create an Event'}, accountReq: 'Airtable + Google חינמי', triggerScope: 'personal' },
         ]
       },
       {
@@ -1144,6 +1146,60 @@ Create 5-6 steps using ONLY the verified data above. Structure:
           { name: 'שמירת שורה ב-Monday.com מטופס', description: 'טופס Google → פריט חדש בלוח Monday.com', app_slugs: ['google-forms','monday'], trigger: {app:'Google Forms',name:'Watch Responses'}, action: {app:'Monday.com',name:'Create an Item'}, accountReq: 'Google + Monday.com (יש חינמי)', triggerScope: 'personal' },
           { name: 'העברת לידים מ-Typeform ל-ClickUp', description: 'ליד חדש מטופס → משימה ב-ClickUp', app_slugs: ['typeform','clickup'], trigger: {app:'Typeform',name:'Watch Responses'}, action: {app:'ClickUp',name:'Create a Task'}, accountReq: 'Typeform + ClickUp חינמי', triggerScope: 'personal' },
           { name: 'שמירת נתוני Webhook ב-MySQL', description: 'בקשה נכנסת → שורה חדשה ב-MySQL', app_slugs: ['webhooks','mysql'], trigger: {app:'Webhooks',name:'Custom Webhook'}, action: {app:'MySQL',name:'Insert a Row'}, accountReq: 'ללא — Webhook חיצוני + מסד MySQL', triggerScope: 'webhook' },
+        ]
+      },
+      // ── LinkedIn Personal Workarounds ──────────────────────────────────────
+      {
+        id: 'linkedin',
+        name: '💼 LinkedIn אישי (עוקף מגבלות)',
+        color: 'sky',
+        templates: [
+          { name: 'התראת WhatsApp על הודעת LinkedIn חדשה', description: 'LinkedIn שולח מייל התראה → Gmail מזהה → WhatsApp מיידי. עוקף את הצורך ב-Company Page!', app_slugs: ['gmail','green-api'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'Gmail שמקבל התראות LinkedIn (מופעל בהגדרות LinkedIn) + Green API', triggerScope: 'personal', tip: 'ב-LinkedIn הפעל: Settings → Notifications → Email → "Messages" ON' },
+          { name: 'שמירת בקשות חיבור LinkedIn בטבלה', description: 'מייל "X wants to connect" מ-LinkedIn → שורה חדשה ב-Sheets עם שם+תאריך', app_slugs: ['gmail','google-sheets'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'Gmail + Google Sheets — חשבון אישי לגמרי', triggerScope: 'personal', tip: 'סנן מיילים עם: from:linkedin.com subject:"wants to connect"' },
+          { name: 'סיכום AI של מיילי LinkedIn יומי', description: 'כל מיילי ה-LinkedIn מ-24 שעות אחרונות → GPT מסכם → שליחה ל-Telegram', app_slugs: ['gmail','openai-gpt-3'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'OpenAI',name:'Create a Completion'}, accountReq: 'Gmail + OpenAI API key', triggerScope: 'personal', tip: 'סנן: from:linkedin.com newer_than:1d' },
+          { name: 'התראה על תגובה לפוסט LinkedIn שלך', description: 'מייל "commented on your post" → Telegram. ללא API!', app_slugs: ['gmail','telegram-bot'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'Telegram Bot',name:'Send a Text Message'}, accountReq: 'Gmail + Telegram Bot — הכל חינמי', triggerScope: 'personal', tip: 'סנן: from:linkedin.com subject:"commented on"' },
+          { name: 'מענה אוטומטי להודעות LinkedIn עם AI', description: 'הודעה חדשה ב-LinkedIn (דרך Unipile Webhook) → Claude יוצר תשובה → שליחה חזרה', app_slugs: ['webhooks','anthropic-claude'], trigger: {app:'Webhooks',name:'Custom Webhook'}, action: {app:'Anthropic Claude',name:'Create a Message'}, accountReq: 'חשבון Unipile (בתשלום ~$30/חודש) + Anthropic API', triggerScope: 'webhook', tip: 'Unipile מחבר את LinkedIn האישי שלך ושולח Webhooks על הודעות, תגובות, חיבורים' },
+          { name: 'שמירת תגובות LinkedIn בCRM', description: 'Unipile Webhook על תגובה → Airtable CRM עם שם, תוכן, קישור', app_slugs: ['webhooks','airtable'], trigger: {app:'Webhooks',name:'Custom Webhook'}, action: {app:'Airtable',name:'Create a Record'}, accountReq: 'Unipile (בתשלום) + Airtable חינמי', triggerScope: 'webhook' },
+          { name: 'סקרפינג LinkedIn Leads → Google Sheets', description: 'Phantombuster אוסף פרופילים → Webhook → שורה ב-Sheets', app_slugs: ['webhooks','google-sheets'], trigger: {app:'Webhooks',name:'Custom Webhook'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'Phantombuster (בתשלום, יש trial) + Google Sheets', triggerScope: 'webhook', tip: 'Phantombuster יכול לאסוף פרופילים מחיפוש LinkedIn, קבוצות, ותגובות לפוסטים' },
+        ]
+      },
+      // ── Scheduling & Reminders ─────────────────────────────────────────────
+      {
+        id: 'schedule',
+        name: '⏰ תזמון ותזכורות',
+        color: 'rose',
+        templates: [
+          { name: 'תזכורת WhatsApp יומית ב-8 בבוקר', description: 'כל יום ב-8:00 מקבלים הודעת WhatsApp מותאמת', app_slugs: ['webhooks','green-api'], trigger: {app:'Schedule',name:'Every Day'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'רק Green API — ללא צורך בחשבון נוסף', triggerScope: 'any' },
+          { name: 'סיכום שבועי של פגישות ל-WhatsApp', description: 'כל ראשון ב-7:00 → רשימת הפגישות של השבוע מ-Calendar', app_slugs: ['google-calendar','green-api'], trigger: {app:'Google Calendar',name:'Watch Events'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'Google Calendar + Green API', triggerScope: 'personal' },
+          { name: 'תזכורת Telegram שעה לפני פגישה', description: 'אירוע מתקרב → הודעת Telegram עם פרטים', app_slugs: ['google-calendar','telegram-bot'], trigger: {app:'Google Calendar',name:'Watch Events'}, action: {app:'Telegram Bot',name:'Send a Text Message'}, accountReq: 'Google Calendar + Telegram Bot', triggerScope: 'personal' },
+          { name: 'תזכורת לעדכן CRM כל יום ב-17:00', description: 'תזכורת יומית ב-Slack: "עדכנת את ה-CRM?"', app_slugs: ['webhooks','slack'], trigger: {app:'Schedule',name:'Every Day'}, action: {app:'Slack',name:'Create a Message'}, accountReq: 'Slack workspace', triggerScope: 'personal' },
+          { name: 'דוח מכירות שבועי מ-Sheets ל-Email', description: 'כל ראשון — סיכום מGoogleSheets נשלח במייל', app_slugs: ['google-sheets','gmail'], trigger: {app:'Schedule',name:'Every Week'}, action: {app:'Gmail',name:'Send an Email'}, accountReq: 'Google Sheets + Gmail', triggerScope: 'personal' },
+        ]
+      },
+      // ── Content & Blog ─────────────────────────────────────────────────────
+      {
+        id: 'content',
+        name: '✍️ תוכן ובלוגים',
+        color: 'amber',
+        templates: [
+          { name: 'פרסום אוטומטי מ-WordPress ל-Telegram', description: 'פוסט חדש בבלוג → הודעה בערוץ Telegram', app_slugs: ['wordpress','telegram-bot'], trigger: {app:'WordPress',name:'Watch Posts'}, action: {app:'Telegram Bot',name:'Send a Text Message'}, accountReq: 'אתר WordPress (Admin) + Telegram Bot', triggerScope: 'admin' },
+          { name: 'שמירת מאמרי RSS מועדפים ב-Notion', description: 'מאמר חדש מבלוג שעוקבים → דף ב-Notion', app_slugs: ['rss','notion'], trigger: {app:'RSS',name:'Watch RSS Feed Items'}, action: {app:'Notion',name:'Create a Database Item'}, accountReq: 'כתובת RSS (חינמי) + Notion', triggerScope: 'any' },
+          { name: 'יצירת טיוטת בלוג עם AI מכותרת', description: 'שורה חדשה ב-Sheets עם כותרת → Claude כותב טיוטה → Google Docs', app_slugs: ['google-sheets','anthropic-claude'], trigger: {app:'Google Sheets',name:'Watch New Rows'}, action: {app:'Anthropic Claude',name:'Create a Message'}, accountReq: 'Google Sheets + Anthropic API key', triggerScope: 'personal' },
+          { name: 'שיתוף פוסט RSS ב-WhatsApp', description: 'מאמר חדש → הודעת WhatsApp מפורמטת עם כותרת+לינק', app_slugs: ['rss','green-api'], trigger: {app:'RSS',name:'Watch RSS Feed Items'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'כתובת RSS + Green API', triggerScope: 'any' },
+          { name: 'ניטור אזכורים ב-Google Alerts ל-Sheets', description: 'Google Alert על המותג שלך → RSS → שורה בטבלה', app_slugs: ['rss','google-sheets'], trigger: {app:'RSS',name:'Watch RSS Feed Items'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'Google Alerts (חינמי) + Google Sheets', triggerScope: 'any', tip: 'צור Google Alert ← קבל RSS URL ← הדבק בטריגר' },
+        ]
+      },
+      // ── Forms & Surveys ────────────────────────────────────────────────────
+      {
+        id: 'forms',
+        name: '📝 טפסים וסקרים',
+        color: 'cyan',
+        templates: [
+          { name: 'שליחת PDF ללקוח אחרי מילוי טופס', description: 'טופס Google → יצירת PDF אוטומטי → שליחה במייל', app_slugs: ['google-forms','gmail'], trigger: {app:'Google Forms',name:'Watch Responses'}, action: {app:'Gmail',name:'Send an Email'}, accountReq: 'Google חינמי', triggerScope: 'personal' },
+          { name: 'רישום לקוח מטופס Typeform ל-Mailchimp', description: 'ליד מילא טופס → נרשם לרשימת דיוור', app_slugs: ['typeform','mailchimp'], trigger: {app:'Typeform',name:'Watch Responses'}, action: {app:'Mailchimp',name:'Add/Update a Subscriber'}, accountReq: 'Typeform + Mailchimp (יש חינמי)', triggerScope: 'personal' },
+          { name: 'הוספת שורה ב-Notion מכל מילוי טופס', description: 'תשובה חדשה ב-Google Forms → רשומה ב-Notion', app_slugs: ['google-forms','notion'], trigger: {app:'Google Forms',name:'Watch Responses'}, action: {app:'Notion',name:'Create a Database Item'}, accountReq: 'Google + Notion חינמי', triggerScope: 'personal' },
+          { name: 'הודעת WhatsApp על ליד חדש מטופס', description: 'מישהו מילא טופס → הודעת WhatsApp מיידית אליך', app_slugs: ['typeform','green-api'], trigger: {app:'Typeform',name:'Watch Responses'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'Typeform + Green API', triggerScope: 'personal' },
+          { name: 'יצירת אירוע ביומן מטופס הרשמה', description: 'נרשמו לאירוע בטופס → אירוע חדש ב-Google Calendar', app_slugs: ['google-forms','google-calendar'], trigger: {app:'Google Forms',name:'Watch Responses'}, action: {app:'Google Calendar',name:'Create an Event'}, accountReq: 'Google חינמי', triggerScope: 'personal' },
         ]
       }
     ];
