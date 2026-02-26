@@ -1025,6 +1025,103 @@ Create 5-6 steps using ONLY the verified data above. Structure:
       );
     };
 
+    // ─── Pre-loaded Template Library ────────────────────────────────────────
+    const TEMPLATE_CATEGORIES = [
+      {
+        id: 'productivity',
+        name: '⚡ פרודוקטיביות',
+        color: 'blue',
+        templates: [
+          { name: 'שמירת קבצי Gmail ב-Google Drive', description: 'כל קובץ מצורף שמגיע למייל נשמר אוטומטית בתיקייה ב-Drive', app_slugs: ['gmail','google-drive'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'Google Drive',name:'Upload a File'}, accountReq: 'חשבון Gmail רגיל', triggerScope: 'personal' },
+          { name: 'יצירת משימה ב-Todoist מהודעת Gmail', description: 'מייל עם כוכבית → משימה חדשה אוטומטית', app_slugs: ['gmail','todoist'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'Todoist',name:'Create a Task'}, accountReq: 'חשבון Gmail + Todoist חינמי', triggerScope: 'personal' },
+          { name: 'גיבוי אוטומטי מ-Google Drive ל-Dropbox', description: 'קובץ חדש ב-Drive מועתק מיד ל-Dropbox', app_slugs: ['google-drive','dropbox'], trigger: {app:'Google Drive',name:'Watch Files in a Folder'}, action: {app:'Dropbox',name:'Upload a File'}, accountReq: 'חשבון Google + Dropbox חינמי', triggerScope: 'personal' },
+          { name: 'סיכום יומי של אירועי Google Calendar ל-Slack', description: 'כל בוקר ב-8:00 מקבלים סיכום יומן ל-Slack', app_slugs: ['google-calendar','slack'], trigger: {app:'Google Calendar',name:'Watch Events'}, action: {app:'Slack',name:'Create a Message'}, accountReq: 'חשבון Google + Slack (workspace)', triggerScope: 'personal' },
+          { name: 'שמירת תשובות Google Forms ב-Google Sheets', description: 'כל תשובה חדשה נכתבת בשורה חדשה בגיליון', app_slugs: ['google-forms','google-sheets'], trigger: {app:'Google Forms',name:'Watch Responses'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'חשבון Google רגיל', triggerScope: 'personal' },
+        ]
+      },
+      {
+        id: 'social',
+        name: '📱 רשתות חברתיות',
+        color: 'pink',
+        templates: [
+          { name: 'שמירת פוסטי Instagram ב-Google Sheets', description: 'כל פוסט חדש שמעלים ל-Instagram נרשם בטבלה', app_slugs: ['instagram-for-business','google-sheets'], trigger: {app:'Instagram',name:'Watch Media'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'חשבון Instagram Business מחובר ל-Facebook Page', triggerScope: 'business_page' },
+          { name: 'פרסום אוטומטי מ-RSS ל-Twitter', description: 'מאמר חדש בבלוג → ציוץ אוטומטי', app_slugs: ['rss','twitter'], trigger: {app:'RSS',name:'Watch RSS Feed Items'}, action: {app:'Twitter',name:'Create a Tweet'}, accountReq: 'חשבון Twitter + Developer App', triggerScope: 'developer' },
+          { name: 'שיתוף פוסט Facebook ל-Telegram', description: 'פוסט חדש בדף → הודעה בערוץ Telegram', app_slugs: ['facebook-pages','telegram-bot'], trigger: {app:'Facebook Pages',name:'Watch Posts'}, action: {app:'Telegram Bot',name:'Send a Text Message'}, accountReq: 'דף Facebook שאתה Admin + בוט Telegram', triggerScope: 'business_page' },
+          { name: 'שמירת סרטוני YouTube שאהבתי לNotion', description: 'כל Like ב-YouTube נשמר בדאטאבייס', app_slugs: ['youtube','notion'], trigger: {app:'YouTube',name:'Watch Liked Videos'}, action: {app:'Notion',name:'Create a Database Item'}, accountReq: 'חשבון Google + Notion חינמי', triggerScope: 'personal' },
+          { name: 'התראת WhatsApp על תגובה חדשה ב-YouTube', description: 'מישהו הגיב על הסרטון שלך → הודעה ב-WhatsApp', app_slugs: ['youtube','green-api'], trigger: {app:'YouTube',name:'Watch New Comment'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'ערוץ YouTube + Green API', triggerScope: 'personal' },
+        ]
+      },
+      {
+        id: 'communication',
+        name: '💬 תקשורת והודעות',
+        color: 'green',
+        templates: [
+          { name: 'העברת הודעות Slack לWhatsApp', description: 'הודעה בערוץ Slack ← התראה ב-WhatsApp', app_slugs: ['slack','green-api'], trigger: {app:'Slack',name:'Watch Public Channel Messages'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'Slack workspace + Green API', triggerScope: 'personal' },
+          { name: 'אימייל אוטומטי ללקוח אחרי טופס Typeform', description: 'מילאו טופס → אימייל תודה אוטומטי מ-Gmail', app_slugs: ['typeform','gmail'], trigger: {app:'Typeform',name:'Watch Responses'}, action: {app:'Gmail',name:'Send an Email'}, accountReq: 'Typeform חינמי + Gmail', triggerScope: 'personal' },
+          { name: 'סיכום הודעות Discord ב-Google Sheets', description: 'כל הודעה בערוץ Discord נרשמת בטבלה', app_slugs: ['discord','google-sheets'], trigger: {app:'Discord',name:'Watch Channel Messages'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'שרת Discord שאתה Admin + בוט Discord', triggerScope: 'admin' },
+          { name: 'התראת Telegram על פגישה ב-Calendly', description: 'לקוח קבע פגישה → הודעת Telegram מיידית', app_slugs: ['calendly','telegram-bot'], trigger: {app:'Calendly',name:'Watch Events'}, action: {app:'Telegram Bot',name:'Send a Text Message'}, accountReq: 'Calendly חינמי + בוט Telegram', triggerScope: 'personal' },
+          { name: 'שליחת SMS לעצמך על מייל דחוף', description: 'מייל עם "דחוף" בנושא → SMS מיידי מ-Twilio', app_slugs: ['gmail','twilio'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'Twilio',name:'Send an SMS'}, accountReq: 'Gmail + חשבון Twilio (מספר SMS)', triggerScope: 'personal' },
+        ]
+      },
+      {
+        id: 'crm',
+        name: '🤝 CRM ומכירות',
+        color: 'orange',
+        templates: [
+          { name: 'ליד חדש מטופס אינטרנטי ל-Airtable', description: 'טופס Typeform → שורה חדשה ב-Airtable CRM', app_slugs: ['typeform','airtable'], trigger: {app:'Typeform',name:'Watch Responses'}, action: {app:'Airtable',name:'Create a Record'}, accountReq: 'Typeform + Airtable חינמי', triggerScope: 'personal' },
+          { name: 'התראת WhatsApp על ליד חדש ב-HubSpot', description: 'נוצר contact חדש → הודעה מיידית ב-WhatsApp', app_slugs: ['hubspot','green-api'], trigger: {app:'HubSpot',name:'Watch Contacts'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'HubSpot CRM חינמי + Green API', triggerScope: 'personal' },
+          { name: 'יצירת עסקה ב-Pipedrive מ-Google Sheets', description: 'שורה חדשה בגיליון → עסקה חדשה ב-CRM', app_slugs: ['google-sheets','pipedrive'], trigger: {app:'Google Sheets',name:'Watch New Rows'}, action: {app:'Pipedrive',name:'Create a Deal'}, accountReq: 'Google Sheets + Pipedrive (יש חינמי)', triggerScope: 'personal' },
+          { name: 'שליחת אימייל פולואפ אחרי פגישת Calendly', description: '24 שעות אחרי פגישה → אימייל מותאם אישית', app_slugs: ['calendly','gmail'], trigger: {app:'Calendly',name:'Watch Events'}, action: {app:'Gmail',name:'Send an Email'}, accountReq: 'Calendly + Gmail', triggerScope: 'personal' },
+          { name: 'עדכון Notion מכל ליד חדש בטופס', description: 'טופס Google → רשומה חדשה בדאטאבייס Notion', app_slugs: ['google-forms','notion'], trigger: {app:'Google Forms',name:'Watch Responses'}, action: {app:'Notion',name:'Create a Database Item'}, accountReq: 'Google + Notion חינמי', triggerScope: 'personal' },
+        ]
+      },
+      {
+        id: 'ecommerce',
+        name: '🛒 חנויות ותשלומים',
+        color: 'purple',
+        templates: [
+          { name: 'התראת WhatsApp על הזמנה חדשה ב-Shopify', description: 'הזמנה חדשה בחנות → הודעת WhatsApp מיידית', app_slugs: ['shopify','green-api'], trigger: {app:'Shopify',name:'Watch Orders'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'חנות Shopify + Green API', triggerScope: 'admin' },
+          { name: 'שמירת תשלומי Stripe ב-Google Sheets', description: 'כל תשלום שהתקבל → שורה בטבלה', app_slugs: ['stripe','google-sheets'], trigger: {app:'Stripe',name:'Watch Events'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'חשבון Stripe + Google', triggerScope: 'personal' },
+          { name: 'אימייל תודה אחרי קנייה ב-WooCommerce', description: 'הזמנה הושלמה → אימייל אישי מ-Gmail', app_slugs: ['woocommerce','gmail'], trigger: {app:'WooCommerce',name:'Watch Orders'}, action: {app:'Gmail',name:'Send an Email'}, accountReq: 'אתר WordPress + WooCommerce', triggerScope: 'admin' },
+          { name: 'עדכון מלאי Airtable אחרי מכירה', description: 'מכירה ב-Shopify → עדכון כמות ב-Airtable', app_slugs: ['shopify','airtable'], trigger: {app:'Shopify',name:'Watch Orders'}, action: {app:'Airtable',name:'Update a Record'}, accountReq: 'חנות Shopify + Airtable', triggerScope: 'admin' },
+          { name: 'הודעת Telegram על החזר ב-PayPal', description: 'refund בחשבון PayPal → הודעה ב-Telegram', app_slugs: ['paypal','telegram-bot'], trigger: {app:'PayPal',name:'Watch Events'}, action: {app:'Telegram Bot',name:'Send a Text Message'}, accountReq: 'חשבון PayPal Business + בוט Telegram', triggerScope: 'business_page' },
+        ]
+      },
+      {
+        id: 'ai',
+        name: '🤖 AI ואוטומציה חכמה',
+        color: 'violet',
+        templates: [
+          { name: 'סיכום מאמרים מ-RSS עם AI', description: 'מאמר חדש ב-RSS → GPT מסכם → נשלח ל-Telegram', app_slugs: ['rss','openai-gpt-3'], trigger: {app:'RSS',name:'Watch RSS Feed Items'}, action: {app:'OpenAI',name:'Create a Completion'}, accountReq: 'כתובת RSS + מפתח OpenAI', triggerScope: 'any' },
+          { name: 'מענה אוטומטי למיילים עם Claude', description: 'מייל נכנס → Claude יוצר טיוטת תשובה ב-Gmail', app_slugs: ['gmail','anthropic-claude'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'Anthropic Claude',name:'Create a Message'}, accountReq: 'Gmail + מפתח Anthropic API', triggerScope: 'personal' },
+          { name: 'תמלול הקלטות Dropbox עם Whisper', description: 'קובץ אודיו חדש ב-Dropbox → תמלול AI → Google Sheets', app_slugs: ['dropbox','openai-gpt-3'], trigger: {app:'Dropbox',name:'Watch Files'}, action: {app:'OpenAI',name:'Create a Transcription'}, accountReq: 'Dropbox + מפתח OpenAI', triggerScope: 'personal' },
+          { name: 'יצירת פוסט AI מפגישת Calendly', description: 'פגישה נקבעה → AI כותב פוסט LinkedIn בנושא הפגישה', app_slugs: ['calendly','openai-gpt-3'], trigger: {app:'Calendly',name:'Watch Events'}, action: {app:'OpenAI',name:'Create a Completion'}, accountReq: 'Calendly + OpenAI', triggerScope: 'personal' },
+          { name: 'ניתוח סנטימנט של הודעות Slack עם AI', description: 'הודעות בערוץ → AI מנתח טון ושומר ב-Sheets', app_slugs: ['slack','openai-gpt-3'], trigger: {app:'Slack',name:'Watch Public Channel Messages'}, action: {app:'OpenAI',name:'Create a Completion'}, accountReq: 'Slack workspace + OpenAI', triggerScope: 'personal' },
+        ]
+      },
+      {
+        id: 'data',
+        name: '📊 נתונים וטבלאות',
+        color: 'teal',
+        templates: [
+          { name: 'סנכרון Airtable ← Google Sheets', description: 'שורה חדשה ב-Sheets → רשומה חדשה ב-Airtable', app_slugs: ['google-sheets','airtable'], trigger: {app:'Google Sheets',name:'Watch New Rows'}, action: {app:'Airtable',name:'Create a Record'}, accountReq: 'Google + Airtable חינמי', triggerScope: 'personal' },
+          { name: 'גיבוי Notion ל-Google Sheets כל יום', description: 'דאטאבייס Notion → גיליון מעודכן יומי', app_slugs: ['notion','google-sheets'], trigger: {app:'Notion',name:'Watch Database Items'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'Notion + Google חינמי', triggerScope: 'personal' },
+          { name: 'שמירת שורה ב-Monday.com מטופס', description: 'טופס Google → פריט חדש בלוח Monday.com', app_slugs: ['google-forms','monday'], trigger: {app:'Google Forms',name:'Watch Responses'}, action: {app:'Monday.com',name:'Create an Item'}, accountReq: 'Google + Monday.com (יש חינמי)', triggerScope: 'personal' },
+          { name: 'העברת לידים מ-Typeform ל-ClickUp', description: 'ליד חדש מטופס → משימה ב-ClickUp', app_slugs: ['typeform','clickup'], trigger: {app:'Typeform',name:'Watch Responses'}, action: {app:'ClickUp',name:'Create a Task'}, accountReq: 'Typeform + ClickUp חינמי', triggerScope: 'personal' },
+          { name: 'שמירת נתוני Webhook ב-MySQL', description: 'בקשה נכנסת → שורה חדשה ב-MySQL', app_slugs: ['webhooks','mysql'], trigger: {app:'Webhooks',name:'Custom Webhook'}, action: {app:'MySQL',name:'Insert a Row'}, accountReq: 'ללא — Webhook חיצוני + מסד MySQL', triggerScope: 'webhook' },
+        ]
+      }
+    ];
+
+    // Add link to each template
+    TEMPLATE_CATEGORIES.forEach(cat => {
+      cat.templates.forEach(t => {
+        t.link = t.app_slugs?.length > 0
+          ? `https://www.make.com/en/integrations/${t.app_slugs.slice(0,2).join('/')}`
+          : 'https://www.make.com/en/templates';
+      });
+    });
+
     // ─── Main App ───────────────────────────────────────────────────────────
     const App = () => {
       const [apiKey, setApiKey] = useState(() => localStorage.getItem('gemini_key') || '');
@@ -1034,6 +1131,7 @@ Create 5-6 steps using ONLY the verified data above. Structure:
       const [error, setError] = useState(null);
       const [sharedTemplate, setSharedTemplate] = useState(null);
       const [showSettings, setShowSettings] = useState(false);
+      const [activeCategory, setActiveCategory] = useState(null);
 
       // Load shared template from URL hash
       useEffect(() => {
@@ -1078,6 +1176,7 @@ Return ONLY JSON:
         setLoading(true);
         setError(null);
         setSharedTemplate(null);
+        setActiveCategory(null);
         history.replaceState(null, '', window.location.pathname);
         try {
           const data = await callGemini(apiKey, SYSTEM_PROMPT, query);
@@ -1186,9 +1285,66 @@ Return ONLY JSON:
                   <TemplateCard key={idx} item={item} apiKey={apiKey}/>
                 ))
               ) : !error && (
-                <div className="text-center py-32 border-4 border-dashed border-slate-200 rounded-[40px]">
-                  <SearchIcon size={56} className="mx-auto text-slate-300"/>
-                  <p className="text-slate-400 text-2xl font-black mt-6">מנוע החיפוש מוכן. מה תרצה לאוטומט היום?</p>
+                <div>
+                  {/* Category tabs */}
+                  <div className="mb-6">
+                    <h2 className="text-xl font-black text-slate-800 mb-4">📦 {results.length === 0 ? 'בחר קטגוריה או חפש למעלה' : ''}</h2>
+                    <div className="flex flex-wrap gap-2">
+                      {TEMPLATE_CATEGORIES.map(cat => (
+                        <button key={cat.id} onClick={() => setActiveCategory(activeCategory === cat.id ? null : cat.id)}
+                          className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${
+                            activeCategory === cat.id
+                              ? 'bg-blue-600 text-white shadow-lg shadow-blue-200 scale-105'
+                              : 'bg-white border border-slate-200 text-slate-700 hover:border-blue-300 hover:bg-blue-50'
+                          }`}>
+                          {cat.name}
+                          <span className="mr-1.5 text-xs opacity-70">{cat.templates.length}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Show templates for selected category, or all categories preview */}
+                  {activeCategory ? (
+                    <div className="grid gap-6">
+                      {TEMPLATE_CATEGORIES.find(c => c.id === activeCategory)?.templates.map((t, idx) => (
+                        <TemplateCard key={idx} item={t} apiKey={apiKey}/>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="space-y-8">
+                      {TEMPLATE_CATEGORIES.map(cat => (
+                        <div key={cat.id}>
+                          <div className="flex items-center justify-between mb-3">
+                            <h3 className="font-black text-slate-700 text-lg">{cat.name}</h3>
+                            <button onClick={() => setActiveCategory(cat.id)}
+                              className="text-blue-600 text-xs font-bold hover:underline">
+                              הצג הכל ({cat.templates.length}) ←
+                            </button>
+                          </div>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            {cat.templates.slice(0, 2).map((t, idx) => (
+                              <div key={idx} onClick={() => setActiveCategory(cat.id)}
+                                className="bg-white border border-slate-200 rounded-xl p-4 hover:border-blue-300 hover:shadow-md transition-all cursor-pointer group">
+                                <div className="font-bold text-slate-800 text-sm mb-1 group-hover:text-blue-700">{t.name}</div>
+                                <p className="text-xs text-slate-500 line-clamp-2">{t.description}</p>
+                                <div className="flex items-center gap-2 mt-2">
+                                  <span className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">{t.trigger.app}</span>
+                                  <span className="text-slate-300 text-xs">→</span>
+                                  <span className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">{t.action.app}</span>
+                                  {t.triggerScope === 'personal' || t.triggerScope === 'any' ? (
+                                    <span className="mr-auto text-xs bg-green-50 text-green-700 px-2 py-0.5 rounded-full">👤 אישי</span>
+                                  ) : (
+                                    <span className="mr-auto text-xs bg-orange-50 text-orange-700 px-2 py-0.5 rounded-full">🏢 עסקי</span>
+                                  )}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
 
