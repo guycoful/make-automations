@@ -1078,8 +1078,9 @@ Rules:
 - "fields" array = form fields to fill (name, where to find value, optional warning)
 - Keep "description" SHORT (1-2 sentences max) — details go in path/fields
 - Use ONLY verified data provided. Do NOT invent button names.`,
-            `Make.com template: trigger "${item.trigger?.name}" + action "${item.action?.name}".
-The template modules are already built — user just needs credentials and config.
+            `Make.com scenario: trigger "${item.trigger?.name}" (${triggerApp}) + action "${item.action?.name}" (${actionApp}).
+${item.scenarioFlow ? `Full module chain: ${item.scenarioFlow}` : ''}
+The user needs to build this scenario from scratch — create each module and connect it.
 
 === VERIFIED DATA ===
 ${triggerContext}
@@ -1087,13 +1088,8 @@ ${triggerContext}
 ${actionContext}
 === END VERIFIED DATA ===
 
-Create 5-6 steps using ONLY the verified data above. Structure:
-1. type:prepare — what accounts/credentials to get before Make.com
-2. type:connect — connecting ${triggerApp} in Make.com (show connectionTypes as options, explain advanced fields)
-3. type:connect — connecting ${actionApp} (same)
-4. type:configure — setting up trigger module parameters
-5. type:configure — setting up action module parameters
-6. type:test — Run once to test, then toggle ON`,
+Create 5-8 steps using the verified data above. Structure:
+${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare — what accounts/API keys to create before opening Make.com\n2. type:configure — add Schedule module as trigger, set the timing\n3. type:connect — connecting ' + triggerApp + ' in Make.com\n4. type:connect — connecting ' + actionApp + ' in Make.com\n5. type:configure — set up each module parameters in order\n6. type:test — Run once to test, then toggle scheduling ON' : '1. type:prepare — what accounts/credentials to get before Make.com\n2. type:connect — connecting ' + triggerApp + ' in Make.com (show connectionTypes as options, explain advanced fields)\n3. type:connect — connecting ' + actionApp + ' (same)\n4. type:configure — setting up trigger module parameters\n5. type:configure — setting up action module parameters\n6. type:test — Run once to test, then toggle ON'}`,
             true  // useFastModel — guides don't need the heavy model
           );
           const urls = {
@@ -1169,6 +1165,14 @@ Create 5-6 steps using ONLY the verified data above. Structure:
               </code>
             </div>
           </div>
+
+          {/* Full scenario flow for multi-module templates */}
+          {item.scenarioFlow && (
+            <div className="bg-indigo-50 rounded-xl p-3 mb-4 border border-indigo-100">
+              <div className="text-xs font-bold text-indigo-500 mb-1">שרשרת מודולים מלאה:</div>
+              <div className="text-sm text-indigo-800 font-bold" dir="rtl">{item.scenarioFlow}</div>
+            </div>
+          )}
 
           {/* Action buttons */}
           <div className="flex flex-wrap gap-2 mb-3">
@@ -1551,12 +1555,12 @@ Create 5-6 steps using ONLY the verified data above. Structure:
         name: '🧠 למידה אישית',
         color: 'violet',
         templates: [
-          { name: 'שיעור יומי ב-WhatsApp', description: 'כל בוקר מקבלים טיפ קצר (30 שניות קריאה) בנושא שבחרתם — אנגלית, פיננסים, בישול, צילום או כל נושא אחר. AI מייצר תוכן מותאם שמתקדם מיום ליום', app_slugs: ['openai-gpt-3','green-api'], trigger: {app:'Schedule',name:'Every Day at 8:00'}, action: {app:'OpenAI → GREEN-API',name:'Generate Lesson → Send WhatsApp'}, accountReq: 'OpenAI API + Green API (WhatsApp)', triggerScope: 'personal' },
-          { name: 'חידון שבועי ב-WhatsApp', description: 'כל שישי מקבלים 5 שאלות על מה שלמדתם השבוע. עונים ישירות ב-WhatsApp ומקבלים ציון + הסבר על תשובות שפספסתם', app_slugs: ['openai-gpt-3','green-api'], trigger: {app:'Schedule',name:'Every Friday at 10:00'}, action: {app:'Google Sheets → OpenAI → GREEN-API',name:'Read Week Topics → Generate Quiz → Send WhatsApp'}, accountReq: 'OpenAI API + Green API + Google Sheets', triggerScope: 'personal' },
-          { name: 'מילה באנגלית כל יום', description: 'כל בוקר מילה חדשה באנגלית + הגייה + משפט לדוגמה + תרגום. AI מתאים את הרמה לפי התשובות שלכם לחידונים', app_slugs: ['openai-gpt-3','green-api'], trigger: {app:'Schedule',name:'Every Day at 7:30'}, action: {app:'OpenAI → GREEN-API',name:'Generate Word → Send WhatsApp'}, accountReq: 'OpenAI API + Green API', triggerScope: 'personal' },
-          { name: 'סיכום מאמר/סרטון בלחיצה', description: 'שולחים לינק של מאמר או סרטון YouTube ב-WhatsApp → מקבלים סיכום של 5 נקודות עיקריות תוך דקה. במקום לקרוא 10 דקות — 30 שניות', app_slugs: ['green-api','openai-gpt-3'], trigger: {app:'GREEN-API',name:'Watch Incoming Messages'}, action: {app:'HTTP → OpenAI → GREEN-API',name:'Fetch Content → Summarize → Reply'}, accountReq: 'Green API + OpenAI API', triggerScope: 'personal' },
-          { name: 'Streak — רצף למידה יומי', description: 'עוקב על כמה ימים ברצף למדתם. שכחתם יום? מקבלים עידוד. הגעתם ל-7 ימים? הודעת חגיגה. מתאפס רק אחרי 2 ימים של הפסקה', app_slugs: ['google-sheets','green-api'], trigger: {app:'Schedule',name:'Every Day at 21:00'}, action: {app:'Google Sheets → GREEN-API',name:'Check Streak → Send Motivation'}, accountReq: 'Google Sheets + Green API', triggerScope: 'personal' },
-          { name: 'דוח התקדמות שבועי', description: 'כל ראשון בבוקר — סיכום: כמה שיעורים למדתם, ציון ממוצע בחידונים, הנושאים שהכי חזקים/חלשים, והמלצה על מה להתמקד השבוע', app_slugs: ['google-sheets','openai-gpt-3'], trigger: {app:'Schedule',name:'Every Sunday at 9:00'}, action: {app:'Google Sheets → OpenAI → GREEN-API',name:'Analyze Progress → Generate Report → Send WhatsApp'}, accountReq: 'Google Sheets + OpenAI API + Green API', triggerScope: 'personal' },
+          { name: 'שיעור יומי ב-WhatsApp', description: 'כל בוקר מקבלים טיפ קצר (30 שניות קריאה) בנושא שבחרתם — אנגלית, פיננסים, בישול, צילום או כל נושא אחר. AI מייצר תוכן מותאם שמתקדם מיום ליום', app_slugs: ['openai-gpt-3'], trigger: {app:'OpenAI',name:'Create a Completion'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, scenarioFlow: 'Schedule (כל יום ב-8:00) → OpenAI (יוצר שיעור) → GREEN-API (שולח WhatsApp)', accountReq: 'OpenAI API + Green API (WhatsApp)', triggerScope: 'personal' },
+          { name: 'חידון שבועי ב-WhatsApp', description: 'כל שישי מקבלים 5 שאלות על מה שלמדתם השבוע. עונים ישירות ב-WhatsApp ומקבלים ציון + הסבר על תשובות שפספסתם', app_slugs: ['google-sheets','openai-gpt-3'], trigger: {app:'Google Sheets',name:'Search Rows'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, scenarioFlow: 'Schedule (כל שישי ב-10:00) → Google Sheets (קורא נושאי השבוע) → OpenAI (מייצר חידון) → GREEN-API (שולח WhatsApp)', accountReq: 'OpenAI API + Green API + Google Sheets', triggerScope: 'personal' },
+          { name: 'מילה באנגלית כל יום', description: 'כל בוקר מילה חדשה באנגלית + הגייה + משפט לדוגמה + תרגום. AI מתאים את הרמה לפי התשובות שלכם לחידונים', app_slugs: ['openai-gpt-3'], trigger: {app:'OpenAI',name:'Create a Completion'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, scenarioFlow: 'Schedule (כל יום ב-7:30) → OpenAI (מייצר מילה + הגייה + משפט) → GREEN-API (שולח WhatsApp)', accountReq: 'OpenAI API + Green API', triggerScope: 'personal' },
+          { name: 'סיכום מאמר/סרטון בלחיצה', description: 'שולחים לינק של מאמר או סרטון YouTube ב-WhatsApp → מקבלים סיכום של 5 נקודות עיקריות תוך דקה. במקום לקרוא 10 דקות — 30 שניות', app_slugs: ['green-api','openai-gpt-3'], trigger: {app:'GREEN-API for WhatsApp',name:'Watch Incoming Messages'}, action: {app:'OpenAI',name:'Create a Completion'}, scenarioFlow: 'GREEN-API (מקבל הודעה עם לינק) → HTTP (מוריד תוכן) → OpenAI (מסכם) → GREEN-API (משיב סיכום)', accountReq: 'Green API + OpenAI API', triggerScope: 'personal' },
+          { name: 'Streak — רצף למידה יומי', description: 'עוקב על כמה ימים ברצף למדתם. שכחתם יום? מקבלים עידוד. הגעתם ל-7 ימים? הודעת חגיגה. מתאפס רק אחרי 2 ימים של הפסקה', app_slugs: ['google-sheets','green-api'], trigger: {app:'Google Sheets',name:'Search Rows'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, scenarioFlow: 'Schedule (כל ערב ב-21:00) → Google Sheets (בודק streak) → Router → GREEN-API (הודעת עידוד/חגיגה)', accountReq: 'Google Sheets + Green API', triggerScope: 'personal' },
+          { name: 'דוח התקדמות שבועי', description: 'כל ראשון בבוקר — סיכום: כמה שיעורים למדתם, ציון ממוצע בחידונים, הנושאים שהכי חזקים/חלשים, והמלצה על מה להתמקד השבוע', app_slugs: ['google-sheets','openai-gpt-3'], trigger: {app:'Google Sheets',name:'Search Rows'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, scenarioFlow: 'Schedule (כל ראשון ב-9:00) → Google Sheets (קורא נתוני שבוע) → OpenAI (מנתח התקדמות) → GREEN-API (שולח דוח)', accountReq: 'Google Sheets + OpenAI API + Green API', triggerScope: 'personal' },
         ]
       }
     ];
@@ -1855,10 +1859,11 @@ Return ONLY JSON:
                                 className="bg-white border border-slate-200 rounded-xl p-4 hover:border-blue-300 hover:shadow-md transition-all cursor-pointer group">
                                 <div className="font-bold text-slate-800 text-sm mb-1 group-hover:text-blue-700">{t.name}</div>
                                 <p className="text-xs text-slate-500 line-clamp-2">{t.description}</p>
-                                <div className="flex items-center gap-2 mt-2">
+                                <div className="flex items-center gap-2 mt-2 flex-wrap">
                                   <span className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">{t.trigger.app}</span>
                                   <span className="text-slate-300 text-xs">→</span>
                                   <span className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">{t.action.app}</span>
+                                  {t.scenarioFlow && <span className="text-xs text-indigo-400">+{t.scenarioFlow.split('→').length} מודולים</span>}
                                   <span className="mr-auto text-xs bg-green-50 text-green-700 px-2 py-0.5 rounded-full">👤 אישי</span>
                                 </div>
                               </div>
