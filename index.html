@@ -4,16 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>מוצא אוטומציות מייק</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Secular+One&family=Varela+Round&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Secular One"', 'sans-serif'],
+            body: ['"Varela Round"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <style>
     @keyframes spin { to { transform: rotate(360deg); } }
     .spin { animation: spin 0.8s linear infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+    .float { animation: float 3s ease-in-out infinite; }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-in-up { animation: fadeInUp 0.6s ease-out forwards; }
+    .fade-in-up-delay-1 { animation: fadeInUp 0.6s ease-out 0.15s forwards; opacity: 0; }
+    .fade-in-up-delay-2 { animation: fadeInUp 0.6s ease-out 0.3s forwards; opacity: 0; }
   </style>
 </head>
-<body class="bg-slate-50">
+<body class="bg-slate-50 font-body">
   <div id="root"></div>
 
   <script type="text/babel">
@@ -1272,19 +1293,20 @@ Create 5-6 steps using ONLY the verified data above. Structure:
     const ApiKeyScreen = ({ onSave }) => {
       const [key, setKey] = useState('');
       return (
-        <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6" dir="rtl">
-          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 max-w-md w-full">
-            <div className="w-14 h-14 bg-blue-600 text-white rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg rotate-3">
-              <ZapIcon size={28} fill="currentColor"/>
+        <div className="min-h-screen bg-gradient-to-b from-blue-50 via-slate-50 to-white flex items-center justify-center p-6" dir="rtl">
+          <div className="bg-white rounded-3xl shadow-xl shadow-blue-100/50 border border-blue-100 p-10 max-w-md w-full fade-in-up">
+            <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 text-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg float">
+              <ZapIcon size={30} fill="currentColor"/>
             </div>
-            <h2 className="text-2xl font-black text-center mb-2">ברוך הבא!</h2>
-            <p className="text-slate-500 text-center mb-6">
-              הכנס את מפתח ה-API שלך מ-<a href="https://console.x.ai" target="_blank" className="text-blue-600 font-bold hover:underline">xAI Console</a>
-              <br/><span className="text-xs">המפתח יישמר בדפדפן שלך בלבד</span>
+            <h2 className="text-3xl font-display text-center mb-3 text-slate-900">בניית אוטומציות בקלות</h2>
+            <p className="text-slate-500 text-center mb-2">אין צורך בידע טכני — פשוט תתאר מה אתה רוצה שיקרה</p>
+            <p className="text-slate-400 text-center text-sm mb-8">
+              כדי להתחיל, הכנס מפתח API מ-<a href="https://console.x.ai" target="_blank" className="text-blue-600 font-bold hover:underline">xAI Console</a>
+              <br/><span className="text-xs">(המפתח נשמר בדפדפן שלך בלבד — בטוח לגמרי)</span>
             </p>
             <input
               type="password"
-              className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-blue-300 mb-4"
+              className="w-full border-2 border-slate-200 rounded-2xl px-5 py-4 text-base outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-400 mb-5 transition-all"
               placeholder="xai-..."
               value={key}
               onChange={e => setKey(e.target.value)}
@@ -1293,8 +1315,8 @@ Create 5-6 steps using ONLY the verified data above. Structure:
             <button
               onClick={() => { if (key.trim()) { localStorage.setItem('gemini_key', key.trim()); onSave(key.trim()); }}}
               disabled={!key.trim()}
-              className="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 disabled:opacity-40 transition-all">
-              התחל
+              className="w-full bg-gradient-to-l from-blue-600 to-indigo-600 text-white py-4 rounded-2xl font-display text-lg hover:shadow-lg hover:shadow-blue-200 disabled:opacity-40 transition-all active:scale-[0.98]">
+              בוא נתחיל!
             </button>
           </div>
         </div>
@@ -1629,11 +1651,11 @@ Return ONLY JSON:
       }
 
       return (
-        <div className="min-h-screen bg-slate-50 text-slate-900 p-4 md:p-10 font-sans selection:bg-blue-100" dir="rtl">
+        <div className="min-h-screen bg-gradient-to-b from-blue-50/50 via-slate-50 to-white text-slate-900 p-4 md:p-10 font-body selection:bg-blue-100" dir="rtl">
           <div className="max-w-4xl mx-auto">
 
             {/* Header */}
-            <div className="text-center mb-10 relative">
+            <div className="text-center mb-8 relative fade-in-up">
               <button onClick={() => setShowSettings(s => !s)}
                 className="absolute left-0 top-0 text-slate-400 hover:text-slate-600 p-2 rounded-lg hover:bg-slate-100 transition-all">
                 <GearIcon/>
@@ -1652,29 +1674,48 @@ Return ONLY JSON:
                 </div>
               )}
 
-              <div className="w-16 h-16 bg-blue-600 text-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl shadow-blue-200 rotate-3">
-                <ZapIcon size={32} fill="currentColor"/>
+              <div className="w-18 h-18 bg-gradient-to-br from-blue-500 to-indigo-600 text-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl shadow-blue-200/50 float" style={{width:'4.5rem',height:'4.5rem'}}>
+                <ZapIcon size={34} fill="currentColor"/>
               </div>
-              <h1 className="text-4xl font-black text-slate-900 mb-2">תכנון אוטומציות במייק</h1>
-              <p className="text-slate-500 text-lg">תתאר את התהליך, המערכת תספק לך את ההגדרות המדויקות.</p>
+              <h1 className="text-4xl md:text-5xl font-display text-slate-900 mb-3">בנה אוטומציות בלי קוד</h1>
+              <p className="text-slate-500 text-lg mb-8 max-w-lg mx-auto">ספר לנו מה אתה רוצה לאוטמט — ונבנה לך את התהליך צעד אחר צעד</p>
+
+              {/* 3 Steps indicator */}
+              <div className="flex items-center justify-center gap-4 md:gap-8 mb-2 fade-in-up-delay-1">
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl font-display">1</div>
+                  <span className="text-xs text-slate-500 font-bold">תתאר בעברית</span>
+                </div>
+                <div className="text-slate-300 text-2xl mb-5">→</div>
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-12 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-xl font-display">2</div>
+                  <span className="text-xs text-slate-500 font-bold">קבל הוראות מדויקות</span>
+                </div>
+                <div className="text-slate-300 text-2xl mb-5">→</div>
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-12 rounded-2xl bg-green-100 text-green-600 flex items-center justify-center text-xl font-display">3</div>
+                  <span className="text-xs text-slate-500 font-bold">הרץ ב-Make.com</span>
+                </div>
+              </div>
             </div>
 
             {/* Search */}
-            <form onSubmit={search} className="relative group mb-12">
-              <div className="absolute inset-0 bg-blue-600 rounded-3xl blur opacity-10 group-focus-within:opacity-20 transition-opacity"/>
-              <div className="relative flex bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden p-2">
+            <form onSubmit={search} className="relative group mb-10 fade-in-up-delay-2">
+              <div className="absolute inset-0 bg-gradient-to-l from-blue-600 to-indigo-600 rounded-3xl blur-lg opacity-10 group-focus-within:opacity-20 transition-opacity"/>
+              <div className="relative flex bg-white rounded-2xl shadow-lg shadow-blue-100/30 border-2 border-blue-100 overflow-hidden p-2">
                 <input type="text"
-                  className="flex-grow px-6 py-4 text-xl outline-none bg-transparent"
-                  placeholder="למשל: יצירת לקוח ב-CRM כשיש ליד חדש בפייסבוק..."
+                  className="flex-grow px-6 py-4 text-lg outline-none bg-transparent font-body"
+                  placeholder="מה תרצה לאוטמט? למשל: כשמישהו ממלא טופס — לשלוח לו מייל ולהוסיף ל-CRM"
                   value={query}
                   onChange={e => setQuery(e.target.value)}
                 />
                 <button type="submit" disabled={loading}
-                  className="bg-blue-600 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 hover:bg-blue-700 active:scale-95 transition-all disabled:opacity-50">
+                  className="bg-gradient-to-l from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-xl font-display text-lg flex items-center gap-2 hover:shadow-lg hover:shadow-blue-200 active:scale-95 transition-all disabled:opacity-50">
                   {loading ? <Spinner size={22} color="white"/> : <SearchIcon size={22}/>}
-                  <span>חפש</span>
+                  <span>מצא לי</span>
                 </button>
               </div>
+              <p className="text-center text-xs text-slate-400 mt-3">אין צורך במונחים טכניים — כתוב כמו שאתה מדבר</p>
             </form>
 
             {/* Personal filter toggle */}
@@ -1708,7 +1749,8 @@ Return ONLY JSON:
               {loading ? (
                 <div className="text-center py-24">
                   <Spinner size={50} color="#2563eb"/>
-                  <p className="text-slate-500 text-xl font-bold mt-6">הבינה המלאכותית מנתחת את השלבים המדויקים...</p>
+                  <p className="text-slate-500 text-xl font-display mt-6">בונה לך את האוטומציה...</p>
+                  <p className="text-slate-400 text-sm mt-2">זה לוקח כמה שניות — אנחנו מתאימים את ההגדרות בדיוק בשבילך</p>
                 </div>
               ) : results.length > 0 ? (
                 filterTemplates(results).length > 0 ? filterTemplates(results).map((item, idx) => (
@@ -1727,14 +1769,15 @@ Return ONLY JSON:
                 <div>
                   {/* Category tabs */}
                   <div className="mb-6">
-                    <h2 className="text-xl font-black text-slate-800 mb-4">📦 {results.length === 0 ? 'בחר קטגוריה או חפש למעלה' : ''}</h2>
+                    <h2 className="text-xl font-display text-slate-800 mb-1">{results.length === 0 ? 'או בחר תבנית מוכנה מהרשימה' : ''}</h2>
+                    <p className="text-sm text-slate-400 mb-4">{results.length === 0 ? 'כל תבנית כוללת הוראות הקמה מלאות — פשוט לחץ ועקוב' : ''}</p>
                     <div className="flex flex-wrap gap-2">
                       {TEMPLATE_CATEGORIES.map(cat => (
                         <button key={cat.id} onClick={() => setActiveCategory(activeCategory === cat.id ? null : cat.id)}
-                          className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${
+                          className={`px-4 py-2.5 rounded-2xl text-sm font-bold transition-all ${
                             activeCategory === cat.id
-                              ? 'bg-blue-600 text-white shadow-lg shadow-blue-200 scale-105'
-                              : 'bg-white border border-slate-200 text-slate-700 hover:border-blue-300 hover:bg-blue-50'
+                              ? 'bg-gradient-to-l from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-200 scale-105'
+                              : 'bg-white border-2 border-slate-100 text-slate-700 hover:border-blue-200 hover:bg-blue-50 hover:shadow-sm'
                           }`}>
                           {cat.name}
                           <span className="mr-1.5 text-xs opacity-70">{cat.templates.length}</span>
@@ -1769,7 +1812,7 @@ Return ONLY JSON:
                         return (
                         <div key={cat.id}>
                           <div className="flex items-center justify-between mb-3">
-                            <h3 className="font-black text-slate-700 text-lg">{cat.name}</h3>
+                            <h3 className="font-display text-slate-700 text-lg">{cat.name}</h3>
                             <button onClick={() => setActiveCategory(cat.id)}
                               className="text-blue-600 text-xs font-bold hover:underline">
                               הצג הכל ({filtered.length}) ←
@@ -1801,7 +1844,7 @@ Return ONLY JSON:
               {/* More templates sources */}
               {results.length > 0 && (
                 <div className="bg-gradient-to-l from-indigo-50 to-blue-50 border-2 border-indigo-100 rounded-2xl p-6 mt-2">
-                  <h3 className="font-black text-indigo-900 text-lg mb-4">🔎 איפה למצוא עוד טמפלייטים?</h3>
+                  <h3 className="font-display text-indigo-900 text-lg mb-4">איפה למצוא עוד טמפלייטים?</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <a href="https://www.make.com/en/templates" target="_blank" rel="noopener noreferrer"
                       className="bg-white rounded-xl p-4 border border-indigo-100 hover:border-indigo-300 hover:shadow-md transition-all group">
