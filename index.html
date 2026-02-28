@@ -632,6 +632,210 @@
           { field: 'API Key', where: 'אותה דף → Project API keys → anon (ציבורי) או service_role (מלא — זהיר!)', required: true }
         ],
         setupSteps: ['Supabase Dashboard → Settings → API → העתק Project URL + anon key → הדבק ב-Make.com']
+      },
+      // ── New Apps: AI & Content ─────────────────────────────────────────────
+      'ElevenLabs': {
+        docUrl: 'https://www.make.com/en/help/app/elevenlabs',
+        authType: 'API Key',
+        connectionTypes: [{ name: 'ElevenLabs', desc: 'API Key מה-Profile' }],
+        advancedFields: [
+          { field: 'API Key', where: 'elevenlabs.io → לחץ על תמונת פרופיל → Profile + API key → העתק xi-api-key', required: true }
+        ],
+        setupSteps: [
+          'elevenlabs.io → היכנס לחשבון',
+          'לחץ על תמונת פרופיל (שמאל תחתון) → Profile + API key',
+          'העתק את ה-API Key (מתחיל ב-xi-...)',
+          'ב-Make.com הדבק ב-"API Key"'
+        ]
+      },
+      'Google Gemini': {
+        docUrl: 'https://www.make.com/en/help/app/google-gemini',
+        authType: 'API Key',
+        connectionTypes: [{ name: 'Google Gemini', desc: 'API Key מ-Google AI Studio' }],
+        advancedFields: [
+          { field: 'API Key', where: 'aistudio.google.com → Get API key → Create API key → בחר פרויקט → העתק', required: true }
+        ],
+        setupSteps: [
+          'כנס ל-aistudio.google.com → לחץ "Get API key"',
+          'Create API key in new project (או בחר קיים)',
+          'העתק את ה-API Key',
+          'ב-Make.com הדבק ב-"API Key"'
+        ]
+      },
+      'Perplexity': {
+        docUrl: 'https://www.make.com/en/help/app/perplexity',
+        authType: 'API Key',
+        connectionTypes: [{ name: 'Perplexity', desc: 'API Key — דורש מנוי Pro' }],
+        advancedFields: [
+          { field: 'API Key', where: 'perplexity.ai → Settings → API → Generate API Key → העתק', required: true }
+        ],
+        setupSteps: [
+          '⚠️ דרישה: מנוי Perplexity Pro (לא עובד עם חינמי)',
+          'perplexity.ai → Settings → API',
+          'Generate API Key → העתק → הדבק ב-Make.com'
+        ]
+      },
+      'Canva': {
+        docUrl: 'https://www.make.com/en/help/app/canva',
+        authType: 'OAuth 2.0',
+        connectionTypes: [{ name: 'Canva', desc: 'OAuth — כניסה עם חשבון Canva' }],
+        advancedFields: [],
+        setupSteps: [
+          'לחץ Add/Connect → Save → נפתח Canva',
+          'היכנס עם חשבון Canva → אשר הרשאות',
+          'חזור ל-Make.com — החיבור נוצר'
+        ]
+      },
+      // ── New Apps: Marketing & Ads ──────────────────────────────────────────
+      'Facebook Lead Ads': {
+        docUrl: 'https://www.make.com/en/help/app/facebook-lead-ads',
+        authType: 'OAuth (Meta) — חובה Admin של דף עסקי',
+        accountWarning: '⚠️ דורש דף עסקי Facebook שאתה Admin שלו + קמפיין Lead Ads פעיל. לא עובד עם פרופיל אישי.',
+        connectionTypes: [{ name: 'Facebook Lead Ads', desc: 'OAuth עם Meta — חובה Admin של הדף + Lead Ads פעיל' }],
+        advancedFields: [],
+        setupSteps: [
+          '⚠️ דרישה: דף Facebook עסקי (Admin) + קמפיין Lead Ads פעיל',
+          'ב-Make.com: Add/Connect → Save → Facebook Login',
+          'בחר את הדפים להרשות → Done',
+          'במודול: בחר את הדף → בחר את הטופס (Lead Form)'
+        ]
+      },
+      'Google Ads': {
+        docUrl: 'https://www.make.com/en/help/app/google-ads',
+        authType: 'OAuth עם Google — חובה חשבון Google Ads',
+        accountWarning: '⚠️ דורש חשבון Google Ads פעיל. חשבון חינמי (בלי קמפיינים) לא מספיק לטריגרים.',
+        connectionTypes: [{ name: 'Google Ads', desc: 'OAuth עם חשבון Google שמחובר ל-Google Ads' }],
+        advancedFields: [],
+        setupSteps: [
+          '⚠️ דרישה: חשבון Google Ads פעיל עם קמפיינים',
+          'ב-Make.com: Add/Connect → Save → Google Login',
+          'בחר חשבון Google שמחובר ל-Google Ads → אשר הרשאות',
+          'במודול: בחר Customer ID של חשבון ה-Ads'
+        ]
+      },
+      'TikTok': {
+        docUrl: 'https://www.make.com/en/help/app/tiktok',
+        authType: 'OAuth — חובה חשבון Business',
+        accountWarning: '⚠️ TikTok API דורש חשבון Business (לא אישי). יש להמיר חשבון ל-Business בהגדרות.',
+        connectionTypes: [{ name: 'TikTok for Business', desc: 'OAuth — דורש חשבון Business' }],
+        advancedFields: [],
+        setupSteps: [
+          '⚠️ דרישה: חשבון TikTok Business (לא אישי)',
+          'ב-TikTok: Settings → Account → Switch to Business Account',
+          'ב-Make.com: Add/Connect → Save → TikTok Login → אשר'
+        ]
+      },
+      'Pinterest': {
+        docUrl: 'https://www.make.com/en/help/app/pinterest',
+        authType: 'OAuth — חובה חשבון Business',
+        accountWarning: '⚠️ דורש חשבון Pinterest Business (לא אישי).',
+        connectionTypes: [{ name: 'Pinterest', desc: 'OAuth — דורש Business account' }],
+        advancedFields: [],
+        setupSteps: [
+          '⚠️ דרישה: חשבון Pinterest Business',
+          'ב-Pinterest: Settings → Account → Convert to business',
+          'ב-Make.com: Add/Connect → Save → Pinterest Login → Authorize'
+        ]
+      },
+      // ── New Apps: Email Marketing ──────────────────────────────────────────
+      'Mailerlite': {
+        docUrl: 'https://www.make.com/en/help/app/mailerlite',
+        authType: 'API Key',
+        connectionTypes: [{ name: 'Mailerlite', desc: 'API Key מ-Integrations' }],
+        advancedFields: [
+          { field: 'API Key', where: 'Mailerlite Dashboard → Integrations → Developer API → Generate new token → העתק', required: true }
+        ],
+        setupSteps: [
+          'Mailerlite Dashboard → Integrations (בתפריט שמאל)',
+          'Developer API → Generate new token → שם → Create',
+          'העתק את ה-API token → הדבק ב-Make.com'
+        ]
+      },
+      'ConvertKit': {
+        docUrl: 'https://www.make.com/en/help/app/convertkit',
+        authType: 'API Key + API Secret',
+        connectionTypes: [{ name: 'ConvertKit', desc: 'API Key + Secret מ-Settings' }],
+        advancedFields: [
+          { field: 'API Key', where: 'app.convertkit.com → Settings → Advanced → API Key', required: true },
+          { field: 'API Secret', where: 'אותה דף — API Secret', required: true }
+        ],
+        setupSteps: [
+          'app.convertkit.com → Settings (גלגל שיניים)',
+          'Advanced → העתק API Key + API Secret',
+          'ב-Make.com הדבק שניהם'
+        ]
+      },
+      // ── New Apps: Customer Support ─────────────────────────────────────────
+      'Intercom': {
+        docUrl: 'https://www.make.com/en/help/app/intercom',
+        authType: 'OAuth',
+        connectionTypes: [{ name: 'Intercom', desc: 'OAuth — כניסה עם חשבון Intercom' }],
+        advancedFields: [],
+        setupSteps: [
+          'לחץ Add/Connect → Save → נפתח Intercom',
+          'היכנס עם חשבון Intercom → Authorize',
+          'חזור ל-Make.com — החיבור נוצר'
+        ]
+      },
+      'Freshdesk': {
+        docUrl: 'https://www.make.com/en/help/app/freshdesk',
+        authType: 'API Key + Domain',
+        connectionTypes: [{ name: 'Freshdesk', desc: 'API Key + תת-דומיין Freshdesk' }],
+        advancedFields: [
+          { field: 'Domain', where: 'הכתובת של ה-Freshdesk שלך: yourcompany.freshdesk.com → רק "yourcompany"', required: true },
+          { field: 'API Key', where: 'Freshdesk → לחץ על תמונת פרופיל → Profile settings → API Key (בצד ימין)', required: true }
+        ],
+        setupSteps: [
+          'Freshdesk → לחץ על תמונת פרופיל → Profile settings',
+          'בצד ימין יש "Your API Key" → העתק',
+          'ב-Make.com: הדבק Domain (ללא .freshdesk.com) + API Key'
+        ]
+      },
+      // ── New Apps: Website Builders ─────────────────────────────────────────
+      'WordPress': {
+        docUrl: 'https://www.make.com/en/help/app/wordpress',
+        authType: 'Username + Application Password — חובה Admin',
+        accountWarning: '⚠️ דורש גישת Admin לאתר WordPress. האתר חייב להיות נגיש מהאינטרנט (לא localhost).',
+        connectionTypes: [{ name: 'WordPress', desc: 'Application Password — חובה Admin של האתר' }],
+        advancedFields: [
+          { field: 'WordPress URL', where: 'כתובת האתר שלך (https://yoursite.com)', required: true },
+          { field: 'Username', where: 'שם המשתמש Admin של WordPress', required: true },
+          { field: 'Application Password', where: 'WordPress Admin → Users → Profile → גלול למטה ל-"Application Passwords" → שם → Add New Application Password → העתק', required: true }
+        ],
+        setupSteps: [
+          '⚠️ דרישה: אתר WordPress נגיש מהאינטרנט + משתמש Admin',
+          'WordPress Admin → Users → Edit Profile',
+          'גלול למטה ל-"Application Passwords"',
+          'תן שם (למשל "Make.com") → Add New Application Password',
+          'העתק את הסיסמה שנוצרה (מופיעה פעם אחת בלבד!)',
+          'ב-Make.com: URL של האתר + Username + Application Password'
+        ]
+      },
+      'Webflow': {
+        docUrl: 'https://www.make.com/en/help/app/webflow',
+        authType: 'API Token',
+        connectionTypes: [{ name: 'Webflow', desc: 'API Token מ-Workspace Settings' }],
+        advancedFields: [
+          { field: 'API Token', where: 'Webflow Dashboard → Workspace Settings → Integrations → Generate API token', required: true }
+        ],
+        setupSteps: [
+          'Webflow Dashboard → Workspace Settings (לא Site Settings!)',
+          'Integrations → Generate API token',
+          'בחר הרשאות (Sites: Read/Write, CMS: Read/Write)',
+          'Generate token → העתק → הדבק ב-Make.com'
+        ]
+      },
+      // ── New Apps: Other Useful ─────────────────────────────────────────────
+      'RSS': {
+        docUrl: 'https://www.make.com/en/help/app/rss',
+        authType: 'ללא חיבור',
+        connectionTypes: [{ name: 'RSS', desc: 'לא דורש חיבור — מזינים כתובת RSS ישירות' }],
+        advancedFields: [],
+        setupSteps: [
+          'מודול RSS לא דורש חיבור',
+          'מזינים את כתובת ה-RSS Feed ישירות בשדה URL',
+          'טיפ: רוב הבלוגים תומכים ב-RSS — נסה להוסיף /feed או /rss לכתובת'
+        ]
       }
     };
 
@@ -661,7 +865,22 @@
         'monday': 'Monday.com', 'click up': 'ClickUp',
         'pipe drive': 'Pipedrive', 'zoho': 'Zoho CRM',
         'send grid': 'SendGrid', 'twillio': 'Twilio',
-        'type form': 'Typeform', 'calendly': 'Calendly'
+        'type form': 'Typeform', 'calendly': 'Calendly',
+        'eleven labs': 'ElevenLabs', '11labs': 'ElevenLabs', 'elevenlabs': 'ElevenLabs',
+        'gemini': 'Google Gemini', 'google ai': 'Google Gemini',
+        'perplexity': 'Perplexity', 'pplx': 'Perplexity',
+        'canva': 'Canva',
+        'facebook lead': 'Facebook Lead Ads', 'fb lead': 'Facebook Lead Ads', 'lead ads': 'Facebook Lead Ads',
+        'google ads': 'Google Ads', 'adwords': 'Google Ads',
+        'tiktok': 'TikTok', 'tik tok': 'TikTok',
+        'pinterest': 'Pinterest',
+        'mailerlite': 'Mailerlite', 'mailer lite': 'Mailerlite',
+        'convertkit': 'ConvertKit', 'convert kit': 'ConvertKit', 'kit.com': 'ConvertKit',
+        'intercom': 'Intercom',
+        'fresh desk': 'Freshdesk', 'freshdesk': 'Freshdesk',
+        'wordpress': 'WordPress', 'wp': 'WordPress',
+        'webflow': 'Webflow',
+        'rss': 'RSS', 'rss feed': 'RSS'
       };
       for (const [alias, key] of Object.entries(aliases)) {
         if (name.includes(alias)) return CONNECTION_DB[key];
@@ -1148,6 +1367,22 @@ Create 5-6 steps using ONLY the verified data above. Structure:
           { name: 'שמירת נתוני Webhook ב-MySQL', description: 'בקשה נכנסת → שורה חדשה ב-MySQL', app_slugs: ['webhooks','mysql'], trigger: {app:'Webhooks',name:'Custom Webhook'}, action: {app:'MySQL',name:'Insert a Row'}, accountReq: 'ללא — Webhook חיצוני + מסד MySQL', triggerScope: 'webhook' },
         ]
       },
+      // ── Facebook Personal Workarounds ─────────────────────────────────────
+      {
+        id: 'facebook-personal',
+        name: '👤 Facebook אישי (ללא דף עסקי)',
+        color: 'indigo',
+        templates: [
+          { name: 'התראת WhatsApp על הודעה חדשה ב-Messenger', description: 'Facebook שולח מייל על הודעה ב-Messenger → Gmail מזהה → WhatsApp מיידי. עובד עם פרופיל אישי!', app_slugs: ['gmail','green-api'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'Gmail + Green API — פרופיל אישי לגמרי', triggerScope: 'personal', tip: 'ב-Facebook הפעל: Settings → Notifications → Email → Messages ON. סנן: from:facebookmail.com subject:"sent you a message"' },
+          { name: 'שמירת הודעות Messenger בטבלה', description: 'כל הודעה חדשה ב-Messenger (דרך מייל התראה) → שורה ב-Sheets עם שם+תאריך', app_slugs: ['gmail','google-sheets'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'Gmail + Google Sheets — חינמי לגמרי', triggerScope: 'personal', tip: 'סנן: from:facebookmail.com subject:"sent you a message"' },
+          { name: 'התראה על תגובה לפוסט שלך ב-Facebook', description: 'מישהו הגיב על פוסט שפרסמת → Telegram מיידי', app_slugs: ['gmail','telegram-bot'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'Telegram Bot',name:'Send a Text Message'}, accountReq: 'Gmail + Telegram Bot — הכל חינמי', triggerScope: 'personal', tip: 'סנן: from:facebookmail.com subject:"commented on"' },
+          { name: 'סיכום AI יומי של כל ההתראות מ-Facebook', description: 'כל מיילי Facebook מ-24 שעות → GPT מסכם: הודעות, תגובות, הזמנות → WhatsApp', app_slugs: ['gmail','openai-gpt-3'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'OpenAI',name:'Create a Completion'}, accountReq: 'Gmail + OpenAI API', triggerScope: 'personal', tip: 'סנן: from:facebookmail.com newer_than:1d' },
+          { name: 'תזכורת WhatsApp על ימי הולדת מ-Facebook', description: 'Facebook שולח מייל "birthdays today" → WhatsApp עם רשימת שמות', app_slugs: ['gmail','green-api'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'Gmail + Green API', triggerScope: 'personal', tip: 'סנן: from:facebookmail.com subject:"birthday"' },
+          { name: 'שמירת הזמנות לאירועים ב-Google Calendar', description: 'הוזמנת לאירוע ב-Facebook → אירוע אוטומטי ב-Google Calendar', app_slugs: ['gmail','google-calendar'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'Google Calendar',name:'Create an Event'}, accountReq: 'Gmail + Google Calendar — חינמי', triggerScope: 'personal', tip: 'סנן: from:facebookmail.com subject:"invited you to"' },
+          { name: 'התראת WhatsApp על בקשת חברות חדשה', description: 'מישהו שלח בקשת חברות → WhatsApp מיידי עם השם', app_slugs: ['gmail','green-api'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'Gmail + Green API', triggerScope: 'personal', tip: 'סנן: from:facebookmail.com subject:"friend request"' },
+          { name: 'שמירת אנשים שתייגו אותך ב-Sheets', description: 'תויגת בפוסט או בתמונה → שורה ב-Sheets עם פרטים', app_slugs: ['gmail','google-sheets'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'Gmail + Google Sheets — חינמי', triggerScope: 'personal', tip: 'סנן: from:facebookmail.com subject:"tagged you"' },
+        ]
+      },
       // ── LinkedIn Personal Workarounds ──────────────────────────────────────
       {
         id: 'linkedin',
@@ -1158,9 +1393,12 @@ Create 5-6 steps using ONLY the verified data above. Structure:
           { name: 'שמירת בקשות חיבור LinkedIn בטבלה', description: 'מייל "X wants to connect" מ-LinkedIn → שורה חדשה ב-Sheets עם שם+תאריך', app_slugs: ['gmail','google-sheets'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'Gmail + Google Sheets — חשבון אישי לגמרי', triggerScope: 'personal', tip: 'סנן מיילים עם: from:linkedin.com subject:"wants to connect"' },
           { name: 'סיכום AI של מיילי LinkedIn יומי', description: 'כל מיילי ה-LinkedIn מ-24 שעות אחרונות → GPT מסכם → שליחה ל-Telegram', app_slugs: ['gmail','openai-gpt-3'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'OpenAI',name:'Create a Completion'}, accountReq: 'Gmail + OpenAI API key', triggerScope: 'personal', tip: 'סנן: from:linkedin.com newer_than:1d' },
           { name: 'התראה על תגובה לפוסט LinkedIn שלך', description: 'מייל "commented on your post" → Telegram. ללא API!', app_slugs: ['gmail','telegram-bot'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'Telegram Bot',name:'Send a Text Message'}, accountReq: 'Gmail + Telegram Bot — הכל חינמי', triggerScope: 'personal', tip: 'סנן: from:linkedin.com subject:"commented on"' },
+          { name: 'התראת WhatsApp על צפיות בפרופיל LinkedIn', description: 'מישהו צפה בפרופיל שלך → WhatsApp עם הפרטים', app_slugs: ['gmail','green-api'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'Gmail + Green API — פרופיל אישי', triggerScope: 'personal', tip: 'סנן: from:linkedin.com subject:"viewed your profile"' },
+          { name: 'שמירת לייקים על הפוסטים שלך ב-Sheets', description: 'מייל "liked your post" → שורה ב-Sheets עם מי ומתי', app_slugs: ['gmail','google-sheets'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'Gmail + Google Sheets — חינמי', triggerScope: 'personal', tip: 'סנן: from:linkedin.com subject:"liked your"' },
           { name: 'מענה אוטומטי להודעות LinkedIn עם AI', description: 'הודעה חדשה ב-LinkedIn (דרך Unipile Webhook) → Claude יוצר תשובה → שליחה חזרה', app_slugs: ['webhooks','anthropic-claude'], trigger: {app:'Webhooks',name:'Custom Webhook'}, action: {app:'Anthropic Claude',name:'Create a Message'}, accountReq: 'חשבון Unipile (בתשלום ~$30/חודש) + Anthropic API', triggerScope: 'webhook', tip: 'Unipile מחבר את LinkedIn האישי שלך ושולח Webhooks על הודעות, תגובות, חיבורים' },
           { name: 'שמירת תגובות LinkedIn בCRM', description: 'Unipile Webhook על תגובה → Airtable CRM עם שם, תוכן, קישור', app_slugs: ['webhooks','airtable'], trigger: {app:'Webhooks',name:'Custom Webhook'}, action: {app:'Airtable',name:'Create a Record'}, accountReq: 'Unipile (בתשלום) + Airtable חינמי', triggerScope: 'webhook' },
           { name: 'סקרפינג LinkedIn Leads → Google Sheets', description: 'Phantombuster אוסף פרופילים → Webhook → שורה ב-Sheets', app_slugs: ['webhooks','google-sheets'], trigger: {app:'Webhooks',name:'Custom Webhook'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'Phantombuster (בתשלום, יש trial) + Google Sheets', triggerScope: 'webhook', tip: 'Phantombuster יכול לאסוף פרופילים מחיפוש LinkedIn, קבוצות, ותגובות לפוסטים' },
+          { name: 'יצירת טיוטת מענה AI לכל הודעת LinkedIn', description: 'הודעה חדשה (Gmail) → Claude יוצר טיוטת תשובה → נשמר ב-Notion לבדיקה', app_slugs: ['gmail','anthropic-claude'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'Anthropic Claude',name:'Create a Message'}, accountReq: 'Gmail + Anthropic API — חינמי/אישי', triggerScope: 'personal', tip: 'סנן: from:linkedin.com subject:"sent you a message". Claude יכתוב תשובה מקצועית שתוכל לערוך לפני שליחה' },
         ]
       },
       // ── Scheduling & Reminders ─────────────────────────────────────────────
@@ -1200,6 +1438,46 @@ Create 5-6 steps using ONLY the verified data above. Structure:
           { name: 'הוספת שורה ב-Notion מכל מילוי טופס', description: 'תשובה חדשה ב-Google Forms → רשומה ב-Notion', app_slugs: ['google-forms','notion'], trigger: {app:'Google Forms',name:'Watch Responses'}, action: {app:'Notion',name:'Create a Database Item'}, accountReq: 'Google + Notion חינמי', triggerScope: 'personal' },
           { name: 'הודעת WhatsApp על ליד חדש מטופס', description: 'מישהו מילא טופס → הודעת WhatsApp מיידית אליך', app_slugs: ['typeform','green-api'], trigger: {app:'Typeform',name:'Watch Responses'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'Typeform + Green API', triggerScope: 'personal' },
           { name: 'יצירת אירוע ביומן מטופס הרשמה', description: 'נרשמו לאירוע בטופס → אירוע חדש ב-Google Calendar', app_slugs: ['google-forms','google-calendar'], trigger: {app:'Google Forms',name:'Watch Responses'}, action: {app:'Google Calendar',name:'Create an Event'}, accountReq: 'Google חינמי', triggerScope: 'personal' },
+        ]
+      },
+      // ── Ads & Lead Gen ────────────────────────────────────────────────────
+      {
+        id: 'ads',
+        name: '🎯 פרסום ולידים',
+        color: 'red',
+        templates: [
+          { name: 'ליד מ-Facebook Lead Ads ל-WhatsApp מיידי', description: 'מישהו מילא טופס ליד ב-Facebook → הודעת WhatsApp אליך תוך שניות', app_slugs: ['facebook-lead-ads','green-api'], trigger: {app:'Facebook Lead Ads',name:'Watch New Leads'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'דף Facebook עסקי (Admin) + קמפיין Lead Ads + Green API', triggerScope: 'business_page' },
+          { name: 'ליד מ-Facebook ל-Airtable CRM', description: 'כל ליד חדש מקמפיין Facebook → שורה ב-CRM', app_slugs: ['facebook-lead-ads','airtable'], trigger: {app:'Facebook Lead Ads',name:'Watch New Leads'}, action: {app:'Airtable',name:'Create a Record'}, accountReq: 'דף Facebook עסקי (Admin) + Airtable', triggerScope: 'business_page' },
+          { name: 'ליד מ-Facebook ל-Google Sheets + מייל אוטומטי', description: 'ליד חדש → שורה ב-Sheets + אימייל תודה ללקוח', app_slugs: ['facebook-lead-ads','google-sheets'], trigger: {app:'Facebook Lead Ads',name:'Watch New Leads'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'דף Facebook עסקי + Google', triggerScope: 'business_page' },
+          { name: 'ליד מ-Facebook ל-Mailerlite לדיוור', description: 'ליד חדש → נרשם אוטומטית לרשימת דיוור', app_slugs: ['facebook-lead-ads','mailerlite'], trigger: {app:'Facebook Lead Ads',name:'Watch New Leads'}, action: {app:'Mailerlite',name:'Add a Subscriber'}, accountReq: 'דף Facebook עסקי + Mailerlite (יש חינמי)', triggerScope: 'business_page' },
+          { name: 'ליד מ-Facebook ל-HubSpot CRM', description: 'ליד חדש מ-Facebook Ads → Contact חדש ב-HubSpot', app_slugs: ['facebook-lead-ads','hubspot'], trigger: {app:'Facebook Lead Ads',name:'Watch New Leads'}, action: {app:'HubSpot',name:'Create/Update a Contact'}, accountReq: 'דף Facebook עסקי + HubSpot CRM חינמי', triggerScope: 'business_page' },
+          { name: 'התראת Telegram על ליד חדש מ-Google Ads', description: 'ליד חדש מקמפיין Google → הודעת Telegram', app_slugs: ['google-ads','telegram-bot'], trigger: {app:'Google Ads',name:'Watch New Leads'}, action: {app:'Telegram Bot',name:'Send a Text Message'}, accountReq: 'חשבון Google Ads + Telegram Bot', triggerScope: 'business_page' },
+        ]
+      },
+      // ── Audio, Video & Media ──────────────────────────────────────────────
+      {
+        id: 'media',
+        name: '🎙️ אודיו, וידאו ומדיה',
+        color: 'fuchsia',
+        templates: [
+          { name: 'יצירת קול AI מטקסט ב-Google Sheets', description: 'שורה חדשה עם טקסט → ElevenLabs יוצר אודיו → נשמר ב-Google Drive', app_slugs: ['google-sheets','elevenlabs'], trigger: {app:'Google Sheets',name:'Watch New Rows'}, action: {app:'ElevenLabs',name:'Generate Audio'}, accountReq: 'Google Sheets + מפתח ElevenLabs (יש חינמי מוגבל)', triggerScope: 'personal' },
+          { name: 'תמלול הקלטת פגישה עם AI', description: 'קובץ אודיו חדש ב-Google Drive → OpenAI Whisper מתמלל → Notion', app_slugs: ['google-drive','openai-gpt-3'], trigger: {app:'Google Drive',name:'Watch Files in a Folder'}, action: {app:'OpenAI',name:'Create a Transcription'}, accountReq: 'Google Drive + OpenAI API', triggerScope: 'personal' },
+          { name: 'יצירת עיצוב Canva מ-Airtable', description: 'רשומה חדשה עם כותרת ותמונה → עיצוב אוטומטי ב-Canva', app_slugs: ['airtable','canva'], trigger: {app:'Airtable',name:'Watch Records'}, action: {app:'Canva',name:'Create a Design'}, accountReq: 'Airtable + Canva (Pro מומלץ)', triggerScope: 'personal' },
+          { name: 'סיכום AI של סרטון YouTube', description: 'סרטון חדש בערוץ שלך → AI מסכם את התוכן → Notion', app_slugs: ['youtube','openai-gpt-3'], trigger: {app:'YouTube',name:'Watch New Videos'}, action: {app:'OpenAI',name:'Create a Completion'}, accountReq: 'ערוץ YouTube + OpenAI API', triggerScope: 'personal' },
+          { name: 'הקלטת קול אוטומטית מפגישת Calendly', description: 'פגישה נקבעה → ElevenLabs יוצר הודעה קולית אישית → WhatsApp', app_slugs: ['calendly','elevenlabs'], trigger: {app:'Calendly',name:'Watch Events'}, action: {app:'ElevenLabs',name:'Generate Audio'}, accountReq: 'Calendly + ElevenLabs API', triggerScope: 'personal' },
+        ]
+      },
+      // ── Customer Support ──────────────────────────────────────────────────
+      {
+        id: 'support',
+        name: '🎧 שירות לקוחות',
+        color: 'emerald',
+        templates: [
+          { name: 'פתיחת טיקט ב-Freshdesk מטופס', description: 'מילוי טופס Google → טיקט חדש ב-Freshdesk', app_slugs: ['google-forms','freshdesk'], trigger: {app:'Google Forms',name:'Watch Responses'}, action: {app:'Freshdesk',name:'Create a Ticket'}, accountReq: 'Google Forms + Freshdesk (יש חינמי)', triggerScope: 'personal' },
+          { name: 'התראת WhatsApp על שיחה חדשה ב-Intercom', description: 'לקוח פתח שיחה → הודעת WhatsApp מיידית אליך', app_slugs: ['intercom','green-api'], trigger: {app:'Intercom',name:'Watch Conversations'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'Intercom + Green API', triggerScope: 'admin' },
+          { name: 'מענה AI אוטומטי לטיקטים ב-Zendesk', description: 'טיקט חדש → Claude מנתח ויוצר טיוטת תשובה → Zendesk', app_slugs: ['zendesk','anthropic-claude'], trigger: {app:'Zendesk',name:'Watch Tickets'}, action: {app:'Anthropic Claude',name:'Create a Message'}, accountReq: 'Zendesk + Anthropic API', triggerScope: 'admin' },
+          { name: 'שמירת שיחות Intercom ב-Google Sheets', description: 'שיחה נסגרה ב-Intercom → סיכום ב-Sheets לניתוח', app_slugs: ['intercom','google-sheets'], trigger: {app:'Intercom',name:'Watch Conversations'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'Intercom + Google Sheets', triggerScope: 'admin' },
+          { name: 'סיכום AI של טיקטים יומי', description: 'כל יום ב-18:00 → AI מסכם את כל הטיקטים של היום → Slack', app_slugs: ['freshdesk','openai-gpt-3'], trigger: {app:'Freshdesk',name:'Watch Tickets'}, action: {app:'OpenAI',name:'Create a Completion'}, accountReq: 'Freshdesk + OpenAI API', triggerScope: 'admin' },
         ]
       }
     ];
