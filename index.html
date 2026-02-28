@@ -1014,6 +1014,20 @@
         if (guide) { setGuideOpen(o => !o); return; }
         setGuideOpen(true);
         setGuideLoading(true);
+
+        // Check localStorage cache first
+        const cacheKey = `guide_${item.name}_${item.trigger?.app}_${item.action?.app}`;
+        const cached = localStorage.getItem(cacheKey);
+        if (cached) {
+          try {
+            const parsed = JSON.parse(cached);
+            setGuide(parsed.steps || []);
+            setDocUrls(parsed.urls || {});
+            setGuideLoading(false);
+            return;
+          } catch(e) { localStorage.removeItem(cacheKey); }
+        }
+
         try {
           const triggerApp = item.trigger?.app || '';
           const actionApp = item.action?.app || '';
@@ -1037,7 +1051,7 @@
           const actionContext = buildDBContext(actionApp, actionDB, 'פעולה');
 
           const data = await callGemini(apiKey,
-            `You are a Make.com configuration expert for COMPLETE BEGINNERS who have never used automation before.
+            `You are a Make.com configuration expert for COMPLETE BEGINNERS.
 Return ONLY valid JSON with this EXACT structure — no extra fields:
 {
   "steps": [
@@ -1079,13 +1093,17 @@ Create 5-6 steps using ONLY the verified data above. Structure:
 3. type:connect — connecting ${actionApp} (same)
 4. type:configure — setting up trigger module parameters
 5. type:configure — setting up action module parameters
-6. type:test — Run once to test, then toggle ON`
+6. type:test — Run once to test, then toggle ON`,
+            true  // useFastModel — guides don't need the heavy model
           );
-          setGuide(data.steps || []);
-          setDocUrls({
+          const urls = {
             trigger: triggerDB?.docUrl || data.triggerDocUrl,
             action: actionDB?.docUrl || data.actionDocUrl
-          });
+          };
+          setGuide(data.steps || []);
+          setDocUrls(urls);
+          // Cache for instant load next time
+          try { localStorage.setItem(cacheKey, JSON.stringify({ steps: data.steps, urls })); } catch(e) {}
         } catch (err) {
           setGuide([{ title: "שגיאה", description: "לא ניתן לטעון את המדריך. בדוק את מפתח ה-API ונסה שוב." }]);
         }
