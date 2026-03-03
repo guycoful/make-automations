@@ -1036,7 +1036,15 @@
         body: JSON.stringify({
           model: MODEL_FAST,
           messages: [
-            { role: 'system', content: 'אתה מומחה לאוטומציות Make.com ו-ManyChat. ענה בעברית על סמך המידע שמסופק. ציין מקורות בפורמט [מקור X]. אם המידע לא מספיק, אמור זאת בכנות.' },
+            { role: 'system', content: `אתה מומחה לאוטומציות Make.com ו-ManyChat. ענה בעברית על סמך המידע שמסופק.
+
+כללי עיצוב תשובה:
+- השתמש ב-## לכותרות סעיפים עם אימוג'י מתאים (למשל: ## 🔌 חיבור, ## 📋 שלבים, ## 💡 טיפים)
+- מספר שלבים עם 1. 2. 3.
+- הדגש מונחים חשובים עם **bold**
+- בבלוקי קוד: כתוב רק קוד נקי להדבקה, בלי הערות // בעברית. הסבר על שדות שצריך להחליף כתוב מחוץ לבלוק הקוד
+- ציין מקורות בפורמט [מקור X]
+- אם המידע לא מספיק, אמור זאת בכנות.` },
             { role: 'user', content: `מידע:\n${contextText}\n\nשאלה: ${question}` }
           ],
           max_tokens: 1500,
@@ -1532,9 +1540,9 @@ ${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare
           if (codeBlock) {
             const codeText = codeLines.join('\n');
             const codeKey = 'code-' + i;
-            // Clean version for copy: remove // comments and trim
+            // Clean version for copy: remove // comments (but not URLs like https://)
             const cleanForCopy = codeText.split('\n')
-              .map(l => l.replace(/\s*\/\/.*$/, '').trimEnd())
+              .map(l => l.replace(/\s+\/\/\s+.*$/, '').trimEnd())
               .filter(l => l.trim())
               .join('\n');
             // Extract placeholders for legend
@@ -1814,9 +1822,7 @@ ${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare
                 </div>
               )}
               <div>
-                {article.content.split('\n\n').map((para, i) => (
-                  para.trim() && <p key={i} className="text-slate-700 leading-relaxed mb-4">{para}</p>
-                ))}
+                {renderMarkdown(article.content)}
               </div>
             </div>
           </div>

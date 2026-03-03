@@ -65,7 +65,7 @@ function extractFromZip(zipPath) {
   return results;
 }
 
-function cleanContent(raw) {
+function cleanContent(raw, filename) {
   let text = raw;
   // Remove YAML frontmatter
   text = text.replace(/^---[\s\S]*?---\s*/m, '');
@@ -73,6 +73,13 @@ function cleanContent(raw) {
   text = text.replace(/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}\s*$/gm, '');
   // Remove H1 title (first line starting with #)
   text = text.replace(/^#\s+.+$/m, '');
+  // Remove filename repeated as first line (common in transcripts)
+  if (filename) {
+    const baseName = filename.replace(/\.(mp4|m4a|md|pdf)$/gi, '').trim();
+    if (baseName.length > 5) {
+      text = text.replace(new RegExp('^' + baseName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*$', 'm'), '');
+    }
+  }
   // Remove image URLs
   text = text.replace(/https?:\/\/lh\d+\.googleusercontent\.com\/[^\s]+/g, '');
   // Clean up multiple newlines
@@ -85,6 +92,8 @@ function cleanTitle(filename) {
     .replace(/-audio\.mp4\.md$/i, '')
     .replace(/\.mp4\.md$/i, '')
     .replace(/\.m4a\.md$/i, '')
+    .replace(/\.mp4$/i, '')
+    .replace(/\.m4a$/i, '')
     .replace(/\.md$/i, '')
     .replace(/\.pdf$/i, '')
     .replace(/ \(\d+\)$/, '')
@@ -127,6 +136,71 @@ function splitIntoParagraphs(text) {
     }
   }
   return finalParagraphs.join('\n\n');
+}
+
+// Add markdown headers to unstructured transcript content
+function addTranscriptStructure(content) {
+  // Skip if already has markdown headers
+  if (/^##\s/m.test(content)) return content;
+
+  const paragraphs = content.split('\n\n').filter(p => p.trim());
+  if (paragraphs.length < 4) return content;
+
+  // Topic detection: keyword → emoji + header
+  const TOPIC_RULES = [
+    { rx: /חיבור|connection|חשבון|התחבר|מתחבר|הרשאות|credentials|oauth|api.?key|token/i, icon: '🔌', label: 'חיבור והגדרות' },
+    { rx: /מודול|module|טריגר|trigger|watch|webhook/i, icon: '🧩', label: 'הגדרת המודולים' },
+    { rx: /שגיאה|error|בעיה|נפל|קרס|debug|תקלה|fix/i, icon: '⚠️', label: 'פתרון בעיות' },
+    { rx: /פילטר|filter|תנאי|router|נתיב|if.*then/i, icon: '🔀', label: 'לוגיקה ותנאים' },
+    { rx: /בדיקה|test|run.?once|הרצ|בודק|נבדוק/i, icon: '✅', label: 'הרצה ובדיקה' },
+    { rx: /טיפ|חשוב|שימו לב|זכרו|מומלץ|best.?practice/i, icon: '💡', label: 'טיפים חשובים' },
+    { rx: /json|קוד|script|function|פונקצי|נוסחה|formula/i, icon: '💻', label: 'קוד והגדרות' },
+    { rx: /GPT|AI|בינה מלאכותית|סוכן|agent|assistant|prompt/i, icon: '🤖', label: 'הגדרת AI' },
+    { rx: /whatsapp|ווטסאפ|הודעה|שליחת|greenapi/i, icon: '📱', label: 'שליחת הודעות' },
+    { rx: /פייסבוק|facebook|אינסטגרם|instagram|לינקדאין|linkedin|רשת חברתית/i, icon: '📢', label: 'רשתות חברתיות' },
+  ];
+
+  function detectTopic(text) {
+    for (const rule of TOPIC_RULES) {
+      if (rule.rx.test(text)) return rule;
+    }
+    return null;
+  }
+
+  const result = [];
+  let lastTopic = null;
+  const recentHeaders = []; // track last 3 headers to avoid repetition
+  let parasSinceHeader = 0;
+  let sectionNum = 0;
+
+  for (let i = 0; i < paragraphs.length; i++) {
+    const para = paragraphs[i];
+    const topic = detectTopic(para);
+
+    if (i === 0) {
+      result.push('## 📝 סקירה כללית');
+      recentHeaders.push('סקירה כללית');
+      sectionNum++;
+    } else if (topic && topic.label !== (lastTopic && lastTopic.label) && !recentHeaders.includes(topic.label)) {
+      // New topic not seen recently
+      result.push(`\n## ${topic.icon} ${topic.label}`);
+      lastTopic = topic;
+      recentHeaders.push(topic.label);
+      if (recentHeaders.length > 4) recentHeaders.shift();
+      parasSinceHeader = 0;
+      sectionNum++;
+    } else if (parasSinceHeader >= 5) {
+      // Long section without header — add generic continuation
+      sectionNum++;
+      result.push(`\n## 📋 חלק ${sectionNum}`);
+      parasSinceHeader = 0;
+    }
+
+    result.push(para);
+    parasSinceHeader++;
+  }
+
+  return result.join('\n\n');
 }
 
 function generateSummary(content, title) {
@@ -308,16 +382,21 @@ function main() {
   console.log(`📝 Processing ${allFiles.length} files...`);
 
   for (const file of allFiles) {
-    const cleaned = cleanContent(file.content);
+    const cleaned = cleanContent(file.content, file.name);
     if (cleaned.length < 50) {
       console.log(`   ⏭️  Skipping (too short): ${file.name}`);
       continue;
     }
 
-    const title = cleanTitle(file.name);
+    // Extract H1 title from content if available, otherwise use filename
+    const h1Match = file.content.match(/^#\s+(.+)$/m);
+    const rawTitle = h1Match ? h1Match[1].trim() : cleanTitle(file.name);
+    // Clean media extensions from title regardless of source
+    const title = rawTitle.replace(/[-.](mp4|m4a|audio\.mp4|pdf)$/i, '').trim();
     const category = categorize(file.name, file.platform);
     const articleId = category + '-' + allArticles.length;
-    const formatted = splitIntoParagraphs(cleaned);
+    const split = splitIntoParagraphs(cleaned);
+    const formatted = addTranscriptStructure(split);
     const wordCount = formatted.split(/\s+/).length;
     const summary = generateSummary(formatted, title);
     const takeaways = generateTakeaways(formatted, title);
