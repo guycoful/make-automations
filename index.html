@@ -1067,10 +1067,13 @@
     };
 
     const GUIDE_CATEGORIES = {
-      'make-basics': { name: '🔧 יסודות Make', platform: 'make' },
-      'make-intermediate': { name: '⚙️ Make ביניים', platform: 'make' },
       'make-recipes': { name: '🍳 מתכוני אוטומציה', platform: 'make' },
-      'manychat-guides': { name: '💬 ManyChat', platform: 'manychat' }
+      'make-basics': { name: '🔰 יסודות Make', platform: 'make' },
+      'make-connections': { name: '🔌 חיבורים', platform: 'make' },
+      'make-advanced': { name: '🚀 Make מתקדם', platform: 'make' },
+      'make-errors': { name: '⚠️ ניהול שגיאות', platform: 'make' },
+      'manychat-basics': { name: '💬 יסודות ManyChat', platform: 'manychat' },
+      'manychat-bots': { name: '🤖 בניית בוטים', platform: 'manychat' },
     };
 
     const DIFFICULTY_LABELS = {
@@ -1448,6 +1451,123 @@ ${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare
       );
     };
 
+    // ─── Markdown to React Renderer ────────────────────────────────────
+    function renderMarkdown(text) {
+      if (!text) return null;
+      const lines = text.split('\n');
+      const elements = [];
+      let listItems = [];
+      let listType = null; // 'ul' or 'ol'
+      let codeBlock = false;
+      let codeLines = [];
+
+      function flushList() {
+        if (listItems.length === 0) return;
+        if (listType === 'ol') {
+          elements.push(React.createElement('ol', { key: 'ol-' + elements.length, className: 'list-decimal list-inside space-y-1.5 my-3 text-sm' },
+            listItems.map((item, i) => React.createElement('li', { key: i, className: 'leading-relaxed' }, inlineMd(item)))
+          ));
+        } else {
+          elements.push(React.createElement('ul', { key: 'ul-' + elements.length, className: 'space-y-1.5 my-3 text-sm' },
+            listItems.map((item, i) => React.createElement('li', { key: i, className: 'flex gap-2 leading-relaxed' },
+              React.createElement('span', { className: 'text-blue-500 mt-0.5 flex-shrink-0' }, '●'),
+              React.createElement('span', null, inlineMd(item))
+            ))
+          ));
+        }
+        listItems = [];
+        listType = null;
+      }
+
+      function inlineMd(str) {
+        // Bold **text**
+        const parts = [];
+        let remaining = str;
+        let idx = 0;
+        const boldRx = /\*\*(.+?)\*\*/g;
+        let match;
+        let lastIndex = 0;
+        while ((match = boldRx.exec(remaining)) !== null) {
+          if (match.index > lastIndex) parts.push(remaining.slice(lastIndex, match.index));
+          parts.push(React.createElement('strong', { key: 'b-' + idx++, className: 'font-bold text-slate-900' }, match[1]));
+          lastIndex = boldRx.lastIndex;
+        }
+        if (lastIndex < remaining.length) parts.push(remaining.slice(lastIndex));
+        return parts.length > 0 ? parts : str;
+      }
+
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+
+        // Code block toggle
+        if (line.trim().startsWith('```')) {
+          if (codeBlock) {
+            elements.push(React.createElement('pre', { key: 'code-' + i, className: 'bg-slate-800 text-green-300 text-xs rounded-xl p-4 my-3 overflow-x-auto direction-ltr text-left' },
+              React.createElement('code', null, codeLines.join('\n'))
+            ));
+            codeLines = [];
+            codeBlock = false;
+          } else {
+            flushList();
+            codeBlock = true;
+          }
+          continue;
+        }
+        if (codeBlock) { codeLines.push(line); continue; }
+
+        // Empty line
+        if (!line.trim()) { flushList(); continue; }
+
+        // Headers
+        if (line.startsWith('### ')) {
+          flushList();
+          elements.push(React.createElement('h4', { key: 'h4-' + i, className: 'font-bold text-base text-slate-800 mt-5 mb-2 flex items-center gap-2' },
+            React.createElement('span', { className: 'w-1.5 h-5 bg-blue-500 rounded-full inline-block flex-shrink-0' }),
+            inlineMd(line.slice(4))
+          ));
+          continue;
+        }
+        if (line.startsWith('## ')) {
+          flushList();
+          elements.push(React.createElement('h3', { key: 'h3-' + i, className: 'font-bold text-lg text-blue-700 mt-6 mb-3 pb-2 border-b border-blue-100' },
+            inlineMd(line.slice(3))
+          ));
+          continue;
+        }
+        if (line.startsWith('# ')) {
+          flushList();
+          elements.push(React.createElement('h2', { key: 'h2-' + i, className: 'font-bold text-xl text-slate-900 mt-4 mb-3' },
+            inlineMd(line.slice(2))
+          ));
+          continue;
+        }
+
+        // Ordered list (1. 2. 3.)
+        const olMatch = line.match(/^\s*(\d+)\.\s+(.+)/);
+        if (olMatch) {
+          if (listType === 'ul') flushList();
+          listType = 'ol';
+          listItems.push(olMatch[2]);
+          continue;
+        }
+
+        // Unordered list (- item)
+        const ulMatch = line.match(/^\s*[-*]\s+(.+)/);
+        if (ulMatch) {
+          if (listType === 'ol') flushList();
+          listType = 'ul';
+          listItems.push(ulMatch[1]);
+          continue;
+        }
+
+        // Regular paragraph
+        flushList();
+        elements.push(React.createElement('p', { key: 'p-' + i, className: 'text-sm leading-relaxed my-2' }, inlineMd(line)));
+      }
+      flushList();
+      return elements;
+    }
+
     // ─── Guide Section Renderer ─────────────────────────────────────────
     const GuideSection = ({ section, index }) => {
       if (section.type === 'intro') return (
@@ -1602,8 +1722,23 @@ ${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare
         );
       }
 
-      // ─── Guides List ───
-      const guides = typeof CURATED_GUIDES !== 'undefined' ? CURATED_GUIDES : [];
+      // ─── Guides List (generated from KB articles) ───
+      const GUIDE_ICONS = { 'make-recipes': '🍳', 'make-basics': '🔰', 'make-connections': '🔌', 'make-advanced': '🚀', 'make-errors': '⚠️', 'manychat-basics': '💬', 'manychat-bots': '🤖' };
+      const GUIDE_DIFFICULTY = { 'make-basics': 'beginner', 'make-connections': 'beginner', 'make-recipes': 'intermediate', 'make-advanced': 'advanced', 'make-errors': 'intermediate', 'manychat-basics': 'beginner', 'manychat-bots': 'intermediate' };
+      const guides = (articles || [])
+        .filter(a => GUIDE_CATEGORIES[a.category])
+        .map(a => ({
+          id: a.id,
+          title: a.title,
+          summary: a.summary || '',
+          category: a.category,
+          platform: a.platform,
+          icon: GUIDE_ICONS[a.category] || '📄',
+          difficulty: GUIDE_DIFFICULTY[a.category] || 'intermediate',
+          readTime: Math.max(2, Math.round(a.wordCount / 200)),
+          wordCount: a.wordCount,
+          relatedApps: a.relatedApps || []
+        }));
       const filteredGuides = guides.filter(g => {
         if (selectedCategory && g.category !== selectedCategory) return false;
         if (searchTerm) {
@@ -1849,9 +1984,12 @@ ${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare
             ) : messages.map((msg, i) => (
               <div key={i} className={`flex ${msg.role === 'user' ? 'justify-start' : 'justify-end'}`}>
                 <div className={`max-w-[85%] rounded-2xl px-4 py-3 ${
-                  msg.role === 'user' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-800'
+                  msg.role === 'user' ? 'bg-blue-600 text-white' : 'bg-white border border-slate-200 shadow-sm text-slate-800'
                 }`}>
-                  <div className="text-sm leading-relaxed whitespace-pre-wrap">{msg.text}</div>
+                  {msg.role === 'user'
+                    ? <div className="text-sm leading-relaxed whitespace-pre-wrap">{msg.text}</div>
+                    : <div className="text-sm leading-relaxed">{renderMarkdown(msg.text)}</div>
+                  }
                   {msg.sources && msg.sources.length > 0 && (
                     <div className="flex flex-wrap gap-1 mt-2 pt-2 border-t border-slate-200/50">
                       {[...new Map(msg.sources.map(s => [s.id, s])).values()].map((s, j) => (
