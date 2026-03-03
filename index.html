@@ -1499,36 +1499,58 @@ ${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare
       for (let i = 0; i < lines.length; i++) {
         const line = lines[i];
 
-        // Code block toggle — copyable box with highlighted placeholders
+        // Code block toggle — clean copyable box with placeholder legend
         if (line.trim().startsWith('```')) {
           if (codeBlock) {
             const codeText = codeLines.join('\n');
             const codeKey = 'code-' + i;
-            // Highlight {{variables}} and XXXXXXXXX placeholders
+            // Clean version for copy: remove // comments and trim
+            const cleanForCopy = codeText.split('\n')
+              .map(l => l.replace(/\s*\/\/.*$/, '').trimEnd())
+              .filter(l => l.trim())
+              .join('\n');
+            // Extract placeholders for legend
+            const placeholders = [];
+            const phRx = /(\{\{(\w+)\}\})/g;
+            let phm;
+            const seen = new Set();
+            while ((phm = phRx.exec(codeText)) !== null) {
+              if (!seen.has(phm[2])) { seen.add(phm[2]); placeholders.push(phm[2]); }
+            }
+            if (/X{5,}|972X/.test(codeText) && !seen.has('phone')) placeholders.unshift('phone_number');
+            // Display: show clean code with highlighted placeholders
             const highlightCode = (text) => {
               const parts = [];
-              let rest = text;
               let ki = 0;
-              const rx = /(\{\{[^}]+\}\}|X{5,}|972X+|InstanceID|APIToken|linkedinToken|cleanPhone)/g;
+              const rx = /(\{\{[^}]+\}\}|"972X+@c\.us"|972X[X]+)/g;
               let m, last = 0;
-              while ((m = rx.exec(rest)) !== null) {
-                if (m.index > last) parts.push(rest.slice(last, m.index));
+              while ((m = rx.exec(text)) !== null) {
+                if (m.index > last) parts.push(text.slice(last, m.index));
                 parts.push(React.createElement('span', { key: 'hl-' + ki++, className: 'bg-amber-200 text-amber-900 px-1 rounded font-bold' }, m[0]));
                 last = rx.lastIndex;
               }
-              if (last < rest.length) parts.push(rest.slice(last));
+              if (last < text.length) parts.push(text.slice(last));
               return parts;
             };
+            const legendMap = { phone_number: '📱 מספר הטלפון שלך', name: '👤 שם', message: '💬 תוכן ההודעה', post_id: '📌 מזהה הפוסט', email: '📧 אימייל', full_name: '👤 שם מלא', phone: '📱 מספר טלפון', cleanPhone: '📱 מספר טלפון מנוקה', InstanceID: '🔑 Instance ID מ-GreenAPI', APIToken: '🔑 API Token מ-GreenAPI' };
             elements.push(React.createElement('div', { key: codeKey, className: 'relative bg-slate-50 border border-slate-200 rounded-xl my-3 overflow-hidden' },
               React.createElement('div', { className: 'flex items-center justify-between px-4 py-2 bg-slate-100 border-b border-slate-200' },
-                React.createElement('span', { className: 'text-xs text-slate-500' }, '📋 העתק והחלף את השדות המודגשים'),
+                React.createElement('span', { className: 'text-xs text-slate-500 font-bold' }, '📋 קוד להעתקה'),
                 React.createElement('button', {
-                  className: 'text-xs bg-blue-600 text-white px-3 py-1 rounded-lg hover:bg-blue-700 transition-colors',
-                  onClick: () => { navigator.clipboard.writeText(codeText); }
-                }, 'העתק')
+                  className: 'text-xs bg-blue-600 text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-colors font-bold',
+                  onClick: () => { navigator.clipboard.writeText(cleanForCopy); }
+                }, '📋 העתק')
               ),
-              React.createElement('div', { className: 'p-4 text-sm text-slate-700 leading-relaxed whitespace-pre-wrap direction-ltr text-left' },
-                highlightCode(codeText)
+              React.createElement('div', { className: 'p-4 text-sm text-slate-700 leading-relaxed whitespace-pre-wrap direction-ltr text-left font-mono' },
+                highlightCode(cleanForCopy)
+              ),
+              placeholders.length > 0 && React.createElement('div', { className: 'px-4 py-3 bg-amber-50 border-t border-amber-200 text-xs' },
+                React.createElement('div', { className: 'font-bold text-amber-800 mb-1.5' }, '✏️ החלף את השדות המודגשים:'),
+                React.createElement('div', { className: 'flex flex-wrap gap-2' },
+                  placeholders.map((p, j) => React.createElement('span', { key: j, className: 'bg-amber-200 text-amber-900 px-2 py-0.5 rounded font-bold' },
+                    legendMap[p] || p
+                  ))
+                )
               )
             ));
             codeLines = [];
@@ -1747,7 +1769,7 @@ ${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare
 
       // ─── Guides List (generated from KB articles) ───
       const guides = (articles || [])
-        .filter(a => GUIDE_CATEGORIES[a.category])
+        .filter(a => a.content && a.content.includes('## '))
         .map(a => ({
           id: a.id,
           title: a.title,
