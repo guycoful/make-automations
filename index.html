@@ -1499,11 +1499,37 @@ ${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare
       for (let i = 0; i < lines.length; i++) {
         const line = lines[i];
 
-        // Code block toggle — render as light info box
+        // Code block toggle — copyable box with highlighted placeholders
         if (line.trim().startsWith('```')) {
           if (codeBlock) {
-            elements.push(React.createElement('div', { key: 'code-' + i, className: 'bg-blue-50 border border-blue-200 rounded-xl p-4 my-3 text-sm text-slate-700 leading-relaxed whitespace-pre-wrap direction-ltr text-left' },
-              codeLines.join('\n')
+            const codeText = codeLines.join('\n');
+            const codeKey = 'code-' + i;
+            // Highlight {{variables}} and XXXXXXXXX placeholders
+            const highlightCode = (text) => {
+              const parts = [];
+              let rest = text;
+              let ki = 0;
+              const rx = /(\{\{[^}]+\}\}|X{5,}|972X+|InstanceID|APIToken|linkedinToken|cleanPhone)/g;
+              let m, last = 0;
+              while ((m = rx.exec(rest)) !== null) {
+                if (m.index > last) parts.push(rest.slice(last, m.index));
+                parts.push(React.createElement('span', { key: 'hl-' + ki++, className: 'bg-amber-200 text-amber-900 px-1 rounded font-bold' }, m[0]));
+                last = rx.lastIndex;
+              }
+              if (last < rest.length) parts.push(rest.slice(last));
+              return parts;
+            };
+            elements.push(React.createElement('div', { key: codeKey, className: 'relative bg-slate-50 border border-slate-200 rounded-xl my-3 overflow-hidden' },
+              React.createElement('div', { className: 'flex items-center justify-between px-4 py-2 bg-slate-100 border-b border-slate-200' },
+                React.createElement('span', { className: 'text-xs text-slate-500' }, '📋 העתק והחלף את השדות המודגשים'),
+                React.createElement('button', {
+                  className: 'text-xs bg-blue-600 text-white px-3 py-1 rounded-lg hover:bg-blue-700 transition-colors',
+                  onClick: () => { navigator.clipboard.writeText(codeText); }
+                }, 'העתק')
+              ),
+              React.createElement('div', { className: 'p-4 text-sm text-slate-700 leading-relaxed whitespace-pre-wrap direction-ltr text-left' },
+                highlightCode(codeText)
+              )
             ));
             codeLines = [];
             codeBlock = false;
@@ -1626,6 +1652,10 @@ ${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare
           .catch(() => setLoading(false));
       }, []);
 
+      // ─── Guide Constants ───
+      const GUIDE_ICONS = { 'make-recipes': '🍳', 'make-basics': '🔰', 'make-connections': '🔌', 'make-advanced': '🚀', 'make-errors': '⚠️', 'manychat-basics': '💬', 'manychat-bots': '🤖' };
+      const GUIDE_DIFFICULTY = { 'make-basics': 'beginner', 'make-connections': 'beginner', 'make-recipes': 'intermediate', 'make-advanced': 'advanced', 'make-errors': 'intermediate', 'manychat-basics': 'beginner', 'manychat-bots': 'intermediate' };
+
       // ─── Guide Detail View ───
       if (selectedGuide) {
         const article = (articles || []).find(a => a.id === selectedGuide);
@@ -1716,8 +1746,6 @@ ${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare
       }
 
       // ─── Guides List (generated from KB articles) ───
-      const GUIDE_ICONS = { 'make-recipes': '🍳', 'make-basics': '🔰', 'make-connections': '🔌', 'make-advanced': '🚀', 'make-errors': '⚠️', 'manychat-basics': '💬', 'manychat-bots': '🤖' };
-      const GUIDE_DIFFICULTY = { 'make-basics': 'beginner', 'make-connections': 'beginner', 'make-recipes': 'intermediate', 'make-advanced': 'advanced', 'make-errors': 'intermediate', 'manychat-basics': 'beginner', 'manychat-bots': 'intermediate' };
       const guides = (articles || [])
         .filter(a => GUIDE_CATEGORIES[a.category])
         .map(a => ({
