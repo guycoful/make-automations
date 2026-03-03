@@ -1452,7 +1452,7 @@ ${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare
     };
 
     // ─── Markdown to React Renderer ────────────────────────────────────
-    function renderMarkdown(text) {
+    function renderMarkdown(text, guideMode) {
       if (!text) return null;
       const lines = text.split('\n');
       const elements = [];
@@ -1460,18 +1460,42 @@ ${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare
       let listType = null; // 'ul' or 'ol'
       let codeBlock = false;
       let codeLines = [];
+      let stepCounter = 0;
+      // Section styling for guide mode
+      const SECTION_STYLES = {
+        'תיאור': { bg: 'bg-blue-50', border: 'border-blue-200', icon: '📝', textColor: 'text-blue-800' },
+        'מודולים': { bg: 'bg-purple-50', border: 'border-purple-200', icon: '🧩', textColor: 'text-purple-800' },
+        'חיבורים': { bg: 'bg-indigo-50', border: 'border-indigo-200', icon: '🔌', textColor: 'text-indigo-800' },
+        'שלבים': { bg: 'bg-slate-50', border: 'border-slate-200', icon: '📋', textColor: 'text-slate-800' },
+        'טיפים': { bg: 'bg-emerald-50', border: 'border-emerald-200', icon: '💡', textColor: 'text-emerald-800' },
+        'שגיאות': { bg: 'bg-red-50', border: 'border-red-200', icon: '⚠️', textColor: 'text-red-800' },
+        'וריאציות': { bg: 'bg-amber-50', border: 'border-amber-200', icon: '🔄', textColor: 'text-amber-800' },
+        'מבנה': { bg: 'bg-violet-50', border: 'border-violet-200', icon: '🏗️', textColor: 'text-violet-800' },
+      };
+      function getSectionStyle(title) {
+        for (const [key, style] of Object.entries(SECTION_STYLES)) {
+          if (title.includes(key)) return style;
+        }
+        return { bg: 'bg-slate-50', border: 'border-slate-200', icon: '📄', textColor: 'text-slate-800' };
+      }
 
       function flushList() {
         if (listItems.length === 0) return;
         if (listType === 'ol') {
-          elements.push(React.createElement('ol', { key: 'ol-' + elements.length, className: 'list-decimal list-inside space-y-1.5 my-3 text-sm' },
-            listItems.map((item, i) => React.createElement('li', { key: i, className: 'leading-relaxed' }, inlineMd(item)))
+          elements.push(React.createElement('ol', { key: 'ol-' + elements.length, className: guideMode ? 'space-y-2 my-4' : 'list-decimal list-inside space-y-1.5 my-3 text-sm' },
+            listItems.map((item, i) => guideMode ?
+              React.createElement('li', { key: i, className: 'flex gap-3 items-start' },
+                React.createElement('span', { className: 'flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-blue-700 text-xs font-bold flex items-center justify-center mt-0.5' }, i + 1),
+                React.createElement('span', { className: 'text-slate-700 leading-relaxed text-sm' }, inlineMd(item))
+              ) :
+              React.createElement('li', { key: i, className: 'leading-relaxed' }, inlineMd(item))
+            )
           ));
         } else {
-          elements.push(React.createElement('ul', { key: 'ul-' + elements.length, className: 'space-y-1.5 my-3 text-sm' },
+          elements.push(React.createElement('ul', { key: 'ul-' + elements.length, className: guideMode ? 'space-y-2 my-4' : 'space-y-1.5 my-3 text-sm' },
             listItems.map((item, i) => React.createElement('li', { key: i, className: 'flex gap-2 leading-relaxed' },
-              React.createElement('span', { className: 'text-blue-500 mt-0.5 flex-shrink-0' }, '●'),
-              React.createElement('span', null, inlineMd(item))
+              React.createElement('span', { className: guideMode ? 'text-blue-500 mt-0.5 flex-shrink-0 text-sm' : 'text-blue-500 mt-0.5 flex-shrink-0' }, '●'),
+              React.createElement('span', { className: guideMode ? 'text-sm text-slate-700' : null }, inlineMd(item))
             ))
           ));
         }
@@ -1480,17 +1504,21 @@ ${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare
       }
 
       function inlineMd(str) {
-        // Bold **text**
+        // Bold **text** + inline code `text`
         const parts = [];
         let remaining = str;
         let idx = 0;
-        const boldRx = /\*\*(.+?)\*\*/g;
+        const inlineRx = /\*\*(.+?)\*\*|`([^`]+)`/g;
         let match;
         let lastIndex = 0;
-        while ((match = boldRx.exec(remaining)) !== null) {
+        while ((match = inlineRx.exec(remaining)) !== null) {
           if (match.index > lastIndex) parts.push(remaining.slice(lastIndex, match.index));
-          parts.push(React.createElement('strong', { key: 'b-' + idx++, className: 'font-bold text-slate-900' }, match[1]));
-          lastIndex = boldRx.lastIndex;
+          if (match[1]) {
+            parts.push(React.createElement('strong', { key: 'b-' + idx++, className: 'font-bold text-slate-900' }, match[1]));
+          } else if (match[2]) {
+            parts.push(React.createElement('code', { key: 'c-' + idx++, className: 'bg-slate-100 text-slate-800 px-1.5 py-0.5 rounded text-xs font-mono' }, match[2]));
+          }
+          lastIndex = inlineRx.lastIndex;
         }
         if (lastIndex < remaining.length) parts.push(remaining.slice(lastIndex));
         return parts.length > 0 ? parts : str;
@@ -1532,7 +1560,7 @@ ${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare
               if (last < text.length) parts.push(text.slice(last));
               return parts;
             };
-            const legendMap = { phone_number: '📱 מספר הטלפון שלך', name: '👤 שם', message: '💬 תוכן ההודעה', post_id: '📌 מזהה הפוסט', email: '📧 אימייל', full_name: '👤 שם מלא', phone: '📱 מספר טלפון', cleanPhone: '📱 מספר טלפון מנוקה', InstanceID: '🔑 Instance ID מ-GreenAPI', APIToken: '🔑 API Token מ-GreenAPI' };
+            const legendMap = { phone_number: '📱 מספר הטלפון שלך', name: '👤 שם', message: '💬 תוכן ההודעה', post_id: '📌 מזהה הפוסט', email: '📧 אימייל', full_name: '👤 שם מלא', phone: '📱 מספר טלפון', cleanPhone: '📱 מספר טלפון מנוקה', InstanceID: '🔑 Instance ID מ-GreenAPI', APIToken: '🔑 API Token מ-GreenAPI', facebook: '📘 טקסט לפייסבוק', instagram: '📸 טקסט לאינסטגרם', linkedin: '💼 טקסט ללינקדאין', linkedinToken: '🔑 LinkedIn Token', clientName: '👤 שם הלקוח', itemName: '📋 שם הפריט', invitee_name: '👤 שם המוזמן', event_type_name: '📅 סוג הפגישה', interest: '💼 תחום עניין', source: '📍 מקור', assignee: '👤 אחראי' };
             elements.push(React.createElement('div', { key: codeKey, className: 'relative bg-slate-50 border border-slate-200 rounded-xl my-3 overflow-hidden' },
               React.createElement('div', { className: 'flex items-center justify-between px-4 py-2 bg-slate-100 border-b border-slate-200' },
                 React.createElement('span', { className: 'text-xs text-slate-500 font-bold' }, '📋 קוד להעתקה'),
@@ -1566,24 +1594,52 @@ ${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare
         // Empty line
         if (!line.trim()) { flushList(); continue; }
 
-        // Headers
+        // Headers — guide mode gets visually rich styling
         if (line.startsWith('### ')) {
           flushList();
-          elements.push(React.createElement('h4', { key: 'h4-' + i, className: 'font-bold text-base text-slate-800 mt-5 mb-2 flex items-center gap-2' },
-            React.createElement('span', { className: 'w-1.5 h-5 bg-blue-500 rounded-full inline-block flex-shrink-0' }),
-            inlineMd(line.slice(4))
-          ));
+          const headerText = line.slice(4);
+          if (guideMode) {
+            // Detect step headers like "שלב 1:" or "שלב 2:"
+            const stepMatch = headerText.match(/^שלב\s*(\d+)\s*[:\-—]\s*(.+)/);
+            if (stepMatch) {
+              elements.push(React.createElement('div', { key: 'step-' + i, className: 'flex items-center gap-3 mt-6 mb-3' },
+                React.createElement('span', { className: 'flex-shrink-0 w-9 h-9 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 text-white text-sm font-bold flex items-center justify-center shadow-sm' }, stepMatch[1]),
+                React.createElement('h4', { className: 'font-bold text-base text-slate-800' }, inlineMd(stepMatch[2]))
+              ));
+            } else {
+              elements.push(React.createElement('h4', { key: 'h4-' + i, className: 'font-bold text-base text-slate-800 mt-5 mb-2 flex items-center gap-2' },
+                React.createElement('span', { className: 'w-1.5 h-5 bg-blue-500 rounded-full inline-block flex-shrink-0' }),
+                inlineMd(headerText)
+              ));
+            }
+          } else {
+            elements.push(React.createElement('h4', { key: 'h4-' + i, className: 'font-bold text-base text-slate-800 mt-5 mb-2 flex items-center gap-2' },
+              React.createElement('span', { className: 'w-1.5 h-5 bg-blue-500 rounded-full inline-block flex-shrink-0' }),
+              inlineMd(headerText)
+            ));
+          }
           continue;
         }
         if (line.startsWith('## ')) {
           flushList();
-          elements.push(React.createElement('h3', { key: 'h3-' + i, className: 'font-bold text-lg text-blue-700 mt-6 mb-3 pb-2 border-b border-blue-100' },
-            inlineMd(line.slice(3))
-          ));
+          const headerText = line.slice(3);
+          if (guideMode) {
+            const style = getSectionStyle(headerText);
+            elements.push(React.createElement('div', { key: 'h3-' + i, className: `${style.bg} ${style.border} border rounded-xl px-5 py-3 mt-8 mb-4 flex items-center gap-3` },
+              React.createElement('span', { className: 'text-xl' }, style.icon),
+              React.createElement('h3', { className: `font-bold text-lg ${style.textColor}` }, inlineMd(headerText))
+            ));
+          } else {
+            elements.push(React.createElement('h3', { key: 'h3-' + i, className: 'font-bold text-lg text-blue-700 mt-6 mb-3 pb-2 border-b border-blue-100' },
+              inlineMd(headerText)
+            ));
+          }
           continue;
         }
         if (line.startsWith('# ')) {
           flushList();
+          // In guide mode, skip # title (already shown as article title above)
+          if (guideMode) continue;
           elements.push(React.createElement('h2', { key: 'h2-' + i, className: 'font-bold text-xl text-slate-900 mt-4 mb-3' },
             inlineMd(line.slice(2))
           ));
@@ -1610,7 +1666,7 @@ ${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare
 
         // Regular paragraph
         flushList();
-        elements.push(React.createElement('p', { key: 'p-' + i, className: 'text-sm leading-relaxed my-2' }, inlineMd(line)));
+        elements.push(React.createElement('p', { key: 'p-' + i, className: guideMode ? 'text-sm leading-relaxed my-2 text-slate-600' : 'text-sm leading-relaxed my-2' }, inlineMd(line)));
       }
       flushList();
       return elements;
@@ -1711,7 +1767,7 @@ ${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare
                 </div>
               )}
               <div className="mt-6">
-                {renderMarkdown(article.content)}
+                {renderMarkdown(article.content, true)}
               </div>
             </div>
           </div>
