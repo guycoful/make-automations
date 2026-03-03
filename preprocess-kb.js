@@ -5,6 +5,7 @@ const { execSync } = require('child_process');
 // ─── Configuration ─────────────────────────────────────────────────────
 const MAKE_ZIP = path.resolve(__dirname, '..', 'OneDrive', 'שולחן העבודה', 'פרויקט', 'מדריך מעשי Make_sources.zip');
 const MANYCHAT_ZIP = path.resolve(__dirname, '..', 'OneDrive', 'שולחן העבודה', 'פרויקט', 'מדריך מעשי צ\'אטבוט ManyChat_sources.zip');
+const CUSTOM_DIR = path.resolve(__dirname, 'custom-articles');
 const OUT_DIR = __dirname;
 const CHUNK_SIZE = 600;   // words per chunk
 const CHUNK_OVERLAP = 100; // overlap words
@@ -24,6 +25,7 @@ const STOP_WORDS = new Set([
 
 // ─── Category Rules ────────────────────────────────────────────────────
 const CATEGORY_RULES = [
+  { id: 'make-recipes', name: '🍳 מתכוני אוטומציה', platform: 'make', match: f => /recipe|מתכון/.test(f) },
   { id: 'make-connections', name: '🔌 חיבורים ב-Make', platform: 'make', match: f => /חיבור make ל|חיבור והגדרה|חיבורים/.test(f) },
   { id: 'make-functions', name: '⚙️ פונקציות Make', platform: 'make', match: f => /פונקציות/.test(f) },
   { id: 'make-errors', name: '⚠️ ניהול שגיאות', platform: 'make', match: f => /שגיאות|Error|ניהול שגיאות/.test(f) },
@@ -271,7 +273,21 @@ function main() {
 
   console.log('📦 Extracting ManyChat sources...');
   const manychatFiles = extractFromZip(MANYCHAT_ZIP);
-  console.log(`   ✅ ${manychatFiles.length} files extracted\n`);
+  console.log(`   ✅ ${manychatFiles.length} files extracted`);
+
+  // Load custom articles from custom-articles/ directory
+  const customFiles = [];
+  if (fs.existsSync(CUSTOM_DIR)) {
+    const mdFiles = fs.readdirSync(CUSTOM_DIR).filter(f => f.endsWith('.md'));
+    for (const file of mdFiles) {
+      const content = fs.readFileSync(path.join(CUSTOM_DIR, file), 'utf8');
+      customFiles.push({ name: file, content, size: content.length });
+    }
+    console.log(`📦 Loading custom articles...`);
+    console.log(`   ✅ ${customFiles.length} custom articles loaded\n`);
+  } else {
+    console.log('   ℹ️  No custom-articles/ directory found\n');
+  }
 
   const allArticles = [];
   const allChunks = [];
@@ -285,7 +301,8 @@ function main() {
   // Process all files
   const allFiles = [
     ...makeFiles.map(f => ({ ...f, platform: 'make' })),
-    ...manychatFiles.map(f => ({ ...f, platform: 'manychat' }))
+    ...manychatFiles.map(f => ({ ...f, platform: 'manychat' })),
+    ...customFiles.map(f => ({ ...f, platform: 'make' }))
   ];
 
   console.log(`📝 Processing ${allFiles.length} files...`);
