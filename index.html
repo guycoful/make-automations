@@ -1499,11 +1499,11 @@ ${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare
       for (let i = 0; i < lines.length; i++) {
         const line = lines[i];
 
-        // Code block toggle
+        // Code block toggle — render as light info box
         if (line.trim().startsWith('```')) {
           if (codeBlock) {
-            elements.push(React.createElement('pre', { key: 'code-' + i, className: 'bg-slate-800 text-green-300 text-xs rounded-xl p-4 my-3 overflow-x-auto direction-ltr text-left' },
-              React.createElement('code', null, codeLines.join('\n'))
+            elements.push(React.createElement('div', { key: 'code-' + i, className: 'bg-blue-50 border border-blue-200 rounded-xl p-4 my-3 text-sm text-slate-700 leading-relaxed whitespace-pre-wrap direction-ltr text-left' },
+              codeLines.join('\n')
             ));
             codeLines = [];
             codeBlock = false;
@@ -1628,46 +1628,39 @@ ${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare
 
       // ─── Guide Detail View ───
       if (selectedGuide) {
-        const guide = (typeof CURATED_GUIDES !== 'undefined' ? CURATED_GUIDES : []).find(g => g.id === selectedGuide);
-        if (!guide) { setSelectedGuide(null); return null; }
-        const allGuides = typeof CURATED_GUIDES !== 'undefined' ? CURATED_GUIDES : [];
-        const currentIdx = allGuides.findIndex(g => g.id === selectedGuide);
+        const article = (articles || []).find(a => a.id === selectedGuide);
+        if (!article) { setSelectedGuide(null); return null; }
+        const guideIcon = GUIDE_ICONS[article.category] || '📄';
+        const guideDiff = GUIDE_DIFFICULTY[article.category] || 'intermediate';
+        const readTime = Math.max(2, Math.round(article.wordCount / 200));
         return (
           <div className="slide-in">
             <button onClick={() => setSelectedGuide(null)}
               className="flex items-center gap-2 text-slate-500 hover:text-slate-800 font-bold text-sm mb-6 hover:bg-slate-100 px-3 py-2 rounded-lg transition-all">
               <ChevronLeft size={16}/> חזרה למאגר הידע
             </button>
-            <div className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
+            <div className="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 shadow-sm">
               <div className="flex flex-wrap gap-2 mb-4 items-center">
-                <span className="text-2xl">{guide.icon}</span>
+                <span className="text-2xl">{guideIcon}</span>
                 <span className="text-xs font-bold px-3 py-1 rounded-full bg-blue-100 text-blue-800">
-                  {GUIDE_CATEGORIES[guide.category]?.name || guide.category}
+                  {GUIDE_CATEGORIES[article.category]?.name || KB_CATEGORIES[article.category] || article.category}
                 </span>
-                <span className={`text-xs font-bold px-3 py-1 rounded-full ${DIFFICULTY_LABELS[guide.difficulty]?.className || 'bg-slate-100 text-slate-600'}`}>
-                  {DIFFICULTY_LABELS[guide.difficulty]?.text || guide.difficulty}
+                <span className={`text-xs font-bold px-3 py-1 rounded-full ${DIFFICULTY_LABELS[guideDiff]?.className || 'bg-slate-100 text-slate-600'}`}>
+                  {DIFFICULTY_LABELS[guideDiff]?.text || guideDiff}
                 </span>
-                <span className="text-xs text-slate-400 px-2 py-1">⏱️ {guide.readTime} דק׳ קריאה</span>
+                <span className="text-xs text-slate-400 px-2 py-1">⏱️ {readTime} דק׳ קריאה</span>
               </div>
-              <h2 className="text-3xl font-display text-slate-900 mb-2">{guide.title}</h2>
-              <p className="text-slate-500 mb-6">{guide.summary}</p>
-              {guide.sections.map((section, i) => (
-                <GuideSection key={i} section={section} index={i}/>
-              ))}
-            </div>
-            <div className="flex justify-between mt-6">
-              {currentIdx > 0 ? (
-                <button onClick={() => setSelectedGuide(allGuides[currentIdx - 1].id)}
-                  className="flex items-center gap-2 text-blue-600 hover:text-blue-800 font-bold text-sm hover:bg-blue-50 px-4 py-2 rounded-lg transition-all">
-                  <ChevronLeft size={16}/> {allGuides[currentIdx - 1].title}
-                </button>
-              ) : <div/>}
-              {currentIdx < allGuides.length - 1 ? (
-                <button onClick={() => setSelectedGuide(allGuides[currentIdx + 1].id)}
-                  className="flex items-center gap-2 text-blue-600 hover:text-blue-800 font-bold text-sm hover:bg-blue-50 px-4 py-2 rounded-lg transition-all">
-                  {allGuides[currentIdx + 1].title} <ChevronRight size={16}/>
-                </button>
-              ) : <div/>}
+              <h2 className="text-2xl font-display text-slate-900 mb-2">{article.title}</h2>
+              {article.relatedApps && article.relatedApps.length > 0 && (
+                <div className="flex flex-wrap gap-1.5 mb-4">
+                  {article.relatedApps.map((app, i) => (
+                    <span key={i} className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">🔗 {app}</span>
+                  ))}
+                </div>
+              )}
+              <div className="mt-6">
+                {renderMarkdown(article.content)}
+              </div>
             </div>
           </div>
         );
