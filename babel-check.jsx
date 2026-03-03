@@ -1,0 +1,2398 @@
+    const { useState, useEffect, useRef } = React;
+
+    // ─── SVG Icons ─────────────────────────────────────────────────────────
+    const Icon = ({ d, size = 20, fill = "none", viewBox = "0 0 24 24", children, ...props }) => (
+      <svg width={size} height={size} viewBox={viewBox} fill={fill} stroke="currentColor"
+        strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+        {d ? <path d={d} /> : children}
+      </svg>
+    );
+
+    const SearchIcon = ({size=22}) => <Icon size={size}><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></Icon>;
+    const ZapIcon = ({size=24, fill="none"}) => <Icon size={size} fill={fill}><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></Icon>;
+    const TargetIcon = ({size=16}) => <Icon size={size}><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></Icon>;
+    const ChevronLeft = ({size=20}) => <Icon size={size}><polyline points="15 18 9 12 15 6"/></Icon>;
+    const ChevronDown = ({size=16}) => <Icon size={size}><polyline points="6 9 12 15 18 9"/></Icon>;
+    const ShareIcon = ({size=15}) => <Icon size={size}><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></Icon>;
+    const CheckIcon = ({size=15}) => <Icon size={size}><polyline points="20 6 9 17 4 12"/></Icon>;
+    const BookIcon = ({size=15}) => <Icon size={size}><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></Icon>;
+    const AlertIcon = ({size=28}) => <Icon size={size}><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></Icon>;
+    const GearIcon = ({size=18}) => <Icon size={size}><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></Icon>;
+    const XIcon = ({size=20}) => <Icon size={size}><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></Icon>;
+
+    const Spinner = ({size=22, color="currentColor"}) => (
+      <div className="spin" style={{
+        width: size, height: size, borderRadius: '50%',
+        border: `2px solid transparent`,
+        borderTopColor: color, display: 'inline-block', flexShrink: 0
+      }}/>
+    );
+
+    const WAIcon = ({size=15}) => (
+      <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+    );
+
+    // ─── Make.com Connection Database ──────────────────────────────────────
+    // Real connection details for common apps - no AI guessing
+    const CONNECTION_DB = {
+      'LinkedIn': {
+        docUrl: 'https://www.make.com/en/help/app/linkedin',
+        authType: 'OAuth 2.0 עם Developer App — חובה דף חברה',
+        accountWarning: '⚠️ כל גישת API ל-LinkedIn דורשת דף חברה (Company Page). גם אם הטריגר לכאורה "אישי" — יצירת Developer App דורשת לשייך דף חברה. אפשר ליצור חדש בחינם.',
+        connectionTypes: [
+          { name: 'LinkedIn (Standard)', desc: 'כניסה ישירה — מוגבל מאוד, לא מאפשר רוב הטריגרים' },
+          { name: 'LinkedIn (Custom OAuth App)', desc: 'חובה לרוב הפעולות — דורש Developer App + Company Page + Client ID/Secret' }
+        ],
+        advancedFields: [
+          { field: 'Client ID', where: 'LinkedIn Developers → My Apps → בחר אפליקציה → לשונית Auth → Application credentials', required: true },
+          { field: 'Client Secret', where: 'אותה לשונית Auth, תחת "Application credentials"', required: true }
+        ],
+        setupSteps: [
+          '⚠️ דרישה מקדימה: צריך דף חברה (Company Page) ב-LinkedIn — אם אין לך, צור אחד בחינם: linkedin.com/company/setup/new',
+          'כנס ל-https://developer.linkedin.com/apps → לחץ "Create app"',
+          'מלא שם אפליקציה → שדה "LinkedIn Page" — הזן שם או URL של דף החברה שלך (חובה, לא ניתן לדלג)',
+          'בלשונית "Products" הוסף: "Sign In with LinkedIn using OpenID Connect" + "Share on LinkedIn"',
+          'לשונית "Auth" → תחת OAuth 2.0 הוסף Redirect URL: https://www.integromat.com/oauth/cb/linkedin2',
+          'העתק את ה-Client ID וה-Client Secret מלשונית Auth',
+          'ב-Make.com בחלון Create connection → Advanced Settings → הדבק Client ID + Client Secret'
+        ],
+        scopes: ['openid', 'profile', 'email', 'w_member_social']
+      },
+      'Google Sheets': {
+        docUrl: 'https://www.make.com/en/help/app/google-sheets',
+        authType: 'OAuth 2.0 — פשוט',
+        connectionTypes: [{ name: 'Google Sheets', desc: 'לחץ Save → נפתח חלון Google → בחר חשבון → אשר הרשאות. זהו.' }],
+        advancedFields: [],
+        setupSteps: [
+          'ב-Make.com: לחץ Add/Connect → שם חיבור לפי רצונך → Save',
+          'נפתח חלון Google → בחר את חשבון Google הרצוי',
+          'אשר גישה ל-Google Sheets — לחץ "Continue" בכל שלב',
+          'חזור ל-Make.com — החיבור נוצר אוטומטית'
+        ]
+      },
+      'Gmail': {
+        docUrl: 'https://www.make.com/en/help/app/gmail',
+        authType: 'OAuth 2.0 — פשוט',
+        connectionTypes: [{ name: 'Gmail', desc: 'OAuth רגיל עם חשבון Google' }],
+        advancedFields: [],
+        setupSteps: [
+          'לחץ Add/Connect → שם → Save',
+          'חלון Google → בחר חשבון → אשר גישה ל-Gmail'
+        ]
+      },
+      'Google Calendar': {
+        docUrl: 'https://www.make.com/en/help/app/google-calendar',
+        authType: 'OAuth 2.0 — פשוט',
+        connectionTypes: [{ name: 'Google Calendar', desc: 'OAuth עם Google' }],
+        advancedFields: [],
+        setupSteps: ['לחץ Add/Connect → בחר חשבון Google → אשר הרשאות']
+      },
+      'Google Drive': {
+        docUrl: 'https://www.make.com/en/help/app/google-drive',
+        authType: 'OAuth 2.0 — פשוט',
+        connectionTypes: [{ name: 'Google Drive', desc: 'OAuth עם Google' }],
+        advancedFields: [],
+        setupSteps: ['לחץ Add/Connect → בחר חשבון Google → אשר הרשאות']
+      },
+      'Airtable': {
+        docUrl: 'https://www.make.com/en/help/app/airtable',
+        authType: 'API Key או OAuth',
+        connectionTypes: [
+          { name: 'Airtable (API Key)', desc: 'הדרך הקלה — מפתח מחשבון Airtable' },
+          { name: 'Airtable (OAuth)', desc: 'אישור OAuth ישיר' }
+        ],
+        advancedFields: [
+          { field: 'API Key', where: 'airtable.com → לחץ על תמונת פרופיל → Account → Developer Hub → Personal access tokens → Create token', required: true }
+        ],
+        setupSteps: [
+          'כנס ל-airtable.com → תמונת פרופיל → Account',
+          'Developer Hub → Personal access tokens → Create token',
+          'תן שם, בחר Scopes: data.records:read + data.records:write + schema.bases:read',
+          'לחץ Create token → העתק',
+          'ב-Make.com הדבק את ה-token בשדה API Key'
+        ]
+      },
+      'Slack': {
+        docUrl: 'https://www.make.com/en/help/app/slack',
+        authType: 'OAuth 2.0',
+        connectionTypes: [{ name: 'Slack', desc: 'OAuth — מאשרים גישה ל-workspace' }],
+        advancedFields: [],
+        setupSteps: [
+          'לחץ Add/Connect → Save',
+          'נפתח Slack → בחר workspace → לחץ Allow'
+        ]
+      },
+      'Notion': {
+        docUrl: 'https://www.make.com/en/help/app/notion',
+        authType: 'Internal Integration Token',
+        connectionTypes: [{ name: 'Notion', desc: 'דורש Internal Integration Token' }],
+        advancedFields: [
+          { field: 'Internal Integration Token', where: 'notion.so/my-integrations → New integration → Submit → העתק "Internal Integration Token"', required: true }
+        ],
+        setupSteps: [
+          'כנס ל-notion.so/my-integrations → New integration',
+          'תן שם, בחר workspace, הגדר הרשאות (Read/Insert/Update) → Submit',
+          'העתק את ה-Internal Integration Token',
+          'ב-Notion: פתח את ה-Database/Page → לחץ ⋯ → Connections → הוסף את ה-Integration שלך',
+          'ב-Make.com: הדבק את ה-Token בשדה המתאים'
+        ]
+      },
+      'Telegram Bot': {
+        docUrl: 'https://www.make.com/en/help/app/telegram-bot',
+        authType: 'Bot Token',
+        connectionTypes: [{ name: 'Telegram Bot', desc: 'דורש Bot Token מ-BotFather' }],
+        advancedFields: [
+          { field: 'Bot Token', where: 'Telegram → חפש @BotFather → /newbot → תן שם ו-username → העתק את ה-Token שנשלח', required: true }
+        ],
+        setupSteps: [
+          'ב-Telegram חפש @BotFather → שלח /newbot',
+          'תן שם לבוט (Display name) → תן username (חייב להסתיים ב-bot)',
+          'BotFather ישלח Token — העתק אותו',
+          'ב-Make.com הדבק ב-"Connection token"'
+        ]
+      },
+      'WhatsApp': {
+        docUrl: 'https://www.make.com/en/help/app/whatsapp-business-cloud',
+        authType: 'Meta Business → System User Token',
+        accountWarning: '⚠️ WhatsApp Cloud API דורש חשבון Meta Business מאומת + מספר טלפון ייעודי (לא אישי). GREEN-API הרבה יותר פשוט.',
+        connectionTypes: [
+          { name: 'WhatsApp (Cloud API)', desc: 'דרך Meta Business Suite — דורש חשבון עסקי מאומת + מספר ייעודי' },
+          { name: 'GREEN-API for WhatsApp', desc: '✅ מומלץ — פשוט, עובד עם מספר הטלפון הרגיל שלך' }
+        ],
+        advancedFields: [
+          { field: 'Phone Number ID', where: 'Meta Business → WhatsApp → Getting Started (רק ל-Cloud API)', required: true },
+          { field: 'Access Token', where: 'Meta Business → System Users → Generate Token (רק ל-Cloud API)', required: true }
+        ],
+        setupSteps: [
+          '✅ מומלץ: השתמש ב-GREEN-API (עובד עם המספר הרגיל שלך, ללא Meta Business)',
+          'ל-GREEN-API: greenapi.com → צור instance → סרוק QR → קבל instanceId + apiToken',
+          'ל-Cloud API: דורש Meta Business מאומת + מספר ייעודי (מורכב יותר)'
+        ]
+      },
+      'OpenAI': {
+        docUrl: 'https://www.make.com/en/help/app/openai-gpt-3',
+        authType: 'API Key',
+        connectionTypes: [{ name: 'OpenAI', desc: 'API Key מ-platform.openai.com' }],
+        advancedFields: [
+          { field: 'API Key', where: 'platform.openai.com → API keys → Create new secret key → העתק מיד (לא יוצג שוב!)', required: true }
+        ],
+        setupSteps: [
+          'כנס ל-platform.openai.com → API keys (בתפריט שמאל)',
+          'Create new secret key → העתק מיד — לא יוצג שוב',
+          'ב-Make.com הדבק ב-"API Key"'
+        ]
+      },
+      'Anthropic Claude': {
+        docUrl: 'https://www.make.com/en/help/app/anthropic-claude',
+        authType: 'API Key',
+        connectionTypes: [{ name: 'Anthropic Claude', desc: 'API Key מ-console.anthropic.com' }],
+        advancedFields: [
+          { field: 'API Key', where: 'console.anthropic.com → API Keys → Create Key → העתק', required: true }
+        ],
+        setupSteps: ['console.anthropic.com → API Keys → Create Key → העתק → הדבק ב-Make.com']
+      },
+      'HTTP': {
+        docUrl: 'https://www.make.com/en/help/app/http',
+        authType: 'ללא חיבור',
+        connectionTypes: [{ name: 'HTTP', desc: 'לא דורש חיבור — מזין URL ישירות במודול' }],
+        advancedFields: [],
+        setupSteps: ['מודול HTTP לא דורש חיבור — מזינים URL ישירות בשדה ה-URL במודול']
+      },
+      'Webhooks': {
+        docUrl: 'https://www.make.com/en/help/app/webhooks',
+        authType: 'ללא חיבור',
+        connectionTypes: [{ name: 'Webhook', desc: 'Make.com מייצר URL ייחודי — מעתיקים ומדביקים בשירות החיצוני' }],
+        advancedFields: [],
+        setupSteps: [
+          'הוסף מודול Webhooks → Custom Webhook → Add',
+          'Make.com יוצר URL — העתק אותו',
+          'הדבק ב-שירות החיצוני שאמור לשלוח נתונים',
+          'שלח בקשת בדיקה → Make.com יזהה את המבנה אוטומטית'
+        ]
+      },
+      'HubSpot': {
+        docUrl: 'https://www.make.com/en/help/app/hubspot',
+        authType: 'OAuth 2.0',
+        connectionTypes: [{ name: 'HubSpot', desc: 'OAuth — כניסה עם חשבון HubSpot' }],
+        advancedFields: [],
+        setupSteps: ['לחץ Add/Connect → Save → נפתח HubSpot → בחר account → Grant access']
+      },
+      'Mailchimp': {
+        docUrl: 'https://www.make.com/en/help/app/mailchimp',
+        authType: 'OAuth 2.0',
+        connectionTypes: [{ name: 'Mailchimp', desc: 'OAuth' }],
+        advancedFields: [],
+        setupSteps: ['לחץ Add/Connect → Save → נפתח Mailchimp → Allow access']
+      },
+      'Trello': {
+        docUrl: 'https://www.make.com/en/help/app/trello',
+        authType: 'OAuth',
+        connectionTypes: [{ name: 'Trello', desc: 'OAuth' }],
+        advancedFields: [],
+        setupSteps: ['לחץ Add/Connect → Save → נפתח Trello → Allow']
+      },
+      'GitHub': {
+        docUrl: 'https://www.make.com/en/help/app/github',
+        authType: 'OAuth או Personal Access Token',
+        connectionTypes: [
+          { name: 'GitHub (OAuth)', desc: 'OAuth ישיר' },
+          { name: 'GitHub (PAT)', desc: 'Personal Access Token' }
+        ],
+        advancedFields: [
+          { field: 'Personal Access Token', where: 'GitHub → Settings → Developer settings → Personal access tokens → Generate new token', required: false }
+        ],
+        setupSteps: ['OAuth: לחץ Add/Connect → Save → Authorize GitHub', 'PAT: github.com → Settings → Developer settings → Personal access tokens → Generate']
+      },
+      'Facebook Pages': {
+        docUrl: 'https://www.make.com/en/help/app/facebook-pages',
+        authType: 'OAuth (Meta)',
+        connectionTypes: [{ name: 'Facebook Pages', desc: 'OAuth עם Meta — צריך להיות Admin של הדף' }],
+        advancedFields: [],
+        setupSteps: ['לחץ Add/Connect → Save → Facebook Login → בחר דפים להרשות → Done']
+      },
+      'Instagram': {
+        docUrl: 'https://www.make.com/en/help/app/instagram-for-business',
+        authType: 'OAuth דרך Meta Business — חובה חשבון Business',
+        accountWarning: '⚠️ Instagram API עובד רק עם חשבון Business או Creator המחובר לדף Facebook. חשבון אישי רגיל לא נתמך.',
+        connectionTypes: [{ name: 'Instagram for Business', desc: 'דורש חשבון Instagram Business/Creator + דף Facebook מקושר (Admin)' }],
+        advancedFields: [],
+        setupSteps: [
+          '⚠️ דרישה: חשבון Instagram חייב להיות Business או Creator (לא Personal)',
+          'ב-Instagram: Settings → Account → Switch to Professional Account',
+          'חבר ל-Facebook Page שאתה Admin שלו: Instagram Settings → Linked Accounts → Facebook',
+          'ב-Make.com: OAuth → אשר גישה ל-Instagram ול-Facebook Page'
+        ]
+      },
+      'Facebook Pages': {
+        docUrl: 'https://www.make.com/en/help/app/facebook-pages',
+        authType: 'OAuth (Meta) — חובה Admin של דף',
+        accountWarning: '⚠️ כל טריגרי Facebook Pages דורשים שתהיה Admin או Editor של הדף. פרופיל אישי לא מספיק.',
+        connectionTypes: [{ name: 'Facebook Pages', desc: 'OAuth עם Meta — חובה Admin/Editor של הדף' }],
+        advancedFields: [],
+        setupSteps: [
+          '⚠️ דרישה: חייב להיות Admin או Editor של דף Facebook (לא פרופיל אישי)',
+          'ב-Make.com: Add/Connect → Save → Facebook Login → בחר דפים להרשות → Done'
+        ]
+      },
+      // ── Communication ──────────────────────────────────────────────────────
+      'Discord': {
+        docUrl: 'https://www.make.com/en/help/app/discord',
+        authType: 'Bot Token — חובה Admin של שרת',
+        accountWarning: '⚠️ Discord Bot דורש הרשאת Admin בשרת כדי להוסיף את הבוט. בוט לא יכול לפעול בשרת של מישהו אחר ללא הזמנה.',
+        connectionTypes: [
+          { name: 'Discord (Bot)', desc: 'Bot Token — חובה Admin בשרת כדי להוסיף' },
+          { name: 'Discord (OAuth)', desc: 'כניסה אישית — מוגבל מאוד' }
+        ],
+        advancedFields: [
+          { field: 'Bot Token', where: 'discord.com/developers/applications → בחר אפליקציה → Bot → Reset Token → העתק', required: true }
+        ],
+        setupSteps: [
+          'discord.com/developers/applications → New Application → שם',
+          'לשונית Bot → Add Bot → Reset Token → העתק',
+          'לשונית OAuth2 → URL Generator → בחר scopes: bot → הרשאות: Send Messages, Read Message History',
+          'פתח ה-URL שנוצר → הוסף את הבוט לשרת שלך',
+          'ב-Make.com הדבק ב-"Bot Token"'
+        ]
+      },
+      'Microsoft Teams': {
+        docUrl: 'https://www.make.com/en/help/app/microsoft-teams',
+        authType: 'OAuth עם Microsoft 365',
+        connectionTypes: [{ name: 'Microsoft Teams', desc: 'OAuth — כניסה עם חשבון Microsoft 365/Entra' }],
+        advancedFields: [],
+        setupSteps: ['לחץ Add/Connect → Save → נפתח Microsoft → היכנס עם חשבון 365 → אשר הרשאות']
+      },
+      'Twilio': {
+        docUrl: 'https://www.make.com/en/help/app/twilio',
+        authType: 'Account SID + Auth Token',
+        connectionTypes: [{ name: 'Twilio', desc: 'Account SID + Auth Token מה-Dashboard' }],
+        advancedFields: [
+          { field: 'Account SID', where: 'console.twilio.com → Dashboard → בלוק "Account Info" → Account SID', required: true },
+          { field: 'Auth Token', where: 'console.twilio.com → Dashboard → לחץ על העין ליד Auth Token', required: true }
+        ],
+        setupSteps: [
+          'console.twilio.com → Dashboard',
+          'העתק Account SID ו-Auth Token מה-"Account Info" בלוק',
+          'ב-Make.com הדבק שניהם'
+        ]
+      },
+      'Zoom': {
+        docUrl: 'https://www.make.com/en/help/app/zoom',
+        authType: 'OAuth',
+        connectionTypes: [{ name: 'Zoom', desc: 'OAuth — כניסה עם חשבון Zoom' }],
+        advancedFields: [],
+        setupSteps: ['לחץ Add/Connect → Save → נפתח Zoom → Sign In → Authorize']
+      },
+      // ── E-commerce & Payments ──────────────────────────────────────────────
+      'Stripe': {
+        docUrl: 'https://www.make.com/en/help/app/stripe',
+        authType: 'Secret API Key',
+        connectionTypes: [{ name: 'Stripe', desc: 'Secret Key מה-Dashboard (שונה מה-Publishable Key!)' }],
+        advancedFields: [
+          { field: 'API Key (Secret)', where: 'dashboard.stripe.com → Developers → API keys → Secret key → Reveal → העתק. שים לב: זה ה-sk_live_... ולא ה-pk_live_...', required: true }
+        ],
+        setupSteps: [
+          'dashboard.stripe.com → Developers (בתפריט שמאל) → API keys',
+          'לחץ "Reveal" ליד Secret key (sk_live_...)',
+          'ב-Make.com הדבק — שים לב לא להשתמש ב-Publishable key (pk_live_...)'
+        ]
+      },
+      'Shopify': {
+        docUrl: 'https://www.make.com/en/help/app/shopify',
+        authType: 'Custom App — חובה Admin של החנות',
+        accountWarning: '⚠️ דורש גישת Admin לחנות Shopify. עובד רק בחנות שלך — לא ניתן לחבר חנות של מישהו אחר.',
+        connectionTypes: [
+          { name: 'Shopify', desc: 'Custom App credentials — חובה Admin של החנות' }
+        ],
+        advancedFields: [
+          { field: 'API Key', where: 'Shopify Admin → Settings → Apps → Develop apps → Create app → API credentials → Admin API access token', required: true },
+          { field: 'API Secret Key', where: 'אותה דף — API secret key', required: true },
+          { field: 'Store URL', where: 'הכתובת של החנות בפורמט your-store.myshopify.com', required: true }
+        ],
+        setupSteps: [
+          'Shopify Admin → Settings → Apps and sales channels → Develop apps',
+          'Create an app → שם לאפליקציה',
+          'Configure Admin API scopes → בחר הרשאות נדרשות (למשל: read_orders, write_products)',
+          'Install app → API credentials → העתק Admin API access token (מופיע פעם אחת בלבד!)',
+          'ב-Make.com: הדבק API Key + Secret + כתובת החנות'
+        ]
+      },
+      'WooCommerce': {
+        docUrl: 'https://www.make.com/en/help/app/woocommerce',
+        authType: 'Consumer Key + Secret — חובה Admin WordPress',
+        accountWarning: '⚠️ דורש גישת Admin ללוח הבקרה של WordPress + WooCommerce מותקן. האתר חייב להיות נגיש מהאינטרנט (לא localhost).',
+        connectionTypes: [{ name: 'WooCommerce', desc: 'REST API Keys — חובה Admin WordPress' }],
+        advancedFields: [
+          { field: 'Consumer Key', where: 'WordPress Admin → WooCommerce → Settings → Advanced → REST API → Add key → Generate API key', required: true },
+          { field: 'Consumer Secret', where: 'אותה דף — נוצר יחד עם ה-Consumer Key', required: true },
+          { field: 'Store URL', where: 'כתובת האתר שלך (https://yoursite.com)', required: true }
+        ],
+        setupSteps: [
+          'WordPress Admin → WooCommerce → Settings → Advanced → REST API',
+          'Add key → תן שם, בחר משתמש, הרשאות: Read/Write → Generate API key',
+          'שמור מיד את Consumer Key ו-Consumer Secret (לא יוצגו שוב!)',
+          'ב-Make.com הדבק Key + Secret + URL האתר'
+        ]
+      },
+      'PayPal': {
+        docUrl: 'https://www.make.com/en/help/app/paypal',
+        authType: 'Client ID + Client Secret (Sandbox או Live)',
+        connectionTypes: [
+          { name: 'PayPal (Live)', desc: 'לייצור — כרטיסי אשראי אמיתיים' },
+          { name: 'PayPal (Sandbox)', desc: 'לבדיקות — כסף פיקטיבי' }
+        ],
+        advancedFields: [
+          { field: 'Client ID', where: 'developer.paypal.com → Apps & Credentials → בחר Live/Sandbox → לחץ על האפליקציה → Client ID', required: true },
+          { field: 'Client Secret', where: 'אותה דף → Show Secret Key', required: true }
+        ],
+        setupSteps: [
+          'developer.paypal.com → My Apps & Credentials',
+          'בחר Sandbox (בדיקות) או Live (ייצור)',
+          'Create App או בחר קיימת → העתק Client ID',
+          'לחץ "Show" ליד Secret → העתק',
+          'ב-Make.com בחר Sandbox/Live ← הדבק Client ID + Secret'
+        ]
+      },
+      // ── Project Management ─────────────────────────────────────────────────
+      'Jira': {
+        docUrl: 'https://www.make.com/en/help/app/jira-software',
+        authType: 'API Token + Email + Domain',
+        connectionTypes: [
+          { name: 'Jira Cloud', desc: 'API Token — לחשבונות Atlassian Cloud' },
+          { name: 'Jira Server/DC', desc: 'Basic Auth — לשרתים עצמאיים' }
+        ],
+        advancedFields: [
+          { field: 'API Token', where: 'id.atlassian.com/manage-profile/security/api-tokens → Create API token → שם → Create → העתק', required: true },
+          { field: 'Email', where: 'כתובת האימייל שאיתה נכנסים ל-Jira', required: true },
+          { field: 'Domain', where: 'הכתובת של ה-Jira שלך: yourcompany.atlassian.net', required: true }
+        ],
+        setupSteps: [
+          'id.atlassian.com/manage-profile/security/api-tokens',
+          'Create API token → תן שם → Create → העתק מיד',
+          'ב-Make.com: הדבק API Token + האימייל שלך + הדומיין (yourcompany.atlassian.net)'
+        ]
+      },
+      'Asana': {
+        docUrl: 'https://www.make.com/en/help/app/asana',
+        authType: 'Personal Access Token',
+        connectionTypes: [{ name: 'Asana', desc: 'Personal Access Token' }],
+        advancedFields: [
+          { field: 'Personal Access Token', where: 'app.asana.com → תמונת פרופיל → My Settings → Apps → Manage Developer Apps → New access token', required: true }
+        ],
+        setupSteps: [
+          'app.asana.com → תמונת פרופיל → My Settings → Apps',
+          'Manage Developer Apps → New access token → שם → Create → העתק',
+          'ב-Make.com הדבק ב-"Personal access token"'
+        ]
+      },
+      'ClickUp': {
+        docUrl: 'https://www.make.com/en/help/app/clickup',
+        authType: 'API Key',
+        connectionTypes: [{ name: 'ClickUp', desc: 'API Key מ-Settings' }],
+        advancedFields: [
+          { field: 'API Key', where: 'app.clickup.com → Settings (תפריט שמאל תחתון) → Apps → API Token → Generate → העתק', required: true }
+        ],
+        setupSteps: ['app.clickup.com → Settings → Apps → API Token → Generate → העתק → הדבק ב-Make.com']
+      },
+      'Monday.com': {
+        docUrl: 'https://www.make.com/en/help/app/monday',
+        authType: 'API Token',
+        connectionTypes: [{ name: 'Monday.com', desc: 'API Token מה-Account' }],
+        advancedFields: [
+          { field: 'API Token', where: 'monday.com → לחץ על תמונת פרופיל (שמאל תחתון) → Developers → My access tokens → Copy', required: true }
+        ],
+        setupSteps: ['monday.com → תמונת פרופיל → Developers → My access tokens → Copy → הדבק ב-Make.com']
+      },
+      'Todoist': {
+        docUrl: 'https://www.make.com/en/help/app/todoist',
+        authType: 'OAuth',
+        connectionTypes: [{ name: 'Todoist', desc: 'OAuth' }],
+        advancedFields: [],
+        setupSteps: ['לחץ Add/Connect → Save → נפתח Todoist → Allow']
+      },
+      // ── CRM & Marketing ────────────────────────────────────────────────────
+      'Pipedrive': {
+        docUrl: 'https://www.make.com/en/help/app/pipedrive',
+        authType: 'API Token',
+        connectionTypes: [{ name: 'Pipedrive', desc: 'API Token' }],
+        advancedFields: [
+          { field: 'API Token', where: 'Pipedrive → לחץ על שם משתמש → Settings → Personal preferences → API → Your personal API token', required: true }
+        ],
+        setupSteps: ['Pipedrive → Settings → Personal preferences → API → העתק את ה-token → הדבק ב-Make.com']
+      },
+      'ActiveCampaign': {
+        docUrl: 'https://www.make.com/en/help/app/activecampaign',
+        authType: 'API URL + API Key',
+        connectionTypes: [{ name: 'ActiveCampaign', desc: 'API URL + Key — שניהם מ-Account Settings' }],
+        advancedFields: [
+          { field: 'API URL', where: 'ActiveCampaign → Settings → Developer → API Access → URL (בפורמט https://youracccount.api-us1.com)', required: true },
+          { field: 'API Key', where: 'אותה דף — Key', required: true }
+        ],
+        setupSteps: ['ActiveCampaign → Settings (בתפריט שמאל) → Developer → העתק API URL + API Key → הדבק ב-Make.com']
+      },
+      'Salesforce': {
+        docUrl: 'https://www.make.com/en/help/app/salesforce',
+        authType: 'OAuth (Connected App)',
+        connectionTypes: [{ name: 'Salesforce', desc: 'OAuth — יכול לעבוד ישירות OR דרך Connected App' }],
+        advancedFields: [],
+        setupSteps: [
+          'לחץ Add/Connect → Save → נפתח Salesforce Login',
+          'היכנס עם credentials של Salesforce → Allow',
+          'אם נדרש Connected App: Setup → App Manager → New Connected App (מורכב יותר — פנה לאדמין)'
+        ]
+      },
+      'Zoho CRM': {
+        docUrl: 'https://www.make.com/en/help/app/zoho-crm',
+        authType: 'OAuth',
+        connectionTypes: [{ name: 'Zoho CRM', desc: 'OAuth' }],
+        advancedFields: [],
+        setupSteps: ['לחץ Add/Connect → Save → נפתח Zoho → Accept']
+      },
+      'Zendesk': {
+        docUrl: 'https://www.make.com/en/help/app/zendesk',
+        authType: 'Email + API Token + Subdomain',
+        connectionTypes: [{ name: 'Zendesk', desc: 'Email + API Token + שם תת-דומיין' }],
+        advancedFields: [
+          { field: 'Subdomain', where: 'כתובת ה-Zendesk שלך: yourcompany.zendesk.com → רק "yourcompany"', required: true },
+          { field: 'Email', where: 'האימייל שאיתו נכנסים ל-Zendesk', required: true },
+          { field: 'API Token', where: 'Zendesk Admin Center → Apps and integrations → APIs → Zendesk API → Add API token', required: true }
+        ],
+        setupSteps: [
+          'Zendesk Admin Center → Apps and integrations → APIs → Zendesk API',
+          'הפעל "Token access" → Add API token → שם → Create → העתק',
+          'ב-Make.com: Subdomain (ללא zendesk.com) + Email + API Token'
+        ]
+      },
+      'Typeform': {
+        docUrl: 'https://www.make.com/en/help/app/typeform',
+        authType: 'Personal Access Token',
+        connectionTypes: [{ name: 'Typeform', desc: 'Personal Access Token' }],
+        advancedFields: [
+          { field: 'Personal Access Token', where: 'admin.typeform.com → לחץ על שם משתמש → Account → Personal tokens → Generate a new token', required: true }
+        ],
+        setupSteps: ['admin.typeform.com → Account → Personal tokens → Generate → העתק → הדבק ב-Make.com']
+      },
+      'Calendly': {
+        docUrl: 'https://www.make.com/en/help/app/calendly',
+        authType: 'Personal Access Token',
+        connectionTypes: [{ name: 'Calendly', desc: 'Personal Access Token' }],
+        advancedFields: [
+          { field: 'Personal Access Token', where: 'calendly.com → Integrations → API & Webhooks → Generate new token', required: true }
+        ],
+        setupSteps: ['calendly.com → Integrations → API & Webhooks → Generate new token → העתק → הדבק ב-Make.com']
+      },
+      // ── Storage & Files ────────────────────────────────────────────────────
+      'Dropbox': {
+        docUrl: 'https://www.make.com/en/help/app/dropbox',
+        authType: 'OAuth',
+        connectionTypes: [{ name: 'Dropbox', desc: 'OAuth' }],
+        advancedFields: [],
+        setupSteps: ['לחץ Add/Connect → Save → נפתח Dropbox → Allow']
+      },
+      'OneDrive': {
+        docUrl: 'https://www.make.com/en/help/app/onedrive',
+        authType: 'OAuth עם Microsoft',
+        connectionTypes: [{ name: 'OneDrive', desc: 'OAuth עם חשבון Microsoft' }],
+        advancedFields: [],
+        setupSteps: ['לחץ Add/Connect → Save → נפתח Microsoft → Sign in → Accept']
+      },
+      'Microsoft Excel': {
+        docUrl: 'https://www.make.com/en/help/app/microsoft-excel-365',
+        authType: 'OAuth עם Microsoft 365',
+        connectionTypes: [{ name: 'Microsoft Excel 365', desc: 'OAuth — דורש Microsoft 365 (לא Excel רגיל)' }],
+        advancedFields: [],
+        setupSteps: ['לחץ Add/Connect → Save → נפתח Microsoft 365 → Sign in → Accept']
+      },
+      // ── Social ────────────────────────────────────────────────────────────
+      'Twitter': {
+        docUrl: 'https://www.make.com/en/help/app/twitter',
+        authType: 'OAuth 2.0 עם Developer App — דורש אישור מפתחים',
+        accountWarning: '⚠️ Twitter/X API דורש חשבון Developer מאושר. תהליך האישור לוקח 24-48 שעות ודורש לתאר את השימוש. Free tier מוגבל ל-1,500 ציוצים/חודש.',
+        connectionTypes: [
+          { name: 'Twitter (OAuth 2.0)', desc: 'דורש Developer App — אישור 24-48 שעות' },
+          { name: 'Twitter (OAuth 1.0a)', desc: 'ישן יותר — דורש 4 מפתחות מ-Developer Portal' }
+        ],
+        advancedFields: [
+          { field: 'Client ID', where: 'developer.twitter.com → Projects & Apps → Your App → Keys and tokens → OAuth 2.0 Client ID', required: true },
+          { field: 'Client Secret', where: 'אותה דף → Client Secret', required: true }
+        ],
+        setupSteps: [
+          '⚠️ דרישה: חשבון Developer ב-developer.twitter.com (אישור 24-48 שעות)',
+          'Create App → Settings → User authentication settings → הפעל OAuth 2.0',
+          'Callback URL: https://www.integromat.com/oauth/cb/twitter2',
+          'Keys and tokens → Client ID + Client Secret → העתק → הדבק ב-Make.com'
+        ]
+      },
+      'YouTube': {
+        docUrl: 'https://www.make.com/en/help/app/youtube',
+        authType: 'OAuth עם Google',
+        connectionTypes: [{ name: 'YouTube', desc: 'OAuth עם חשבון Google שמחובר לערוץ YouTube' }],
+        advancedFields: [],
+        setupSteps: ['לחץ Add/Connect → Save → נפתח Google → בחר חשבון → Allow']
+      },
+      // ── Dev & Databases ────────────────────────────────────────────────────
+      'MySQL': {
+        docUrl: 'https://www.make.com/en/help/app/mysql',
+        authType: 'Host + Port + DB + Username + Password',
+        connectionTypes: [{ name: 'MySQL', desc: 'פרטי חיבור ישיר לשרת MySQL' }],
+        advancedFields: [
+          { field: 'Host', where: 'כתובת שרת ה-MySQL (IP או domain) — מסופק על ידי הוסטינג', required: true },
+          { field: 'Port', where: 'ברירת מחדל: 3306', required: true },
+          { field: 'Database', where: 'שם ה-database', required: true },
+          { field: 'Username / Password', where: 'משתמש MySQL עם הרשאות לאותה database', required: true }
+        ],
+        setupSteps: [
+          'ודא שה-MySQL חשוף לאינטרנט (או הגדר Whitelist ל-IPs של Make.com)',
+          'Make.com IPs לWhitelist: https://www.make.com/en/help/other/make-ip-addresses',
+          'ב-Make.com: Host + Port (3306) + Database + User + Password'
+        ]
+      },
+      'Google Forms': {
+        docUrl: 'https://www.make.com/en/help/app/google-forms',
+        authType: 'OAuth עם Google',
+        connectionTypes: [{ name: 'Google Forms', desc: 'OAuth — אותו חשבון Google שיצר את הטופס' }],
+        advancedFields: [],
+        setupSteps: ['לחץ Add/Connect → Save → נפתח Google → בחר חשבון → Allow']
+      },
+      'SendGrid': {
+        docUrl: 'https://www.make.com/en/help/app/sendgrid',
+        authType: 'API Key',
+        connectionTypes: [{ name: 'SendGrid', desc: 'API Key מ-Settings' }],
+        advancedFields: [
+          { field: 'API Key', where: 'app.sendgrid.com → Settings (שמאל) → API Keys → Create API Key → Full Access → Create & View → העתק מיד', required: true }
+        ],
+        setupSteps: ['app.sendgrid.com → Settings → API Keys → Create API Key → Full Access → Create & View → העתק מיד (לא יוצג שוב!) → הדבק ב-Make.com']
+      },
+      'Supabase': {
+        docUrl: 'https://www.make.com/en/help/app/supabase',
+        authType: 'API URL + anon/service key',
+        connectionTypes: [{ name: 'Supabase', desc: 'Project URL + API Key' }],
+        advancedFields: [
+          { field: 'Project URL', where: 'Supabase Dashboard → Settings → API → Project URL', required: true },
+          { field: 'API Key', where: 'אותה דף → Project API keys → anon (ציבורי) או service_role (מלא — זהיר!)', required: true }
+        ],
+        setupSteps: ['Supabase Dashboard → Settings → API → העתק Project URL + anon key → הדבק ב-Make.com']
+      },
+      // ── New Apps: AI & Content ─────────────────────────────────────────────
+      'ElevenLabs': {
+        docUrl: 'https://www.make.com/en/help/app/elevenlabs',
+        authType: 'API Key',
+        connectionTypes: [{ name: 'ElevenLabs', desc: 'API Key מה-Profile' }],
+        advancedFields: [
+          { field: 'API Key', where: 'elevenlabs.io → לחץ על תמונת פרופיל → Profile + API key → העתק xi-api-key', required: true }
+        ],
+        setupSteps: [
+          'elevenlabs.io → היכנס לחשבון',
+          'לחץ על תמונת פרופיל (שמאל תחתון) → Profile + API key',
+          'העתק את ה-API Key (מתחיל ב-xi-...)',
+          'ב-Make.com הדבק ב-"API Key"'
+        ]
+      },
+      'Google Gemini': {
+        docUrl: 'https://www.make.com/en/help/app/google-gemini',
+        authType: 'API Key',
+        connectionTypes: [{ name: 'Google Gemini', desc: 'API Key מ-Google AI Studio' }],
+        advancedFields: [
+          { field: 'API Key', where: 'aistudio.google.com → Get API key → Create API key → בחר פרויקט → העתק', required: true }
+        ],
+        setupSteps: [
+          'כנס ל-aistudio.google.com → לחץ "Get API key"',
+          'Create API key in new project (או בחר קיים)',
+          'העתק את ה-API Key',
+          'ב-Make.com הדבק ב-"API Key"'
+        ]
+      },
+      'Perplexity': {
+        docUrl: 'https://www.make.com/en/help/app/perplexity',
+        authType: 'API Key',
+        connectionTypes: [{ name: 'Perplexity', desc: 'API Key — דורש מנוי Pro' }],
+        advancedFields: [
+          { field: 'API Key', where: 'perplexity.ai → Settings → API → Generate API Key → העתק', required: true }
+        ],
+        setupSteps: [
+          '⚠️ דרישה: מנוי Perplexity Pro (לא עובד עם חינמי)',
+          'perplexity.ai → Settings → API',
+          'Generate API Key → העתק → הדבק ב-Make.com'
+        ]
+      },
+      'Canva': {
+        docUrl: 'https://www.make.com/en/help/app/canva',
+        authType: 'OAuth 2.0',
+        connectionTypes: [{ name: 'Canva', desc: 'OAuth — כניסה עם חשבון Canva' }],
+        advancedFields: [],
+        setupSteps: [
+          'לחץ Add/Connect → Save → נפתח Canva',
+          'היכנס עם חשבון Canva → אשר הרשאות',
+          'חזור ל-Make.com — החיבור נוצר'
+        ]
+      },
+      // ── New Apps: Marketing & Ads ──────────────────────────────────────────
+      'Facebook Lead Ads': {
+        docUrl: 'https://www.make.com/en/help/app/facebook-lead-ads',
+        authType: 'OAuth (Meta) — חובה Admin של דף עסקי',
+        accountWarning: '⚠️ דורש דף עסקי Facebook שאתה Admin שלו + קמפיין Lead Ads פעיל. לא עובד עם פרופיל אישי.',
+        connectionTypes: [{ name: 'Facebook Lead Ads', desc: 'OAuth עם Meta — חובה Admin של הדף + Lead Ads פעיל' }],
+        advancedFields: [],
+        setupSteps: [
+          '⚠️ דרישה: דף Facebook עסקי (Admin) + קמפיין Lead Ads פעיל',
+          'ב-Make.com: Add/Connect → Save → Facebook Login',
+          'בחר את הדפים להרשות → Done',
+          'במודול: בחר את הדף → בחר את הטופס (Lead Form)'
+        ]
+      },
+      'Google Ads': {
+        docUrl: 'https://www.make.com/en/help/app/google-ads',
+        authType: 'OAuth עם Google — חובה חשבון Google Ads',
+        accountWarning: '⚠️ דורש חשבון Google Ads פעיל. חשבון חינמי (בלי קמפיינים) לא מספיק לטריגרים.',
+        connectionTypes: [{ name: 'Google Ads', desc: 'OAuth עם חשבון Google שמחובר ל-Google Ads' }],
+        advancedFields: [],
+        setupSteps: [
+          '⚠️ דרישה: חשבון Google Ads פעיל עם קמפיינים',
+          'ב-Make.com: Add/Connect → Save → Google Login',
+          'בחר חשבון Google שמחובר ל-Google Ads → אשר הרשאות',
+          'במודול: בחר Customer ID של חשבון ה-Ads'
+        ]
+      },
+      'TikTok': {
+        docUrl: 'https://www.make.com/en/help/app/tiktok',
+        authType: 'OAuth — חובה חשבון Business',
+        accountWarning: '⚠️ TikTok API דורש חשבון Business (לא אישי). יש להמיר חשבון ל-Business בהגדרות.',
+        connectionTypes: [{ name: 'TikTok for Business', desc: 'OAuth — דורש חשבון Business' }],
+        advancedFields: [],
+        setupSteps: [
+          '⚠️ דרישה: חשבון TikTok Business (לא אישי)',
+          'ב-TikTok: Settings → Account → Switch to Business Account',
+          'ב-Make.com: Add/Connect → Save → TikTok Login → אשר'
+        ]
+      },
+      'Pinterest': {
+        docUrl: 'https://www.make.com/en/help/app/pinterest',
+        authType: 'OAuth — חובה חשבון Business',
+        accountWarning: '⚠️ דורש חשבון Pinterest Business (לא אישי).',
+        connectionTypes: [{ name: 'Pinterest', desc: 'OAuth — דורש Business account' }],
+        advancedFields: [],
+        setupSteps: [
+          '⚠️ דרישה: חשבון Pinterest Business',
+          'ב-Pinterest: Settings → Account → Convert to business',
+          'ב-Make.com: Add/Connect → Save → Pinterest Login → Authorize'
+        ]
+      },
+      // ── New Apps: Email Marketing ──────────────────────────────────────────
+      'Mailerlite': {
+        docUrl: 'https://www.make.com/en/help/app/mailerlite',
+        authType: 'API Key',
+        connectionTypes: [{ name: 'Mailerlite', desc: 'API Key מ-Integrations' }],
+        advancedFields: [
+          { field: 'API Key', where: 'Mailerlite Dashboard → Integrations → Developer API → Generate new token → העתק', required: true }
+        ],
+        setupSteps: [
+          'Mailerlite Dashboard → Integrations (בתפריט שמאל)',
+          'Developer API → Generate new token → שם → Create',
+          'העתק את ה-API token → הדבק ב-Make.com'
+        ]
+      },
+      'ConvertKit': {
+        docUrl: 'https://www.make.com/en/help/app/convertkit',
+        authType: 'API Key + API Secret',
+        connectionTypes: [{ name: 'ConvertKit', desc: 'API Key + Secret מ-Settings' }],
+        advancedFields: [
+          { field: 'API Key', where: 'app.convertkit.com → Settings → Advanced → API Key', required: true },
+          { field: 'API Secret', where: 'אותה דף — API Secret', required: true }
+        ],
+        setupSteps: [
+          'app.convertkit.com → Settings (גלגל שיניים)',
+          'Advanced → העתק API Key + API Secret',
+          'ב-Make.com הדבק שניהם'
+        ]
+      },
+      // ── New Apps: Customer Support ─────────────────────────────────────────
+      'Intercom': {
+        docUrl: 'https://www.make.com/en/help/app/intercom',
+        authType: 'OAuth',
+        connectionTypes: [{ name: 'Intercom', desc: 'OAuth — כניסה עם חשבון Intercom' }],
+        advancedFields: [],
+        setupSteps: [
+          'לחץ Add/Connect → Save → נפתח Intercom',
+          'היכנס עם חשבון Intercom → Authorize',
+          'חזור ל-Make.com — החיבור נוצר'
+        ]
+      },
+      'Freshdesk': {
+        docUrl: 'https://www.make.com/en/help/app/freshdesk',
+        authType: 'API Key + Domain',
+        connectionTypes: [{ name: 'Freshdesk', desc: 'API Key + תת-דומיין Freshdesk' }],
+        advancedFields: [
+          { field: 'Domain', where: 'הכתובת של ה-Freshdesk שלך: yourcompany.freshdesk.com → רק "yourcompany"', required: true },
+          { field: 'API Key', where: 'Freshdesk → לחץ על תמונת פרופיל → Profile settings → API Key (בצד ימין)', required: true }
+        ],
+        setupSteps: [
+          'Freshdesk → לחץ על תמונת פרופיל → Profile settings',
+          'בצד ימין יש "Your API Key" → העתק',
+          'ב-Make.com: הדבק Domain (ללא .freshdesk.com) + API Key'
+        ]
+      },
+      // ── New Apps: Website Builders ─────────────────────────────────────────
+      'WordPress': {
+        docUrl: 'https://www.make.com/en/help/app/wordpress',
+        authType: 'Username + Application Password — חובה Admin',
+        accountWarning: '⚠️ דורש גישת Admin לאתר WordPress. האתר חייב להיות נגיש מהאינטרנט (לא localhost).',
+        connectionTypes: [{ name: 'WordPress', desc: 'Application Password — חובה Admin של האתר' }],
+        advancedFields: [
+          { field: 'WordPress URL', where: 'כתובת האתר שלך (https://yoursite.com)', required: true },
+          { field: 'Username', where: 'שם המשתמש Admin של WordPress', required: true },
+          { field: 'Application Password', where: 'WordPress Admin → Users → Profile → גלול למטה ל-"Application Passwords" → שם → Add New Application Password → העתק', required: true }
+        ],
+        setupSteps: [
+          '⚠️ דרישה: אתר WordPress נגיש מהאינטרנט + משתמש Admin',
+          'WordPress Admin → Users → Edit Profile',
+          'גלול למטה ל-"Application Passwords"',
+          'תן שם (למשל "Make.com") → Add New Application Password',
+          'העתק את הסיסמה שנוצרה (מופיעה פעם אחת בלבד!)',
+          'ב-Make.com: URL של האתר + Username + Application Password'
+        ]
+      },
+      'Webflow': {
+        docUrl: 'https://www.make.com/en/help/app/webflow',
+        authType: 'API Token',
+        connectionTypes: [{ name: 'Webflow', desc: 'API Token מ-Workspace Settings' }],
+        advancedFields: [
+          { field: 'API Token', where: 'Webflow Dashboard → Workspace Settings → Integrations → Generate API token', required: true }
+        ],
+        setupSteps: [
+          'Webflow Dashboard → Workspace Settings (לא Site Settings!)',
+          'Integrations → Generate API token',
+          'בחר הרשאות (Sites: Read/Write, CMS: Read/Write)',
+          'Generate token → העתק → הדבק ב-Make.com'
+        ]
+      },
+      // ── New Apps: Other Useful ─────────────────────────────────────────────
+      'RSS': {
+        docUrl: 'https://www.make.com/en/help/app/rss',
+        authType: 'ללא חיבור',
+        connectionTypes: [{ name: 'RSS', desc: 'לא דורש חיבור — מזינים כתובת RSS ישירות' }],
+        advancedFields: [],
+        setupSteps: [
+          'מודול RSS לא דורש חיבור',
+          'מזינים את כתובת ה-RSS Feed ישירות בשדה URL',
+          'טיפ: רוב הבלוגים תומכים ב-RSS — נסה להוסיף /feed או /rss לכתובת'
+        ]
+      },
+      'Unipile': {
+        docUrl: 'https://www.unipile.com/docs',
+        authType: 'API Key + Webhook URL — מחבר LinkedIn ו-Facebook אישיים',
+        accountWarning: '⚠️ Unipile הוא שירות בתשלום (~$30/חודש) שמתחבר לחשבונות LinkedIn ו-Facebook האישיים שלך ושולח Webhooks על כל פעולה. הרבה יותר אמין מהתראות Gmail.',
+        connectionTypes: [
+          { name: 'Unipile (Webhook)', desc: 'Make.com מקבל Webhooks מ-Unipile — לא דורש חיבור ישיר ב-Make, רק מודול Webhooks' },
+          { name: 'Unipile (HTTP)', desc: 'שליחת פעולות חזרה (כמו מענה להודעה) דרך מודול HTTP + API Key' }
+        ],
+        advancedFields: [
+          { field: 'API Key', where: 'Unipile Dashboard → Settings → API → Generate API Key → העתק', required: true },
+          { field: 'Webhook URL', where: 'יוצרים ב-Make.com: מודול Webhooks → Custom Webhook → Add → מעתיקים את ה-URL → מדביקים ב-Unipile Dashboard → Webhooks', required: true }
+        ],
+        setupSteps: [
+          'הרשם ב-unipile.com → בחר תוכנית (~$30/חודש)',
+          'חבר את חשבון LinkedIn ו/או Facebook: Dashboard → Accounts → Connect → היכנס עם הפרטים שלך',
+          'ב-Make.com: צור Scenario → מודול Webhooks → Custom Webhook → Add → העתק URL',
+          'ב-Unipile: Dashboard → Webhooks → Add Webhook → הדבק URL מ-Make.com → בחר אירועים (messages, comments, connections)',
+          'ב-Make.com: שלח הודעת בדיקה → Webhooks יזהה את המבנה אוטומטית',
+          'לשליחה חזרה (מענה להודעות): מודול HTTP → POST → https://api.unipile.com/... עם API Key בHeader'
+        ]
+      }
+    };
+
+    // Fuzzy match app name to DB key
+    function findAppInDB(appName) {
+      if (!appName) return null;
+      const name = appName.toLowerCase();
+      for (const key of Object.keys(CONNECTION_DB)) {
+        if (name.includes(key.toLowerCase()) || key.toLowerCase().includes(name)) {
+          return CONNECTION_DB[key];
+        }
+      }
+      // Common aliases
+      const aliases = {
+        'google sheet': 'Google Sheets', 'sheets': 'Google Sheets',
+        'google mail': 'Gmail', 'google calendar': 'Google Calendar',
+        'google drive': 'Google Drive', 'google form': 'Google Forms',
+        'telegram': 'Telegram Bot', 'whatsapp cloud': 'WhatsApp',
+        'green-api': 'WhatsApp', 'openai': 'OpenAI', 'gpt': 'OpenAI',
+        'claude': 'Anthropic Claude', 'webhook': 'Webhooks',
+        'facebook': 'Facebook Pages', 'hubspot': 'HubSpot',
+        'twitter': 'Twitter', 'x.com': 'Twitter',
+        'ms teams': 'Microsoft Teams', 'teams': 'Microsoft Teams',
+        'excel': 'Microsoft Excel', 'onedrive': 'OneDrive',
+        'woocommerce': 'WooCommerce', 'woo': 'WooCommerce',
+        'active campaign': 'ActiveCampaign',
+        'monday': 'Monday.com', 'click up': 'ClickUp',
+        'pipe drive': 'Pipedrive', 'zoho': 'Zoho CRM',
+        'send grid': 'SendGrid', 'twillio': 'Twilio',
+        'type form': 'Typeform', 'calendly': 'Calendly',
+        'eleven labs': 'ElevenLabs', '11labs': 'ElevenLabs', 'elevenlabs': 'ElevenLabs',
+        'gemini': 'Google Gemini', 'google ai': 'Google Gemini',
+        'perplexity': 'Perplexity', 'pplx': 'Perplexity',
+        'canva': 'Canva',
+        'facebook lead': 'Facebook Lead Ads', 'fb lead': 'Facebook Lead Ads', 'lead ads': 'Facebook Lead Ads',
+        'google ads': 'Google Ads', 'adwords': 'Google Ads',
+        'tiktok': 'TikTok', 'tik tok': 'TikTok',
+        'pinterest': 'Pinterest',
+        'mailerlite': 'Mailerlite', 'mailer lite': 'Mailerlite',
+        'convertkit': 'ConvertKit', 'convert kit': 'ConvertKit', 'kit.com': 'ConvertKit',
+        'intercom': 'Intercom',
+        'fresh desk': 'Freshdesk', 'freshdesk': 'Freshdesk',
+        'wordpress': 'WordPress', 'wp': 'WordPress',
+        'webflow': 'Webflow',
+        'rss': 'RSS', 'rss feed': 'RSS',
+        'unipile': 'Unipile'
+      };
+      for (const [alias, key] of Object.entries(aliases)) {
+        if (name.includes(alias)) return CONNECTION_DB[key];
+      }
+      return null;
+    }
+
+    // ─── xAI (Grok) API ────────────────────────────────────────────────────
+    // Fast model for search, full model for detailed guides
+    const MODEL_FAST = 'grok-3-mini-fast';
+    const MODEL_FULL = 'grok-4-latest';
+
+    async function callGemini(apiKey, systemPrompt, userQuery, useFastModel = false) {
+      const model = useFastModel ? MODEL_FAST : MODEL_FULL;
+      let delay = 1000;
+      for (let i = 0; i < 3; i++) {
+        try {
+          const body = {
+            model,
+            response_format: { type: 'json_object' },
+            messages: [
+              { role: 'system', content: systemPrompt },
+              { role: 'user', content: userQuery }
+            ]
+          };
+          if (useFastModel) body.max_tokens = 2000;
+          const res = await fetch('https://api.x.ai/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${apiKey}`
+            },
+            body: JSON.stringify(body)
+          });
+          if (!res.ok) {
+            const errText = await res.text();
+            // If fast model not available, fall back to full model
+            if (useFastModel && (res.status === 400 || res.status === 404)) {
+              return callGemini(apiKey, systemPrompt, userQuery, false);
+            }
+            throw new Error('API ' + res.status + ': ' + errText.substring(0, 200));
+          }
+          const data = await res.json();
+          return JSON.parse(data.choices[0].message.content);
+        } catch (err) {
+          if (i === 2) throw err;
+          await new Promise(r => setTimeout(r, delay));
+          delay *= 2;
+        }
+      }
+    }
+
+    // ─── BM25 Search Engine + Hebrew Tokenizer ─────────────────────────────
+    const HEBREW_STOP_WORDS = new Set(['של','את','זה','על','עם','כל','לא','אם','גם','אבל','או','כי','הוא','היא','הם','הן','אני','אתה','אנחנו','שלי','שלו','שלה','יש','אין','רק','עוד','מה','איך','למה','מתי','איפה','כמו','בין','אחרי','לפני','כדי','בגלל','אותו','אותה','כמה','מאוד','ביותר','פשוט','בעצם','ממש','אפשר','צריך','יכול','רוצה','חושב','יודע','עושה','נראה','אומר','כאן','שם','עכשיו','היום','אחד','שני','כאלה','עליו','עליה','שלהם']);
+
+    function tokenizeHebrew(text) {
+      return text.toLowerCase()
+        .replace(/[^\u0590-\u05FFa-zA-Z0-9\s]/g, ' ')
+        .split(/\s+/)
+        .filter(w => w.length >= 3)
+        .map(w => {
+          if (w.length > 3) {
+            for (const p of ['וש','וב','ול','וכ','ומ','וה','שב','של','שמ','שה','מה','בו','לו']) {
+              if (w.startsWith(p)) return w.slice(p.length);
+            }
+            for (const p of ['ב','ל','מ','כ','ה','ו','ש']) {
+              if (w.startsWith(p)) return w.slice(1);
+            }
+          }
+          return w;
+        })
+        .filter(w => w.length >= 3 && !HEBREW_STOP_WORDS.has(w));
+    }
+
+    function bm25Search(query, index, chunks, topK = 5) {
+      const queryTokens = tokenizeHebrew(query);
+      if (!queryTokens.length) return [];
+      const k1 = 1.5, b = 0.75;
+      const N = index.totalDocs, avgDL = index.avgDocLength;
+      const scores = {};
+      for (const token of queryTokens) {
+        const termData = index.terms[token];
+        if (!termData) continue;
+        const df = termData[0];
+        const idf = Math.log((N - df + 0.5) / (df + 0.5) + 1);
+        for (let i = 1; i < termData.length; i += 2) {
+          const chunkIdx = termData[i], tf = termData[i + 1];
+          const chunk = chunks[chunkIdx];
+          if (!chunk) continue;
+          const dl = chunk.text ? chunk.text.split(/\s+/).length : avgDL;
+          const tfNorm = (tf * (k1 + 1)) / (tf + k1 * (1 - b + b * dl / avgDL));
+          scores[chunkIdx] = (scores[chunkIdx] || 0) + idf * tfNorm;
+        }
+      }
+      return Object.entries(scores)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, topK)
+        .map(([idx]) => chunks[idx]);
+    }
+
+    async function askExpert(apiKey, question, contexts) {
+      const contextText = contexts.map((c, i) =>
+        `[מקור ${i+1}: ${c.title}]\n${c.text}`
+      ).join('\n\n---\n\n');
+      const res = await fetch('https://api.x.ai/v1/chat/completions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
+        body: JSON.stringify({
+          model: MODEL_FAST,
+          messages: [
+            { role: 'system', content: 'אתה מומחה לאוטומציות Make.com ו-ManyChat. ענה בעברית על סמך המידע שמסופק. ציין מקורות בפורמט [מקור X]. אם המידע לא מספיק, אמור זאת בכנות.' },
+            { role: 'user', content: `מידע:\n${contextText}\n\nשאלה: ${question}` }
+          ],
+          max_tokens: 1500
+        })
+      });
+      if (!res.ok) throw new Error('API ' + res.status);
+      const data = await res.json();
+      return data.choices[0].message.content;
+    }
+
+    const KB_CATEGORIES = {
+      'make-basics': '🔧 יסודות Make',
+      'make-connections': '🔌 חיבורים',
+      'make-functions': '📐 פונקציות',
+      'make-errors': '⚠️ שגיאות',
+      'make-modules': '📦 מודולים',
+      'make-data': '💾 נתונים',
+      'make-routing': '🔀 נתיבים',
+      'make-advanced': '🚀 מתקדם',
+      'make-live': '🎬 לייב',
+      'make-course': '🎓 קורס Make',
+      'manychat-basics': '💬 יסודות MC',
+      'manychat-connections': '🔗 חיבורי MC',
+      'manychat-bots': '🤖 בוטים',
+      'manychat-advanced': '⚡ MC מתקדם',
+      'manychat-course': '🎓 קורס MC'
+    };
+
+    // ─── Template Card ─────────────────────────────────────────────────────
+    const TemplateCard = ({ item, apiKey, singleView = false }) => {
+      const [copied, setCopied] = useState(false);
+      const [guideOpen, setGuideOpen] = useState(false);
+      const [guideLoading, setGuideLoading] = useState(false);
+      const [guide, setGuide] = useState(null);
+      const [docUrls, setDocUrls] = useState({});
+
+      const getShareUrl = () => {
+        try {
+          const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(item))));
+          return `${window.location.origin}${window.location.pathname}#${encoded}`;
+        } catch { return window.location.href; }
+      };
+
+      const copyLink = () => {
+        navigator.clipboard.writeText(getShareUrl()).then(() => {
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2500);
+        });
+      };
+
+      const shareWA = () => {
+        const url = getShareUrl();
+        const text =
+          `🤖 *${item.name}*\n\n` +
+          `${item.description}\n\n` +
+          `⚡ *טריגר:* ${item.trigger?.app} → ${item.trigger?.name}\n` +
+          `🎯 *פעולה:* ${item.action?.app} → ${item.action?.name}\n\n` +
+          `🔗 *פתח ב-Make.com:*\n${item.link}\n\n` +
+          `📖 *מדריך חיבור (עם קישור ישיר):*\n${url}`;
+        window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+      };
+
+      const fetchGuide = async () => {
+        if (guide) { setGuideOpen(o => !o); return; }
+        setGuideOpen(true);
+        setGuideLoading(true);
+
+        // Check localStorage cache first
+        const cacheKey = `guide_${item.name}_${item.trigger?.app}_${item.action?.app}`;
+        const cached = localStorage.getItem(cacheKey);
+        if (cached) {
+          try {
+            const parsed = JSON.parse(cached);
+            setGuide(parsed.steps || []);
+            setDocUrls(parsed.urls || {});
+            setGuideLoading(false);
+            return;
+          } catch(e) { localStorage.removeItem(cacheKey); }
+        }
+
+        try {
+          const triggerApp = item.trigger?.app || '';
+          const actionApp = item.action?.app || '';
+
+          // Look up real connection data from our DB
+          const triggerDB = findAppInDB(triggerApp);
+          const actionDB = findAppInDB(actionApp);
+
+          // Build verified context string for the AI
+          const buildDBContext = (app, db, role) => {
+            if (!db) return `${role}: ${app} — אין נתונים מאומתים. חשוב: ציין בכנות אם צריך דף עסקי, Admin, Developer App וכו'.`;
+            return `${role}: ${app}
+  ${db.accountWarning ? `- ⚠️ אזהרת חשבון: ${db.accountWarning}` : ''}
+  - סוג אימות: ${db.authType}
+  - אפשרויות חיבור: ${db.connectionTypes.map(c => `"${c.name}": ${c.desc}`).join(' | ')}
+  ${db.advancedFields.length ? `- שדות Advanced Settings: ${db.advancedFields.map(f => `${f.field} (מיקום: ${f.where})`).join('; ')}` : '- אין שדות Advanced Settings נדרשים'}
+  - צעדי הכנה מאומתים: ${db.setupSteps.join(' → ')}`;
+          };
+
+          const triggerContext = buildDBContext(triggerApp, triggerDB, 'טריגר');
+          const actionContext = buildDBContext(actionApp, actionDB, 'פעולה');
+
+          const data = await callGemini(apiKey,
+            `You are a Make.com configuration expert for COMPLETE BEGINNERS.
+Return ONLY valid JSON with this EXACT structure — no extra fields:
+{
+  "steps": [
+    {
+      "type": "prepare|connect|configure|test",
+      "title": "short title in Hebrew",
+      "description": "plain Hebrew explanation — no → arrows in description",
+      "path": ["step1","step2","step3"],
+      "fields": [{"field":"field name","where":"exact location","warning":"optional critical note"}],
+      "tip": "optional beginner tip in Hebrew",
+      "warning": "optional critical warning in Hebrew"
+    }
+  ],
+  "triggerDocUrl": "https://www.make.com/en/help/app/...",
+  "actionDocUrl": "https://www.make.com/en/help/app/..."
+}
+
+Rules:
+- type "prepare" = things to do BEFORE opening Make.com (get credentials, accounts)
+- type "connect" = creating a connection inside Make.com (authentication)
+- type "configure" = setting module parameters
+- type "test" = Run once + activate
+- "path" array = navigation breadcrumbs (e.g. ["LinkedIn Developers","My Apps","Auth tab"])
+- "fields" array = form fields to fill (name, where to find value, optional warning)
+- Keep "description" SHORT (1-2 sentences max) — details go in path/fields
+- Use ONLY verified data provided. Do NOT invent button names.`,
+            `Make.com scenario: trigger "${item.trigger?.name}" (${triggerApp}) + action "${item.action?.name}" (${actionApp}).
+${item.scenarioFlow ? `Full module chain: ${item.scenarioFlow}` : ''}
+The user needs to build this scenario from scratch — create each module and connect it.
+
+=== VERIFIED DATA ===
+${triggerContext}
+
+${actionContext}
+=== END VERIFIED DATA ===
+
+Create 5-8 steps using the verified data above. Structure:
+${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare — what accounts/API keys to create before opening Make.com\n2. type:configure — add Schedule module as trigger, set the timing\n3. type:connect — connecting ' + triggerApp + ' in Make.com\n4. type:connect — connecting ' + actionApp + ' in Make.com\n5. type:configure — set up each module parameters in order\n6. type:test — Run once to test, then toggle scheduling ON' : '1. type:prepare — what accounts/credentials to get before Make.com\n2. type:connect — connecting ' + triggerApp + ' in Make.com (show connectionTypes as options, explain advanced fields)\n3. type:connect — connecting ' + actionApp + ' (same)\n4. type:configure — setting up trigger module parameters\n5. type:configure — setting up action module parameters\n6. type:test — Run once to test, then toggle ON'}`,
+            true  // useFastModel — guides don't need the heavy model
+          );
+          const urls = {
+            trigger: triggerDB?.docUrl || data.triggerDocUrl,
+            action: actionDB?.docUrl || data.actionDocUrl
+          };
+          setGuide(data.steps || []);
+          setDocUrls(urls);
+          // Cache for instant load next time
+          try { localStorage.setItem(cacheKey, JSON.stringify({ steps: data.steps, urls })); } catch(e) {}
+        } catch (err) {
+          setGuide([{ title: "שגיאה", description: "לא ניתן לטעון את המדריך. בדוק את מפתח ה-API ונסה שוב." }]);
+        }
+        setGuideLoading(false);
+      };
+
+      return (
+        <div className={`bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all ${singleView ? 'ring-2 ring-blue-300' : ''}`}>
+          {singleView && (
+            <div className="bg-blue-50 text-blue-700 text-sm font-bold px-3 py-2 rounded-lg mb-4 inline-flex items-center gap-2">
+              <ShareIcon size={13}/> טמפלייט שותף איתך
+            </div>
+          )}
+
+          <h3 className="text-2xl font-black text-slate-800 mb-2">{item.name}</h3>
+          <p className="text-slate-500 text-lg leading-relaxed mb-3">{item.description}</p>
+
+          {/* Account requirement badge */}
+          {item.accountReq && (() => {
+            const scopeStyles = {
+              personal:      { bg: 'bg-green-50',  border: 'border-green-200', text: 'text-green-800', icon: '👤', label: 'חשבון אישי' },
+              business_page: { bg: 'bg-orange-50', border: 'border-orange-200', text: 'text-orange-800', icon: '🏢', label: 'דף עסקי/חברה' },
+              admin:         { bg: 'bg-red-50',    border: 'border-red-200',    text: 'text-red-800',    icon: '🔑', label: 'הרשאת Admin' },
+              developer:     { bg: 'bg-purple-50', border: 'border-purple-200', text: 'text-purple-800', icon: '🛠️', label: 'חשבון מפתחים' },
+              any:           { bg: 'bg-green-50',  border: 'border-green-200', text: 'text-green-800', icon: '✅', label: 'פתוח לכולם' },
+              webhook:       { bg: 'bg-blue-50',   border: 'border-blue-200',  text: 'text-blue-800',  icon: '🔗', label: 'Webhook חיצוני' }
+            };
+            const s = scopeStyles[item.triggerScope] || scopeStyles.any;
+            return (
+              <div className={`${s.bg} border ${s.border} rounded-xl px-4 py-2.5 mb-4 flex items-start gap-2.5`}>
+                <span className="text-lg flex-shrink-0">{s.icon}</span>
+                <div>
+                  <span className={`text-xs font-black ${s.text}`}>דרישת חשבון: {s.label}</span>
+                  <p className="text-xs text-slate-600 mt-0.5">{item.accountReq}</p>
+                </div>
+              </div>
+            );
+          })()}
+
+          {/* Trigger / Action */}
+          <div className="bg-slate-50 rounded-xl p-4 mb-4 border border-slate-100 flex flex-col md:flex-row gap-4">
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-1.5">
+                <ZapIcon size={15} fill="currentColor" className="text-orange-500"/>
+                <span className="text-xs font-bold uppercase tracking-wider text-orange-500">טריגר נדרש</span>
+              </div>
+              <div className="font-bold text-slate-700">{item.trigger?.app}</div>
+              <code className="text-slate-500 text-xs mt-1 bg-white border border-slate-200 px-2 py-1 rounded block w-fit" dir="ltr">
+                {item.trigger?.name}
+              </code>
+            </div>
+            <div className="hidden md:flex items-center justify-center text-slate-300">
+              <ChevronLeft size={22}/>
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-1.5">
+                <TargetIcon size={15} className="text-blue-500"/>
+                <span className="text-xs font-bold uppercase tracking-wider text-blue-500">פעולה נדרשת</span>
+              </div>
+              <div className="font-bold text-slate-700">{item.action?.app}</div>
+              <code className="text-slate-500 text-xs mt-1 bg-white border border-slate-200 px-2 py-1 rounded block w-fit" dir="ltr">
+                {item.action?.name}
+              </code>
+            </div>
+          </div>
+
+          {/* Full scenario flow for multi-module templates */}
+          {item.scenarioFlow && (
+            <div className="bg-indigo-50 rounded-xl p-3 mb-4 border border-indigo-100">
+              <div className="text-xs font-bold text-indigo-500 mb-1">שרשרת מודולים מלאה:</div>
+              <div className="text-sm text-indigo-800 font-bold" dir="rtl">{item.scenarioFlow}</div>
+            </div>
+          )}
+
+          {/* Action buttons */}
+          <div className="flex flex-wrap gap-2 mb-3">
+            <button onClick={copyLink}
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-bold transition-all ${copied ? 'bg-green-100 text-green-700' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'}`}>
+              {copied ? <><CheckIcon/> הועתק!</> : <><ShareIcon/> העתק לינק</>}
+            </button>
+            <button onClick={shareWA}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-bold bg-green-100 text-green-700 hover:bg-green-200 transition-all">
+              <WAIcon/> שתף ב-WhatsApp
+            </button>
+            <button onClick={fetchGuide}
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-bold transition-all ${guideOpen ? 'bg-purple-100 text-purple-700' : 'bg-blue-50 text-blue-700 hover:bg-blue-100'}`}>
+              {guideLoading ? <Spinner size={15} color="#7c3aed"/> : <BookIcon/>}
+              {guideOpen && !guideLoading ? <><ChevronDown size={13}/> סגור מדריך</> : ' איך להגדיר?'}
+            </button>
+          </div>
+
+          {/* Connection guide accordion */}
+          {guideOpen && !guideLoading && guide && (
+            <div className="border-2 border-purple-100 rounded-2xl mb-3 overflow-hidden">
+              {/* Guide header */}
+              <div className="bg-gradient-to-l from-purple-600 to-blue-600 px-4 py-3 flex items-center gap-2">
+                <span className="text-white text-base">⚙️</span>
+                <span className="text-white font-black text-sm">מדריך הגדרה: {item.trigger?.app} → {item.action?.app}</span>
+                <span className="mr-auto bg-white/20 text-white text-xs px-2 py-0.5 rounded-full font-bold">{guide.length} צעדים</span>
+              </div>
+
+              <div className="p-4 space-y-3">
+                {guide.map((step, i) => {
+                  const typeStyles = {
+                    prepare: { bg: 'bg-amber-50', border: 'border-amber-200', badge: 'bg-amber-100 text-amber-800', icon: '📋', label: 'הכנה מראש' },
+                    connect: { bg: 'bg-blue-50',  border: 'border-blue-200',  badge: 'bg-blue-100 text-blue-800',  icon: '🔌', label: 'חיבור חשבון' },
+                    configure:{ bg: 'bg-violet-50',border:'border-violet-200',badge:'bg-violet-100 text-violet-800',icon:'🎛️',label:'הגדרות' },
+                    test:     { bg: 'bg-green-50', border: 'border-green-200', badge: 'bg-green-100 text-green-800', icon: '▶️', label: 'בדיקה והפעלה' }
+                  };
+                  const s = typeStyles[step.type] || typeStyles.configure;
+
+                  return (
+                    <div key={i} className={`${s.bg} border ${s.border} rounded-xl p-4`}>
+                      {/* Step header */}
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className={`text-xs font-black px-2 py-0.5 rounded-full ${s.badge}`}>
+                          {s.icon} {s.label}
+                        </span>
+                        <span className="text-slate-400 text-xs">שלב {i + 1}</span>
+                      </div>
+                      <div className="font-black text-slate-800 text-base mb-1">{step.title}</div>
+                      {step.description && (
+                        <p className="text-slate-600 text-sm leading-relaxed mb-2">{step.description}</p>
+                      )}
+
+                      {/* Navigation path breadcrumb */}
+                      {step.path && step.path.length > 0 && (
+                        <div className="flex flex-wrap items-center gap-1 mb-3 bg-white/70 rounded-lg px-3 py-2 border border-white">
+                          <span className="text-xs text-slate-400 ml-1">נווט:</span>
+                          {step.path.map((crumb, ci) => (
+                            <span key={ci} className="flex items-center gap-1">
+                              <code className="bg-slate-800 text-slate-100 text-xs px-2 py-0.5 rounded font-mono">{crumb}</code>
+                              {ci < step.path.length - 1 && <span className="text-slate-400 text-xs">›</span>}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Fields */}
+                      {step.fields && step.fields.length > 0 && (
+                        <div className="space-y-2 mb-2">
+                          {step.fields.map((f, fi) => (
+                            <div key={fi} className="bg-white rounded-lg border border-slate-200 overflow-hidden">
+                              <div className="flex items-center gap-2 px-3 py-2 bg-slate-700">
+                                <span className="text-slate-200 text-xs font-mono font-bold" dir="ltr">{f.field}</span>
+                                <span className="mr-auto text-slate-400 text-xs">← מלא כאן</span>
+                              </div>
+                              <div className="px-3 py-2">
+                                <span className="text-xs text-slate-500">📍 איפה מוצאים: </span>
+                                <span className="text-xs text-slate-700 font-medium">{f.where}</span>
+                                {f.warning && (
+                                  <div className="mt-1.5 flex items-start gap-1.5 bg-red-50 border border-red-200 rounded px-2 py-1.5">
+                                    <span className="text-red-500 text-xs flex-shrink-0">⚠️</span>
+                                    <span className="text-red-700 text-xs font-bold">{f.warning}</span>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Tip */}
+                      {step.tip && (
+                        <div className="flex items-start gap-2 bg-white/60 border border-current/10 rounded-lg px-3 py-2 mt-2">
+                          <span className="text-base flex-shrink-0">💡</span>
+                          <span className="text-slate-600 text-xs leading-relaxed">{step.tip}</span>
+                        </div>
+                      )}
+
+                      {/* Warning */}
+                      {step.warning && (
+                        <div className="flex items-start gap-2 bg-red-50 border border-red-200 rounded-lg px-3 py-2 mt-2">
+                          <span className="text-base flex-shrink-0">⚠️</span>
+                          <span className="text-red-700 text-xs font-bold leading-relaxed">{step.warning}</span>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Official docs */}
+              <div className="border-t border-purple-100 px-4 py-3 bg-slate-50 flex flex-wrap gap-2 items-center">
+                <span className="text-xs text-slate-400 font-bold">📚 תיעוד רשמי:</span>
+                {docUrls.trigger && (
+                  <a href={docUrls.trigger} target="_blank" rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-xs bg-orange-50 text-orange-700 border border-orange-200 px-3 py-1.5 rounded-lg font-bold hover:bg-orange-100 transition-colors">
+                    ⚡ {item.trigger?.app}
+                  </a>
+                )}
+                {docUrls.action && (
+                  <a href={docUrls.action} target="_blank" rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-xs bg-blue-50 text-blue-700 border border-blue-200 px-3 py-1.5 rounded-lg font-bold hover:bg-blue-100 transition-colors">
+                    🎯 {item.action?.app}
+                  </a>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Open in Make */}
+          <button onClick={() => window.open(item.link, '_blank', 'noopener,noreferrer')}
+            className="w-full flex items-center justify-center gap-2 bg-slate-900 text-white px-6 py-4 rounded-xl font-black hover:bg-blue-600 transition-colors group">
+            <span>פתח ב-Make ובחר את האפשרויות הנ"ל</span>
+            <ChevronLeft size={18}/>
+          </button>
+        </div>
+      );
+    };
+
+    // ─── API Key Setup Screen ───────────────────────────────────────────────
+    const ApiKeyScreen = ({ onSave }) => {
+      const [key, setKey] = useState('');
+      return (
+        <div className="min-h-screen bg-gradient-to-b from-blue-50 via-slate-50 to-white flex items-center justify-center p-6" dir="rtl">
+          <div className="bg-white rounded-3xl shadow-xl shadow-blue-100/50 border border-blue-100 p-10 max-w-md w-full fade-in-up">
+            <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 text-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg float">
+              <ZapIcon size={30} fill="currentColor"/>
+            </div>
+            <h2 className="text-3xl font-display text-center mb-3 text-slate-900">בניית אוטומציות בקלות</h2>
+            <p className="text-slate-500 text-center mb-2">אין צורך בידע טכני — פשוט תתאר מה אתה רוצה שיקרה</p>
+            <p className="text-slate-400 text-center text-sm mb-8">
+              כדי להתחיל, הכנס מפתח API מ-<a href="https://console.x.ai" target="_blank" className="text-blue-600 font-bold hover:underline">xAI Console</a>
+              <br/><span className="text-xs">(המפתח נשמר בדפדפן שלך בלבד — בטוח לגמרי)</span>
+            </p>
+            <input
+              type="password"
+              className="w-full border-2 border-slate-200 rounded-2xl px-5 py-4 text-base outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-400 mb-5 transition-all"
+              placeholder="xai-..."
+              value={key}
+              onChange={e => setKey(e.target.value)}
+              dir="ltr"
+            />
+            <button
+              onClick={() => { if (key.trim()) { localStorage.setItem('gemini_key', key.trim()); onSave(key.trim()); }}}
+              disabled={!key.trim()}
+              className="w-full bg-gradient-to-l from-blue-600 to-indigo-600 text-white py-4 rounded-2xl font-display text-lg hover:shadow-lg hover:shadow-blue-200 disabled:opacity-40 transition-all active:scale-[0.98]">
+              בוא נתחיל!
+            </button>
+          </div>
+        </div>
+      );
+    };
+
+    // ─── Knowledge Base Component ────────────────────────────────────────
+    const KnowledgeBase = ({ apiKey }) => {
+      const [articles, setArticles] = useState(null);
+      const [loading, setLoading] = useState(true);
+      const [selectedCategory, setSelectedCategory] = useState(null);
+      const [platformFilter, setPlatformFilter] = useState('all');
+      const [searchTerm, setSearchTerm] = useState('');
+      const [selectedArticle, setSelectedArticle] = useState(null);
+
+      useEffect(() => {
+        fetch('kb-articles.json').then(r => r.json())
+          .then(data => { setArticles(data); setLoading(false); })
+          .catch(() => setLoading(false));
+      }, []);
+
+      if (loading || !articles) return (
+        <div className="text-center py-24">
+          <Spinner size={50} color="#2563eb"/>
+          <p className="text-slate-500 text-xl font-display mt-6">טוען מאגר ידע...</p>
+        </div>
+      );
+
+      if (selectedArticle) {
+        const article = articles.find(a => a.id === selectedArticle);
+        if (!article) { setSelectedArticle(null); return null; }
+        return (
+          <div className="slide-in">
+            <button onClick={() => setSelectedArticle(null)}
+              className="flex items-center gap-2 text-slate-500 hover:text-slate-800 font-bold text-sm mb-6 hover:bg-slate-100 px-3 py-2 rounded-lg transition-all">
+              <ChevronLeft size={16}/> חזרה למאגר הידע
+            </button>
+            <div className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="text-xs font-bold px-3 py-1 rounded-full bg-blue-100 text-blue-800">
+                  {KB_CATEGORIES[article.category] || article.category}
+                </span>
+                <span className={`text-xs font-bold px-3 py-1 rounded-full ${article.platform === 'make' ? 'bg-purple-100 text-purple-800' : 'bg-green-100 text-green-800'}`}>
+                  {article.platform === 'make' ? 'Make.com' : 'ManyChat'}
+                </span>
+                <span className="text-xs text-slate-400 px-2 py-1">{article.wordCount} מילים</span>
+              </div>
+              <h2 className="text-3xl font-display text-slate-900 mb-4">{article.title}</h2>
+              {article.summary && (
+                <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6">
+                  <p className="text-blue-800 leading-relaxed">{article.summary}</p>
+                </div>
+              )}
+              {article.takeaways && article.takeaways.length > 0 && (
+                <div className="bg-amber-50 border border-amber-100 rounded-xl p-4 mb-6">
+                  <h4 className="font-bold text-amber-800 mb-2">נקודות מפתח</h4>
+                  <ul className="space-y-1">
+                    {article.takeaways.map((t, i) => (
+                      <li key={i} className="text-amber-700 text-sm flex items-start gap-2">
+                        <span className="text-amber-500 mt-0.5">•</span> {t}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              <div>
+                {article.content.split('\n\n').map((para, i) => (
+                  para.trim() && <p key={i} className="text-slate-700 leading-relaxed mb-4">{para}</p>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+      }
+
+      const filtered = articles.filter(a => {
+        if (selectedCategory && a.category !== selectedCategory) return false;
+        if (platformFilter !== 'all' && a.platform !== platformFilter) return false;
+        if (searchTerm) {
+          const term = searchTerm.toLowerCase();
+          return a.title.toLowerCase().includes(term) || (a.summary && a.summary.toLowerCase().includes(term));
+        }
+        return true;
+      });
+
+      return (
+        <div>
+          <div className="flex items-center justify-center gap-3 mb-6">
+            {[['all','📚 הכל'],['make','⚙️ Make.com'],['manychat','💬 ManyChat']].map(([val, label]) => (
+              <button key={val} onClick={() => { setPlatformFilter(val); setSelectedCategory(null); }}
+                className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all border-2 ${
+                  platformFilter === val
+                    ? 'bg-blue-600 border-blue-600 text-white shadow-lg shadow-blue-200'
+                    : 'bg-white border-slate-200 text-slate-600 hover:border-blue-300'
+                }`}>{label}</button>
+            ))}
+          </div>
+          <div className="relative mb-6">
+            <input type="text" placeholder="חפש מאמר..."
+              className="w-full bg-white border-2 border-slate-200 rounded-xl px-5 py-3 pr-12 outline-none focus:ring-2 focus:ring-blue-200 focus:border-blue-400 transition-all"
+              value={searchTerm} onChange={e => setSearchTerm(e.target.value)} />
+            <div className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400"><SearchIcon size={18}/></div>
+          </div>
+          <div className="flex flex-wrap gap-2 mb-8">
+            {Object.entries(KB_CATEGORIES)
+              .filter(([k]) => platformFilter === 'all' || k.startsWith(platformFilter === 'make' ? 'make-' : 'manychat-'))
+              .map(([id, name]) => {
+                const count = articles.filter(a => a.category === id).length;
+                if (!count) return null;
+                return (
+                  <button key={id} onClick={() => setSelectedCategory(selectedCategory === id ? null : id)}
+                    className={`px-4 py-2 rounded-2xl text-sm font-bold transition-all ${
+                      selectedCategory === id
+                        ? 'bg-gradient-to-l from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-200 scale-105'
+                        : 'bg-white border-2 border-slate-100 text-slate-700 hover:border-blue-200 hover:bg-blue-50'
+                    }`}>{name} <span className="opacity-70 mr-1 text-xs">{count}</span></button>
+                );
+              })}
+          </div>
+          <div className="grid gap-4">
+            {filtered.length === 0 ? (
+              <div className="text-center py-12 text-slate-400">
+                <p className="text-lg font-display">לא נמצאו מאמרים</p>
+                <p className="text-sm mt-1">נסה לחפש מונח אחר</p>
+              </div>
+            ) : filtered.map(article => (
+              <div key={article.id} onClick={() => setSelectedArticle(article.id)}
+                className="bg-white border border-slate-200 rounded-xl p-5 hover:border-blue-300 hover:shadow-md transition-all cursor-pointer group">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap gap-2 mb-2">
+                      <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">
+                        {KB_CATEGORIES[article.category] || article.category}
+                      </span>
+                      <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${article.platform === 'make' ? 'bg-purple-50 text-purple-700' : 'bg-green-50 text-green-700'}`}>
+                        {article.platform === 'make' ? 'Make' : 'ManyChat'}
+                      </span>
+                    </div>
+                    <h3 className="font-bold text-slate-800 group-hover:text-blue-700 transition-colors mb-1">{article.title}</h3>
+                    <p className="text-sm text-slate-500 line-clamp-2">{article.summary}</p>
+                  </div>
+                  <div className="text-xs text-slate-400 whitespace-nowrap">{article.wordCount} מילים</div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-6 text-sm text-slate-400">
+            {filtered.length} מאמרים {selectedCategory ? 'בקטגוריה' : 'סה"כ'}
+          </div>
+        </div>
+      );
+    };
+
+    // ─── Expert Chat (RAG) Component ─────────────────────────────────────
+    const ExpertChat = ({ apiKey }) => {
+      const [messages, setMessages] = useState([]);
+      const [input, setInput] = useState('');
+      const [loading, setLoading] = useState(false);
+      const [kbData, setKbData] = useState(null);
+      const [kbLoading, setKbLoading] = useState(true);
+      const chatEndRef = useRef(null);
+
+      useEffect(() => {
+        Promise.all([
+          fetch('kb-chunks.json').then(r => r.json()),
+          fetch('kb-index.json').then(r => r.json())
+        ]).then(([chunks, index]) => {
+          setKbData({ chunks, index });
+          setKbLoading(false);
+        }).catch(() => setKbLoading(false));
+      }, []);
+
+      useEffect(() => {
+        chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+      }, [messages]);
+
+      const sendMessage = async () => {
+        if (!input.trim() || loading || !kbData) return;
+        const question = input.trim();
+        setInput('');
+        setMessages(prev => [...prev, { role: 'user', text: question }]);
+        setLoading(true);
+        try {
+          const results = bm25Search(question, kbData.index, kbData.chunks, 5);
+          if (results.length === 0) {
+            setMessages(prev => [...prev, { role: 'assistant', text: 'לא מצאתי מידע רלוונטי. נסה לנסח אחרת.', sources: [] }]);
+          } else {
+            const answer = await askExpert(apiKey, question, results);
+            const sources = results.map(r => ({ title: r.title, id: r.articleId }));
+            setMessages(prev => [...prev, { role: 'assistant', text: answer, sources }]);
+          }
+        } catch (err) {
+          setMessages(prev => [...prev, { role: 'assistant', text: 'שגיאה: ' + (err.message || 'בעיית התחברות'), sources: [] }]);
+        }
+        setLoading(false);
+      };
+
+      const suggestions = ['איך מחברים Gmail ל-Make?','מה זה Error Handler?','איך בונים בוט WhatsApp?','מה זה Webhook?','איך עובדים עם פונקציות?'];
+
+      if (kbLoading) return (
+        <div className="text-center py-24">
+          <Spinner size={50} color="#2563eb"/>
+          <p className="text-slate-500 text-xl font-display mt-6">טוען מנוע חיפוש...</p>
+        </div>
+      );
+
+      return (
+        <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden" style={{minHeight:'500px'}}>
+          <div className="bg-gradient-to-l from-teal-600 to-emerald-600 px-6 py-4">
+            <div className="flex items-center gap-3">
+              <span className="text-2xl">🧠</span>
+              <div>
+                <h3 className="text-white font-display text-lg">שאל את המומחה</h3>
+                <p className="text-teal-100 text-xs">מבוסס על 108 מאמרים ומדריכים</p>
+              </div>
+            </div>
+          </div>
+          <div className="p-4 space-y-4 overflow-y-auto" style={{maxHeight:'400px',minHeight:'300px'}}>
+            {messages.length === 0 ? (
+              <div className="text-center py-8">
+                <p className="text-slate-400 mb-6">שאל כל שאלה על Make.com או ManyChat</p>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {suggestions.map((s, i) => (
+                    <button key={i} onClick={() => setInput(s)}
+                      className="bg-slate-50 border border-slate-200 text-slate-600 px-4 py-2 rounded-xl text-sm hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 transition-all">
+                      {s}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ) : messages.map((msg, i) => (
+              <div key={i} className={`flex ${msg.role === 'user' ? 'justify-start' : 'justify-end'}`}>
+                <div className={`max-w-[85%] rounded-2xl px-4 py-3 ${
+                  msg.role === 'user' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-800'
+                }`}>
+                  <div className="text-sm leading-relaxed whitespace-pre-wrap">{msg.text}</div>
+                  {msg.sources && msg.sources.length > 0 && (
+                    <div className="flex flex-wrap gap-1 mt-2 pt-2 border-t border-slate-200/50">
+                      {[...new Map(msg.sources.map(s => [s.id, s])).values()].map((s, j) => (
+                        <span key={j} className="text-xs bg-white/80 text-slate-600 px-2 py-0.5 rounded-full border border-slate-200">
+                          📄 {s.title.substring(0, 30)}{s.title.length > 30 ? '...' : ''}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+            {loading && (
+              <div className="flex justify-end">
+                <div className="bg-slate-100 rounded-2xl px-4 py-3"><Spinner size={18} color="#475569"/></div>
+              </div>
+            )}
+            <div ref={chatEndRef}/>
+          </div>
+          <div className="border-t border-slate-200 p-4">
+            <div className="flex gap-2">
+              <input type="text" placeholder="שאל שאלה..."
+                className="flex-1 border-2 border-slate-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-teal-200 focus:border-teal-400 transition-all"
+                value={input} onChange={e => setInput(e.target.value)}
+                onKeyDown={e => { if (e.key === 'Enter') sendMessage(); }}
+                disabled={loading}/>
+              <button onClick={sendMessage} disabled={loading || !input.trim()}
+                className="bg-gradient-to-l from-teal-600 to-emerald-600 text-white px-6 py-3 rounded-xl font-bold hover:shadow-lg disabled:opacity-40 transition-all">
+                {loading ? <Spinner size={18} color="white"/> : 'שלח'}
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    // ─── Pre-loaded Template Library ────────────────────────────────────────
+    const TEMPLATE_CATEGORIES = [
+      {
+        id: 'productivity',
+        name: '⚡ פרודוקטיביות',
+        color: 'blue',
+        templates: [
+          { name: 'שמירת קבצי Gmail ב-Google Drive', description: 'כל קובץ מצורף שמגיע למייל נשמר אוטומטית בתיקייה ב-Drive', app_slugs: ['gmail','google-drive'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'Google Drive',name:'Upload a File'}, accountReq: 'חשבון Gmail רגיל', triggerScope: 'personal' },
+          { name: 'יצירת משימה ב-Todoist מהודעת Gmail', description: 'מייל עם כוכבית → משימה חדשה אוטומטית', app_slugs: ['gmail','todoist'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'Todoist',name:'Create a Task'}, accountReq: 'חשבון Gmail + Todoist חינמי', triggerScope: 'personal' },
+          { name: 'גיבוי אוטומטי מ-Google Drive ל-Dropbox', description: 'קובץ חדש ב-Drive מועתק מיד ל-Dropbox', app_slugs: ['google-drive','dropbox'], trigger: {app:'Google Drive',name:'Watch Files in a Folder'}, action: {app:'Dropbox',name:'Upload a File'}, accountReq: 'חשבון Google + Dropbox חינמי', triggerScope: 'personal' },
+          { name: 'סיכום יומי של אירועי Google Calendar ל-Slack', description: 'כל בוקר ב-8:00 מקבלים סיכום יומן ל-Slack', app_slugs: ['google-calendar','slack'], trigger: {app:'Google Calendar',name:'Watch Events'}, action: {app:'Slack',name:'Create a Message'}, accountReq: 'חשבון Google + Slack (workspace)', triggerScope: 'personal' },
+          { name: 'שמירת תשובות Google Forms ב-Google Sheets', description: 'כל תשובה חדשה נכתבת בשורה חדשה בגיליון', app_slugs: ['google-forms','google-sheets'], trigger: {app:'Google Forms',name:'Watch Responses'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'חשבון Google רגיל', triggerScope: 'personal' },
+          { name: 'שליחת קובץ מGmail לNotion', description: 'מייל עם קובץ מצורף → דף חדש ב-Notion עם הקובץ', app_slugs: ['gmail','notion'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'Notion',name:'Create a Database Item'}, accountReq: 'Gmail + Notion חינמי', triggerScope: 'personal' },
+          { name: 'יצירת אירוע מAirtable', description: 'רשומה חדשה עם תאריך ב-Airtable → אירוע ב-Google Calendar', app_slugs: ['airtable','google-calendar'], trigger: {app:'Airtable',name:'Watch Records'}, action: {app:'Google Calendar',name:'Create an Event'}, accountReq: 'Airtable + Google חינמי', triggerScope: 'personal' },
+          { name: 'סנכרון Google Calendar ל-Notion', description: 'אירוע חדש ביומן → דף חדש ב-Notion עם כל הפרטים', app_slugs: ["google-calendar","notion"], trigger: {app:'Google Calendar',name:'Watch Events'}, action: {app:'Notion',name:'Create a Database Item'}, accountReq: 'Google + Notion חינמי', triggerScope: 'personal' },
+          { name: 'שמירת כוכביות Gmail ב-Notion', description: 'מייל עם כוכבית → דף ב-Notion לטיפול', app_slugs: ["gmail","notion"], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'Notion',name:'Create a Database Item'}, accountReq: 'Gmail + Notion חינמי', triggerScope: 'personal' },
+          { name: 'יצירת משימה ב-Trello מ-Gmail', description: 'מייל עם תגית מסוימת → כרטיס חדש ב-Trello', app_slugs: ["gmail","trello"], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'Trello',name:'Create a Card'}, accountReq: 'Gmail + Trello חינמי', triggerScope: 'personal' },
+          { name: 'סנכרון Notion ל-Google Sheets', description: 'רשומה חדשה ב-Notion → שורה חדשה ב-Sheets', app_slugs: ["notion","google-sheets"], trigger: {app:'Notion',name:'Watch Database Items'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'Notion + Google חינמי', triggerScope: 'personal' },
+          { name: 'העברת קבצים מ-Gmail ל-Dropbox', description: 'קובץ מצורף במייל → נשמר בתיקייה ב-Dropbox', app_slugs: ["gmail","dropbox"], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'Dropbox',name:'Upload a File'}, accountReq: 'Gmail + Dropbox חינמי', triggerScope: 'personal' },
+          { name: 'יצירת אירוע מ-Trello', description: 'כרטיס עם תאריך יעד → אירוע ב-Google Calendar', app_slugs: ["trello","google-calendar"], trigger: {app:'Trello',name:'Watch Cards'}, action: {app:'Google Calendar',name:'Create an Event'}, accountReq: 'Trello + Google חינמי', triggerScope: 'personal' },
+          { name: 'גיבוי Google Sheets ל-OneDrive', description: 'כל יום ב-23:00 → יצוא Sheets כ-Excel ושמירה ב-OneDrive', app_slugs: ["google-sheets","onedrive"], trigger: {app:'Google Sheets',name:'Search Rows'}, action: {app:'OneDrive',name:'Upload a File'}, accountReq: 'Google + Microsoft חינמי', triggerScope: 'personal' },
+          { name: 'שמירת הערות Slack ב-Google Sheets', description: 'הודעה עם אימוג׳י מסוים ב-Slack → שורה ב-Sheets', app_slugs: ["slack","google-sheets"], trigger: {app:'Slack',name:'Watch Messages'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'Slack + Google חינמי', triggerScope: 'personal' }
+        ]
+      },
+      {
+        id: 'social',
+        name: '📱 רשתות חברתיות',
+        color: 'pink',
+        templates: [
+          { name: 'שמירת פוסטי Instagram ב-Google Sheets', description: 'כל פוסט חדש שמעלים ל-Instagram נרשם בטבלה', app_slugs: ['instagram-for-business','google-sheets'], trigger: {app:'Instagram',name:'Watch Media'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'חשבון Instagram Business מחובר ל-Facebook Page', triggerScope: 'business_page' },
+          { name: 'פרסום אוטומטי מ-RSS ל-Twitter', description: 'מאמר חדש בבלוג → ציוץ אוטומטי', app_slugs: ['rss','twitter'], trigger: {app:'RSS',name:'Watch RSS Feed Items'}, action: {app:'Twitter',name:'Create a Tweet'}, accountReq: 'חשבון Twitter + Developer App', triggerScope: 'developer' },
+          { name: 'שיתוף פוסט Facebook ל-Telegram', description: 'פוסט חדש בדף → הודעה בערוץ Telegram', app_slugs: ['facebook-pages','telegram-bot'], trigger: {app:'Facebook Pages',name:'Watch Posts'}, action: {app:'Telegram Bot',name:'Send a Text Message'}, accountReq: 'דף Facebook שאתה Admin + בוט Telegram', triggerScope: 'business_page' },
+          { name: 'שמירת סרטוני YouTube שאהבתי לNotion', description: 'כל Like ב-YouTube נשמר בדאטאבייס', app_slugs: ['youtube','notion'], trigger: {app:'YouTube',name:'Watch Liked Videos'}, action: {app:'Notion',name:'Create a Database Item'}, accountReq: 'חשבון Google + Notion חינמי', triggerScope: 'personal' },
+          { name: 'התראת WhatsApp על תגובה חדשה ב-YouTube', description: 'מישהו הגיב על הסרטון שלך → הודעה ב-WhatsApp', app_slugs: ['youtube','green-api'], trigger: {app:'YouTube',name:'Watch New Comment'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'ערוץ YouTube + Green API', triggerScope: 'personal' },
+          { name: 'פרסום RSS ל-Facebook Page', description: 'מאמר חדש בבלוג → פוסט אוטומטי בדף הפייסבוק', app_slugs: ["rss","facebook-pages"], trigger: {app:'RSS',name:'Watch RSS Feed Items'}, action: {app:'Facebook Pages',name:'Create a Post'}, accountReq: 'דף Facebook + RSS feed', triggerScope: 'business_page' },
+          { name: 'שמירת ציוצים ב-Google Sheets', description: 'כל ציוץ חדש שלך → שורה ב-Sheets לניתוח', app_slugs: ["twitter","google-sheets"], trigger: {app:'Twitter',name:'Watch Tweets'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'Twitter + Google Sheets', triggerScope: 'developer' },
+          { name: 'פרסום Instagram ל-Pinterest', description: 'פוסט חדש באינסטגרם → Pin חדש בפינטרסט', app_slugs: ["instagram-for-business","pinterest"], trigger: {app:'Instagram',name:'Watch Media'}, action: {app:'Pinterest',name:'Create a Pin'}, accountReq: 'Instagram Business + Pinterest Business', triggerScope: 'business_page' },
+          { name: 'התראת Telegram על פוסט חדש בבלוג', description: 'פוסט חדש ב-WordPress → הודעה בערוץ Telegram', app_slugs: ["wordpress","telegram-bot"], trigger: {app:'WordPress',name:'Watch Posts'}, action: {app:'Telegram Bot',name:'Send a Text Message'}, accountReq: 'WordPress + בוט Telegram', triggerScope: 'admin' },
+          { name: 'סנכרון TikTok ל-Google Sheets', description: 'סרטון חדש ב-TikTok → מעקב בטבלה', app_slugs: ["tiktok","google-sheets"], trigger: {app:'TikTok',name:'Watch Videos'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'TikTok Business + Google', triggerScope: 'business_page' }
+        ]
+      },
+      {
+        id: 'communication',
+        name: '💬 תקשורת והודעות',
+        color: 'green',
+        templates: [
+          { name: 'העברת הודעות Slack לWhatsApp', description: 'הודעה בערוץ Slack ← התראה ב-WhatsApp', app_slugs: ['slack','green-api'], trigger: {app:'Slack',name:'Watch Public Channel Messages'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'Slack workspace + Green API', triggerScope: 'personal' },
+          { name: 'אימייל אוטומטי ללקוח אחרי טופס Typeform', description: 'מילאו טופס → אימייל תודה אוטומטי מ-Gmail', app_slugs: ['typeform','gmail'], trigger: {app:'Typeform',name:'Watch Responses'}, action: {app:'Gmail',name:'Send an Email'}, accountReq: 'Typeform חינמי + Gmail', triggerScope: 'personal' },
+          { name: 'סיכום הודעות Discord ב-Google Sheets', description: 'כל הודעה בערוץ Discord נרשמת בטבלה', app_slugs: ['discord','google-sheets'], trigger: {app:'Discord',name:'Watch Channel Messages'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'שרת Discord שאתה Admin + בוט Discord', triggerScope: 'admin' },
+          { name: 'התראת Telegram על פגישה ב-Calendly', description: 'לקוח קבע פגישה → הודעת Telegram מיידית', app_slugs: ['calendly','telegram-bot'], trigger: {app:'Calendly',name:'Watch Events'}, action: {app:'Telegram Bot',name:'Send a Text Message'}, accountReq: 'Calendly חינמי + בוט Telegram', triggerScope: 'personal' },
+          { name: 'שליחת SMS לעצמך על מייל דחוף', description: 'מייל עם "דחוף" בנושא → SMS מיידי מ-Twilio', app_slugs: ['gmail','twilio'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'Twilio',name:'Send an SMS'}, accountReq: 'Gmail + חשבון Twilio (מספר SMS)', triggerScope: 'personal' },
+          { name: 'העברת Telegram ל-Slack', description: 'הודעה בערוץ Telegram → הודעה ב-Slack', app_slugs: ["telegram-bot","slack"], trigger: {app:'Telegram Bot',name:'Watch Updates'}, action: {app:'Slack',name:'Create a Message'}, accountReq: 'בוט Telegram + Slack', triggerScope: 'personal' },
+          { name: 'התראת WhatsApp על מייל מלקוח', description: 'מייל מכתובת ספציפית → WhatsApp מיידי', app_slugs: ["gmail","green-api"], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'Gmail + Green API', triggerScope: 'personal' },
+          { name: 'סיכום Slack יומי ב-Gmail', description: 'כל ערב → סיכום הודעות Slack ליום נשלח למייל', app_slugs: ["slack","gmail"], trigger: {app:'Slack',name:'Search Messages'}, action: {app:'Gmail',name:'Send an Email'}, accountReq: 'Slack + Gmail', triggerScope: 'personal' },
+          { name: 'שליחת הודעות Teams מ-Airtable', description: 'רשומה חדשה ב-Airtable → הודעה ב-Microsoft Teams', app_slugs: ["airtable","microsoft-teams"], trigger: {app:'Airtable',name:'Watch Records'}, action: {app:'Microsoft Teams',name:'Create a Message'}, accountReq: 'Airtable + Microsoft 365', triggerScope: 'personal' },
+          { name: 'העברת WhatsApp ל-Google Sheets', description: 'כל הודעה נכנסת ב-WhatsApp → שורה ב-Sheets לתיעוד', app_slugs: ["green-api","google-sheets"], trigger: {app:'GREEN-API for WhatsApp',name:'Watch Incoming Messages'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'Green API + Google Sheets', triggerScope: 'personal' }
+        ]
+      },
+      {
+        id: 'crm',
+        name: '🤝 CRM ומכירות',
+        color: 'orange',
+        templates: [
+          { name: 'ליד חדש מטופס אינטרנטי ל-Airtable', description: 'טופס Typeform → שורה חדשה ב-Airtable CRM', app_slugs: ['typeform','airtable'], trigger: {app:'Typeform',name:'Watch Responses'}, action: {app:'Airtable',name:'Create a Record'}, accountReq: 'Typeform + Airtable חינמי', triggerScope: 'personal' },
+          { name: 'התראת WhatsApp על ליד חדש ב-HubSpot', description: 'נוצר contact חדש → הודעה מיידית ב-WhatsApp', app_slugs: ['hubspot','green-api'], trigger: {app:'HubSpot',name:'Watch Contacts'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'HubSpot CRM חינמי + Green API', triggerScope: 'personal' },
+          { name: 'יצירת עסקה ב-Pipedrive מ-Google Sheets', description: 'שורה חדשה בגיליון → עסקה חדשה ב-CRM', app_slugs: ['google-sheets','pipedrive'], trigger: {app:'Google Sheets',name:'Watch New Rows'}, action: {app:'Pipedrive',name:'Create a Deal'}, accountReq: 'Google Sheets + Pipedrive (יש חינמי)', triggerScope: 'personal' },
+          { name: 'שליחת אימייל פולואפ אחרי פגישת Calendly', description: '24 שעות אחרי פגישה → אימייל מותאם אישית', app_slugs: ['calendly','gmail'], trigger: {app:'Calendly',name:'Watch Events'}, action: {app:'Gmail',name:'Send an Email'}, accountReq: 'Calendly + Gmail', triggerScope: 'personal' },
+          { name: 'עדכון Notion מכל ליד חדש בטופס', description: 'טופס Google → רשומה חדשה בדאטאבייס Notion', app_slugs: ['google-forms','notion'], trigger: {app:'Google Forms',name:'Watch Responses'}, action: {app:'Notion',name:'Create a Database Item'}, accountReq: 'Google + Notion חינמי', triggerScope: 'personal' },
+          { name: 'ליד מ-Facebook ל-HubSpot', description: 'ליד חדש מ-Facebook Lead Ads → איש קשר חדש ב-HubSpot', app_slugs: ["facebook-lead-ads","hubspot"], trigger: {app:'Facebook Lead Ads',name:'Watch Leads'}, action: {app:'HubSpot',name:'Create a Contact'}, accountReq: 'Facebook Business + HubSpot חינמי', triggerScope: 'business_page' },
+          { name: 'סנכרון HubSpot ל-Google Sheets', description: 'איש קשר חדש ב-HubSpot → שורה ב-Sheets', app_slugs: ["hubspot","google-sheets"], trigger: {app:'HubSpot',name:'Watch Contacts'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'HubSpot חינמי + Google', triggerScope: 'personal' },
+          { name: 'ליד מטופס ל-Pipedrive', description: 'מילוי טופס Google → דיל חדש ב-Pipedrive', app_slugs: ["google-forms","pipedrive"], trigger: {app:'Google Forms',name:'Watch Responses'}, action: {app:'Pipedrive',name:'Create a Deal'}, accountReq: 'Google Forms + Pipedrive', triggerScope: 'personal' },
+          { name: 'התראת Slack על עסקה ב-HubSpot', description: 'עסקה שינתה שלב → התראה ב-Slack', app_slugs: ["hubspot","slack"], trigger: {app:'HubSpot',name:'Watch Deals'}, action: {app:'Slack',name:'Create a Message'}, accountReq: 'HubSpot + Slack', triggerScope: 'personal' },
+          { name: 'יצירת ליד ב-Airtable מ-Calendly', description: 'פגישה נקבעה ב-Calendly → ליד חדש ב-Airtable CRM', app_slugs: ["calendly","airtable"], trigger: {app:'Calendly',name:'Watch Events'}, action: {app:'Airtable',name:'Create a Record'}, accountReq: 'Calendly חינמי + Airtable', triggerScope: 'personal' },
+          { name: 'ליד מ-Typeform ל-Mailchimp', description: 'מילוי טופס → מנוי חדש ב-Mailchimp', app_slugs: ["typeform","mailchimp"], trigger: {app:'Typeform',name:'Watch Responses'}, action: {app:'Mailchimp',name:'Add a Subscriber'}, accountReq: 'Typeform + Mailchimp חינמי', triggerScope: 'personal' }
+        ]
+      },
+      {
+        id: 'ecommerce',
+        name: '🛒 חנויות ותשלומים',
+        color: 'purple',
+        templates: [
+          { name: 'התראת WhatsApp על הזמנה חדשה ב-Shopify', description: 'הזמנה חדשה בחנות → הודעת WhatsApp מיידית', app_slugs: ['shopify','green-api'], trigger: {app:'Shopify',name:'Watch Orders'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'חנות Shopify + Green API', triggerScope: 'admin' },
+          { name: 'שמירת תשלומי Stripe ב-Google Sheets', description: 'כל תשלום שהתקבל → שורה בטבלה', app_slugs: ['stripe','google-sheets'], trigger: {app:'Stripe',name:'Watch Events'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'חשבון Stripe + Google', triggerScope: 'personal' },
+          { name: 'אימייל תודה אחרי קנייה ב-WooCommerce', description: 'הזמנה הושלמה → אימייל אישי מ-Gmail', app_slugs: ['woocommerce','gmail'], trigger: {app:'WooCommerce',name:'Watch Orders'}, action: {app:'Gmail',name:'Send an Email'}, accountReq: 'אתר WordPress + WooCommerce', triggerScope: 'admin' },
+          { name: 'עדכון מלאי Airtable אחרי מכירה', description: 'מכירה ב-Shopify → עדכון כמות ב-Airtable', app_slugs: ['shopify','airtable'], trigger: {app:'Shopify',name:'Watch Orders'}, action: {app:'Airtable',name:'Update a Record'}, accountReq: 'חנות Shopify + Airtable', triggerScope: 'admin' },
+          { name: 'הודעת Telegram על החזר ב-PayPal', description: 'refund בחשבון PayPal → הודעה ב-Telegram', app_slugs: ['paypal','telegram-bot'], trigger: {app:'PayPal',name:'Watch Events'}, action: {app:'Telegram Bot',name:'Send a Text Message'}, accountReq: 'חשבון PayPal Business + בוט Telegram', triggerScope: 'business_page' },
+          { name: 'הזמנה ב-Shopify ל-Google Sheets', description: 'הזמנה חדשה → שורה ב-Sheets למעקב', app_slugs: ["shopify","google-sheets"], trigger: {app:'Shopify',name:'Watch Orders'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'Shopify + Google', triggerScope: 'admin' },
+          { name: 'הזמנה ב-WooCommerce ל-Slack', description: 'הזמנה חדשה → התראה ב-Slack', app_slugs: ["woocommerce","slack"], trigger: {app:'WooCommerce',name:'Watch Orders'}, action: {app:'Slack',name:'Create a Message'}, accountReq: 'WooCommerce + Slack', triggerScope: 'admin' },
+          { name: 'תשלום Stripe ל-Airtable', description: 'תשלום חדש → רשומה ב-Airtable', app_slugs: ["stripe","airtable"], trigger: {app:'Stripe',name:'Watch Events'}, action: {app:'Airtable',name:'Create a Record'}, accountReq: 'Stripe + Airtable', triggerScope: 'admin' },
+          { name: 'לקוח Shopify ל-Mailchimp', description: 'לקוח חדש → מנוי ב-Mailchimp', app_slugs: ["shopify","mailchimp"], trigger: {app:'Shopify',name:'Watch Customers'}, action: {app:'Mailchimp',name:'Add a Subscriber'}, accountReq: 'Shopify + Mailchimp חינמי', triggerScope: 'admin' },
+          { name: 'מוצר חדש ב-Shopify ל-Facebook', description: 'מוצר חדש → פוסט בדף Facebook', app_slugs: ["shopify","facebook-pages"], trigger: {app:'Shopify',name:'Watch Products'}, action: {app:'Facebook Pages',name:'Create a Post'}, accountReq: 'Shopify + דף Facebook', triggerScope: 'business_page' },
+          { name: 'החזר Stripe ל-Gmail', description: 'החזר כספי → מייל ללקוח עם אישור', app_slugs: ["stripe","gmail"], trigger: {app:'Stripe',name:'Watch Events'}, action: {app:'Gmail',name:'Send an Email'}, accountReq: 'Stripe + Gmail', triggerScope: 'admin' }
+        ]
+      },
+      {
+        id: 'ai',
+        name: '🤖 AI ואוטומציה חכמה',
+        color: 'violet',
+        templates: [
+          { name: 'סיכום מאמרים מ-RSS עם AI', description: 'מאמר חדש ב-RSS → GPT מסכם → נשלח ל-Telegram', app_slugs: ['rss','openai-gpt-3'], trigger: {app:'RSS',name:'Watch RSS Feed Items'}, action: {app:'OpenAI',name:'Create a Completion'}, accountReq: 'כתובת RSS + מפתח OpenAI', triggerScope: 'any' },
+          { name: 'מענה אוטומטי למיילים עם Claude', description: 'מייל נכנס → Claude יוצר טיוטת תשובה ב-Gmail', app_slugs: ['gmail','anthropic-claude'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'Anthropic Claude',name:'Create a Message'}, accountReq: 'Gmail + מפתח Anthropic API', triggerScope: 'personal' },
+          { name: 'תמלול הקלטות Dropbox עם Whisper', description: 'קובץ אודיו חדש ב-Dropbox → תמלול AI → Google Sheets', app_slugs: ['dropbox','openai-gpt-3'], trigger: {app:'Dropbox',name:'Watch Files'}, action: {app:'OpenAI',name:'Create a Transcription'}, accountReq: 'Dropbox + מפתח OpenAI', triggerScope: 'personal' },
+          { name: 'יצירת פוסט AI מפגישת Calendly', description: 'פגישה נקבעה → AI כותב פוסט LinkedIn בנושא הפגישה', app_slugs: ['calendly','openai-gpt-3'], trigger: {app:'Calendly',name:'Watch Events'}, action: {app:'OpenAI',name:'Create a Completion'}, accountReq: 'Calendly + OpenAI', triggerScope: 'personal' },
+          { name: 'ניתוח סנטימנט של הודעות Slack עם AI', description: 'הודעות בערוץ → AI מנתח טון ושומר ב-Sheets', app_slugs: ['slack','openai-gpt-3'], trigger: {app:'Slack',name:'Watch Public Channel Messages'}, action: {app:'OpenAI',name:'Create a Completion'}, accountReq: 'Slack workspace + OpenAI', triggerScope: 'personal' },
+          { name: 'תרגום מיילים עם Claude', description: 'מייל באנגלית → Claude מתרגם → נשלח כטיוטה בעברית', app_slugs: ["gmail","anthropic-claude"], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'Anthropic Claude',name:'Create a Message'}, accountReq: 'Gmail + Anthropic API', triggerScope: 'personal' },
+          { name: 'סיכום ישיבות עם Whisper + ChatGPT', description: 'קובץ אודיו חדש ב-Drive → תמלול Whisper → סיכום GPT → Notion', app_slugs: ["google-drive","openai-gpt-3"], trigger: {app:'Google Drive',name:'Watch Files'}, action: {app:'OpenAI',name:'Create a Transcription + Completion'}, scenarioFlow: 'Google Drive (קובץ חדש) → OpenAI Whisper (תמלול) → OpenAI GPT (סיכום) → Notion (שמירה)', accountReq: 'Google Drive + OpenAI API + Notion', triggerScope: 'personal' },
+          { name: 'יצירת תמונות AI מ-Airtable', description: 'בקשה חדשה ב-Airtable → DALL-E מייצר תמונה → נשמרת ב-Drive', app_slugs: ["airtable","openai-gpt-3"], trigger: {app:'Airtable',name:'Watch Records'}, action: {app:'OpenAI',name:'Generate an Image'}, accountReq: 'Airtable + OpenAI API', triggerScope: 'personal' },
+          { name: 'ניתוח סנטימנט לביקורות', description: 'ביקורת חדשה ב-Google Forms → AI מנתח סנטימנט → Google Sheets', app_slugs: ["google-forms","openai-gpt-3"], trigger: {app:'Google Forms',name:'Watch Responses'}, action: {app:'OpenAI',name:'Create a Completion'}, accountReq: 'Google Forms + OpenAI API', triggerScope: 'personal' },
+          { name: 'בוט FAQ אוטומטי ב-WhatsApp', description: 'שאלה נכנסת ב-WhatsApp → Claude מוצא תשובה מה-FAQ → משיב', app_slugs: ["green-api","anthropic-claude"], trigger: {app:'GREEN-API for WhatsApp',name:'Watch Incoming Messages'}, action: {app:'Anthropic Claude',name:'Create a Message'}, accountReq: 'Green API + Anthropic API', triggerScope: 'personal' },
+          { name: 'יצירת פוסט AI מ-RSS', description: 'מאמר חדש ב-RSS → AI מייצר פוסט בעברית → LinkedIn', app_slugs: ["rss","openai-gpt-3"], trigger: {app:'RSS',name:'Watch RSS Feed Items'}, action: {app:'OpenAI',name:'Create a Completion'}, scenarioFlow: 'RSS (מאמר חדש) → OpenAI (מייצר פוסט) → LinkedIn (מפרסם)', accountReq: 'RSS + OpenAI API + LinkedIn', triggerScope: 'personal' },
+          { name: 'מענה AI לטפסים', description: 'טופס Google → AI מנתח ומשיב אוטומטית ב-Gmail', app_slugs: ["google-forms","openai-gpt-3"], trigger: {app:'Google Forms',name:'Watch Responses'}, action: {app:'OpenAI → Gmail',name:'Generate Response → Send Email'}, scenarioFlow: 'Google Forms (תשובה חדשה) → OpenAI (מייצר תשובה מותאמת) → Gmail (שולח)', accountReq: 'Google Forms + OpenAI API + Gmail', triggerScope: 'personal' }
+        ]
+      },
+      {
+        id: 'data',
+        name: '📊 נתונים וטבלאות',
+        color: 'teal',
+        templates: [
+          { name: 'סנכרון Airtable ← Google Sheets', description: 'שורה חדשה ב-Sheets → רשומה חדשה ב-Airtable', app_slugs: ['google-sheets','airtable'], trigger: {app:'Google Sheets',name:'Watch New Rows'}, action: {app:'Airtable',name:'Create a Record'}, accountReq: 'Google + Airtable חינמי', triggerScope: 'personal' },
+          { name: 'גיבוי Notion ל-Google Sheets כל יום', description: 'דאטאבייס Notion → גיליון מעודכן יומי', app_slugs: ['notion','google-sheets'], trigger: {app:'Notion',name:'Watch Database Items'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'Notion + Google חינמי', triggerScope: 'personal' },
+          { name: 'שמירת שורה ב-Monday.com מטופס', description: 'טופס Google → פריט חדש בלוח Monday.com', app_slugs: ['google-forms','monday'], trigger: {app:'Google Forms',name:'Watch Responses'}, action: {app:'Monday.com',name:'Create an Item'}, accountReq: 'Google + Monday.com (יש חינמי)', triggerScope: 'personal' },
+          { name: 'העברת לידים מ-Typeform ל-ClickUp', description: 'ליד חדש מטופס → משימה ב-ClickUp', app_slugs: ['typeform','clickup'], trigger: {app:'Typeform',name:'Watch Responses'}, action: {app:'ClickUp',name:'Create a Task'}, accountReq: 'Typeform + ClickUp חינמי', triggerScope: 'personal' },
+          { name: 'שמירת נתוני Webhook ב-MySQL', description: 'בקשה נכנסת → שורה חדשה ב-MySQL', app_slugs: ['webhooks','mysql'], trigger: {app:'Webhooks',name:'Custom Webhook'}, action: {app:'MySQL',name:'Insert a Row'}, accountReq: 'ללא — Webhook חיצוני + מסד MySQL', triggerScope: 'webhook' },
+          { name: 'סנכרון Airtable ל-Google Sheets דו-כיווני', description: 'שינוי ב-Airtable → עדכון ב-Sheets וגם להפך', app_slugs: ["airtable","google-sheets"], trigger: {app:'Airtable',name:'Watch Records'}, action: {app:'Google Sheets',name:'Update a Row'}, accountReq: 'Airtable + Google חינמי', triggerScope: 'personal' },
+          { name: 'יצוא Notion ל-CSV יומי', description: 'כל ערב → כל הרשומות ב-Notion → קובץ CSV ב-Google Drive', app_slugs: ["notion","google-drive"], trigger: {app:'Notion',name:'Search Objects'}, action: {app:'Google Drive',name:'Upload a File'}, accountReq: 'Notion + Google Drive חינמי', triggerScope: 'personal' },
+          { name: 'מעקב מחירים מאתרים', description: 'כל שעה → HTTP module מושך מחיר → אם השתנה → WhatsApp', app_slugs: ["http","green-api"], trigger: {app:'HTTP',name:'Make a Request'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, scenarioFlow: 'Schedule (כל שעה) → HTTP (בודק מחיר) → Filter (השתנה?) → GREEN-API (התראה)', accountReq: 'Green API', triggerScope: 'personal' },
+          { name: 'גיבוי Airtable ל-Google Drive', description: 'כל שבוע → כל הרשומות ב-Airtable → JSON ב-Drive', app_slugs: ["airtable","google-drive"], trigger: {app:'Airtable',name:'Search Records'}, action: {app:'Google Drive',name:'Upload a File'}, accountReq: 'Airtable + Google Drive חינמי', triggerScope: 'personal' },
+          { name: 'איסוף נתונים מ-API ל-Sheets', description: 'כל יום → קריאת API חיצוני → שורות חדשות ב-Sheets', app_slugs: ["http","google-sheets"], trigger: {app:'HTTP',name:'Make a Request'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'Google Sheets', triggerScope: 'personal' }
+        ]
+      },
+      // ── Facebook Personal Workarounds ─────────────────────────────────────
+      {
+        id: 'facebook-personal',
+        name: '👤 Facebook אישי (ללא דף עסקי)',
+        color: 'indigo',
+        templates: [
+          // ── Unipile (Reliable Webhook) ──
+          { name: '🟢 הודעת Messenger חדשה → WhatsApp מיידי', description: 'Unipile מזהה הודעה חדשה ב-Messenger ושולח Webhook → WhatsApp תוך שניות. אמין 100%, לא תלוי במייל!', app_slugs: ['webhooks','green-api'], trigger: {app:'Webhooks',name:'Custom Webhook'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'Unipile (~$30/חודש) + Green API', triggerScope: 'webhook', tip: 'Unipile מתחבר ישירות לחשבון Facebook האישי שלך ושולח Webhooks על כל אירוע — הרבה יותר אמין מהתראות Gmail' },
+          { name: '🟢 מענה AI אוטומטי ל-Messenger', description: 'הודעה חדשה ב-Messenger (Unipile) → Claude כותב תשובה → שליחה חזרה דרך Unipile', app_slugs: ['webhooks','anthropic-claude'], trigger: {app:'Webhooks',name:'Custom Webhook'}, action: {app:'Anthropic Claude',name:'Create a Message'}, accountReq: 'Unipile (~$30/חודש) + Anthropic API', triggerScope: 'webhook', tip: 'אחרי שClaude כותב תשובה, מודול HTTP שולח אותה חזרה דרך Unipile API' },
+          { name: '🟢 שמירת כל הודעות Messenger ב-CRM', description: 'כל הודעה נכנסת (Unipile) → רשומה חדשה ב-Airtable עם שם, תוכן, תאריך', app_slugs: ['webhooks','airtable'], trigger: {app:'Webhooks',name:'Custom Webhook'}, action: {app:'Airtable',name:'Create a Record'}, accountReq: 'Unipile (~$30/חודש) + Airtable חינמי', triggerScope: 'webhook' },
+          { name: '🟢 התראה על תגובה לפוסט Facebook שלך', description: 'Unipile מזהה תגובה חדשה לפוסט → Telegram מיידי עם שם המגיב והתוכן', app_slugs: ['webhooks','telegram-bot'], trigger: {app:'Webhooks',name:'Custom Webhook'}, action: {app:'Telegram Bot',name:'Send a Text Message'}, accountReq: 'Unipile (~$30/חודש) + Telegram Bot', triggerScope: 'webhook' },
+          { name: '🟢 שמירת תגובות Facebook בטבלה', description: 'כל תגובה לפוסטים שלך → שורה ב-Sheets עם שם, תוכן, קישור לפוסט', app_slugs: ['webhooks','google-sheets'], trigger: {app:'Webhooks',name:'Custom Webhook'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'Unipile (~$30/חודש) + Google Sheets', triggerScope: 'webhook' },
+          // ── Gmail Fallback (Free but less reliable) ──
+          { name: '🆓 התראת WhatsApp על Messenger (דרך Gmail)', description: '⚠️ חינמי אבל לא תמיד אמין — Facebook שולח מייל התראה → Gmail → WhatsApp. מיילים יכולים להתעכב או לא להגיע.', app_slugs: ['gmail','green-api'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'Gmail + Green API — חינמי לגמרי', triggerScope: 'personal', tip: '⚠️ חשוב: ב-Facebook הפעל Settings → Notifications → Email → Messages ON. סנן: from:facebookmail.com. לתוצאות אמינות יותר — השתמש ב-Unipile (🟢)' },
+          { name: '🆓 תזכורת ימי הולדת → WhatsApp', description: 'מייל "birthdays today" מ-Facebook → WhatsApp. יחסית אמין כי Facebook שולח מייל יומי קבוע.', app_slugs: ['gmail','green-api'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'Gmail + Green API — חינמי', triggerScope: 'personal', tip: 'סנן: from:facebookmail.com subject:"birthday". מייל ימי הולדת הוא מהאמינים ביותר כי Facebook שולח אותו כל בוקר' },
+          { name: '🆓 הזמנות לאירועים → Google Calendar', description: 'מייל הזמנה לאירוע → אירוע ביומן. אמינות בינונית — לא כל הזמנה מייצרת מייל.', app_slugs: ['gmail','google-calendar'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'Google Calendar',name:'Create an Event'}, accountReq: 'Gmail + Google Calendar — חינמי', triggerScope: 'personal', tip: 'סנן: from:facebookmail.com subject:"invited you to"' },
+        ]
+      },
+      // ── LinkedIn Personal Workarounds ──────────────────────────────────────
+      {
+        id: 'linkedin',
+        name: '💼 LinkedIn אישי (עוקף מגבלות)',
+        color: 'sky',
+        templates: [
+          // ── Unipile (Reliable Webhook) ──
+          { name: '🟢 הודעת LinkedIn חדשה → WhatsApp מיידי', description: 'Unipile מזהה הודעה חדשה ב-LinkedIn ושולח Webhook → WhatsApp תוך שניות. אמין 100%, לא תלוי במייל!', app_slugs: ['webhooks','green-api'], trigger: {app:'Webhooks',name:'Custom Webhook'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'Unipile (~$30/חודש) + Green API', triggerScope: 'webhook', tip: 'Unipile מתחבר ישירות לחשבון LinkedIn האישי שלך. אמין הרבה יותר ממייל — מקבל גם את תוכן ההודעה המלא' },
+          { name: '🟢 מענה AI אוטומטי להודעות LinkedIn', description: 'הודעה חדשה (Unipile) → Claude כותב תשובה מקצועית → שליחה חזרה ישירות ל-LinkedIn', app_slugs: ['webhooks','anthropic-claude'], trigger: {app:'Webhooks',name:'Custom Webhook'}, action: {app:'Anthropic Claude',name:'Create a Message'}, accountReq: 'Unipile (~$30/חודש) + Anthropic API', triggerScope: 'webhook', tip: 'אחרי שClaude כותב תשובה, מודול HTTP שולח אותה חזרה דרך Unipile API ישירות ל-LinkedIn' },
+          { name: '🟢 שמירת כל הודעות LinkedIn ב-CRM', description: 'כל הודעה נכנסת/יוצאת (Unipile) → Airtable CRM עם שם, תוכן, תאריך, קישור לפרופיל', app_slugs: ['webhooks','airtable'], trigger: {app:'Webhooks',name:'Custom Webhook'}, action: {app:'Airtable',name:'Create a Record'}, accountReq: 'Unipile (~$30/חודש) + Airtable חינמי', triggerScope: 'webhook' },
+          { name: '🟢 התראה על תגובה לפוסט LinkedIn', description: 'Unipile מזהה תגובה חדשה → Telegram עם שם המגיב, תוכן התגובה, וקישור לפוסט', app_slugs: ['webhooks','telegram-bot'], trigger: {app:'Webhooks',name:'Custom Webhook'}, action: {app:'Telegram Bot',name:'Send a Text Message'}, accountReq: 'Unipile (~$30/חודש) + Telegram Bot', triggerScope: 'webhook' },
+          { name: '🟢 שמירת בקשות חיבור LinkedIn + AI analysis', description: 'בקשת חיבור חדשה (Unipile) → Claude מנתח את הפרופיל → Sheets עם ציון רלוונטיות', app_slugs: ['webhooks','anthropic-claude'], trigger: {app:'Webhooks',name:'Custom Webhook'}, action: {app:'Anthropic Claude',name:'Create a Message'}, accountReq: 'Unipile (~$30/חודש) + Anthropic API', triggerScope: 'webhook', tip: 'Claude יכול לנתח אם זה ליד רלוונטי, ספאם, או מגייס — ולתת ציון 1-10' },
+          // ── Phantombuster (Scraping) ──
+          { name: '🔄 סקרפינג LinkedIn Leads → Google Sheets', description: 'Phantombuster אוסף פרופילים מחיפוש/קבוצות → Webhook → שורה ב-Sheets', app_slugs: ['webhooks','google-sheets'], trigger: {app:'Webhooks',name:'Custom Webhook'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'Phantombuster (בתשלום, יש trial) + Google Sheets', triggerScope: 'webhook', tip: 'Phantombuster יכול לאסוף פרופילים מחיפוש LinkedIn, קבוצות, ותגובות לפוסטים' },
+          // ── Gmail Fallback (Free but less reliable) ──
+          { name: '🆓 התראת WhatsApp על הודעת LinkedIn (Gmail)', description: '⚠️ חינמי אבל לא תמיד אמין — LinkedIn שולח מייל → Gmail → WhatsApp. מיילים יכולים להתעכב.', app_slugs: ['gmail','green-api'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'Gmail + Green API — חינמי', triggerScope: 'personal', tip: '⚠️ ב-LinkedIn הפעל: Settings → Notifications → Email → Messages ON. סנן: from:linkedin.com. לתוצאות אמינות — השתמש ב-Unipile (🟢)' },
+          { name: '🆓 שמירת בקשות חיבור בטבלה (Gmail)', description: '⚠️ אמינות בינונית — מייל "wants to connect" → Sheets. LinkedIn לא תמיד שולח מייל על כל בקשה.', app_slugs: ['gmail','google-sheets'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'Gmail + Google Sheets — חינמי', triggerScope: 'personal', tip: 'סנן: from:linkedin.com subject:"wants to connect". ⚠️ לא תמיד מגיע מייל — לתוצאות אמינות השתמש ב-Unipile (🟢)' },
+          { name: '🆓 סיכום AI של מיילי LinkedIn יומי', description: 'כל מיילי LinkedIn מ-24 שעות → GPT מסכם → Telegram. טוב לסקירה יומית כללית.', app_slugs: ['gmail','openai-gpt-3'], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'OpenAI',name:'Create a Completion'}, accountReq: 'Gmail + OpenAI API', triggerScope: 'personal', tip: 'סנן: from:linkedin.com newer_than:1d. הסיכום היומי יחסית אמין כי אם גם חלק מהמיילים לא הגיעו — מקבלים תמונה כללית' },
+        ]
+      },
+      // ── Scheduling & Reminders ─────────────────────────────────────────────
+      {
+        id: 'schedule',
+        name: '⏰ תזמון ותזכורות',
+        color: 'rose',
+        templates: [
+          { name: 'תזכורת WhatsApp יומית ב-8 בבוקר', description: 'כל יום ב-8:00 מקבלים הודעת WhatsApp מותאמת', app_slugs: ['webhooks','green-api'], trigger: {app:'Schedule',name:'Every Day'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'רק Green API — ללא צורך בחשבון נוסף', triggerScope: 'any' },
+          { name: 'סיכום שבועי של פגישות ל-WhatsApp', description: 'כל ראשון ב-7:00 → רשימת הפגישות של השבוע מ-Calendar', app_slugs: ['google-calendar','green-api'], trigger: {app:'Google Calendar',name:'Watch Events'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'Google Calendar + Green API', triggerScope: 'personal' },
+          { name: 'תזכורת Telegram שעה לפני פגישה', description: 'אירוע מתקרב → הודעת Telegram עם פרטים', app_slugs: ['google-calendar','telegram-bot'], trigger: {app:'Google Calendar',name:'Watch Events'}, action: {app:'Telegram Bot',name:'Send a Text Message'}, accountReq: 'Google Calendar + Telegram Bot', triggerScope: 'personal' },
+          { name: 'תזכורת לעדכן CRM כל יום ב-17:00', description: 'תזכורת יומית ב-Slack: "עדכנת את ה-CRM?"', app_slugs: ['webhooks','slack'], trigger: {app:'Schedule',name:'Every Day'}, action: {app:'Slack',name:'Create a Message'}, accountReq: 'Slack workspace', triggerScope: 'personal' },
+          { name: 'דוח מכירות שבועי מ-Sheets ל-Email', description: 'כל ראשון — סיכום מGoogleSheets נשלח במייל', app_slugs: ['google-sheets','gmail'], trigger: {app:'Schedule',name:'Every Week'}, action: {app:'Gmail',name:'Send an Email'}, accountReq: 'Google Sheets + Gmail', triggerScope: 'personal' },
+          { name: 'דוח יומי מ-Google Analytics', description: 'כל בוקר → סטטיסטיקות מהאתר → Slack/Gmail', app_slugs: ["google-analytics","slack"], trigger: {app:'Google Analytics',name:'Get Report'}, action: {app:'Slack',name:'Create a Message'}, accountReq: 'Google Analytics + Slack', triggerScope: 'personal' },
+          { name: 'תזכורת שבועית על משימות פתוחות', description: 'כל ראשון → סריקת משימות ב-Trello → סיכום ב-Gmail', app_slugs: ["trello","gmail"], trigger: {app:'Trello',name:'Search Cards'}, action: {app:'Gmail',name:'Send an Email'}, accountReq: 'Trello + Gmail חינמי', triggerScope: 'personal' },
+          { name: 'ניקוי Google Sheets אוטומטי', description: 'כל חודש → מחיקת שורות ישנות מעל 90 יום', app_slugs: ["google-sheets"], trigger: {app:'Google Sheets',name:'Search Rows'}, action: {app:'Google Sheets',name:'Delete a Row'}, accountReq: 'Google Sheets', triggerScope: 'personal' },
+          { name: 'סיכום שבועי של מכירות', description: 'כל ראשון → סכום הזמנות מ-Shopify → דוח ב-Slack', app_slugs: ["shopify","slack"], trigger: {app:'Shopify',name:'Search Orders'}, action: {app:'Slack',name:'Create a Message'}, accountReq: 'Shopify + Slack', triggerScope: 'admin' },
+          { name: 'בדיקת זמינות אתר', description: 'כל 5 דקות → HTTP HEAD לאתר → אם נפל → WhatsApp', app_slugs: ["http","green-api"], trigger: {app:'HTTP',name:'Make a Request'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, scenarioFlow: 'Schedule (כל 5 דקות) → HTTP (בודק אתר) → Filter (HTTP != 200?) → GREEN-API (התראה)', accountReq: 'Green API', triggerScope: 'personal' }
+        ]
+      },
+      // ── Content & Blog ─────────────────────────────────────────────────────
+      {
+        id: 'content',
+        name: '✍️ תוכן ובלוגים',
+        color: 'amber',
+        templates: [
+          { name: 'פרסום אוטומטי מ-WordPress ל-Telegram', description: 'פוסט חדש בבלוג → הודעה בערוץ Telegram', app_slugs: ['wordpress','telegram-bot'], trigger: {app:'WordPress',name:'Watch Posts'}, action: {app:'Telegram Bot',name:'Send a Text Message'}, accountReq: 'אתר WordPress (Admin) + Telegram Bot', triggerScope: 'admin' },
+          { name: 'שמירת מאמרי RSS מועדפים ב-Notion', description: 'מאמר חדש מבלוג שעוקבים → דף ב-Notion', app_slugs: ['rss','notion'], trigger: {app:'RSS',name:'Watch RSS Feed Items'}, action: {app:'Notion',name:'Create a Database Item'}, accountReq: 'כתובת RSS (חינמי) + Notion', triggerScope: 'any' },
+          { name: 'יצירת טיוטת בלוג עם AI מכותרת', description: 'שורה חדשה ב-Sheets עם כותרת → Claude כותב טיוטה → Google Docs', app_slugs: ['google-sheets','anthropic-claude'], trigger: {app:'Google Sheets',name:'Watch New Rows'}, action: {app:'Anthropic Claude',name:'Create a Message'}, accountReq: 'Google Sheets + Anthropic API key', triggerScope: 'personal' },
+          { name: 'שיתוף פוסט RSS ב-WhatsApp', description: 'מאמר חדש → הודעת WhatsApp מפורמטת עם כותרת+לינק', app_slugs: ['rss','green-api'], trigger: {app:'RSS',name:'Watch RSS Feed Items'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'כתובת RSS + Green API', triggerScope: 'any' },
+          { name: 'ניטור אזכורים ב-Google Alerts ל-Sheets', description: 'Google Alert על המותג שלך → RSS → שורה בטבלה', app_slugs: ['rss','google-sheets'], trigger: {app:'RSS',name:'Watch RSS Feed Items'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'Google Alerts (חינמי) + Google Sheets', triggerScope: 'any', tip: 'צור Google Alert ← קבל RSS URL ← הדבק בטריגר' },
+          { name: 'פרסום WordPress ל-LinkedIn', description: 'פוסט חדש ב-WordPress → שיתוף אוטומטי ב-LinkedIn', app_slugs: ["wordpress","linkedin"], trigger: {app:'WordPress',name:'Watch Posts'}, action: {app:'LinkedIn',name:'Create a Share Update'}, accountReq: 'WordPress + LinkedIn', triggerScope: 'personal' },
+          { name: 'סיכום מאמר AI + פרסום', description: 'מאמר חדש ב-RSS → GPT מסכם → פוסט Facebook', app_slugs: ["rss","openai-gpt-3"], trigger: {app:'RSS',name:'Watch RSS Feed Items'}, action: {app:'OpenAI → Facebook Pages',name:'Summarize → Post'}, scenarioFlow: 'RSS (מאמר) → OpenAI (סיכום) → Facebook Pages (פרסום)', accountReq: 'RSS + OpenAI API + Facebook Page', triggerScope: 'business_page' },
+          { name: 'יצירת newsletter מ-Notion', description: 'מאמרים מסומנים ב-Notion → newsletter אוטומטי ב-Mailchimp', app_slugs: ["notion","mailchimp"], trigger: {app:'Notion',name:'Watch Database Items'}, action: {app:'Mailchimp',name:'Create a Campaign'}, accountReq: 'Notion + Mailchimp חינמי', triggerScope: 'personal' },
+          { name: 'פרסום אוטומטי ב-Buffer', description: 'שורה חדשה ב-Google Sheets → פוסט מתוזמן ב-Buffer', app_slugs: ["google-sheets","buffer"], trigger: {app:'Google Sheets',name:'Watch New Rows'}, action: {app:'Buffer',name:'Create a Post'}, accountReq: 'Google Sheets + Buffer חינמי', triggerScope: 'personal' },
+          { name: 'תמלול פודקאסט אוטומטי', description: 'קובץ אודיו ב-Drive → Whisper מתמלל → Notion', app_slugs: ["google-drive","openai-gpt-3"], trigger: {app:'Google Drive',name:'Watch Files'}, action: {app:'OpenAI Whisper',name:'Create a Transcription'}, scenarioFlow: 'Google Drive (קובץ חדש) → OpenAI Whisper (תמלול) → Notion (שמירה)', accountReq: 'Google Drive + OpenAI API + Notion', triggerScope: 'personal' }
+        ]
+      },
+      // ── Forms & Surveys ────────────────────────────────────────────────────
+      {
+        id: 'forms',
+        name: '📝 טפסים וסקרים',
+        color: 'cyan',
+        templates: [
+          { name: 'שליחת PDF ללקוח אחרי מילוי טופס', description: 'טופס Google → יצירת PDF אוטומטי → שליחה במייל', app_slugs: ['google-forms','gmail'], trigger: {app:'Google Forms',name:'Watch Responses'}, action: {app:'Gmail',name:'Send an Email'}, accountReq: 'Google חינמי', triggerScope: 'personal' },
+          { name: 'רישום לקוח מטופס Typeform ל-Mailchimp', description: 'ליד מילא טופס → נרשם לרשימת דיוור', app_slugs: ['typeform','mailchimp'], trigger: {app:'Typeform',name:'Watch Responses'}, action: {app:'Mailchimp',name:'Add/Update a Subscriber'}, accountReq: 'Typeform + Mailchimp (יש חינמי)', triggerScope: 'personal' },
+          { name: 'הוספת שורה ב-Notion מכל מילוי טופס', description: 'תשובה חדשה ב-Google Forms → רשומה ב-Notion', app_slugs: ['google-forms','notion'], trigger: {app:'Google Forms',name:'Watch Responses'}, action: {app:'Notion',name:'Create a Database Item'}, accountReq: 'Google + Notion חינמי', triggerScope: 'personal' },
+          { name: 'הודעת WhatsApp על ליד חדש מטופס', description: 'מישהו מילא טופס → הודעת WhatsApp מיידית אליך', app_slugs: ['typeform','green-api'], trigger: {app:'Typeform',name:'Watch Responses'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'Typeform + Green API', triggerScope: 'personal' },
+          { name: 'יצירת אירוע ביומן מטופס הרשמה', description: 'נרשמו לאירוע בטופס → אירוע חדש ב-Google Calendar', app_slugs: ['google-forms','google-calendar'], trigger: {app:'Google Forms',name:'Watch Responses'}, action: {app:'Google Calendar',name:'Create an Event'}, accountReq: 'Google חינמי', triggerScope: 'personal' },
+          { name: 'טופס רישום ל-Airtable + Gmail', description: 'מילוי טופס → רשומה ב-Airtable + מייל אישור', app_slugs: ["google-forms","airtable"], trigger: {app:'Google Forms',name:'Watch Responses'}, action: {app:'Airtable → Gmail',name:'Create Record → Send Email'}, scenarioFlow: 'Google Forms → Airtable (רשומה) → Gmail (מייל אישור)', accountReq: 'Google Forms + Airtable + Gmail', triggerScope: 'personal' },
+          { name: 'טופס Typeform ל-Notion', description: 'תשובה ב-Typeform → דף ב-Notion', app_slugs: ["typeform","notion"], trigger: {app:'Typeform',name:'Watch Responses'}, action: {app:'Notion',name:'Create a Database Item'}, accountReq: 'Typeform חינמי + Notion', triggerScope: 'personal' },
+          { name: 'טופס Jotform ל-Google Sheets', description: 'תשובה ב-Jotform → שורה ב-Sheets', app_slugs: ["jotform","google-sheets"], trigger: {app:'JotForm',name:'Watch Submissions'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'JotForm חינמי + Google', triggerScope: 'personal' },
+          { name: 'סקר ל-Slack', description: 'תשובה חדשה ל-Google Forms → הודעה ב-Slack', app_slugs: ["google-forms","slack"], trigger: {app:'Google Forms',name:'Watch Responses'}, action: {app:'Slack',name:'Create a Message'}, accountReq: 'Google Forms + Slack', triggerScope: 'personal' },
+          { name: 'טופס Tally ל-HubSpot', description: 'טופס Tally → ליד חדש ב-HubSpot CRM', app_slugs: ["webhooks","hubspot"], trigger: {app:'Webhooks',name:'Custom Webhook'}, action: {app:'HubSpot',name:'Create a Contact'}, accountReq: 'Tally חינמי + HubSpot חינמי', triggerScope: 'personal' }
+        ]
+      },
+      // ── Ads & Lead Gen ────────────────────────────────────────────────────
+      {
+        id: 'ads',
+        name: '🎯 פרסום ולידים',
+        color: 'red',
+        templates: [
+          { name: 'ליד מ-Facebook Lead Ads ל-WhatsApp מיידי', description: 'מישהו מילא טופס ליד ב-Facebook → הודעת WhatsApp אליך תוך שניות', app_slugs: ['facebook-lead-ads','green-api'], trigger: {app:'Facebook Lead Ads',name:'Watch New Leads'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'דף Facebook עסקי (Admin) + קמפיין Lead Ads + Green API', triggerScope: 'business_page' },
+          { name: 'ליד מ-Facebook ל-Airtable CRM', description: 'כל ליד חדש מקמפיין Facebook → שורה ב-CRM', app_slugs: ['facebook-lead-ads','airtable'], trigger: {app:'Facebook Lead Ads',name:'Watch New Leads'}, action: {app:'Airtable',name:'Create a Record'}, accountReq: 'דף Facebook עסקי (Admin) + Airtable', triggerScope: 'business_page' },
+          { name: 'ליד מ-Facebook ל-Google Sheets + מייל אוטומטי', description: 'ליד חדש → שורה ב-Sheets + אימייל תודה ללקוח', app_slugs: ['facebook-lead-ads','google-sheets'], trigger: {app:'Facebook Lead Ads',name:'Watch New Leads'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'דף Facebook עסקי + Google', triggerScope: 'business_page' },
+          { name: 'ליד מ-Facebook ל-Mailerlite לדיוור', description: 'ליד חדש → נרשם אוטומטית לרשימת דיוור', app_slugs: ['facebook-lead-ads','mailerlite'], trigger: {app:'Facebook Lead Ads',name:'Watch New Leads'}, action: {app:'Mailerlite',name:'Add a Subscriber'}, accountReq: 'דף Facebook עסקי + Mailerlite (יש חינמי)', triggerScope: 'business_page' },
+          { name: 'ליד מ-Facebook ל-HubSpot CRM', description: 'ליד חדש מ-Facebook Ads → Contact חדש ב-HubSpot', app_slugs: ['facebook-lead-ads','hubspot'], trigger: {app:'Facebook Lead Ads',name:'Watch New Leads'}, action: {app:'HubSpot',name:'Create/Update a Contact'}, accountReq: 'דף Facebook עסקי + HubSpot CRM חינמי', triggerScope: 'business_page' },
+          { name: 'התראת Telegram על ליד חדש מ-Google Ads', description: 'ליד חדש מקמפיין Google → הודעת Telegram', app_slugs: ['google-ads','telegram-bot'], trigger: {app:'Google Ads',name:'Watch New Leads'}, action: {app:'Telegram Bot',name:'Send a Text Message'}, accountReq: 'חשבון Google Ads + Telegram Bot', triggerScope: 'business_page' },
+          { name: 'ליד Facebook ל-Google Sheets + WhatsApp', description: 'ליד חדש → שורה ב-Sheets + הודעת WhatsApp מיידית', app_slugs: ["facebook-lead-ads","google-sheets"], trigger: {app:'Facebook Lead Ads',name:'Watch Leads'}, action: {app:'Google Sheets → GREEN-API',name:'Add Row → Send WhatsApp'}, scenarioFlow: 'Facebook Lead Ads → Google Sheets (שמירה) → GREEN-API (WhatsApp ללקוח)', accountReq: 'Facebook Business + Google + Green API', triggerScope: 'business_page' },
+          { name: 'דוח Google Ads יומי', description: 'כל בוקר → נתוני קמפיין → סיכום ב-Slack', app_slugs: ["google-ads","slack"], trigger: {app:'Google Ads',name:'Get Campaign Stats'}, action: {app:'Slack',name:'Create a Message'}, accountReq: 'Google Ads + Slack', triggerScope: 'admin' },
+          { name: 'ליד Facebook ל-Mailchimp', description: 'ליד חדש → מנוי אוטומטי ב-Mailchimp', app_slugs: ["facebook-lead-ads","mailchimp"], trigger: {app:'Facebook Lead Ads',name:'Watch Leads'}, action: {app:'Mailchimp',name:'Add a Subscriber'}, accountReq: 'Facebook Business + Mailchimp', triggerScope: 'business_page' },
+          { name: 'סנכרון לידים לCRM', description: 'ליד מ-Facebook/Google → Airtable CRM + מייל', app_slugs: ["facebook-lead-ads","airtable"], trigger: {app:'Facebook Lead Ads',name:'Watch Leads'}, action: {app:'Airtable',name:'Create a Record'}, accountReq: 'Facebook Business + Airtable', triggerScope: 'business_page' }
+        ]
+      },
+      // ── Audio, Video & Media ──────────────────────────────────────────────
+      {
+        id: 'media',
+        name: '🎙️ אודיו, וידאו ומדיה',
+        color: 'fuchsia',
+        templates: [
+          { name: 'יצירת קול AI מטקסט ב-Google Sheets', description: 'שורה חדשה עם טקסט → ElevenLabs יוצר אודיו → נשמר ב-Google Drive', app_slugs: ['google-sheets','elevenlabs'], trigger: {app:'Google Sheets',name:'Watch New Rows'}, action: {app:'ElevenLabs',name:'Generate Audio'}, accountReq: 'Google Sheets + מפתח ElevenLabs (יש חינמי מוגבל)', triggerScope: 'personal' },
+          { name: 'תמלול הקלטת פגישה עם AI', description: 'קובץ אודיו חדש ב-Google Drive → OpenAI Whisper מתמלל → Notion', app_slugs: ['google-drive','openai-gpt-3'], trigger: {app:'Google Drive',name:'Watch Files in a Folder'}, action: {app:'OpenAI',name:'Create a Transcription'}, accountReq: 'Google Drive + OpenAI API', triggerScope: 'personal' },
+          { name: 'יצירת עיצוב Canva מ-Airtable', description: 'רשומה חדשה עם כותרת ותמונה → עיצוב אוטומטי ב-Canva', app_slugs: ['airtable','canva'], trigger: {app:'Airtable',name:'Watch Records'}, action: {app:'Canva',name:'Create a Design'}, accountReq: 'Airtable + Canva (Pro מומלץ)', triggerScope: 'personal' },
+          { name: 'סיכום AI של סרטון YouTube', description: 'סרטון חדש בערוץ שלך → AI מסכם את התוכן → Notion', app_slugs: ['youtube','openai-gpt-3'], trigger: {app:'YouTube',name:'Watch New Videos'}, action: {app:'OpenAI',name:'Create a Completion'}, accountReq: 'ערוץ YouTube + OpenAI API', triggerScope: 'personal' },
+          { name: 'הקלטת קול אוטומטית מפגישת Calendly', description: 'פגישה נקבעה → ElevenLabs יוצר הודעה קולית אישית → WhatsApp', app_slugs: ['calendly','elevenlabs'], trigger: {app:'Calendly',name:'Watch Events'}, action: {app:'ElevenLabs',name:'Generate Audio'}, accountReq: 'Calendly + ElevenLabs API', triggerScope: 'personal' },
+        ]
+      },
+      // ── Customer Support ──────────────────────────────────────────────────
+      {
+        id: 'support',
+        name: '🎧 שירות לקוחות',
+        color: 'emerald',
+        templates: [
+          { name: 'פתיחת טיקט ב-Freshdesk מטופס', description: 'מילוי טופס Google → טיקט חדש ב-Freshdesk', app_slugs: ['google-forms','freshdesk'], trigger: {app:'Google Forms',name:'Watch Responses'}, action: {app:'Freshdesk',name:'Create a Ticket'}, accountReq: 'Google Forms + Freshdesk (יש חינמי)', triggerScope: 'personal' },
+          { name: 'התראת WhatsApp על שיחה חדשה ב-Intercom', description: 'לקוח פתח שיחה → הודעת WhatsApp מיידית אליך', app_slugs: ['intercom','green-api'], trigger: {app:'Intercom',name:'Watch Conversations'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'Intercom + Green API', triggerScope: 'admin' },
+          { name: 'מענה AI אוטומטי לטיקטים ב-Zendesk', description: 'טיקט חדש → Claude מנתח ויוצר טיוטת תשובה → Zendesk', app_slugs: ['zendesk','anthropic-claude'], trigger: {app:'Zendesk',name:'Watch Tickets'}, action: {app:'Anthropic Claude',name:'Create a Message'}, accountReq: 'Zendesk + Anthropic API', triggerScope: 'admin' },
+          { name: 'שמירת שיחות Intercom ב-Google Sheets', description: 'שיחה נסגרה ב-Intercom → סיכום ב-Sheets לניתוח', app_slugs: ['intercom','google-sheets'], trigger: {app:'Intercom',name:'Watch Conversations'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'Intercom + Google Sheets', triggerScope: 'admin' },
+          { name: 'סיכום AI של טיקטים יומי', description: 'כל יום ב-18:00 → AI מסכם את כל הטיקטים של היום → Slack', app_slugs: ['freshdesk','openai-gpt-3'], trigger: {app:'Freshdesk',name:'Watch Tickets'}, action: {app:'OpenAI',name:'Create a Completion'}, accountReq: 'Freshdesk + OpenAI API', triggerScope: 'admin' },
+        ]
+      },
+      {
+        id: 'personal-learning',
+        name: '🧠 למידה אישית',
+        color: 'violet',
+        templates: [
+          { name: 'שיעור יומי ב-WhatsApp', description: 'כל בוקר מקבלים טיפ קצר (30 שניות קריאה) בנושא שבחרתם — אנגלית, פיננסים, בישול, צילום או כל נושא אחר. AI מייצר תוכן מותאם שמתקדם מיום ליום', app_slugs: ['openai-gpt-3'], trigger: {app:'OpenAI',name:'Create a Completion'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, scenarioFlow: 'Schedule (כל יום ב-8:00) → OpenAI (יוצר שיעור) → GREEN-API (שולח WhatsApp)', accountReq: 'OpenAI API + Green API (WhatsApp)', triggerScope: 'personal' },
+          { name: 'חידון שבועי ב-WhatsApp', description: 'כל שישי מקבלים 5 שאלות על מה שלמדתם השבוע. עונים ישירות ב-WhatsApp ומקבלים ציון + הסבר על תשובות שפספסתם', app_slugs: ['google-sheets','openai-gpt-3'], trigger: {app:'Google Sheets',name:'Search Rows'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, scenarioFlow: 'Schedule (כל שישי ב-10:00) → Google Sheets (קורא נושאי השבוע) → OpenAI (מייצר חידון) → GREEN-API (שולח WhatsApp)', accountReq: 'OpenAI API + Green API + Google Sheets', triggerScope: 'personal' },
+          { name: 'מילה באנגלית כל יום', description: 'כל בוקר מילה חדשה באנגלית + הגייה + משפט לדוגמה + תרגום. AI מתאים את הרמה לפי התשובות שלכם לחידונים', app_slugs: ['openai-gpt-3'], trigger: {app:'OpenAI',name:'Create a Completion'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, scenarioFlow: 'Schedule (כל יום ב-7:30) → OpenAI (מייצר מילה + הגייה + משפט) → GREEN-API (שולח WhatsApp)', accountReq: 'OpenAI API + Green API', triggerScope: 'personal' },
+          { name: 'סיכום מאמר/סרטון בלחיצה', description: 'שולחים לינק של מאמר או סרטון YouTube ב-WhatsApp → מקבלים סיכום של 5 נקודות עיקריות תוך דקה. במקום לקרוא 10 דקות — 30 שניות', app_slugs: ['green-api','openai-gpt-3'], trigger: {app:'GREEN-API for WhatsApp',name:'Watch Incoming Messages'}, action: {app:'OpenAI',name:'Create a Completion'}, scenarioFlow: 'GREEN-API (מקבל הודעה עם לינק) → HTTP (מוריד תוכן) → OpenAI (מסכם) → GREEN-API (משיב סיכום)', accountReq: 'Green API + OpenAI API', triggerScope: 'personal' },
+          { name: 'Streak — רצף למידה יומי', description: 'עוקב על כמה ימים ברצף למדתם. שכחתם יום? מקבלים עידוד. הגעתם ל-7 ימים? הודעת חגיגה. מתאפס רק אחרי 2 ימים של הפסקה', app_slugs: ['google-sheets','green-api'], trigger: {app:'Google Sheets',name:'Search Rows'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, scenarioFlow: 'Schedule (כל ערב ב-21:00) → Google Sheets (בודק streak) → Router → GREEN-API (הודעת עידוד/חגיגה)', accountReq: 'Google Sheets + Green API', triggerScope: 'personal' },
+          { name: 'דוח התקדמות שבועי', description: 'כל ראשון בבוקר — סיכום: כמה שיעורים למדתם, ציון ממוצע בחידונים, הנושאים שהכי חזקים/חלשים, והמלצה על מה להתמקד השבוע', app_slugs: ['google-sheets','openai-gpt-3'], trigger: {app:'Google Sheets',name:'Search Rows'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, scenarioFlow: 'Schedule (כל ראשון ב-9:00) → Google Sheets (קורא נתוני שבוע) → OpenAI (מנתח התקדמות) → GREEN-API (שולח דוח)', accountReq: 'Google Sheets + OpenAI API + Green API', triggerScope: 'personal' },
+        ]
+      },
+      {
+        id: 'project-management',
+        name: '📋 ניהול פרויקטים',
+        color: 'orange',
+        templates: [
+          { name: 'Trello ל-Slack — התראת כרטיס', description: 'כרטיס חדש ב-Trello → הודעה ב-Slack', app_slugs: ["trello","slack"], trigger: {app:'Trello',name:'Watch Cards'}, action: {app:'Slack',name:'Create a Message'}, accountReq: 'Trello + Slack חינמי', triggerScope: 'personal' },
+          { name: 'Asana ל-Google Calendar', description: 'משימה עם תאריך → אירוע ביומן', app_slugs: ["asana","google-calendar"], trigger: {app:'Asana',name:'Watch Tasks'}, action: {app:'Google Calendar',name:'Create an Event'}, accountReq: 'Asana + Google חינמי', triggerScope: 'personal' },
+          { name: 'Jira ל-Slack — עדכון סטטוס', description: 'Issue שינה סטטוס → הודעה ב-Slack', app_slugs: ["jira-software","slack"], trigger: {app:'Jira',name:'Watch Issues'}, action: {app:'Slack',name:'Create a Message'}, accountReq: 'Jira + Slack', triggerScope: 'admin' },
+          { name: 'Monday.com ל-Gmail', description: 'פריט חדש ב-Monday → מייל למנהל', app_slugs: ["monday","gmail"], trigger: {app:'Monday.com',name:'Watch Items'}, action: {app:'Gmail',name:'Send an Email'}, accountReq: 'Monday.com + Gmail', triggerScope: 'personal' },
+          { name: 'ClickUp ל-Google Sheets', description: 'משימה שהושלמה → שורה ב-Sheets למעקב', app_slugs: ["clickup","google-sheets"], trigger: {app:'ClickUp',name:'Watch Tasks'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'ClickUp + Google חינמי', triggerScope: 'personal' },
+          { name: 'Gmail ל-Asana — משימה ממייל', description: 'מייל עם כוכבית → משימה חדשה ב-Asana', app_slugs: ["gmail","asana"], trigger: {app:'Gmail',name:'Watch Emails'}, action: {app:'Asana',name:'Create a Task'}, accountReq: 'Gmail + Asana חינמי', triggerScope: 'personal' },
+          { name: 'Trello ל-Google Sheets — דוח שבועי', description: 'כל ראשון → כל כרטיסי Trello → Sheets', app_slugs: ["trello","google-sheets"], trigger: {app:'Trello',name:'Search Cards'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'Trello + Google חינמי', triggerScope: 'personal' },
+          { name: 'Notion ל-Trello — סנכרון משימות', description: 'משימה חדשה ב-Notion → כרטיס ב-Trello', app_slugs: ["notion","trello"], trigger: {app:'Notion',name:'Watch Database Items'}, action: {app:'Trello',name:'Create a Card'}, accountReq: 'Notion + Trello חינמי', triggerScope: 'personal' }
+        ]
+      },
+      {
+        id: 'email-marketing',
+        name: '📧 אימייל מרקטינג',
+        color: 'rose',
+        templates: [
+          { name: 'מנוי Mailchimp ל-Google Sheets', description: 'מנוי חדש → שורה ב-Sheets למעקב', app_slugs: ["mailchimp","google-sheets"], trigger: {app:'Mailchimp',name:'Watch Subscribers'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'Mailchimp חינמי + Google', triggerScope: 'personal' },
+          { name: 'מנוי Mailchimp ל-Slack', description: 'מנוי חדש/הסיר מנוי → הודעה ב-Slack', app_slugs: ["mailchimp","slack"], trigger: {app:'Mailchimp',name:'Watch Subscribers'}, action: {app:'Slack',name:'Create a Message'}, accountReq: 'Mailchimp + Slack', triggerScope: 'personal' },
+          { name: 'ConvertKit ל-Google Sheets', description: 'מנוי חדש ב-ConvertKit → שורה ב-Sheets', app_slugs: ["convertkit","google-sheets"], trigger: {app:'ConvertKit',name:'Watch Subscribers'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'ConvertKit + Google', triggerScope: 'personal' },
+          { name: 'Mailerlite ל-Airtable', description: 'מנוי חדש ב-Mailerlite → רשומה ב-Airtable', app_slugs: ["mailerlite","airtable"], trigger: {app:'Mailerlite',name:'Watch Subscribers'}, action: {app:'Airtable',name:'Create a Record'}, accountReq: 'Mailerlite + Airtable', triggerScope: 'personal' },
+          { name: 'Google Sheets ל-Mailchimp קמפיין', description: 'רשימת נמענים ב-Sheets → קמפיין חדש ב-Mailchimp', app_slugs: ["google-sheets","mailchimp"], trigger: {app:'Google Sheets',name:'Watch New Rows'}, action: {app:'Mailchimp',name:'Add a Subscriber'}, accountReq: 'Google Sheets + Mailchimp חינמי', triggerScope: 'personal' },
+          { name: 'Webhook ל-ActiveCampaign', description: 'טופס חיצוני → ליד ב-ActiveCampaign', app_slugs: ["webhooks","activecampaign"], trigger: {app:'Webhooks',name:'Custom Webhook'}, action: {app:'ActiveCampaign',name:'Create a Contact'}, accountReq: 'ActiveCampaign', triggerScope: 'personal' }
+        ]
+      },
+      {
+        id: 'payments',
+        name: '💳 תשלומים וחשבוניות',
+        color: 'emerald',
+        templates: [
+          { name: 'Stripe → Google Sheets מעקב תשלומים', description: 'כל תשלום מוצלח → שורה ב-Sheets', app_slugs: ["stripe","google-sheets"], trigger: {app:'Stripe',name:'Watch Events'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'Stripe + Google', triggerScope: 'admin' },
+          { name: 'Stripe → Slack התראת תשלום', description: 'תשלום חדש → הודעה ב-Slack', app_slugs: ["stripe","slack"], trigger: {app:'Stripe',name:'Watch Events'}, action: {app:'Slack',name:'Create a Message'}, accountReq: 'Stripe + Slack', triggerScope: 'admin' },
+          { name: 'PayPal → Google Sheets', description: 'תשלום PayPal → שורה ב-Sheets', app_slugs: ["paypal","google-sheets"], trigger: {app:'PayPal',name:'Watch Payments'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'PayPal Business + Google', triggerScope: 'admin' },
+          { name: 'Stripe → WhatsApp תודה', description: 'תשלום מוצלח → הודעת תודה ב-WhatsApp', app_slugs: ["stripe","green-api"], trigger: {app:'Stripe',name:'Watch Events'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'Stripe + Green API', triggerScope: 'admin' },
+          { name: 'Stripe מנוי בוטל → Gmail', description: 'ביטול מנוי → מייל שימור אוטומטי', app_slugs: ["stripe","gmail"], trigger: {app:'Stripe',name:'Watch Events'}, action: {app:'Gmail',name:'Send an Email'}, accountReq: 'Stripe + Gmail', triggerScope: 'admin' },
+          { name: 'דוח הכנסות חודשי', description: 'כל 1 לחודש → סיכום הכנסות מ-Stripe → Slack', app_slugs: ["stripe","slack"], trigger: {app:'Stripe',name:'List Charges'}, action: {app:'Slack',name:'Create a Message'}, scenarioFlow: 'Schedule (1 לחודש) → Stripe (סכום חודשי) → Slack (דוח)', accountReq: 'Stripe + Slack', triggerScope: 'admin' }
+        ]
+      },
+      {
+        id: 'cloud-storage',
+        name: '☁️ אחסון וקבצים',
+        color: 'sky',
+        templates: [
+          { name: 'סנכרון Google Drive ל-OneDrive', description: 'קובץ חדש ב-Drive → מועתק ל-OneDrive', app_slugs: ["google-drive","onedrive"], trigger: {app:'Google Drive',name:'Watch Files'}, action: {app:'OneDrive',name:'Upload a File'}, accountReq: 'Google + Microsoft חינמי', triggerScope: 'personal' },
+          { name: 'סנכרון Dropbox ל-Google Drive', description: 'קובץ חדש ב-Dropbox → מועתק ל-Drive', app_slugs: ["dropbox","google-drive"], trigger: {app:'Dropbox',name:'Watch Files'}, action: {app:'Google Drive',name:'Upload a File'}, accountReq: 'Dropbox + Google חינמי', triggerScope: 'personal' },
+          { name: 'שמירת קבצי Slack ב-Drive', description: 'קובץ חדש שהועלה ל-Slack → נשמר ב-Drive', app_slugs: ["slack","google-drive"], trigger: {app:'Slack',name:'Watch Files'}, action: {app:'Google Drive',name:'Upload a File'}, accountReq: 'Slack + Google Drive', triggerScope: 'personal' },
+          { name: 'התראה על קובץ חדש בתיקייה', description: 'קובץ חדש ב-Drive → WhatsApp', app_slugs: ["google-drive","green-api"], trigger: {app:'Google Drive',name:'Watch Files'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'Google Drive + Green API', triggerScope: 'personal' },
+          { name: 'המרת קבצים אוטומטית', description: 'קובץ PDF חדש ב-Drive → המרה ל-DOCX → Dropbox', app_slugs: ["google-drive","cloudconvert"], trigger: {app:'Google Drive',name:'Watch Files'}, action: {app:'CloudConvert',name:'Convert a File'}, accountReq: 'Google Drive + CloudConvert', triggerScope: 'personal' },
+          { name: 'ארגון תמונות אוטומטי', description: 'תמונה חדשה ב-Drive → מועברת לתיקייה לפי חודש', app_slugs: ["google-drive"], trigger: {app:'Google Drive',name:'Watch Files'}, action: {app:'Google Drive',name:'Move a File'}, accountReq: 'Google Drive', triggerScope: 'personal' }
+        ]
+      },
+      {
+        id: 'hr-team',
+        name: '👥 HR וצוות',
+        color: 'amber',
+        templates: [
+          { name: 'מועמד חדש מ-Typeform ל-Airtable', description: 'טופס מועמדות → רשומה ב-Airtable HR', app_slugs: ["typeform","airtable"], trigger: {app:'Typeform',name:'Watch Responses'}, action: {app:'Airtable',name:'Create a Record'}, accountReq: 'Typeform + Airtable חינמי', triggerScope: 'personal' },
+          { name: 'Onboarding אוטומטי — Slack + Gmail', description: 'עובד חדש ב-Airtable → הודעת ברוך הבא Slack + Gmail', app_slugs: ["airtable","slack"], trigger: {app:'Airtable',name:'Watch Records'}, action: {app:'Slack → Gmail',name:'Welcome + Email'}, scenarioFlow: 'Airtable (עובד חדש) → Slack (הודעה בערוץ) → Gmail (מייל onboarding)', accountReq: 'Airtable + Slack + Gmail', triggerScope: 'personal' },
+          { name: 'תזכורת ימי הולדת צוות', description: 'כל יום בודק → יום הולדת? → Slack + WhatsApp', app_slugs: ["google-sheets","slack"], trigger: {app:'Google Sheets',name:'Search Rows'}, action: {app:'Slack',name:'Create a Message'}, scenarioFlow: 'Schedule (כל בוקר) → Google Sheets (בודק תאריכים) → Slack (ברכה) → GREEN-API (WhatsApp)', accountReq: 'Google Sheets + Slack', triggerScope: 'personal' },
+          { name: 'דוח שעות עבודה שבועי', description: 'כל ראשון → סיכום שעות מ-Toggl → Google Sheets', app_slugs: ["toggl","google-sheets"], trigger: {app:'Toggl',name:'Get Time Entries'}, action: {app:'Google Sheets',name:'Add a Row'}, accountReq: 'Toggl + Google Sheets', triggerScope: 'personal' },
+          { name: 'בקשת חופשה → אישור Slack', description: 'טופס חופשה → הודעה למנהל ב-Slack + יומן', app_slugs: ["google-forms","slack"], trigger: {app:'Google Forms',name:'Watch Responses'}, action: {app:'Slack → Google Calendar',name:'Notify → Block Calendar'}, scenarioFlow: 'Google Forms (בקשת חופשה) → Slack (הודעה למנהל) → Google Calendar (חסימת תאריך)', accountReq: 'Google Forms + Slack + Calendar', triggerScope: 'personal' }
+        ]
+      },
+      {
+        id: 'notifications',
+        name: '🔔 התראות חכמות',
+        color: 'red',
+        templates: [
+          { name: 'התראת מזג אוויר יומית', description: 'כל בוקר → מזג אוויר → WhatsApp', app_slugs: ["weather","green-api"], trigger: {app:'Weather',name:'Get Forecast'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'Green API (חינמי: OpenWeatherMap API)', triggerScope: 'personal' },
+          { name: 'מעקב אזכורים ברשת', description: 'כל שעה → חיפוש Google עם שם המותג → התראה', app_slugs: ["http","slack"], trigger: {app:'HTTP',name:'Make a Request'}, action: {app:'Slack',name:'Create a Message'}, accountReq: 'Slack', triggerScope: 'personal' },
+          { name: 'התראת שגיאות באתר', description: 'שגיאת 500 באתר → WhatsApp + Slack מיידי', app_slugs: ["http","green-api"], trigger: {app:'HTTP',name:'Make a Request'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, scenarioFlow: 'Schedule (כל 5 דקות) → HTTP (בודק אתר) → Filter (שגיאה?) → GREEN-API + Slack', accountReq: 'Green API + Slack', triggerScope: 'personal' },
+          { name: 'חדשות RSS ל-Telegram', description: 'מאמר חדש ב-RSS → הודעה בערוץ Telegram', app_slugs: ["rss","telegram-bot"], trigger: {app:'RSS',name:'Watch RSS Feed Items'}, action: {app:'Telegram Bot',name:'Send a Text Message'}, accountReq: 'RSS + בוט Telegram', triggerScope: 'personal' },
+          { name: 'התראת GitHub — Issue חדש', description: 'Issue חדש ב-GitHub → WhatsApp', app_slugs: ["github","green-api"], trigger: {app:'GitHub',name:'Watch Issues'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'GitHub + Green API', triggerScope: 'personal' },
+          { name: 'שינוי בטבלה → WhatsApp', description: 'שורה חדשה/עודכנה ב-Google Sheets → WhatsApp', app_slugs: ["google-sheets","green-api"], trigger: {app:'Google Sheets',name:'Watch Changes'}, action: {app:'GREEN-API for WhatsApp',name:'Send a Message'}, accountReq: 'Google Sheets + Green API', triggerScope: 'personal' }
+        ]
+      }
+    ];
+
+    // Add link to each template
+    TEMPLATE_CATEGORIES.forEach(cat => {
+      cat.templates.forEach(t => {
+        t.link = t.app_slugs?.length > 0
+          ? `https://www.make.com/en/integrations/${t.app_slugs.slice(0,2).join('/')}`
+          : 'https://www.make.com/en/templates';
+      });
+    });
+
+    // ─── Main App ───────────────────────────────────────────────────────────
+    const App = () => {
+      const [apiKey, setApiKey] = useState(() => localStorage.getItem('gemini_key') || '');
+      const [query, setQuery] = useState('');
+      const [results, setResults] = useState([]);
+      const [loading, setLoading] = useState(false);
+      const [error, setError] = useState(null);
+      const [sharedTemplate, setSharedTemplate] = useState(null);
+      const [showSettings, setShowSettings] = useState(false);
+      const [activeCategory, setActiveCategory] = useState(null);
+      const [personalOnly, setPersonalOnly] = useState(true);
+      const [currentTab, setCurrentTab] = useState('automations');
+
+      // Filter function - personal = personal/any/webhook, business = business_page/admin/developer
+      const isPersonal = (t) => ['personal','any','webhook'].includes(t.triggerScope);
+      const filterTemplates = (list) => personalOnly ? list.filter(isPersonal) : list;
+
+      // Load shared template from URL hash
+      useEffect(() => {
+        if (window.location.hash && window.location.hash.length > 1) {
+          try {
+            const decoded = JSON.parse(decodeURIComponent(escape(atob(window.location.hash.substring(1)))));
+            if (decoded?.name) setSharedTemplate(decoded);
+          } catch {}
+        }
+      }, []);
+
+      if (!apiKey) return <ApiKeyScreen onSave={setApiKey}/>;
+
+      const SYSTEM_PROMPT = `You are a Make.com expert.
+Analyze the user's request in Hebrew and generate a JSON list of 6 matching automation workflows.
+Each workflow MUST have:
+- name: Professional Hebrew name.
+- description: Professional Hebrew description.
+- app_slugs: Array of exactly 2 Make.com official URL slugs (e.g., ["facebook-lead-ads", "green-api"]).
+- trigger: {"app": "Display name", "name": "Exact Make.com trigger name in English"}
+- action: {"app": "Display name", "name": "Exact Make.com action name in English"}
+- accountReq: REQUIRED - Short Hebrew description of what account/page/access is needed to activate the trigger.
+  Examples: "חשבון אישי רגיל", "דף עסקי בניהולך", "חשבון Business מחובר ל-Facebook Page",
+  "חשבון מפתחים + אפליקציה", "ללא — Webhook חיצוני", "חשבון Pro/Premium"
+- triggerScope: REQUIRED — one of: "personal" | "business_page" | "admin" | "developer" | "any" | "webhook"
+  personal = works with any personal/free account
+  business_page = requires business page or company page you manage
+  admin = requires admin access to workspace/org
+  developer = requires developer app/credentials
+  any = no special account needed
+  webhook = triggered by external service, no login needed
+
+CRITICAL RULES for accountReq/triggerScope accuracy — DO NOT get these wrong:
+- LinkedIn: ALL API triggers require Developer App which REQUIRES a Company Page (triggerScope: "developer")
+- Facebook Pages: ALL triggers require Admin/Editor of the Page (triggerScope: "business_page")
+- Instagram: ALL triggers require Business/Creator account + linked Facebook Page (triggerScope: "business_page")
+- Twitter/X: ALL API access requires approved Developer account (triggerScope: "developer")
+- Discord bots: Require Admin of the Discord server (triggerScope: "admin")
+- Shopify/WooCommerce: Require store Admin access (triggerScope: "admin")
+- WhatsApp Cloud API: Requires Meta Business account (triggerScope: "business_page"). GREEN-API is personal.
+- Google apps (Sheets, Gmail, Calendar, Drive, Forms): Work with personal Google account (triggerScope: "personal")
+- Webhooks, RSS, HTTP: No account needed (triggerScope: "any" or "webhook")
+
+PRIORITIZE automations that work with PERSONAL/FREE accounts. Place them FIRST in the list.
+If the trigger requires a business page or special access, say so CLEARLY in accountReq — NEVER say "חשבון אישי" when it's actually business/developer.
+At least 4 of the 6 results should work with personal accounts if possible.
+
+Return ONLY JSON:
+{"templates":[{"name":"...","description":"...","app_slugs":["...","..."],"trigger":{"app":"...","name":"..."},"action":{"app":"...","name":"..."},"accountReq":"...","triggerScope":"..."}]}`;
+
+      const search = async (e) => {
+        e.preventDefault();
+        if (!query.trim()) return;
+        setLoading(true);
+        setError(null);
+        setSharedTemplate(null);
+        setActiveCategory(null);
+        history.replaceState(null, '', window.location.pathname);
+        try {
+          const data = await callGemini(apiKey, SYSTEM_PROMPT, query, true);
+          setResults((data.templates || []).map(t => ({
+            ...t,
+            link: t.app_slugs?.length > 0
+              ? `https://www.make.com/en/integrations/${t.app_slugs.slice(0,2).join('/')}`
+              : 'https://www.make.com/en/templates'
+          })));
+        } catch (err) {
+          setError("שגיאה: " + (err.message || 'Unknown error'));
+        }
+        setLoading(false);
+      };
+
+      // Single template view (opened via shared link)
+      if (sharedTemplate) {
+        return (
+          <div className="min-h-screen bg-slate-50 text-slate-900 p-4 md:p-10 font-sans" dir="rtl">
+            <div className="max-w-2xl mx-auto">
+              <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center shadow-lg">
+                    <ZapIcon size={20} fill="currentColor"/>
+                  </div>
+                  <span className="text-xl font-black">מייק אוטומציות</span>
+                </div>
+                <button
+                  onClick={() => { setSharedTemplate(null); history.replaceState(null, '', window.location.pathname); }}
+                  className="flex items-center gap-1.5 text-slate-500 hover:text-slate-800 font-bold text-sm border border-slate-200 px-3 py-2 rounded-lg hover:bg-slate-100 transition-all">
+                  <XIcon size={15}/> חפש אוטומציה אחרת
+                </button>
+              </div>
+              <TemplateCard item={sharedTemplate} apiKey={apiKey} singleView={true}/>
+            </div>
+          </div>
+        );
+      }
+
+      return (
+        <div className="min-h-screen bg-gradient-to-b from-blue-50/50 via-slate-50 to-white text-slate-900 p-4 md:p-10 font-body selection:bg-blue-100" dir="rtl">
+          <div className="max-w-4xl mx-auto">
+
+            {/* Header */}
+            <div className="text-center mb-8 relative fade-in-up">
+              <button onClick={() => setShowSettings(s => !s)}
+                className="absolute left-0 top-0 text-slate-400 hover:text-slate-600 p-2 rounded-lg hover:bg-slate-100 transition-all">
+                <GearIcon/>
+              </button>
+              {showSettings && (
+                <div className="absolute left-0 top-10 bg-white border border-slate-200 rounded-xl shadow-lg p-4 w-72 z-10 text-right">
+                  <p className="text-xs text-slate-500 mb-2">החלף מפתח API:</p>
+                  <input type="password" dir="ltr" placeholder="AIza..."
+                    className="w-full border border-slate-200 rounded-lg px-3 py-2 text-xs outline-none focus:ring-2 focus:ring-blue-300 mb-2"
+                    onKeyDown={e => { if (e.key === 'Enter' && e.target.value.trim()) {
+                      localStorage.setItem('gemini_key', e.target.value.trim());
+                      setApiKey(e.target.value.trim());
+                      setShowSettings(false);
+                    }}}/>
+                  <p className="text-xs text-slate-400">לחץ Enter לשמירה</p>
+                </div>
+              )}
+
+              <div className="w-18 h-18 bg-gradient-to-br from-blue-500 to-indigo-600 text-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl shadow-blue-200/50 float" style={{width:'4.5rem',height:'4.5rem'}}>
+                <ZapIcon size={34} fill="currentColor"/>
+              </div>
+              <h1 className="text-4xl md:text-5xl font-display text-slate-900 mb-3">בנה אוטומציות בלי קוד</h1>
+              <p className="text-slate-500 text-lg mb-8 max-w-lg mx-auto">ספר לנו מה אתה רוצה לאוטמט — ונבנה לך את התהליך צעד אחר צעד</p>
+
+              {/* 3 Steps indicator */}
+              <div className="flex items-center justify-center gap-4 md:gap-8 mb-2 fade-in-up-delay-1">
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl font-display">1</div>
+                  <span className="text-xs text-slate-500 font-bold">תתאר בעברית</span>
+                </div>
+                <div className="text-slate-300 text-2xl mb-5">→</div>
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-12 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-xl font-display">2</div>
+                  <span className="text-xs text-slate-500 font-bold">קבל הוראות מדויקות</span>
+                </div>
+                <div className="text-slate-300 text-2xl mb-5">→</div>
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-12 rounded-2xl bg-green-100 text-green-600 flex items-center justify-center text-xl font-display">3</div>
+                  <span className="text-xs text-slate-500 font-bold">הרץ ב-Make.com</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Tab Navigation */}
+            <div className="flex justify-center gap-2 mb-8 fade-in-up-delay-1">
+              {[
+                ['automations', '⚡ בונה אוטומציות'],
+                ['knowledge', '📚 מאגר ידע'],
+                ['expert', '💬 שאל את המומחה']
+              ].map(([id, label]) => (
+                <button key={id} onClick={() => setCurrentTab(id)}
+                  className={`px-6 py-3 rounded-2xl text-sm font-display transition-all ${
+                    currentTab === id
+                      ? 'bg-gradient-to-l from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-200 scale-105'
+                      : 'bg-white border-2 border-slate-200 text-slate-600 hover:border-blue-300 hover:shadow-sm'
+                  }`}>{label}</button>
+              ))}
+            </div>
+
+            {currentTab === 'automations' && (<>
+            {/* Search */}
+            <form onSubmit={search} className="relative group mb-10 fade-in-up-delay-2">
+              <div className="absolute inset-0 bg-gradient-to-l from-blue-600 to-indigo-600 rounded-3xl blur-lg opacity-10 group-focus-within:opacity-20 transition-opacity"/>
+              <div className="relative flex bg-white rounded-2xl shadow-lg shadow-blue-100/30 border-2 border-blue-100 overflow-hidden p-2">
+                <input type="text"
+                  className="flex-grow px-6 py-4 text-lg outline-none bg-transparent font-body"
+                  placeholder="מה תרצה לאוטמט? למשל: כשמישהו ממלא טופס — לשלוח לו מייל ולהוסיף ל-CRM"
+                  value={query}
+                  onChange={e => setQuery(e.target.value)}
+                />
+                <button type="submit" disabled={loading}
+                  className="bg-gradient-to-l from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-xl font-display text-lg flex items-center gap-2 hover:shadow-lg hover:shadow-blue-200 active:scale-95 transition-all disabled:opacity-50">
+                  {loading ? <Spinner size={22} color="white"/> : <SearchIcon size={22}/>}
+                  <span>מצא לי</span>
+                </button>
+              </div>
+              <p className="text-center text-xs text-slate-400 mt-3">אין צורך במונחים טכניים — כתוב כמו שאתה מדבר</p>
+            </form>
+
+            {/* Personal filter toggle */}
+            <div className="flex items-center justify-center gap-3 mb-8 -mt-6">
+              <button onClick={() => setPersonalOnly(p => !p)}
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold transition-all border-2 ${
+                  personalOnly
+                    ? 'bg-green-50 border-green-300 text-green-800 shadow-sm'
+                    : 'bg-slate-50 border-slate-200 text-slate-500 hover:border-slate-300'
+                }`}>
+                <span className={`w-8 h-5 rounded-full flex items-center transition-all ${personalOnly ? 'bg-green-500 justify-end' : 'bg-slate-300 justify-start'}`}>
+                  <span className="w-4 h-4 bg-white rounded-full shadow mx-0.5"/>
+                </span>
+                {personalOnly ? '👤 מציג רק חשבון אישי' : '🔓 מציג הכל כולל עסקי/מפתחים'}
+              </button>
+              {personalOnly && (
+                <span className="text-xs text-slate-400">טמפלייטים שדורשים דף עסקי/Company Page מוסתרים</span>
+              )}
+            </div>
+
+            {/* Error */}
+            {error && (
+              <div className="bg-red-50 border-2 border-red-100 text-red-700 p-5 rounded-2xl flex items-center gap-4 mb-8">
+                <AlertIcon size={24}/>
+                <p className="font-bold">{error}</p>
+              </div>
+            )}
+
+            {/* Results */}
+            <div className="grid gap-6">
+              {loading ? (
+                <div className="text-center py-24">
+                  <Spinner size={50} color="#2563eb"/>
+                  <p className="text-slate-500 text-xl font-display mt-6">בונה לך את האוטומציה...</p>
+                  <p className="text-slate-400 text-sm mt-2">זה לוקח כמה שניות — אנחנו מתאימים את ההגדרות בדיוק בשבילך</p>
+                </div>
+              ) : results.length > 0 ? (
+                filterTemplates(results).length > 0 ? filterTemplates(results).map((item, idx) => (
+                  <TemplateCard key={idx} item={item} apiKey={apiKey}/>
+                )) : (
+                  <div className="text-center py-12 bg-orange-50 border-2 border-orange-200 rounded-2xl">
+                    <p className="text-orange-800 font-bold text-lg mb-2">כל התוצאות דורשות חשבון עסקי/מפתחים</p>
+                    <p className="text-orange-600 text-sm mb-3">כבה את הפילטר כדי לראות אותן, או חפש משהו אחר</p>
+                    <button onClick={() => setPersonalOnly(false)}
+                      className="bg-orange-100 text-orange-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-orange-200 transition-all">
+                      🔓 הצג בכל זאת
+                    </button>
+                  </div>
+                )
+              ) : !error && (
+                <div>
+                  {/* Category tabs */}
+                  <div className="mb-6">
+                    <h2 className="text-xl font-display text-slate-800 mb-1">{results.length === 0 ? 'או בחר תבנית מוכנה מהרשימה' : ''}</h2>
+                    <p className="text-sm text-slate-400 mb-4">{results.length === 0 ? 'כל תבנית כוללת הוראות הקמה מלאות — פשוט לחץ ועקוב' : ''}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {TEMPLATE_CATEGORIES.map(cat => (
+                        <button key={cat.id} onClick={() => setActiveCategory(activeCategory === cat.id ? null : cat.id)}
+                          className={`px-4 py-2.5 rounded-2xl text-sm font-bold transition-all ${
+                            activeCategory === cat.id
+                              ? 'bg-gradient-to-l from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-200 scale-105'
+                              : 'bg-white border-2 border-slate-100 text-slate-700 hover:border-blue-200 hover:bg-blue-50 hover:shadow-sm'
+                          }`}>
+                          {cat.name}
+                          <span className="mr-1.5 text-xs opacity-70">{cat.templates.length}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Show templates for selected category, or all categories preview */}
+                  {activeCategory ? (() => {
+                    const filtered = filterTemplates(TEMPLATE_CATEGORIES.find(c => c.id === activeCategory)?.templates || []);
+                    return filtered.length > 0 ? (
+                      <div className="grid gap-6">
+                        {filtered.map((t, idx) => (
+                          <TemplateCard key={idx} item={t} apiKey={apiKey}/>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="text-center py-12 bg-orange-50 border-2 border-orange-200 rounded-2xl">
+                        <p className="text-orange-800 font-bold mb-2">כל הטמפלייטים בקטגוריה זו דורשים חשבון עסקי/מפתחים</p>
+                        <button onClick={() => setPersonalOnly(false)}
+                          className="bg-orange-100 text-orange-800 px-4 py-2 rounded-lg text-sm font-bold hover:bg-orange-200">
+                          🔓 הצג בכל זאת
+                        </button>
+                      </div>
+                    );
+                  })() : (
+                    <div className="space-y-8">
+                      {TEMPLATE_CATEGORIES.map(cat => {
+                        const filtered = filterTemplates(cat.templates);
+                        if (filtered.length === 0) return null;
+                        return (
+                        <div key={cat.id}>
+                          <div className="flex items-center justify-between mb-3">
+                            <h3 className="font-display text-slate-700 text-lg">{cat.name}</h3>
+                            <button onClick={() => setActiveCategory(cat.id)}
+                              className="text-blue-600 text-xs font-bold hover:underline">
+                              הצג הכל ({filtered.length}) ←
+                            </button>
+                          </div>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            {filtered.slice(0, 2).map((t, idx) => (
+                              <div key={idx} onClick={() => setActiveCategory(cat.id)}
+                                className="bg-white border border-slate-200 rounded-xl p-4 hover:border-blue-300 hover:shadow-md transition-all cursor-pointer group">
+                                <div className="font-bold text-slate-800 text-sm mb-1 group-hover:text-blue-700">{t.name}</div>
+                                <p className="text-xs text-slate-500 line-clamp-2">{t.description}</p>
+                                <div className="flex items-center gap-2 mt-2 flex-wrap">
+                                  <span className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">{t.trigger.app}</span>
+                                  <span className="text-slate-300 text-xs">→</span>
+                                  <span className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">{t.action.app}</span>
+                                  {t.scenarioFlow && <span className="text-xs text-indigo-400">+{t.scenarioFlow.split('→').length} מודולים</span>}
+                                  <span className="mr-auto text-xs bg-green-50 text-green-700 px-2 py-0.5 rounded-full">👤 אישי</span>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* More templates sources */}
+              {results.length > 0 && (
+                <div className="bg-gradient-to-l from-indigo-50 to-blue-50 border-2 border-indigo-100 rounded-2xl p-6 mt-2">
+                  <h3 className="font-display text-indigo-900 text-lg mb-4">איפה למצוא עוד טמפלייטים?</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <a href="https://www.make.com/en/templates" target="_blank" rel="noopener noreferrer"
+                      className="bg-white rounded-xl p-4 border border-indigo-100 hover:border-indigo-300 hover:shadow-md transition-all group">
+                      <div className="font-black text-slate-800 text-sm mb-1 group-hover:text-indigo-700">📦 ספריית הטמפלייטים של Make.com</div>
+                      <p className="text-xs text-slate-500">1,000+ טמפלייטים מוכנים לשימוש — חפש לפי אפליקציה או קטגוריה</p>
+                    </a>
+                    <a href="https://www.make.com/en/integrations" target="_blank" rel="noopener noreferrer"
+                      className="bg-white rounded-xl p-4 border border-indigo-100 hover:border-indigo-300 hover:shadow-md transition-all group">
+                      <div className="font-black text-slate-800 text-sm mb-1 group-hover:text-indigo-700">🔌 דף אינטגרציות</div>
+                      <p className="text-xs text-slate-500">בחר 2 אפליקציות וראה טמפלייטים שמחברים ביניהן</p>
+                    </a>
+                    <a href="https://community.make.com/c/share-your-scenarios/13" target="_blank" rel="noopener noreferrer"
+                      className="bg-white rounded-xl p-4 border border-indigo-100 hover:border-indigo-300 hover:shadow-md transition-all group">
+                      <div className="font-black text-slate-800 text-sm mb-1 group-hover:text-indigo-700">👥 קהילת Make.com</div>
+                      <p className="text-xs text-slate-500">סצנריות ששיתפו משתמשים אחרים — כולל JSON לייבוא ישיר</p>
+                    </a>
+                    <a href="https://www.make.com/en/templates?fromPublicLibrary=true" target="_blank" rel="noopener noreferrer"
+                      className="bg-white rounded-xl p-4 border border-indigo-100 hover:border-indigo-300 hover:shadow-md transition-all group">
+                      <div className="font-black text-slate-800 text-sm mb-1 group-hover:text-indigo-700">🌍 ספריה ציבורית</div>
+                      <p className="text-xs text-slate-500">טמפלייטים מהקהילה שעברו אישור — לפעמים מתקדמים ומפתיעים</p>
+                    </a>
+                  </div>
+                  <div className="bg-white/70 rounded-xl px-4 py-3 mt-3 border border-indigo-100">
+                    <p className="text-xs text-indigo-800">
+                      <span className="font-black">💡 טיפ ייבוא:</span> בכל טמפלייט ב-Make.com לחץ <code className="bg-indigo-100 px-1.5 py-0.5 rounded text-xs font-mono">"Use template"</code> →
+                      הוא ייפתח ישירות בחשבון שלך עם כל המודולים מוכנים. בקהילה — העתק את ה-JSON → ב-Make.com לחץ
+                      <code className="bg-indigo-100 px-1.5 py-0.5 rounded text-xs font-mono mx-1">⋯</code> →
+                      <code className="bg-indigo-100 px-1.5 py-0.5 rounded text-xs font-mono">Import Blueprint</code>
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+            </>)}
+
+            {currentTab === 'knowledge' && <KnowledgeBase apiKey={apiKey}/>}
+            {currentTab === 'expert' && <ExpertChat apiKey={apiKey}/>}
+
+          </div>
+        </div>
+      );
+    };
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
