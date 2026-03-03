@@ -1075,6 +1075,7 @@
     };
 
     const GUIDE_CATEGORIES = {
+      'make-guides': { name: '📖 מדריכים מעשיים', platform: 'make' },
       'make-recipes': { name: '🍳 מתכוני אוטומציה', platform: 'make' },
       'make-basics': { name: '🔰 יסודות Make', platform: 'make' },
       'make-connections': { name: '🔌 חיבורים', platform: 'make' },
@@ -1739,8 +1740,8 @@ ${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare
       }, []);
 
       // ─── Guide Constants ───
-      const GUIDE_ICONS = { 'make-recipes': '🍳', 'make-basics': '🔰', 'make-connections': '🔌', 'make-advanced': '🚀', 'make-errors': '⚠️', 'manychat-basics': '💬', 'manychat-bots': '🤖' };
-      const GUIDE_DIFFICULTY = { 'make-basics': 'beginner', 'make-connections': 'beginner', 'make-recipes': 'intermediate', 'make-advanced': 'advanced', 'make-errors': 'intermediate', 'manychat-basics': 'beginner', 'manychat-bots': 'intermediate' };
+      const GUIDE_ICONS = { 'make-guides': '📖', 'make-recipes': '🍳', 'make-basics': '🔰', 'make-connections': '🔌', 'make-advanced': '🚀', 'make-errors': '⚠️', 'manychat-basics': '💬', 'manychat-bots': '🤖' };
+      const GUIDE_DIFFICULTY = { 'make-guides': 'beginner', 'make-basics': 'beginner', 'make-connections': 'beginner', 'make-recipes': 'intermediate', 'make-advanced': 'advanced', 'make-errors': 'intermediate', 'manychat-basics': 'beginner', 'manychat-bots': 'intermediate' };
 
       // ─── Guide Detail View ───
       if (selectedGuide) {

@@ -25,6 +25,7 @@ const STOP_WORDS = new Set([
 
 // ─── Category Rules ────────────────────────────────────────────────────
 const CATEGORY_RULES = [
+  { id: 'make-guides', name: '📖 מדריכים מעשיים', platform: 'make', match: f => /guide-/.test(f) },
   { id: 'make-recipes', name: '🍳 מתכוני אוטומציה', platform: 'make', match: f => /recipe|מתכון/.test(f) },
   { id: 'make-connections', name: '🔌 חיבורים ב-Make', platform: 'make', match: f => /חיבור make ל|חיבור והגדרה|חיבורים/.test(f) },
   { id: 'make-functions', name: '⚙️ פונקציות Make', platform: 'make', match: f => /פונקציות/.test(f) },
