@@ -1026,17 +1026,14 @@
         .map(([idx]) => chunks[idx]);
     }
 
-    async function askExpert(apiKey, question, contexts) {
+    async function askExpert(apiKey, question, contexts, retries = 1) {
       const contextText = contexts.map((c, i) =>
         `[מקור ${i+1}: ${c.title}]\n${c.text}`
       ).join('\n\n---\n\n');
-      const res = await fetch('https://vuvavjmbvdqnwtleudqh.supabase.co/functions/v1/xai-proxy', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          model: MODEL_FAST,
-          messages: [
-            { role: 'system', content: `אתה מומחה לאוטומציות Make.com ו-ManyChat. ענה בעברית על סמך המידע שמסופק.
+      const reqBody = {
+        model: MODEL_FAST,
+        messages: [
+          { role: 'system', content: `אתה מומחה לאוטומציות Make.com ו-ManyChat. ענה בעברית על סמך המידע שמסופק.
 
 כללי עיצוב תשובה:
 - השתמש ב-## לכותרות סעיפים עם אימוג'י מתאים (למשל: ## 🔌 חיבור, ## 📋 שלבים, ## 💡 טיפים)
@@ -1045,15 +1042,41 @@
 - בבלוקי קוד: כתוב רק קוד נקי להדבקה, בלי הערות // בעברית. הסבר על שדות שצריך להחליף כתוב מחוץ לבלוק הקוד
 - ציין מקורות בפורמט [מקור X]
 - אם המידע לא מספיק, אמור זאת בכנות.` },
-            { role: 'user', content: `מידע:\n${contextText}\n\nשאלה: ${question}` }
-          ],
-          max_tokens: 1500,
-          apiKey
-        })
-      });
-      if (!res.ok) throw new Error('API ' + res.status);
-      const data = await res.json();
-      return data.choices[0].message.content;
+          { role: 'user', content: `מידע:\n${contextText}\n\nשאלה: ${question}` }
+        ],
+        max_tokens: 1500,
+        apiKey
+      };
+      for (let attempt = 0; attempt <= retries; attempt++) {
+        try {
+          const controller = new AbortController();
+          const timeout = setTimeout(() => controller.abort(), 45000);
+          const res = await fetch('https://vuvavjmbvdqnwtleudqh.supabase.co/functions/v1/xai-proxy', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(reqBody),
+            signal: controller.signal
+          });
+          clearTimeout(timeout);
+          if (!res.ok) {
+            const errText = await res.text().catch(() => '');
+            if (res.status === 401 || res.status === 400) throw new Error('מפתח API לא תקין. בדקו את המפתח בהגדרות.');
+            if (res.status === 429) throw new Error('יותר מדי בקשות. נסו שוב בעוד דקה.');
+            throw new Error('שגיאת שרת (' + res.status + ')');
+          }
+          const data = await res.json();
+          if (!data.choices || !data.choices[0]) throw new Error('תשובה ריקה מהשרת');
+          return data.choices[0].message.content;
+        } catch (err) {
+          if (attempt < retries && (err.name === 'AbortError' || err.message === 'Failed to fetch')) {
+            await new Promise(r => setTimeout(r, 2000));
+            continue;
+          }
+          if (err.name === 'AbortError') throw new Error('הבקשה ארכה יותר מדי זמן. נסו שוב.');
+          if (err.message === 'Failed to fetch') throw new Error('בעיית תקשורת עם השרת. בדקו חיבור אינטרנט ונסו שוב.');
+          throw err;
+        }
+      }
     }
 
     const KB_CATEGORIES = {
