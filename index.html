@@ -2093,7 +2093,7 @@ ${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare
               <span className="text-2xl">🧠</span>
               <div>
                 <h3 className="text-white font-display text-lg">שאל את המומחה</h3>
-                <p className="text-teal-100 text-xs">מבוסס על 108 מאמרים ומדריכים</p>
+                <p className="text-teal-100 text-xs">מבוסס על {kbData ? new Set(kbData.chunks.map(c => c.articleId)).size : '...'} מאמרים ומדריכים</p>
               </div>
             </div>
           </div>
