@@ -2132,15 +2132,7 @@ ${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare
                     ? <div className="text-sm leading-relaxed whitespace-pre-wrap">{msg.text}</div>
                     : <div className="text-sm leading-relaxed">{renderMarkdown(msg.text)}</div>
                   }
-                  {msg.sources && msg.sources.length > 0 && (
-                    <div className="flex flex-wrap gap-1 mt-2 pt-2 border-t border-slate-200/50">
-                      {[...new Map(msg.sources.map(s => [s.id, s])).values()].map((s, j) => (
-                        <span key={j} className="text-xs bg-white/80 text-slate-600 px-2 py-0.5 rounded-full border border-slate-200">
-                          📄 {s.title.substring(0, 30)}{s.title.length > 30 ? '...' : ''}
-                        </span>
-                      ))}
-                    </div>
-                  )}
+                  {/* Source chips hidden — not relevant for end users */}
                 </div>
               </div>
             ))}
