@@ -1,0 +1,14 @@
+{
+  "notebooks": [
+    {
+      "id": "c3921d6a-2d99-4e85-ae62-b3691ab28ed3",
+      "name": "מדריך מעשי Make",
+      "platform": "make"
+    },
+    {
+      "id": "f933706f-b811-4193-a018-6d46f3dd37c8",
+      "name": "מדריך מעשי צ'אטבוט ManyChat",
+      "platform": "manychat"
+    }
+  ]
+}

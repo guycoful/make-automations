@@ -1,4 +1,10 @@
 {
+  "scripts": {
+    "fetch-kb": "node fetch-notebooklm-sources.js",
+    "fetch-kb:force": "node fetch-notebooklm-sources.js --force",
+    "build-kb": "node preprocess-kb.js",
+    "sync-kb": "node fetch-notebooklm-sources.js && node preprocess-kb.js"
+  },
   "devDependencies": {
     "@babel/parser": "^7.29.0"
   }

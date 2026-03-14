@@ -6,6 +6,7 @@ const { execSync } = require('child_process');
 const MAKE_ZIP = path.resolve(__dirname, '..', 'OneDrive', 'שולחן העבודה', 'פרויקט', 'מדריך מעשי Make_sources.zip');
 const MANYCHAT_ZIP = path.resolve(__dirname, '..', 'OneDrive', 'שולחן העבודה', 'פרויקט', 'מדריך מעשי צ\'אטבוט ManyChat_sources.zip');
 const CUSTOM_DIR = path.resolve(__dirname, 'custom-articles');
+const NOTEBOOKLM_DIR = path.resolve(__dirname, '_notebooklm_sources');
 const OUT_DIR = __dirname;
 const CHUNK_SIZE = 600;   // words per chunk
 const CHUNK_OVERLAP = 100; // overlap words
@@ -45,6 +46,19 @@ const CATEGORY_RULES = [
 ];
 
 // ─── Helpers ────────────────────────────────────────────────────────────
+function readFromDirectory(dir) {
+  if (!fs.existsSync(dir)) return [];
+  const results = [];
+  const mdFiles = fs.readdirSync(dir).filter(f => f.endsWith('.md'));
+  for (const file of mdFiles) {
+    const content = fs.readFileSync(path.join(dir, file), 'utf8');
+    if (content.trim().length > 50) {
+      results.push({ name: file, content, size: content.length });
+    }
+  }
+  return results;
+}
+
 function extractFromZip(zipPath) {
   const listCmd = `unzip -l "${zipPath}"`;
   const listOutput = execSync(listCmd, { encoding: 'utf8', maxBuffer: 50 * 1024 * 1024 });
@@ -341,14 +355,30 @@ function findRelatedTemplateApps(content, title) {
 function main() {
   console.log('🚀 Starting Knowledge Base preprocessing...\n');
 
-  // Extract files
-  console.log('📦 Extracting Make.com sources...');
-  const makeFiles = extractFromZip(MAKE_ZIP);
-  console.log(`   ✅ ${makeFiles.length} files extracted`);
+  // Extract files — prefer NotebookLM directory, fall back to ZIP
+  let makeFiles, manychatFiles;
+  const nbMakeDir = path.join(NOTEBOOKLM_DIR, 'make');
+  const nbManychatDir = path.join(NOTEBOOKLM_DIR, 'manychat');
 
-  console.log('📦 Extracting ManyChat sources...');
-  const manychatFiles = extractFromZip(MANYCHAT_ZIP);
-  console.log(`   ✅ ${manychatFiles.length} files extracted`);
+  if (fs.existsSync(nbMakeDir) && fs.readdirSync(nbMakeDir).some(f => f.endsWith('.md'))) {
+    console.log('📚 Loading Make.com sources from NotebookLM...');
+    makeFiles = readFromDirectory(nbMakeDir);
+    console.log(`   ✅ ${makeFiles.length} files loaded`);
+  } else {
+    console.log('📦 Extracting Make.com sources from ZIP...');
+    makeFiles = extractFromZip(MAKE_ZIP);
+    console.log(`   ✅ ${makeFiles.length} files extracted`);
+  }
+
+  if (fs.existsSync(nbManychatDir) && fs.readdirSync(nbManychatDir).some(f => f.endsWith('.md'))) {
+    console.log('📚 Loading ManyChat sources from NotebookLM...');
+    manychatFiles = readFromDirectory(nbManychatDir);
+    console.log(`   ✅ ${manychatFiles.length} files loaded`);
+  } else {
+    console.log('📦 Extracting ManyChat sources from ZIP...');
+    manychatFiles = extractFromZip(MANYCHAT_ZIP);
+    console.log(`   ✅ ${manychatFiles.length} files extracted`);
+  }
 
   // Load custom articles from custom-articles/ directory
   const customFiles = [];
