@@ -6,8 +6,9 @@ const CORS_HEADERS = {
   "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
 
+const XAI_TIMEOUT_MS = 30_000;
+
 Deno.serve(async (req: Request) => {
-  // Handle CORS preflight
   if (req.method === "OPTIONS") {
     return new Response(null, { status: 204, headers: CORS_HEADERS });
   }
@@ -37,14 +38,32 @@ Deno.serve(async (req: Request) => {
     if (temperature !== undefined) xaiBody.temperature = temperature;
     if (stream) xaiBody.stream = stream;
 
-    const xaiRes = await fetch("https://api.x.ai/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify(xaiBody),
-    });
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), XAI_TIMEOUT_MS);
+
+    let xaiRes: Response;
+    try {
+      xaiRes = await fetch("https://api.x.ai/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify(xaiBody),
+        signal: controller.signal,
+      });
+    } catch (fetchErr) {
+      clearTimeout(timeout);
+      const isTimeout = fetchErr instanceof Error && fetchErr.name === "AbortError";
+      return new Response(
+        JSON.stringify({ error: isTimeout ? "xAI API timeout" : "xAI unreachable", details: String(fetchErr) }),
+        {
+          status: 504,
+          headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
+        }
+      );
+    }
+    clearTimeout(timeout);
 
     const data = await xaiRes.text();
 

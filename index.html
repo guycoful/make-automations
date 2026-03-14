@@ -1059,9 +1059,9 @@
           });
           clearTimeout(timeout);
           if (!res.ok) {
-            const errText = await res.text().catch(() => '');
             if (res.status === 401 || res.status === 400) throw new Error('מפתח API לא תקין. בדקו את המפתח בהגדרות.');
             if (res.status === 429) throw new Error('יותר מדי בקשות. נסו שוב בעוד דקה.');
+            if (res.status === 504) throw new Error('ה-AI לא הגיב בזמן. נסו שוב.');
             throw new Error('שגיאת שרת (' + res.status + ')');
           }
           const data = await res.json();
