@@ -43,6 +43,15 @@ const CATEGORY_RULES = [
   { id: 'manychat-course', name: '🎓 קורס ManyChat', platform: 'manychat', match: f => /קורס manychat|בוט וואטסאפ manychat/.test(f) },
   { id: 'manychat-advanced', name: '🚀 ManyChat מתקדם', platform: 'manychat', match: f => /שליחת רצף|תפוצות|אינטגרציות|חוק הספאם|WhatsApp|Official|צ'קליסט/.test(f) },
   { id: 'manychat-basics', name: '🔰 יסודות ManyChat', platform: 'manychat', match: f => /מאניצ׳אט|מאניצ'אט|פותחים חשבון|מושגי מערכת|סוגי חוליות|מוצר וחבילות|חודש ראשון|טקסט/.test(f) },
+  { id: 'agency-automation', name: '🏢 אוטומציה עסקית', platform: 'agency', match: f => /מודול 2\.5|אפיון|איפיון|מסע לקוח|קוד מדומה|שאלון/.test(f) },
+  { id: 'agency-bots', name: '🤖 סוכנים ובוטים', platform: 'agency', match: f => /מודול 5|צ'אטבוט|סוכן|GPT|FastBots|בוט/.test(f) },
+  { id: 'agency-implementation', name: '🔧 הטמעה ומערכות', platform: 'agency', match: f => /מודול 6|CRM|Monday|Airtable|הטמעה|סיסטם|Vibe Coding|vibe coding|קייס סטאדי|תהליך עבודה|פתרון תקלות/.test(f) },
+  { id: 'agency-tools', name: '🛠️ כלים ותבניות', platform: 'agency', match: f => /טמפלייט|תסריט|צ׳קליסט|צ'קליסט|סוכנים מועדפים|תשתית|פרומפטים|Agency Stack|Fillout/.test(f) },
+  { id: 'agency-webinars', name: '🎬 וובינרים', platform: 'agency', match: f => /וובינר/.test(f) },
+  { id: 'crm-basics', name: '📊 יסודות CRM', platform: 'crm', match: f => /מה זה.*CRM|מה חשוב|איך נראית|פתיחת משתמש|מה זה Monday/.test(f) },
+  { id: 'crm-monday', name: '📋 Monday.com', platform: 'crm', match: f => /Monday|מאנדיי|monday|משתמשים והגדרות|דשבורדים|מבני נתונים במאנדיי/.test(f) },
+  { id: 'crm-integrations', name: '🔗 אינטגרציות CRM', platform: 'crm', match: f => /אינטגרציה|אינטגרציות|אוטומציות פנימיות|make.*airtable|חיבור/.test(f) },
+  { id: 'crm-implementation', name: '🏗️ הקמת CRM', platform: 'crm', match: f => /בניית.*CRM|מדריך.*CRM|מדריך_המשתמש|קייס סטאדי|מיני CRM|הטמעת|תהליך עבודה|פתרון תקלות/.test(f) },
 ];
 
 // ─── Helpers ────────────────────────────────────────────────────────────
@@ -80,6 +89,24 @@ function extractFromZip(zipPath) {
   return results;
 }
 
+// Personal names to redact from chatbot output
+const PERSONAL_NAMES = [
+  'גיא כהן', 'אריה נרנברג', 'יניב בן לולו', 'שון הכרי', 'רזיאל חתוכה',
+  'ניצן', 'אשר מורגנשטיין', 'גיל מאיר', 'צליל נוימן', 'איתי טלרמן',
+  'ישעיהו ריב', 'מיכאל נבון', 'יאיר מור יוסף', 'אפרת דגן', 'עדי שריד',
+  'רועי קאיה', 'שרון לוביץ', 'דנה אלוני', 'מרינה פיקס', 'עמליה סינגר',
+  'צופית ריחיים', 'רותם חומסקי', 'מעיין', 'אסף מטמיע', 'איילת ורשביאק',
+  'זיו שמאי', 'ריאד'
+];
+
+function redactNames(text) {
+  let result = text;
+  for (const name of PERSONAL_NAMES) {
+    result = result.replace(new RegExp(name, 'g'), 'המרצה');
+  }
+  return result;
+}
+
 function cleanContent(raw, filename) {
   let text = raw;
   // Remove YAML frontmatter
@@ -97,13 +124,15 @@ function cleanContent(raw, filename) {
   }
   // Remove image URLs
   text = text.replace(/https?:\/\/lh\d+\.googleusercontent\.com\/[^\s]+/g, '');
+  // Redact personal names
+  text = redactNames(text);
   // Clean up multiple newlines
   text = text.replace(/\n{3,}/g, '\n\n');
   return text.trim();
 }
 
 function cleanTitle(filename) {
-  return filename
+  let title = filename
     .replace(/-audio\.mp4\.md$/i, '')
     .replace(/\.mp4\.md$/i, '')
     .replace(/\.m4a\.md$/i, '')
@@ -114,6 +143,7 @@ function cleanTitle(filename) {
     .replace(/ \(\d+\)$/, '')
     .replace(/ - Made with Clipchamp/i, '')
     .trim();
+  return redactNames(title);
 }
 
 function categorize(filename, platform) {
@@ -122,7 +152,8 @@ function categorize(filename, platform) {
       return rule.id;
     }
   }
-  return platform === 'make' ? 'make-basics' : 'manychat-basics';
+  const fallbacks = { make: 'make-basics', manychat: 'manychat-basics', agency: 'agency-automation', crm: 'crm-basics' };
+  return fallbacks[platform] || 'make-basics';
 }
 
 function splitIntoParagraphs(text) {
@@ -380,6 +411,24 @@ function main() {
     console.log(`   ✅ ${manychatFiles.length} files extracted`);
   }
 
+  // Load agency sources (filtered)
+  let agencyFiles = [];
+  const nbAgencyDir = path.join(NOTEBOOKLM_DIR, 'agency');
+  if (fs.existsSync(nbAgencyDir) && fs.readdirSync(nbAgencyDir).some(f => f.endsWith('.md'))) {
+    console.log('📚 Loading Agency sources from NotebookLM...');
+    agencyFiles = readFromDirectory(nbAgencyDir);
+    console.log(`   ✅ ${agencyFiles.length} files loaded`);
+  }
+
+  // Load CRM sources
+  let crmFiles = [];
+  const nbCrmDir = path.join(NOTEBOOKLM_DIR, 'crm');
+  if (fs.existsSync(nbCrmDir) && fs.readdirSync(nbCrmDir).some(f => f.endsWith('.md'))) {
+    console.log('📚 Loading CRM sources from NotebookLM...');
+    crmFiles = readFromDirectory(nbCrmDir);
+    console.log(`   ✅ ${crmFiles.length} files loaded`);
+  }
+
   // Load custom articles from custom-articles/ directory
   const customFiles = [];
   if (fs.existsSync(CUSTOM_DIR)) {
@@ -407,6 +456,8 @@ function main() {
   const allFiles = [
     ...makeFiles.map(f => ({ ...f, platform: 'make' })),
     ...manychatFiles.map(f => ({ ...f, platform: 'manychat' })),
+    ...agencyFiles.map(f => ({ ...f, platform: 'agency' })),
+    ...crmFiles.map(f => ({ ...f, platform: 'crm' })),
     ...customFiles.map(f => ({ ...f, platform: 'make' }))
   ];
 

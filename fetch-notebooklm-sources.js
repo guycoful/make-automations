@@ -78,6 +78,14 @@ function main() {
       continue;
     }
 
+    // Filter sources if filterSources is defined
+    if (notebook.filterSources && notebook.filterSources.length > 0) {
+      const filters = notebook.filterSources;
+      const before = sources.length;
+      sources = sources.filter(s => filters.some(f => s.title.includes(f)));
+      console.log(`   🔍 Filtered: ${before} → ${sources.length} (${before - sources.length} excluded)\n`);
+    }
+
     // Fetch fulltext for each source
     for (const source of sources) {
       if (source.status !== 'ready') {

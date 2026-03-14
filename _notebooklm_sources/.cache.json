@@ -543,5 +543,415 @@
     "title": "שליחת תפוצות רחבות במאניצ׳אט-audio.mp4",
     "fetchedAt": "2026-03-14T11:33:54.912Z",
     "chars": 8701
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::e51714bc-5675-4389-86f3-a5193c235877": {
+    "title": "איפיון מסע לקוח מהשארת פרטים ועד לאופרציה מלאה",
+    "fetchedAt": "2026-03-14T12:05:32.907Z",
+    "chars": 695
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::310478ce-bf1c-4d0c-a2d2-f567788184e9": {
+    "title": "אפיון לבניית צ'אטבוט כולל שימוש בMiro 4.6.25.mp4",
+    "fetchedAt": "2026-03-14T12:05:35.218Z",
+    "chars": 5913
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::6a2d8be3-6095-4234-8e7a-a5ad74d01c48": {
+    "title": "אפיון לבניית צ'אטבוט כולל שימוש בMiro 4.6.25.mp4",
+    "fetchedAt": "2026-03-14T12:05:37.713Z",
+    "chars": 39973
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::0eff9179-6ecd-48e5-ae18-16462809771b": {
+    "title": "בניית אוטומציית make לניהול חשבוניות בלייב עם יניב בן לולו 5.11.25.mp4",
+    "fetchedAt": "2026-03-14T12:05:40.530Z",
+    "chars": 7451
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::ec51d39a-a17d-4c1c-ba66-ea22dda88ad2": {
+    "title": "בניית אוטומציית make לניהול חשבוניות בלייב עם יניב בן לולו 5.11.25.mp4",
+    "fetchedAt": "2026-03-14T12:05:43.436Z",
+    "chars": 59309
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::4e2bbe32-4a2a-4428-a8ee-2a59cfb491df": {
+    "title": "בניית מיני CRM לניהול לידים לסוכנות.mp4",
+    "fetchedAt": "2026-03-14T12:05:45.923Z",
+    "chars": 7406
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::af5511ab-984d-4d33-a31d-ad9876b786a5": {
+    "title": "בניית שאלון חימום לידים בFillout",
+    "fetchedAt": "2026-03-14T12:05:48.728Z",
+    "chars": 15959
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::4fd89ed8-7dbe-4e31-9e1f-f34e919ce48c": {
+    "title": "הAgency Stack בTimeOS",
+    "fetchedAt": "2026-03-14T12:05:51.417Z",
+    "chars": 9316
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::297fc98f-6dd9-4ab2-81a1-127027dfbc70": {
+    "title": "הדרכה בנושא בניית סוכני GPT ופרומפטינג 17.8.25-audio.mp4",
+    "fetchedAt": "2026-03-14T12:05:53.943Z",
+    "chars": 43587
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::f0fb6fc1-fea6-42d0-b53c-3d1d76bcb8fa": {
+    "title": "הדרכה בנושא בניית סוכני GPT ופרומפטינג 17.8.25-audio.mp4",
+    "fetchedAt": "2026-03-14T12:05:56.225Z",
+    "chars": 5627
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::793e74ee-1653-432c-9d25-1da4538d1fe3": {
+    "title": "הדרכה בנושא עם מערכות 18.6.25CRM",
+    "fetchedAt": "2026-03-14T12:05:58.823Z",
+    "chars": 57690
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::f119d8a5-1c2f-4131-abcd-5cd3a3fe64d6": {
+    "title": "הדרכה בנושא עם מערכות 18.6.25CRM",
+    "fetchedAt": "2026-03-14T12:06:01.333Z",
+    "chars": 6759
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::264a1d3a-f812-49fa-b9a5-9064d97bc19d": {
+    "title": "הדרכה בניית בוט ווטסאפ דרך סוכן בmake ושילוב assembly ai 14.1.26",
+    "fetchedAt": "2026-03-14T12:06:04.102Z",
+    "chars": 6141
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::0a4af4d9-ea5b-4422-b347-ea739a4acabc": {
+    "title": "הדרכה בניית בוט ווטסאפ דרך סוכן בmake ושילוב assembly ai 14.1.26 ",
+    "fetchedAt": "2026-03-14T12:06:06.792Z",
+    "chars": 54144
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::4d4a8785-1467-416f-a0db-90ced80dc2ae": {
+    "title": "וובינר מבוא ל-Vibe Coding עם יניב בן לולו 11.2.26.mp4",
+    "fetchedAt": "2026-03-14T12:06:09.117Z",
+    "chars": 6588
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::82ba508b-666a-49bb-8c41-2c9ee7da8fb9": {
+    "title": "וובינר מבוא ל-Vibe Coding עם יניב בן לולו 11.2.26.mp4",
+    "fetchedAt": "2026-03-14T12:06:11.689Z",
+    "chars": 45757
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::42ddaeb7-bd1f-4528-9edf-606beca1bb93": {
+    "title": "וובינר קייס סטאדי של בוט שיווק מאפיון עד ביצוע 2.7.25-audio.mp4",
+    "fetchedAt": "2026-03-14T12:06:13.871Z",
+    "chars": 5993
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::6f1154fe-1e05-4a51-9c36-b4ff6ac9f738": {
+    "title": "וובינר קייס סטאדי של בוט שיווק מאפיון עד ביצוע 2.7.25-audio.mp4",
+    "fetchedAt": "2026-03-14T12:06:16.477Z",
+    "chars": 44948
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::71d81fd6-5ada-4da2-9138-215da09ab3a0": {
+    "title": "וובינר שאלות תשובות+מעבר על צ'קליסט ממשק עם לקוח בהטמעה 22.4.25.mp4",
+    "fetchedAt": "2026-03-14T12:06:18.668Z",
+    "chars": 12702
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::f20e76d5-0a52-441c-862e-406342ffb4c3": {
+    "title": "וובינר שאלות תשובות+מעבר על צ'קליסט ממשק עם לקוח בהטמעה 22.4.25.mp4",
+    "fetchedAt": "2026-03-14T12:06:21.167Z",
+    "chars": 37604
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::a892de53-c59a-49d2-b9bc-7d6114e27950": {
+    "title": "וובינר שאלות תשובות+מעבר על שאלון אפיון עם דגשים חשובים לממשק עם הלקוח 7.5.25-audio.mp4",
+    "fetchedAt": "2026-03-14T12:06:23.677Z",
+    "chars": 6234
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::d9fadae1-2d62-4268-9625-fd3870f7f49e": {
+    "title": "וובינר שאלות תשובות+מעבר על שאלון אפיון עם דגשים חשובים לממשק עם הלקוח 7.5.25-audio.mp4",
+    "fetchedAt": "2026-03-14T12:06:25.943Z",
+    "chars": 44136
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::11a9f394-a054-46ac-a09c-46e134989857": {
+    "title": "טמפלייט מסמך איפיון",
+    "fetchedAt": "2026-03-14T12:06:28.946Z",
+    "chars": 21204
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::ae9ccb98-d9f6-45fb-9835-48f81d0b13ae": {
+    "title": "מדריך לבניית וניהול CRM חכם ב-Airtable ואוטומציה",
+    "fetchedAt": "2026-03-14T12:06:31.073Z",
+    "chars": 3642
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::b08892bb-33c5-4416-962a-08ce8e9f4c4e": {
+    "title": "מה זה אפיון ואיך עושים אותו_-audio.mp4",
+    "fetchedAt": "2026-03-14T12:06:33.355Z",
+    "chars": 11589
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::7e32b5ba-361e-404e-8625-6d761ac4ec76": {
+    "title": "מה זה מערכת CRM_-audio.mp4",
+    "fetchedAt": "2026-03-14T12:06:35.660Z",
+    "chars": 3888
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::a1798b48-3436-4c3b-a200-13a29b969df8": {
+    "title": "מה חשוב שיהיה בערכת CRM_-audio.mp4",
+    "fetchedAt": "2026-03-14T12:06:37.997Z",
+    "chars": 11976
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::7049a7dd-6f6c-44e3-a298-6a3973137810": {
+    "title": "מודול 2.5 פרק 1 מה זו אוטומציה עסקית.mp4",
+    "fetchedAt": "2026-03-14T12:06:40.535Z",
+    "chars": 13183
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::bb3e92cf-e259-49a6-bb40-d847af9d7014": {
+    "title": "מודול 2.5 פרק 10 איך בוחרים מערכות לפרויקט.mp4",
+    "fetchedAt": "2026-03-14T12:06:42.843Z",
+    "chars": 9631
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::17aa6ea8-b965-4dc0-940b-2ca10c6a34e0": {
+    "title": "מודול 2.5 פרק 11 בניית הצעת מחיר לפרויקט.mp4",
+    "fetchedAt": "2026-03-14T12:06:45.650Z",
+    "chars": 16280
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::2ff3e638-5f47-4306-9dbe-c59aa5dfae0d": {
+    "title": "מודול 2.5 פרק 12 נקודות חשובות להסכם שירות.mp4",
+    "fetchedAt": "2026-03-14T12:06:48.713Z",
+    "chars": 4926
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::730c2686-f64e-4372-9271-3c360f7cbafc": {
+    "title": "מודול 2.5 פרק 2 ממשק עם הלקוח בפרויקט אוטומציה.mp4",
+    "fetchedAt": "2026-03-14T12:06:50.972Z",
+    "chars": 10295
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::3fa2c7a1-31b3-44e0-8f39-f4ef2d07aed4": {
+    "title": "מודול 2.5 פרק 3 מבוא לאיפיון אוטומציה.mp4",
+    "fetchedAt": "2026-03-14T12:06:53.818Z",
+    "chars": 20111
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::4ba7362d-aa67-4167-bc59-4006004fd7b3": {
+    "title": "מודול 2.5 פרק 4 איפיון פרויקט אוטומציה-audio.mp4",
+    "fetchedAt": "2026-03-14T12:06:56.047Z",
+    "chars": 21064
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::c192856c-7bea-4e12-b62d-93cf1ee00ca7": {
+    "title": "מודול 2.5 פרק 5 איפיון מסע לקוח - Made with Clipchamp.m4a",
+    "fetchedAt": "2026-03-14T12:06:58.419Z",
+    "chars": 23611
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::cdf3d9b3-1a9a-48e9-98ab-6fa5d6dc9f09": {
+    "title": "מודול 2.5 פרק 6 דוגמאות לאיפיוני מסע לקוח.mp4",
+    "fetchedAt": "2026-03-14T12:07:00.530Z",
+    "chars": 12592
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::55e59a5d-3011-4a81-b1ce-b73db8bd6456": {
+    "title": "מודול 2.5 פרק 7 הכנת שלבי האוטומציה וכתיבת קוד מדומה-audio.mp4",
+    "fetchedAt": "2026-03-14T12:07:02.613Z",
+    "chars": 7252
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::71da2939-1ece-4bbe-9018-121175c85673": {
+    "title": "מודול 2.5 פרק 8 המשך איפיון ושאלון.m4a",
+    "fetchedAt": "2026-03-14T12:07:06.580Z",
+    "chars": 16146
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::c91aa8c2-cc02-40d6-8d2b-718540057d95": {
+    "title": "מודול 2.5 פרק 9 טמפלט שאלון אפיון+העלאה לFillout-audio.mp4",
+    "fetchedAt": "2026-03-14T12:07:09.267Z",
+    "chars": 165
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::d56a3aaa-74a8-4af0-bef1-a4aa39cac913": {
+    "title": "מודול 2.5 פרק 9 טמפלט שאלון אפיון+העלאה לFillout-audio.mp4",
+    "fetchedAt": "2026-03-14T12:07:14.071Z",
+    "chars": 3320
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::f51debac-d3e8-404d-b46f-e16423546420": {
+    "title": "מודול 5 פרק 1 הבסיס לבניית צ'אטבוט-audio.mp4",
+    "fetchedAt": "2026-03-14T12:07:16.929Z",
+    "chars": 3884
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::331fdc1a-0479-48e3-9f75-f89aebfea095": {
+    "title": "מודול 5 פרק 2 צ'קליסט לתחילת עבודה על בוט וואטסאפ-audio.mp4",
+    "fetchedAt": "2026-03-14T12:07:19.948Z",
+    "chars": 4135
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::6fd971c9-d401-4387-b5b8-3b8750a694df": {
+    "title": "מודול 5 פרק 3 השגת מספר חדש SecNum.mp4",
+    "fetchedAt": "2026-03-14T12:07:23.029Z",
+    "chars": 3277
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::ec7de177-8e1e-4e6b-a773-3bcc47e94587": {
+    "title": "מודול 5 פרק 4 השגת מספר חדש מTwilio.mp4",
+    "fetchedAt": "2026-03-14T12:07:25.782Z",
+    "chars": 7260
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::77f1d273-1f73-4bca-b3eb-a61b4914abd6": {
+    "title": "מודול 5 פרק 5 איך להסיר חסימה של מטא-audio.mp4",
+    "fetchedAt": "2026-03-14T12:07:29.666Z",
+    "chars": 4439
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::e7f579cc-681b-4b81-a08a-d5aaf16dc33a": {
+    "title": "מודול 5 פרק 6 צ'אטבוט AI לעסקים - FastBots.mp4",
+    "fetchedAt": "2026-03-14T12:07:32.200Z",
+    "chars": 22532
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::c89d8883-b75b-4233-a347-ce88e9b4430e": {
+    "title": "מודול 5 פרק 7 חוק הספאם.mp4",
+    "fetchedAt": "2026-03-14T12:07:35.797Z",
+    "chars": 7706
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::654ba906-6497-437c-9631-216ea4d06b0d": {
+    "title": "מודול 5 פרק 8 אפיון בניית סוכן AI לעסק-audio.mp4",
+    "fetchedAt": "2026-03-14T12:07:38.018Z",
+    "chars": 5825
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::74eea979-b346-4979-a36e-27412d4ee720": {
+    "title": "מודול 5 פרק 9 בניית הצעת מחיר לסוכן AI-audio.mp4",
+    "fetchedAt": "2026-03-14T12:07:43.166Z",
+    "chars": 2288
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::585e17a0-3a65-4eaf-ba43-9ba00e08515c": {
+    "title": "מודול 6 פתרון תקלות עם לקוחות בתהליכי הטמעת AI-audio.mp4",
+    "fetchedAt": "2026-03-14T12:07:46.633Z",
+    "chars": 6002
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::8b7592e0-b379-431e-82eb-ee387a14da0e": {
+    "title": "מודול 6 תהליך עבודה מסודר עם לקוח בהטמעתaudio.mp4",
+    "fetchedAt": "2026-03-14T12:07:48.887Z",
+    "chars": 7484
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::073d2048-7432-47aa-89d7-2b4ba7102138": {
+    "title": "סוכנים מועדפים על יוצרי Timeless.md",
+    "fetchedAt": "2026-03-14T12:07:51.376Z",
+    "chars": 4722
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::a1b8dd47-3fed-4c62-a09f-7578779e731f": {
+    "title": "סיסטם לבניית סדנת AI ללקוחות",
+    "fetchedAt": "2026-03-14T12:07:53.667Z",
+    "chars": 3770
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::2de96ba2-5c57-4db6-bbe0-b36cb0341bb9": {
+    "title": "סיסטם להקמת מערכות ללקוח בעת הטמעה",
+    "fetchedAt": "2026-03-14T12:07:55.916Z",
+    "chars": 4309
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::3d04ba52-69a9-4305-a81e-6dcfb8abf8c8": {
+    "title": "עקרונות הבנייה של vibe coding עם רזיאל חתוכה 19.11.25.mp4",
+    "fetchedAt": "2026-03-14T12:07:58.449Z",
+    "chars": 5977
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::5dfb1d59-47cd-4efc-953b-f19b45ce2991": {
+    "title": "עקרונות הבנייה של vibe coding עם רזיאל חתוכה 19.11.25.mp4",
+    "fetchedAt": "2026-03-14T12:08:01.075Z",
+    "chars": 41112
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::3306efca-8d0c-4afb-a13d-82ceabdc4734": {
+    "title": "צ׳קליסט לבניית אוטומציה.pdf",
+    "fetchedAt": "2026-03-14T12:08:04.441Z",
+    "chars": 693
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::73e4e425-2a66-40bc-a325-9d79f2ee93a6": {
+    "title": "קייס סטאדי - בניית מערכת CRM Monday audio.mp4",
+    "fetchedAt": "2026-03-14T12:08:06.776Z",
+    "chars": 6863
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::c1025166-b64a-4c20-a471-ce0dab040857": {
+    "title": "קייס סטאדי - בניית מערכת CRM Monday audio.mp4",
+    "fetchedAt": "2026-03-14T12:08:11.468Z",
+    "chars": 65204
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::2e891403-821c-4243-b371-b51abdb17f80": {
+    "title": "תסריט פגישת אפיון - CRM ואוטומציות",
+    "fetchedAt": "2026-03-14T12:08:16.204Z",
+    "chars": 6085
+  },
+  "a1ca364a-6c1d-4ede-be14-b35feeb32dfa::d1f50d06-515b-4104-b2cf-a354fb1d0a77": {
+    "title": "תשתית ראשונית למאגר פרומפטים סוכנים+לימוד.pdf",
+    "fetchedAt": "2026-03-14T12:08:18.960Z",
+    "chars": 15118
+  },
+  "0fb4fa61-5202-4cbf-b1e9-f7afe18150af::ea64dbb8-2342-4c71-8749-492b9e015bf7": {
+    "title": "AI תהליך עבודה מסודר עם לקוח בהטמעתaudio.mp4",
+    "fetchedAt": "2026-03-14T12:08:28.298Z",
+    "chars": 7484
+  },
+  "0fb4fa61-5202-4cbf-b1e9-f7afe18150af::ca440f27-ba46-4b08-bcd1-11e1a8456956": {
+    "title": "אוטומציות פנימיות במאנדיי-audio.mp4",
+    "fetchedAt": "2026-03-14T12:08:31.181Z",
+    "chars": 8685
+  },
+  "0fb4fa61-5202-4cbf-b1e9-f7afe18150af::2c1d487a-72cd-4920-8243-53d5d277e021": {
+    "title": "איך נראית מערכת CRM בפועל_-audio.mp4",
+    "fetchedAt": "2026-03-14T12:08:36.326Z",
+    "chars": 4266
+  },
+  "0fb4fa61-5202-4cbf-b1e9-f7afe18150af::44000e9f-8a03-456d-be4d-43aefd4ae05c": {
+    "title": "אינטגרציה של monday עם make-audio.mp4",
+    "fetchedAt": "2026-03-14T12:08:40.828Z",
+    "chars": 11135
+  },
+  "0fb4fa61-5202-4cbf-b1e9-f7afe18150af::6905088e-6328-4790-a7e2-a59bcb094141": {
+    "title": "אפליקציות צד שלישי ואינטגרציות-audio.mp4",
+    "fetchedAt": "2026-03-14T12:08:43.641Z",
+    "chars": 4745
+  },
+  "0fb4fa61-5202-4cbf-b1e9-f7afe18150af::990da4a5-ded1-4d72-9777-3cc049a94eef": {
+    "title": "בניית מיני CRM לניהול לידים לסוכנות.mp4",
+    "fetchedAt": "2026-03-14T12:08:49.390Z",
+    "chars": 7397
+  },
+  "0fb4fa61-5202-4cbf-b1e9-f7afe18150af::bf46d371-df17-4f6d-978e-fe2bae09ee28": {
+    "title": "דשבורדים-audio.mp4",
+    "fetchedAt": "2026-03-14T12:08:54.761Z",
+    "chars": 11520
+  },
+  "0fb4fa61-5202-4cbf-b1e9-f7afe18150af::3898f79b-fa75-4d50-bc64-0bfd4f1d77f9": {
+    "title": "הדרכה בנושא עם מערכות CRM 18.6.25-audio.mp4",
+    "fetchedAt": "2026-03-14T12:08:59.959Z",
+    "chars": 57658
+  },
+  "0fb4fa61-5202-4cbf-b1e9-f7afe18150af::0bcc6070-bd85-4155-ad3b-9ab1e524ccb5": {
+    "title": "חיבור make ל airtable-audio.mp4",
+    "fetchedAt": "2026-03-14T12:09:03.881Z",
+    "chars": 2011
+  },
+  "0fb4fa61-5202-4cbf-b1e9-f7afe18150af::87b1ee7b-0a4f-4175-90d2-136556507608": {
+    "title": "מבני נתונים במאנדיי-audio.mp4",
+    "fetchedAt": "2026-03-14T12:09:06.767Z",
+    "chars": 25940
+  },
+  "0fb4fa61-5202-4cbf-b1e9-f7afe18150af::b74cc1e1-ecd8-44a5-9705-05db6745e3da": {
+    "title": "מדריך לבניית וניהול CRM חכם ב-Airtable ואוטומציה",
+    "fetchedAt": "2026-03-14T12:09:09.661Z",
+    "chars": 3642
+  },
+  "0fb4fa61-5202-4cbf-b1e9-f7afe18150af::fe8ec44a-1d8c-480a-8841-20ca75300360": {
+    "title": "מדריך_המשתמש_המלא_ל_Monday.pdf",
+    "fetchedAt": "2026-03-14T12:09:12.239Z",
+    "chars": 10628
+  },
+  "0fb4fa61-5202-4cbf-b1e9-f7afe18150af::746f1c2f-e5e0-4f78-bea6-8b8a5d4689a1": {
+    "title": "מה זה Monday.com_-audio.mp4",
+    "fetchedAt": "2026-03-14T12:09:17.656Z",
+    "chars": 7508
+  },
+  "0fb4fa61-5202-4cbf-b1e9-f7afe18150af::2e84827f-7c3e-4475-b75c-1877dd2bf560": {
+    "title": "מה זה אפיון ואיך עושים אותו_-audio.mp4",
+    "fetchedAt": "2026-03-14T12:09:22.568Z",
+    "chars": 11591
+  },
+  "0fb4fa61-5202-4cbf-b1e9-f7afe18150af::bad74229-bf7a-49f4-93ce-f24053b4ca68": {
+    "title": "מה זה מערכת CRM_-audio.mp4",
+    "fetchedAt": "2026-03-14T12:09:25.621Z",
+    "chars": 3888
+  },
+  "0fb4fa61-5202-4cbf-b1e9-f7afe18150af::a00c25e4-4564-47d6-80eb-852ea36c9087": {
+    "title": "מה חשוב שיהיה בערכת CRM_-audio.mp4",
+    "fetchedAt": "2026-03-14T12:09:28.045Z",
+    "chars": 11976
+  },
+  "0fb4fa61-5202-4cbf-b1e9-f7afe18150af::413a2be0-a8c2-44f5-91b6-31449db925f1": {
+    "title": "משתמשים והגדרות מערכת monday-audio.mp4",
+    "fetchedAt": "2026-03-14T12:09:30.656Z",
+    "chars": 16261
+  },
+  "0fb4fa61-5202-4cbf-b1e9-f7afe18150af::150b09cd-dbb2-4081-bfd5-68f82a93e845": {
+    "title": "פתיחת משתמש monday-audio.mp4",
+    "fetchedAt": "2026-03-14T12:09:33.199Z",
+    "chars": 6551
+  },
+  "0fb4fa61-5202-4cbf-b1e9-f7afe18150af::be9af6b1-fe38-451b-99b8-b0b43e0e4e72": {
+    "title": "פתרון תקלות עם לקוחות בתהליכי הטמעת AI-audio.mp4",
+    "fetchedAt": "2026-03-14T12:09:35.790Z",
+    "chars": 6002
+  },
+  "0fb4fa61-5202-4cbf-b1e9-f7afe18150af::5014b337-b0e6-4412-83db-7eed1be78d85": {
+    "title": "קייס סטאדי - בניית מערכת CRM Monday audio.mp4",
+    "fetchedAt": "2026-03-14T12:09:38.443Z",
+    "chars": 65221
+  },
+  "0fb4fa61-5202-4cbf-b1e9-f7afe18150af::6b65b751-2df6-436f-8d4c-8a08a44ed6f5": {
+    "title": "קייס סטאדי - בניית מערכת CRM Monday audio.mp4",
+    "fetchedAt": "2026-03-14T12:09:43.518Z",
+    "chars": 6862
   }
 }
