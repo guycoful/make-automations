@@ -21,7 +21,8 @@ Deno.serve(async (req: Request) => {
   }
 
   try {
-    const { apiKey, messages, model, max_tokens, temperature, stream, search_parameters } = await req.json();
+    const body = await req.json();
+    const { apiKey, messages, model, max_tokens, temperature, stream, useSearch } = body;
 
     if (!apiKey || !messages) {
       return new Response(
@@ -33,18 +34,34 @@ Deno.serve(async (req: Request) => {
       );
     }
 
-    const xaiBody: Record<string, unknown> = { messages, model: model || "grok-3-mini-fast" };
-    if (max_tokens) xaiBody.max_tokens = max_tokens;
-    if (temperature !== undefined) xaiBody.temperature = temperature;
-    if (stream) xaiBody.stream = stream;
-    if (search_parameters) xaiBody.search_parameters = search_parameters;
+    let endpoint: string;
+    let xaiBody: Record<string, unknown>;
+
+    if (useSearch) {
+      // Responses API — supports web_search tool
+      endpoint = "https://api.x.ai/v1/responses";
+      xaiBody = {
+        model: model || "grok-3-mini-fast",
+        input: messages,
+        tools: [{ type: "web_search" }],
+      };
+      if (max_tokens) xaiBody.max_output_tokens = max_tokens;
+      if (temperature !== undefined) xaiBody.temperature = temperature;
+    } else {
+      // Chat Completions API — standard chat
+      endpoint = "https://api.x.ai/v1/chat/completions";
+      xaiBody = { messages, model: model || "grok-3-mini-fast" };
+      if (max_tokens) xaiBody.max_tokens = max_tokens;
+      if (temperature !== undefined) xaiBody.temperature = temperature;
+      if (stream) xaiBody.stream = stream;
+    }
 
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), XAI_TIMEOUT_MS);
 
     let xaiRes: Response;
     try {
-      xaiRes = await fetch("https://api.x.ai/v1/chat/completions", {
+      xaiRes = await fetch(endpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

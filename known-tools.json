@@ -1,0 +1,12428 @@
+[
+  {
+    "names": [
+      "make",
+      "מייק",
+      "meyk",
+      "מיק",
+      "מייקר"
+    ],
+    "search": "make מייק אוטומציה סנריו סצנריו"
+  },
+  {
+    "names": [
+      "make.com"
+    ],
+    "search": "make.com מייק אוטומציה"
+  },
+  {
+    "names": [
+      "manychat",
+      "מאניצאט",
+      "מאניצ׳אט",
+      "מניצאט",
+      "מניצ׳ט",
+      "מיניצאט",
+      "מניצ׳אט"
+    ],
+    "search": "manychat מאניצאט צאטבוט בוט"
+  },
+  {
+    "names": [
+      "zapier",
+      "זאפייר"
+    ],
+    "search": "zapier זאפייר אוטומציה"
+  },
+  {
+    "names": [
+      "n8n"
+    ],
+    "search": "n8n אוטומציה"
+  },
+  {
+    "names": [
+      "pabbly",
+      "פאבלי"
+    ],
+    "search": "pabbly פאבלי אוטומציה"
+  },
+  {
+    "names": [
+      "integromat",
+      "אינטגרומט"
+    ],
+    "search": "integromat make אוטומציה"
+  },
+  {
+    "names": [
+      "webhook",
+      "ובהוק",
+      "וובהוק",
+      "ווב הוק"
+    ],
+    "search": "webhook ובהוק טריגר"
+  },
+  {
+    "names": [
+      "scenario",
+      "סנריו",
+      "סצנריו"
+    ],
+    "search": "סנריו סצנריו scenario תרחיש"
+  },
+  {
+    "names": [
+      "trigger",
+      "טריגר"
+    ],
+    "search": "טריגר trigger watch"
+  },
+  {
+    "names": [
+      "module",
+      "מודול"
+    ],
+    "search": "מודול module פעולה"
+  },
+  {
+    "names": [
+      "filter",
+      "פילטר"
+    ],
+    "search": "פילטר filter תנאי"
+  },
+  {
+    "names": [
+      "router",
+      "ראוטר"
+    ],
+    "search": "ראוטר router נתיב"
+  },
+  {
+    "names": [
+      "iterator",
+      "איטרטור"
+    ],
+    "search": "איטרטור iterator מערך"
+  },
+  {
+    "names": [
+      "aggregator",
+      "אגרגטור"
+    ],
+    "search": "אגרגטור aggregator איחוד"
+  },
+  {
+    "names": [
+      "blueprint",
+      "בלופרינט"
+    ],
+    "search": "בלופרינט blueprint ייצוא ייבוא"
+  },
+  {
+    "names": [
+      "datastore",
+      "דאטאסטור",
+      "דטהסטור",
+      "דטא סטור"
+    ],
+    "search": "דאטאסטור datastore מאגר נתונים"
+  },
+  {
+    "names": [
+      "connection",
+      "קונקשן"
+    ],
+    "search": "קונקשן connection חיבור"
+  },
+  {
+    "names": [
+      "dashboard",
+      "דשבורד",
+      "דשבורדים"
+    ],
+    "search": "דשבורד dashboard לוח בקרה"
+  },
+  {
+    "names": [
+      "template",
+      "טמפלייט"
+    ],
+    "search": "טמפלייט template תבנית"
+  },
+  {
+    "names": [
+      "integration",
+      "אינטגרציה"
+    ],
+    "search": "אינטגרציה integration חיבור"
+  },
+  {
+    "names": [
+      "automation",
+      "אוטומציה",
+      "אוטומציות"
+    ],
+    "search": "אוטומציה automation תהליך"
+  },
+  {
+    "names": [
+      "error handler"
+    ],
+    "search": "error handler שגיאה טיפול"
+  },
+  {
+    "names": [
+      "run once"
+    ],
+    "search": "run once הרצה בדיקה"
+  },
+  {
+    "names": [
+      "execution",
+      "אקזקיושן"
+    ],
+    "search": "execution הרצה"
+  },
+  {
+    "names": [
+      "operations",
+      "אופרציות"
+    ],
+    "search": "operations פעולות"
+  },
+  {
+    "names": [
+      "scheduling",
+      "שדיולינג"
+    ],
+    "search": "scheduling תזמון"
+  },
+  {
+    "names": [
+      "monday",
+      "מאנדיי"
+    ],
+    "search": "monday מאנדיי crm ניהול לקוחות"
+  },
+  {
+    "names": [
+      "monday.com"
+    ],
+    "search": "monday.com מאנדיי crm"
+  },
+  {
+    "names": [
+      "airtable",
+      "אירטייבל",
+      "אייר טייבל"
+    ],
+    "search": "airtable אירטייבל טבלה בסיס נתונים"
+  },
+  {
+    "names": [
+      "fireberry",
+      "פיירברי"
+    ],
+    "search": "fireberry פיירברי crm"
+  },
+  {
+    "names": [
+      "hubspot",
+      "האבספוט"
+    ],
+    "search": "hubspot האבספוט crm שיווק"
+  },
+  {
+    "names": [
+      "pipedrive",
+      "פייפדרייב"
+    ],
+    "search": "pipedrive crm מכירות"
+  },
+  {
+    "names": [
+      "salesforce",
+      "סיילספורס"
+    ],
+    "search": "salesforce crm"
+  },
+  {
+    "names": [
+      "clickup",
+      "קליקאפ"
+    ],
+    "search": "clickup קליקאפ ניהול פרויקטים"
+  },
+  {
+    "names": [
+      "zoho",
+      "זוהו"
+    ],
+    "search": "zoho crm"
+  },
+  {
+    "names": [
+      "crm"
+    ],
+    "search": "crm ניהול לקוחות מערכת"
+  },
+  {
+    "names": [
+      "prospero",
+      "פרוספרו",
+      "פרוספירו",
+      "לפוספרו"
+    ],
+    "search": "prospero פרוספרו הצעת מחיר proposal"
+  },
+  {
+    "names": [
+      "pandadoc",
+      "פנדהדוק"
+    ],
+    "search": "pandadoc פנדהדוק חתימה דיגיטלית"
+  },
+  {
+    "names": [
+      "whatsapp",
+      "ווטסאפ",
+      "וואטסאפ",
+      "ואטסאפ",
+      "ווצאפ",
+      "ווטס אפ"
+    ],
+    "search": "whatsapp וואטסאפ ווטסאפ הודעה"
+  },
+  {
+    "names": [
+      "gmail",
+      "גימייל",
+      "ג׳ימייל",
+      "ג׳מייל"
+    ],
+    "search": "gmail גימייל מייל אימייל"
+  },
+  {
+    "names": [
+      "telegram",
+      "טלגרם"
+    ],
+    "search": "telegram טלגרם בוט הודעה"
+  },
+  {
+    "names": [
+      "twilio",
+      "טוויליו"
+    ],
+    "search": "twilio טוויליו sms הודעה"
+  },
+  {
+    "names": [
+      "slack",
+      "סלאק"
+    ],
+    "search": "slack סלאק הודעה ערוץ"
+  },
+  {
+    "names": [
+      "secnum",
+      "סקנאם"
+    ],
+    "search": "secnum סקנאם מספר טלפון"
+  },
+  {
+    "names": [
+      "cellact",
+      "צלאקט"
+    ],
+    "search": "cellact sms"
+  },
+  {
+    "names": [
+      "messagebird"
+    ],
+    "search": "messagebird sms"
+  },
+  {
+    "names": [
+      "messenger",
+      "מסנג׳ר"
+    ],
+    "search": "messenger מסנג׳ר פייסבוק"
+  },
+  {
+    "names": [
+      "sms"
+    ],
+    "search": "sms הודעה טקסט"
+  },
+  {
+    "names": [
+      "linkedin",
+      "לינקדאין",
+      "לינקדין"
+    ],
+    "search": "linkedin לינקדאין רשת חברתית פרופיל"
+  },
+  {
+    "names": [
+      "instagram",
+      "אינסטגרם",
+      "אינסטגראם",
+      "אינסטה"
+    ],
+    "search": "instagram אינסטגרם רשת חברתית פוסט"
+  },
+  {
+    "names": [
+      "facebook",
+      "פייסבוק",
+      "פיסבוק"
+    ],
+    "search": "facebook פייסבוק דף עסקי פוסט מודעה"
+  },
+  {
+    "names": [
+      "tiktok",
+      "טיקטוק"
+    ],
+    "search": "tiktok טיקטוק סרטון"
+  },
+  {
+    "names": [
+      "twitter",
+      "טוויטר"
+    ],
+    "search": "twitter טוויטר ציוץ"
+  },
+  {
+    "names": [
+      "youtube",
+      "יוטיוב"
+    ],
+    "search": "youtube יוטיוב סרטון"
+  },
+  {
+    "names": [
+      "meta",
+      "מטא"
+    ],
+    "search": "meta מטא פייסבוק אינסטגרם business"
+  },
+  {
+    "names": [
+      "openai",
+      "אופנאיי"
+    ],
+    "search": "openai GPT בינה מלאכותית AI"
+  },
+  {
+    "names": [
+      "chatgpt",
+      "צאטגיפיטי",
+      "צאטג׳יפיטי",
+      "צ׳אטגיפיטי"
+    ],
+    "search": "chatgpt GPT בינה מלאכותית סוכן"
+  },
+  {
+    "names": [
+      "gpt"
+    ],
+    "search": "gpt GPT בינה מלאכותית"
+  },
+  {
+    "names": [
+      "claude",
+      "קלוד"
+    ],
+    "search": "claude AI בינה מלאכותית"
+  },
+  {
+    "names": [
+      "gemini",
+      "גמיני",
+      "ג׳מיני"
+    ],
+    "search": "gemini google AI בינה מלאכותית"
+  },
+  {
+    "names": [
+      "fastbots",
+      "פסטבוטס",
+      "פאסטבוטס"
+    ],
+    "search": "fastbots פסטבוטס צאטבוט AI"
+  },
+  {
+    "names": [
+      "prompt",
+      "פרומפט",
+      "פרומפטים"
+    ],
+    "search": "פרומפט prompt הנחיה AI"
+  },
+  {
+    "names": [
+      "ai",
+      "בינה מלאכותית"
+    ],
+    "search": "ai בינה מלאכותית artificial intelligence"
+  },
+  {
+    "names": [
+      "google",
+      "גוגל"
+    ],
+    "search": "google גוגל"
+  },
+  {
+    "names": [
+      "google sheets",
+      "גוגל שיטס",
+      "שיטס"
+    ],
+    "search": "google sheets גיליון טבלה שיטס"
+  },
+  {
+    "names": [
+      "google drive",
+      "גוגל דרייב",
+      "דרייב"
+    ],
+    "search": "google drive קובץ תיקייה דרייב"
+  },
+  {
+    "names": [
+      "google calendar",
+      "גוגל קלנדר"
+    ],
+    "search": "google calendar יומן אירוע"
+  },
+  {
+    "names": [
+      "google forms",
+      "גוגל פורמס"
+    ],
+    "search": "google forms טופס תשובה"
+  },
+  {
+    "names": [
+      "calendly",
+      "קלנדלי"
+    ],
+    "search": "calendly קלנדלי פגישה יומן"
+  },
+  {
+    "names": [
+      "fillout",
+      "פילאאוט",
+      "פילאוט"
+    ],
+    "search": "fillout פילאאוט טופס שאלון"
+  },
+  {
+    "names": [
+      "jotform",
+      "ג׳וטפורם",
+      "ג׳ט פורם"
+    ],
+    "search": "jotform טופס שאלון"
+  },
+  {
+    "names": [
+      "typeform",
+      "טייפפורם"
+    ],
+    "search": "typeform טופס שאלון"
+  },
+  {
+    "names": [
+      "zoom",
+      "זום"
+    ],
+    "search": "zoom זום פגישה וידאו"
+  },
+  {
+    "names": [
+      "greenapi",
+      "גרין",
+      "green api",
+      "גרין אייפיאי"
+    ],
+    "search": "greenapi גרין whatsapp וואטסאפ לא רשמי"
+  },
+  {
+    "names": [
+      "wordpress",
+      "וורדפרס"
+    ],
+    "search": "wordpress וורדפרס אתר בלוג"
+  },
+  {
+    "names": [
+      "shopify",
+      "שופיפיי"
+    ],
+    "search": "shopify שופיפיי חנות מכירות"
+  },
+  {
+    "names": [
+      "wix",
+      "וויקס"
+    ],
+    "search": "wix וויקס אתר דף נחיתה"
+  },
+  {
+    "names": [
+      "elementor",
+      "אלמנטור"
+    ],
+    "search": "elementor אלמנטור דף נחיתה"
+  },
+  {
+    "names": [
+      "notion",
+      "נושן"
+    ],
+    "search": "notion נושן דף בסיס נתונים"
+  },
+  {
+    "names": [
+      "trello",
+      "טרלו"
+    ],
+    "search": "trello טרלו כרטיס לוח"
+  },
+  {
+    "names": [
+      "miro",
+      "מירו"
+    ],
+    "search": "miro מירו לוח אפיון שרטוט"
+  },
+  {
+    "names": [
+      "canva",
+      "קנבה"
+    ],
+    "search": "canva קנבה עיצוב"
+  },
+  {
+    "names": [
+      "loom",
+      "לום"
+    ],
+    "search": "loom לום סרטון הסבר"
+  },
+  {
+    "names": [
+      "todoist",
+      "טודואיסט"
+    ],
+    "search": "todoist משימה"
+  },
+  {
+    "names": [
+      "dropbox",
+      "דרופבוקס"
+    ],
+    "search": "dropbox דרופבוקס קובץ"
+  },
+  {
+    "names": [
+      "onedrive"
+    ],
+    "search": "onedrive קובץ"
+  },
+  {
+    "names": [
+      "asana",
+      "אסנה"
+    ],
+    "search": "asana אסנה ניהול פרויקטים"
+  },
+  {
+    "names": [
+      "stripe",
+      "סטרייפ"
+    ],
+    "search": "stripe סטרייפ תשלום"
+  },
+  {
+    "names": [
+      "paypal",
+      "פייפל"
+    ],
+    "search": "paypal פייפל תשלום"
+  },
+  {
+    "names": [
+      "mailchimp",
+      "מיילצימפ"
+    ],
+    "search": "mailchimp מיילצימפ דיוור אימייל"
+  },
+  {
+    "names": [
+      "timeless"
+    ],
+    "search": "timeless תמלול פגישה"
+  },
+  {
+    "names": [
+      "timeos"
+    ],
+    "search": "timeos תמלול"
+  },
+  {
+    "names": [
+      "clipchamp"
+    ],
+    "search": "clipchamp עריכת וידאו"
+  },
+  {
+    "names": [
+      "actions"
+    ],
+    "search": "actions"
+  },
+  {
+    "names": [
+      "converts"
+    ],
+    "search": "converts"
+  },
+  {
+    "names": [
+      "line"
+    ],
+    "search": "line"
+  },
+  {
+    "names": [
+      "csv"
+    ],
+    "search": "csv"
+  },
+  {
+    "names": [
+      "utf"
+    ],
+    "search": "utf"
+  },
+  {
+    "names": [
+      "hebrew"
+    ],
+    "search": "hebrew"
+  },
+  {
+    "names": [
+      "fix"
+    ],
+    "search": "fix"
+  },
+  {
+    "names": [
+      "client"
+    ],
+    "search": "client"
+  },
+  {
+    "names": [
+      "israeli"
+    ],
+    "search": "israeli"
+  },
+  {
+    "names": [
+      "jwt"
+    ],
+    "search": "jwt"
+  },
+  {
+    "names": [
+      "agent"
+    ],
+    "search": "agent"
+  },
+  {
+    "names": [
+      "parser"
+    ],
+    "search": "parser"
+  },
+  {
+    "names": [
+      "parses"
+    ],
+    "search": "parses"
+  },
+  {
+    "names": [
+      "jsonl"
+    ],
+    "search": "jsonl"
+  },
+  {
+    "names": [
+      "password"
+    ],
+    "search": "password"
+  },
+  {
+    "names": [
+      "generator"
+    ],
+    "search": "generator"
+  },
+  {
+    "names": [
+      "php"
+    ],
+    "search": "php"
+  },
+  {
+    "names": [
+      "reply"
+    ],
+    "search": "reply"
+  },
+  {
+    "names": [
+      "utm"
+    ],
+    "search": "utm"
+  },
+  {
+    "names": [
+      "xml"
+    ],
+    "search": "xml"
+  },
+  {
+    "names": [
+      "gma"
+    ],
+    "search": "gma"
+  },
+  {
+    "names": [
+      "http"
+    ],
+    "search": "http"
+  },
+  {
+    "names": [
+      "bnb"
+    ],
+    "search": "bnb"
+  },
+  {
+    "names": [
+      "usd"
+    ],
+    "search": "usd"
+  },
+  {
+    "names": [
+      "mage"
+    ],
+    "search": "mage"
+  },
+  {
+    "names": [
+      "ipi"
+    ],
+    "search": "ipi"
+  },
+  {
+    "names": [
+      "png"
+    ],
+    "search": "png"
+  },
+  {
+    "names": [
+      "instant"
+    ],
+    "search": "instant"
+  },
+  {
+    "names": [
+      "bas"
+    ],
+    "search": "bas"
+  },
+  {
+    "names": [
+      "prt"
+    ],
+    "search": "prt"
+  },
+  {
+    "names": [
+      "mcp"
+    ],
+    "search": "mcp"
+  },
+  {
+    "names": [
+      "gus"
+    ],
+    "search": "gus"
+  },
+  {
+    "names": [
+      "cus"
+    ],
+    "search": "cus"
+  },
+  {
+    "names": [
+      "cde"
+    ],
+    "search": "cde"
+  },
+  {
+    "names": [
+      "apy"
+    ],
+    "search": "apy"
+  },
+  {
+    "names": [
+      "rat"
+    ],
+    "search": "rat"
+  },
+  {
+    "names": [
+      "htp"
+    ],
+    "search": "htp"
+  },
+  {
+    "names": [
+      "drive"
+    ],
+    "search": "drive"
+  },
+  {
+    "names": [
+      "uri"
+    ],
+    "search": "uri"
+  },
+  {
+    "names": [
+      "cli"
+    ],
+    "search": "cli"
+  },
+  {
+    "names": [
+      "secret"
+    ],
+    "search": "secret"
+  },
+  {
+    "names": [
+      "oauth"
+    ],
+    "search": "oauth"
+  },
+  {
+    "names": [
+      "scopes"
+    ],
+    "search": "scopes"
+  },
+  {
+    "names": [
+      "builder"
+    ],
+    "search": "builder"
+  },
+  {
+    "names": [
+      "hub"
+    ],
+    "search": "hub"
+  },
+  {
+    "names": [
+      "tokens"
+    ],
+    "search": "tokens"
+  },
+  {
+    "names": [
+      "dropdown"
+    ],
+    "search": "dropdown"
+  },
+  {
+    "names": [
+      "management"
+    ],
+    "search": "management"
+  },
+  {
+    "names": [
+      "store"
+    ],
+    "search": "store"
+  },
+  {
+    "names": [
+      "success"
+    ],
+    "search": "success"
+  },
+  {
+    "names": [
+      "sheets"
+    ],
+    "search": "sheets"
+  },
+  {
+    "names": [
+      "resume"
+    ],
+    "search": "resume"
+  },
+  {
+    "names": [
+      "break"
+    ],
+    "search": "break"
+  },
+  {
+    "names": [
+      "retry"
+    ],
+    "search": "retry"
+  },
+  {
+    "names": [
+      "incomplete"
+    ],
+    "search": "incomplete"
+  },
+  {
+    "names": [
+      "limits"
+    ],
+    "search": "limits"
+  },
+  {
+    "names": [
+      "requests"
+    ],
+    "search": "requests"
+  },
+  {
+    "names": [
+      "rollback"
+    ],
+    "search": "rollback"
+  },
+  {
+    "names": [
+      "commit"
+    ],
+    "search": "commit"
+  },
+  {
+    "names": [
+      "aipi"
+    ],
+    "search": "aipi"
+  },
+  {
+    "names": [
+      "abc"
+    ],
+    "search": "abc"
+  },
+  {
+    "names": [
+      "tool"
+    ],
+    "search": "tool"
+  },
+  {
+    "names": [
+      "web"
+    ],
+    "search": "web"
+  },
+  {
+    "names": [
+      "agents"
+    ],
+    "search": "agents"
+  },
+  {
+    "names": [
+      "https"
+    ],
+    "search": "https"
+  },
+  {
+    "names": [
+      "ftp"
+    ],
+    "search": "ftp"
+  },
+  {
+    "names": [
+      "rss"
+    ],
+    "search": "rss"
+  },
+  {
+    "names": [
+      "seo"
+    ],
+    "search": "seo"
+  },
+  {
+    "names": [
+      "pen"
+    ],
+    "search": "pen"
+  },
+  {
+    "names": [
+      "chg"
+    ],
+    "search": "chg"
+  },
+  {
+    "names": [
+      "tags"
+    ],
+    "search": "tags"
+  },
+  {
+    "names": [
+      "pro"
+    ],
+    "search": "pro"
+  },
+  {
+    "names": [
+      "process"
+    ],
+    "search": "process"
+  },
+  {
+    "names": [
+      "rtl"
+    ],
+    "search": "rtl"
+  },
+  {
+    "names": [
+      "htm"
+    ],
+    "search": "htm"
+  },
+  {
+    "names": [
+      "usag"
+    ],
+    "search": "usag"
+  },
+  {
+    "names": [
+      "uuid"
+    ],
+    "search": "uuid"
+  },
+  {
+    "names": [
+      "uid"
+    ],
+    "search": "uid"
+  },
+  {
+    "names": [
+      "hello"
+    ],
+    "search": "hello"
+  },
+  {
+    "names": [
+      "word"
+    ],
+    "search": "word"
+  },
+  {
+    "names": [
+      "asc"
+    ],
+    "search": "asc"
+  },
+  {
+    "names": [
+      "mtr"
+    ],
+    "search": "mtr"
+  },
+  {
+    "names": [
+      "gmt"
+    ],
+    "search": "gmt"
+  },
+  {
+    "names": [
+      "utc"
+    ],
+    "search": "utc"
+  },
+  {
+    "names": [
+      "language"
+    ],
+    "search": "language"
+  },
+  {
+    "names": [
+      "smoove"
+    ],
+    "search": "smoove"
+  },
+  {
+    "names": [
+      "sop"
+    ],
+    "search": "sop"
+  },
+  {
+    "names": [
+      "business"
+    ],
+    "search": "business"
+  },
+  {
+    "names": [
+      "dns"
+    ],
+    "search": "dns"
+  },
+  {
+    "names": [
+      "txt"
+    ],
+    "search": "txt"
+  },
+  {
+    "names": [
+      "cname"
+    ],
+    "search": "cname"
+  },
+  {
+    "names": [
+      "workspace"
+    ],
+    "search": "workspace"
+  },
+  {
+    "names": [
+      "com"
+    ],
+    "search": "com"
+  },
+  {
+    "names": [
+      "spf"
+    ],
+    "search": "spf"
+  },
+  {
+    "names": [
+      "dkim"
+    ],
+    "search": "dkim"
+  },
+  {
+    "names": [
+      "dmarc"
+    ],
+    "search": "dmarc"
+  },
+  {
+    "names": [
+      "architect"
+    ],
+    "search": "architect"
+  },
+  {
+    "names": [
+      "verify"
+    ],
+    "search": "verify"
+  },
+  {
+    "names": [
+      "security"
+    ],
+    "search": "security"
+  },
+  {
+    "names": [
+      "verification"
+    ],
+    "search": "verification"
+  },
+  {
+    "names": [
+      "manager"
+    ],
+    "search": "manager"
+  },
+  {
+    "names": [
+      "creation"
+    ],
+    "search": "creation"
+  },
+  {
+    "names": [
+      "settings"
+    ],
+    "search": "settings"
+  },
+  {
+    "names": [
+      "once"
+    ],
+    "search": "once"
+  },
+  {
+    "names": [
+      "asset"
+    ],
+    "search": "asset"
+  },
+  {
+    "names": [
+      "verified"
+    ],
+    "search": "verified"
+  },
+  {
+    "names": [
+      "connections"
+    ],
+    "search": "connections"
+  },
+  {
+    "names": [
+      "auto"
+    ],
+    "search": "auto"
+  },
+  {
+    "names": [
+      "sleep"
+    ],
+    "search": "sleep"
+  },
+  {
+    "names": [
+      "developer"
+    ],
+    "search": "developer"
+  },
+  {
+    "names": [
+      "document"
+    ],
+    "search": "document"
+  },
+  {
+    "names": [
+      "cht"
+    ],
+    "search": "cht"
+  },
+  {
+    "names": [
+      "sequence"
+    ],
+    "search": "sequence"
+  },
+  {
+    "names": [
+      "mark"
+    ],
+    "search": "mark"
+  },
+  {
+    "names": [
+      "airbnb"
+    ],
+    "search": "airbnb"
+  },
+  {
+    "names": [
+      "rbnb"
+    ],
+    "search": "rbnb"
+  },
+  {
+    "names": [
+      "ctr"
+    ],
+    "search": "ctr"
+  },
+  {
+    "names": [
+      "lead"
+    ],
+    "search": "lead"
+  },
+  {
+    "names": [
+      "scoring"
+    ],
+    "search": "scoring"
+  },
+  {
+    "names": [
+      "docs"
+    ],
+    "search": "docs"
+  },
+  {
+    "names": [
+      "calendar"
+    ],
+    "search": "calendar"
+  },
+  {
+    "names": [
+      "excel"
+    ],
+    "search": "excel"
+  },
+  {
+    "names": [
+      "high"
+    ],
+    "search": "high"
+  },
+  {
+    "names": [
+      "task"
+    ],
+    "search": "task"
+  },
+  {
+    "names": [
+      "priority"
+    ],
+    "search": "priority"
+  },
+  {
+    "names": [
+      "company"
+    ],
+    "search": "company"
+  },
+  {
+    "names": [
+      "room"
+    ],
+    "search": "room"
+  },
+  {
+    "names": [
+      "bot"
+    ],
+    "search": "bot"
+  },
+  {
+    "names": [
+      "media"
+    ],
+    "search": "media"
+  },
+  {
+    "names": [
+      "posts"
+    ],
+    "search": "posts"
+  },
+  {
+    "names": [
+      "workflow"
+    ],
+    "search": "workflow"
+  },
+  {
+    "names": [
+      "gpts"
+    ],
+    "search": "gpts"
+  },
+  {
+    "names": [
+      "master"
+    ],
+    "search": "master"
+  },
+  {
+    "names": [
+      "mvp"
+    ],
+    "search": "mvp"
+  },
+  {
+    "names": [
+      "webhooks"
+    ],
+    "search": "webhooks"
+  },
+  {
+    "names": [
+      "enterprise"
+    ],
+    "search": "enterprise"
+  },
+  {
+    "names": [
+      "prd"
+    ],
+    "search": "prd"
+  },
+  {
+    "names": [
+      "uxi"
+    ],
+    "search": "uxi"
+  },
+  {
+    "names": [
+      "school"
+    ],
+    "search": "school"
+  },
+  {
+    "names": [
+      "uiux"
+    ],
+    "search": "uiux"
+  },
+  {
+    "names": [
+      "pwa"
+    ],
+    "search": "pwa"
+  },
+  {
+    "names": [
+      "nda"
+    ],
+    "search": "nda"
+  },
+  {
+    "names": [
+      "mirror"
+    ],
+    "search": "mirror"
+  },
+  {
+    "names": [
+      "managed"
+    ],
+    "search": "managed"
+  },
+  {
+    "names": [
+      "connect"
+    ],
+    "search": "connect"
+  },
+  {
+    "names": [
+      "tab"
+    ],
+    "search": "tab"
+  },
+  {
+    "names": [
+      "welcome"
+    ],
+    "search": "welcome"
+  },
+  {
+    "names": [
+      "tldr"
+    ],
+    "search": "tldr"
+  },
+  {
+    "names": [
+      "rls"
+    ],
+    "search": "rls"
+  },
+  {
+    "names": [
+      "uxui"
+    ],
+    "search": "uxui"
+  },
+  {
+    "names": [
+      "sql"
+    ],
+    "search": "sql"
+  },
+  {
+    "names": [
+      "pulse"
+    ],
+    "search": "pulse"
+  },
+  {
+    "names": [
+      "subitem"
+    ],
+    "search": "subitem"
+  },
+  {
+    "names": [
+      "timeline"
+    ],
+    "search": "timeline"
+  },
+  {
+    "names": [
+      "doc"
+    ],
+    "search": "doc"
+  },
+  {
+    "names": [
+      "updates"
+    ],
+    "search": "updates"
+  },
+  {
+    "names": [
+      "activity"
+    ],
+    "search": "activity"
+  },
+  {
+    "names": [
+      "ltv"
+    ],
+    "search": "ltv"
+  },
+  {
+    "names": [
+      "repeater"
+    ],
+    "search": "repeater"
+  },
+  {
+    "names": [
+      "pages"
+    ],
+    "search": "pages"
+  },
+  {
+    "names": [
+      "unauthorized"
+    ],
+    "search": "unauthorized"
+  },
+  {
+    "names": [
+      "forbidden"
+    ],
+    "search": "forbidden"
+  },
+  {
+    "names": [
+      "reauthorize"
+    ],
+    "search": "reauthorize"
+  },
+  {
+    "names": [
+      "rpm"
+    ],
+    "search": "rpm"
+  },
+  {
+    "names": [
+      "notifications"
+    ],
+    "search": "notifications"
+  },
+  {
+    "names": [
+      "ads"
+    ],
+    "search": "ads"
+  },
+  {
+    "names": [
+      "cta"
+    ],
+    "search": "cta"
+  },
+  {
+    "names": [
+      "instanceid"
+    ],
+    "search": "instanceid"
+  },
+  {
+    "names": [
+      "apitoken"
+    ],
+    "search": "apitoken"
+  },
+  {
+    "names": [
+      "post"
+    ],
+    "search": "post"
+  },
+  {
+    "names": [
+      "xxxxxxxxx"
+    ],
+    "search": "xxxxxxxxx"
+  },
+  {
+    "names": [
+      "story"
+    ],
+    "search": "story"
+  },
+  {
+    "names": [
+      "variable"
+    ],
+    "search": "variable"
+  },
+  {
+    "names": [
+      "immediately"
+    ],
+    "search": "immediately"
+  },
+  {
+    "names": [
+      "wati"
+    ],
+    "search": "wati"
+  },
+  {
+    "names": [
+      "messages"
+    ],
+    "search": "messages"
+  },
+  {
+    "names": [
+      "events"
+    ],
+    "search": "events"
+  },
+  {
+    "names": [
+      "forms"
+    ],
+    "search": "forms"
+  },
+  {
+    "names": [
+      "photo"
+    ],
+    "search": "photo"
+  },
+  {
+    "names": [
+      "המודולים"
+    ],
+    "search": "המודולים"
+  },
+  {
+    "names": [
+      "ווטסאפ"
+    ],
+    "search": "ווטסאפ"
+  },
+  {
+    "names": [
+      "הטלפון"
+    ],
+    "search": "הטלפון"
+  },
+  {
+    "names": [
+      "אינטואיטיבי"
+    ],
+    "search": "אינטואיטיבי"
+  },
+  {
+    "names": [
+      "קיבלתי"
+    ],
+    "search": "קיבלתי"
+  },
+  {
+    "names": [
+      "מודולים"
+    ],
+    "search": "מודולים"
+  },
+  {
+    "names": [
+      "מקבל"
+    ],
+    "search": "מקבל"
+  },
+  {
+    "names": [
+      "טלפון"
+    ],
+    "search": "טלפון"
+  },
+  {
+    "names": [
+      "שטרודל"
+    ],
+    "search": "שטרודל"
+  },
+  {
+    "names": [
+      "באינסטגרם"
+    ],
+    "search": "באינסטגרם"
+  },
+  {
+    "names": [
+      "לאינסטגרם"
+    ],
+    "search": "לאינסטגרם"
+  },
+  {
+    "names": [
+      "לרוב"
+    ],
+    "search": "לרוב"
+  },
+  {
+    "names": [
+      "רלוונטי"
+    ],
+    "search": "רלוונטי"
+  },
+  {
+    "names": [
+      "הסנריו"
+    ],
+    "search": "הסנריו"
+  },
+  {
+    "names": [
+      "אלמנט"
+    ],
+    "search": "אלמנט"
+  },
+  {
+    "names": [
+      "יקבל"
+    ],
+    "search": "יקבל"
+  },
+  {
+    "names": [
+      "לרכוש"
+    ],
+    "search": "לרכוש"
+  },
+  {
+    "names": [
+      "מספרים"
+    ],
+    "search": "מספרים"
+  },
+  {
+    "names": [
+      "אופרטורים"
+    ],
+    "search": "אופרטורים"
+  },
+  {
+    "names": [
+      "אופרציה"
+    ],
+    "search": "אופרציה"
+  },
+  {
+    "names": [
+      "האופרטור"
+    ],
+    "search": "האופרטור"
+  },
+  {
+    "names": [
+      "למספר"
+    ],
+    "search": "למספר"
+  },
+  {
+    "names": [
+      "מייק"
+    ],
+    "search": "מייק"
+  },
+  {
+    "names": [
+      "פילטר"
+    ],
+    "search": "פילטר"
+  },
+  {
+    "names": [
+      "האופרטורים"
+    ],
+    "search": "האופרטורים"
+  },
+  {
+    "names": [
+      "טקסט"
+    ],
+    "search": "טקסט"
+  },
+  {
+    "names": [
+      "רלוונטיים"
+    ],
+    "search": "רלוונטיים"
+  },
+  {
+    "names": [
+      "רלוונטים"
+    ],
+    "search": "רלוונטים"
+  },
+  {
+    "names": [
+      "לטקסט"
+    ],
+    "search": "לטקסט"
+  },
+  {
+    "names": [
+      "מספרי"
+    ],
+    "search": "מספרי"
+  },
+  {
+    "names": [
+      "המספרים"
+    ],
+    "search": "המספרים"
+  },
+  {
+    "names": [
+      "שהמספר"
+    ],
+    "search": "שהמספר"
+  },
+  {
+    "names": [
+      "למייק"
+    ],
+    "search": "למייק"
+  },
+  {
+    "names": [
+      "הפילטר"
+    ],
+    "search": "הפילטר"
+  },
+  {
+    "names": [
+      "קונספט"
+    ],
+    "search": "קונספט"
+  },
+  {
+    "names": [
+      "מבלבל"
+    ],
+    "search": "מבלבל"
+  },
+  {
+    "names": [
+      "האוטומציה"
+    ],
+    "search": "האוטומציה"
+  },
+  {
+    "names": [
+      "הפרדה"
+    ],
+    "search": "הפרדה"
+  },
+  {
+    "names": [
+      "בעזרת"
+    ],
+    "search": "בעזרת"
+  },
+  {
+    "names": [
+      "שנצטרך"
+    ],
+    "search": "שנצטרך"
+  },
+  {
+    "names": [
+      "אינטגרציה"
+    ],
+    "search": "אינטגרציה"
+  },
+  {
+    "names": [
+      "אוטומציות"
+    ],
+    "search": "אוטומציות"
+  },
+  {
+    "names": [
+      "במסגרת"
+    ],
+    "search": "במסגרת"
+  },
+  {
+    "names": [
+      "האוטומציות"
+    ],
+    "search": "האוטומציות"
+  },
+  {
+    "names": [
+      "מודול"
+    ],
+    "search": "מודול"
+  },
+  {
+    "names": [
+      "האינטגרציה"
+    ],
+    "search": "האינטגרציה"
+  },
+  {
+    "names": [
+      "נצטרך"
+    ],
+    "search": "נצטרך"
+  },
+  {
+    "names": [
+      "להעזר"
+    ],
+    "search": "להעזר"
+  },
+  {
+    "names": [
+      "סטרינג"
+    ],
+    "search": "סטרינג"
+  },
+  {
+    "names": [
+      "בטלפון"
+    ],
+    "search": "בטלפון"
+  },
+  {
+    "names": [
+      "נקבל"
+    ],
+    "search": "נקבל"
+  },
+  {
+    "names": [
+      "הפלוס"
+    ],
+    "search": "הפלוס"
+  },
+  {
+    "names": [
+      "סופר"
+    ],
+    "search": "סופר"
+  },
+  {
+    "names": [
+      "סטטוס"
+    ],
+    "search": "סטטוס"
+  },
+  {
+    "names": [
+      "לגרופ"
+    ],
+    "search": "לגרופ"
+  },
+  {
+    "names": [
+      "לידים"
+    ],
+    "search": "לידים"
+  },
+  {
+    "names": [
+      "הסטטוס"
+    ],
+    "search": "הסטטוס"
+  },
+  {
+    "names": [
+      "שנסגרו"
+    ],
+    "search": "שנסגרו"
+  },
+  {
+    "names": [
+      "שקיבלנו"
+    ],
+    "search": "שקיבלנו"
+  },
+  {
+    "names": [
+      "הטריגר"
+    ],
+    "search": "הטריגר"
+  },
+  {
+    "names": [
+      "באוטומציות"
+    ],
+    "search": "באוטומציות"
+  },
+  {
+    "names": [
+      "המודול"
+    ],
+    "search": "המודול"
+  },
+  {
+    "names": [
+      "המודל"
+    ],
+    "search": "המודל"
+  },
+  {
+    "names": [
+      "במייק"
+    ],
+    "search": "במייק"
+  },
+  {
+    "names": [
+      "למודול"
+    ],
+    "search": "למודול"
+  },
+  {
+    "names": [
+      "אוטומציה"
+    ],
+    "search": "אוטומציה"
+  },
+  {
+    "names": [
+      "ראוטר"
+    ],
+    "search": "ראוטר"
+  },
+  {
+    "names": [
+      "גרופ"
+    ],
+    "search": "גרופ"
+  },
+  {
+    "names": [
+      "עוזר"
+    ],
+    "search": "עוזר"
+  },
+  {
+    "names": [
+      "ללידים"
+    ],
+    "search": "ללידים"
+  },
+  {
+    "names": [
+      "לרוץ"
+    ],
+    "search": "לרוץ"
+  },
+  {
+    "names": [
+      "נופל"
+    ],
+    "search": "נופל"
+  },
+  {
+    "names": [
+      "לאוטומציות"
+    ],
+    "search": "לאוטומציות"
+  },
+  {
+    "names": [
+      "טריגר"
+    ],
+    "search": "טריגר"
+  },
+  {
+    "names": [
+      "סנריו"
+    ],
+    "search": "סנריו"
+  },
+  {
+    "names": [
+      "חוזרים"
+    ],
+    "search": "חוזרים"
+  },
+  {
+    "names": [
+      "מוזר"
+    ],
+    "search": "מוזר"
+  },
+  {
+    "names": [
+      "שעוזר"
+    ],
+    "search": "שעוזר"
+  },
+  {
+    "names": [
+      "במודול"
+    ],
+    "search": "במודול"
+  },
+  {
+    "names": [
+      "הסוכן"
+    ],
+    "search": "הסוכן"
+  },
+  {
+    "names": [
+      "סוכן"
+    ],
+    "search": "סוכן"
+  },
+  {
+    "names": [
+      "המטרה"
+    ],
+    "search": "המטרה"
+  },
+  {
+    "names": [
+      "לסוכן"
+    ],
+    "search": "לסוכן"
+  },
+  {
+    "names": [
+      "פוסט"
+    ],
+    "search": "פוסט"
+  },
+  {
+    "names": [
+      "פייסבוק"
+    ],
+    "search": "פייסבוק"
+  },
+  {
+    "names": [
+      "בסוכן"
+    ],
+    "search": "בסוכן"
+  },
+  {
+    "names": [
+      "וואטסאפ"
+    ],
+    "search": "וואטסאפ"
+  },
+  {
+    "names": [
+      "פלטפורמות"
+    ],
+    "search": "פלטפורמות"
+  },
+  {
+    "names": [
+      "הפרומט"
+    ],
+    "search": "הפרומט"
+  },
+  {
+    "names": [
+      "בפלטפורמה"
+    ],
+    "search": "בפלטפורמה"
+  },
+  {
+    "names": [
+      "הפלטפורמה"
+    ],
+    "search": "הפלטפורמה"
+  },
+  {
+    "names": [
+      "פרומט"
+    ],
+    "search": "פרומט"
+  },
+  {
+    "names": [
+      "שהסוכן"
+    ],
+    "search": "שהסוכן"
+  },
+  {
+    "names": [
+      "לפייסבוק"
+    ],
+    "search": "לפייסבוק"
+  },
+  {
+    "names": [
+      "הפרומפט"
+    ],
+    "search": "הפרומפט"
+  },
+  {
+    "names": [
+      "הבדל"
+    ],
+    "search": "הבדל"
+  },
+  {
+    "names": [
+      "פרומפט"
+    ],
+    "search": "פרומפט"
+  },
+  {
+    "names": [
+      "אינסטגרם"
+    ],
+    "search": "אינסטגרם"
+  },
+  {
+    "names": [
+      "הרלוונטי"
+    ],
+    "search": "הרלוונטי"
+  },
+  {
+    "names": [
+      "וספר"
+    ],
+    "search": "וספר"
+  },
+  {
+    "names": [
+      "יוזר"
+    ],
+    "search": "יוזר"
+  },
+  {
+    "names": [
+      "בפרומט"
+    ],
+    "search": "בפרומט"
+  },
+  {
+    "names": [
+      "הטקסט"
+    ],
+    "search": "הטקסט"
+  },
+  {
+    "names": [
+      "מקבלים"
+    ],
+    "search": "מקבלים"
+  },
+  {
+    "names": [
+      "הפוסט"
+    ],
+    "search": "הפוסט"
+  },
+  {
+    "names": [
+      "במודל"
+    ],
+    "search": "במודל"
+  },
+  {
+    "names": [
+      "קטנה"
+    ],
+    "search": "קטנה"
+  },
+  {
+    "names": [
+      "לשפר"
+    ],
+    "search": "לשפר"
+  },
+  {
+    "names": [
+      "לרמה"
+    ],
+    "search": "לרמה"
+  },
+  {
+    "names": [
+      "אפליקציה"
+    ],
+    "search": "אפליקציה"
+  },
+  {
+    "names": [
+      "בפייסבוק"
+    ],
+    "search": "בפייסבוק"
+  },
+  {
+    "names": [
+      "בטבלה"
+    ],
+    "search": "בטבלה"
+  },
+  {
+    "names": [
+      "דולר"
+    ],
+    "search": "דולר"
+  },
+  {
+    "names": [
+      "דולרים"
+    ],
+    "search": "דולרים"
+  },
+  {
+    "names": [
+      "תצטרכו"
+    ],
+    "search": "תצטרכו"
+  },
+  {
+    "names": [
+      "מודל"
+    ],
+    "search": "מודל"
+  },
+  {
+    "names": [
+      "מודלים"
+    ],
+    "search": "מודלים"
+  },
+  {
+    "names": [
+      "אקבל"
+    ],
+    "search": "אקבל"
+  },
+  {
+    "names": [
+      "הקולקשן"
+    ],
+    "search": "הקולקשן"
+  },
+  {
+    "names": [
+      "לגוגל"
+    ],
+    "search": "לגוגל"
+  },
+  {
+    "names": [
+      "הפרומטים"
+    ],
+    "search": "הפרומטים"
+  },
+  {
+    "names": [
+      "נעזר"
+    ],
+    "search": "נעזר"
+  },
+  {
+    "names": [
+      "מפרק"
+    ],
+    "search": "מפרק"
+  },
+  {
+    "names": [
+      "לפרק"
+    ],
+    "search": "לפרק"
+  },
+  {
+    "names": [
+      "אצטריך"
+    ],
+    "search": "אצטריך"
+  },
+  {
+    "names": [
+      "בלייב"
+    ],
+    "search": "בלייב"
+  },
+  {
+    "names": [
+      "קיבלנו"
+    ],
+    "search": "קיבלנו"
+  },
+  {
+    "names": [
+      "להצטרף"
+    ],
+    "search": "להצטרף"
+  },
+  {
+    "names": [
+      "הוואטסאפ"
+    ],
+    "search": "הוואטסאפ"
+  },
+  {
+    "names": [
+      "הפרטי"
+    ],
+    "search": "הפרטי"
+  },
+  {
+    "names": [
+      "בלאגן"
+    ],
+    "search": "בלאגן"
+  },
+  {
+    "names": [
+      "שיעזרו"
+    ],
+    "search": "שיעזרו"
+  },
+  {
+    "names": [
+      "אפרופו"
+    ],
+    "search": "אפרופו"
+  },
+  {
+    "names": [
+      "אינטגרציות"
+    ],
+    "search": "אינטגרציות"
+  },
+  {
+    "names": [
+      "בלתי"
+    ],
+    "search": "בלתי"
+  },
+  {
+    "names": [
+      "מאתגר"
+    ],
+    "search": "מאתגר"
+  },
+  {
+    "names": [
+      "באוטומציה"
+    ],
+    "search": "באוטומציה"
+  },
+  {
+    "names": [
+      "נפרק"
+    ],
+    "search": "נפרק"
+  },
+  {
+    "names": [
+      "הקטנים"
+    ],
+    "search": "הקטנים"
+  },
+  {
+    "names": [
+      "הקונספט"
+    ],
+    "search": "הקונספט"
+  },
+  {
+    "names": [
+      "קבלות"
+    ],
+    "search": "קבלות"
+  },
+  {
+    "names": [
+      "הסיטואציה"
+    ],
+    "search": "הסיטואציה"
+  },
+  {
+    "names": [
+      "אופציה"
+    ],
+    "search": "אופציה"
+  },
+  {
+    "names": [
+      "סיטואציה"
+    ],
+    "search": "סיטואציה"
+  },
+  {
+    "names": [
+      "לטבלה"
+    ],
+    "search": "לטבלה"
+  },
+  {
+    "names": [
+      "לרטבל"
+    ],
+    "search": "לרטבל"
+  },
+  {
+    "names": [
+      "לפרסר"
+    ],
+    "search": "לפרסר"
+  },
+  {
+    "names": [
+      "טבלה"
+    ],
+    "search": "טבלה"
+  },
+  {
+    "names": [
+      "קיבל"
+    ],
+    "search": "קיבל"
+  },
+  {
+    "names": [
+      "הטבלה"
+    ],
+    "search": "הטבלה"
+  },
+  {
+    "names": [
+      "אסיסטנט"
+    ],
+    "search": "אסיסטנט"
+  },
+  {
+    "names": [
+      "אסיסטנטים"
+    ],
+    "search": "אסיסטנטים"
+  },
+  {
+    "names": [
+      "לאסיסטנט"
+    ],
+    "search": "לאסיסטנט"
+  },
+  {
+    "names": [
+      "קבלה"
+    ],
+    "search": "קבלה"
+  },
+  {
+    "names": [
+      "אופרציות"
+    ],
+    "search": "אופרציות"
+  },
+  {
+    "names": [
+      "בגוגל"
+    ],
+    "search": "בגוגל"
+  },
+  {
+    "names": [
+      "אינטרנט"
+    ],
+    "search": "אינטרנט"
+  },
+  {
+    "names": [
+      "האופציה"
+    ],
+    "search": "האופציה"
+  },
+  {
+    "names": [
+      "לסנריו"
+    ],
+    "search": "לסנריו"
+  },
+  {
+    "names": [
+      "באופציה"
+    ],
+    "search": "באופציה"
+  },
+  {
+    "names": [
+      "סוגריים"
+    ],
+    "search": "סוגריים"
+  },
+  {
+    "names": [
+      "אובייקטים"
+    ],
+    "search": "אובייקטים"
+  },
+  {
+    "names": [
+      "שקיבלתי"
+    ],
+    "search": "שקיבלתי"
+  },
+  {
+    "names": [
+      "בפילטר"
+    ],
+    "search": "בפילטר"
+  },
+  {
+    "names": [
+      "מתקבל"
+    ],
+    "search": "מתקבל"
+  },
+  {
+    "names": [
+      "מטרה"
+    ],
+    "search": "מטרה"
+  },
+  {
+    "names": [
+      "הפרמטרים"
+    ],
+    "search": "הפרמטרים"
+  },
+  {
+    "names": [
+      "דיגיטלי"
+    ],
+    "search": "דיגיטלי"
+  },
+  {
+    "names": [
+      "ולראות"
+    ],
+    "search": "ולראות"
+  },
+  {
+    "names": [
+      "המודלים"
+    ],
+    "search": "המודלים"
+  },
+  {
+    "names": [
+      "לפרויקטים"
+    ],
+    "search": "לפרויקטים"
+  },
+  {
+    "names": [
+      "האסיסטנט"
+    ],
+    "search": "האסיסטנט"
+  },
+  {
+    "names": [
+      "כטקסט"
+    ],
+    "search": "כטקסט"
+  },
+  {
+    "names": [
+      "פרמטרים"
+    ],
+    "search": "פרמטרים"
+  },
+  {
+    "names": [
+      "בטקסט"
+    ],
+    "search": "בטקסט"
+  },
+  {
+    "names": [
+      "פרסור"
+    ],
+    "search": "פרסור"
+  },
+  {
+    "names": [
+      "טקסטואלי"
+    ],
+    "search": "טקסטואלי"
+  },
+  {
+    "names": [
+      "פונקציה"
+    ],
+    "search": "פונקציה"
+  },
+  {
+    "names": [
+      "מסולסלים"
+    ],
+    "search": "מסולסלים"
+  },
+  {
+    "names": [
+      "לזרוק"
+    ],
+    "search": "לזרוק"
+  },
+  {
+    "names": [
+      "טיבל"
+    ],
+    "search": "טיבל"
+  },
+  {
+    "names": [
+      "הפלט"
+    ],
+    "search": "הפלט"
+  },
+  {
+    "names": [
+      "הפונט"
+    ],
+    "search": "הפונט"
+  },
+  {
+    "names": [
+      "הפרטים"
+    ],
+    "search": "הפרטים"
+  },
+  {
+    "names": [
+      "המייק"
+    ],
+    "search": "המייק"
+  },
+  {
+    "names": [
+      "ההבדל"
+    ],
+    "search": "ההבדל"
+  },
+  {
+    "names": [
+      "תצטרך"
+    ],
+    "search": "תצטרך"
+  },
+  {
+    "names": [
+      "קטנים"
+    ],
+    "search": "קטנים"
+  },
+  {
+    "names": [
+      "איתרטור"
+    ],
+    "search": "איתרטור"
+  },
+  {
+    "names": [
+      "בנפרד"
+    ],
+    "search": "בנפרד"
+  },
+  {
+    "names": [
+      "האפליקציה"
+    ],
+    "search": "האפליקציה"
+  },
+  {
+    "names": [
+      "האיטרטור"
+    ],
+    "search": "האיטרטור"
+  },
+  {
+    "names": [
+      "אצטרך"
+    ],
+    "search": "אצטרך"
+  },
+  {
+    "names": [
+      "הקסטום"
+    ],
+    "search": "הקסטום"
+  },
+  {
+    "names": [
+      "פרטי"
+    ],
+    "search": "פרטי"
+  },
+  {
+    "names": [
+      "ספרות"
+    ],
+    "search": "ספרות"
+  },
+  {
+    "names": [
+      "הפלטפורמות"
+    ],
+    "search": "הפלטפורמות"
+  },
+  {
+    "names": [
+      "לפרסם"
+    ],
+    "search": "לפרסם"
+  },
+  {
+    "names": [
+      "מגבלות"
+    ],
+    "search": "מגבלות"
+  },
+  {
+    "names": [
+      "פלטפורמה"
+    ],
+    "search": "פלטפורמה"
+  },
+  {
+    "names": [
+      "פלייגראונד"
+    ],
+    "search": "פלייגראונד"
+  },
+  {
+    "names": [
+      "בלקוח"
+    ],
+    "search": "בלקוח"
+  },
+  {
+    "names": [
+      "פרויקט"
+    ],
+    "search": "פרויקט"
+  },
+  {
+    "names": [
+      "הפרויקטים"
+    ],
+    "search": "הפרויקטים"
+  },
+  {
+    "names": [
+      "מהטבלה"
+    ],
+    "search": "מהטבלה"
+  },
+  {
+    "names": [
+      "לעזר"
+    ],
+    "search": "לעזר"
+  },
+  {
+    "names": [
+      "הפונקציה"
+    ],
+    "search": "הפונקציה"
+  },
+  {
+    "names": [
+      "לפרויקט"
+    ],
+    "search": "לפרויקט"
+  },
+  {
+    "names": [
+      "לרכז"
+    ],
+    "search": "לרכז"
+  },
+  {
+    "names": [
+      "גרוע"
+    ],
+    "search": "גרוע"
+  },
+  {
+    "names": [
+      "פרקטית"
+    ],
+    "search": "פרקטית"
+  },
+  {
+    "names": [
+      "תקבל"
+    ],
+    "search": "תקבל"
+  },
+  {
+    "names": [
+      "טריגרים"
+    ],
+    "search": "טריגרים"
+  },
+  {
+    "names": [
+      "אינסטנט"
+    ],
+    "search": "אינסטנט"
+  },
+  {
+    "names": [
+      "בלבול"
+    ],
+    "search": "בלבול"
+  },
+  {
+    "names": [
+      "הבלופרינטים"
+    ],
+    "search": "הבלופרינטים"
+  },
+  {
+    "names": [
+      "שמקבל"
+    ],
+    "search": "שמקבל"
+  },
+  {
+    "names": [
+      "טבלת"
+    ],
+    "search": "טבלת"
+  },
+  {
+    "names": [
+      "הלידים"
+    ],
+    "search": "הלידים"
+  },
+  {
+    "names": [
+      "נסגר"
+    ],
+    "search": "נסגר"
+  },
+  {
+    "names": [
+      "אקסל"
+    ],
+    "search": "אקסל"
+  },
+  {
+    "names": [
+      "בירטיבל"
+    ],
+    "search": "בירטיבל"
+  },
+  {
+    "names": [
+      "פלוס"
+    ],
+    "search": "פלוס"
+  },
+  {
+    "names": [
+      "הטבלאות"
+    ],
+    "search": "הטבלאות"
+  },
+  {
+    "names": [
+      "טבלאות"
+    ],
+    "search": "טבלאות"
+  },
+  {
+    "names": [
+      "לרשימת"
+    ],
+    "search": "לרשימת"
+  },
+  {
+    "names": [
+      "הצטרפות"
+    ],
+    "search": "הצטרפות"
+  },
+  {
+    "names": [
+      "פולואפ"
+    ],
+    "search": "פולואפ"
+  },
+  {
+    "names": [
+      "לרשום"
+    ],
+    "search": "לרשום"
+  },
+  {
+    "names": [
+      "אטבוט"
+    ],
+    "search": "אטבוט"
+  },
+  {
+    "names": [
+      "בוואטסאפ"
+    ],
+    "search": "בוואטסאפ"
+  },
+  {
+    "names": [
+      "בגרין"
+    ],
+    "search": "בגרין"
+  },
+  {
+    "names": [
+      "בזריזות"
+    ],
+    "search": "בזריזות"
+  },
+  {
+    "names": [
+      "בפונקציה"
+    ],
+    "search": "בפונקציה"
+  },
+  {
+    "names": [
+      "באינטרנט"
+    ],
+    "search": "באינטרנט"
+  },
+  {
+    "names": [
+      "לוואטסאפ"
+    ],
+    "search": "לוואטסאפ"
+  },
+  {
+    "names": [
+      "הקטן"
+    ],
+    "search": "הקטן"
+  },
+  {
+    "names": [
+      "ומקבל"
+    ],
+    "search": "ומקבל"
+  },
+  {
+    "names": [
+      "בקטנה"
+    ],
+    "search": "בקטנה"
+  },
+  {
+    "names": [
+      "האינסטגרם"
+    ],
+    "search": "האינסטגרם"
+  },
+  {
+    "names": [
+      "בטבלת"
+    ],
+    "search": "בטבלת"
+  },
+  {
+    "names": [
+      "בסיטואציה"
+    ],
+    "search": "בסיטואציה"
+  },
+  {
+    "names": [
+      "לפוסט"
+    ],
+    "search": "לפוסט"
+  },
+  {
+    "names": [
+      "מגוגל"
+    ],
+    "search": "מגוגל"
+  },
+  {
+    "names": [
+      "הגוגל"
+    ],
+    "search": "הגוגל"
+  },
+  {
+    "names": [
+      "לפוסטים"
+    ],
+    "search": "לפוסטים"
+  },
+  {
+    "names": [
+      "פרסום"
+    ],
+    "search": "פרסום"
+  },
+  {
+    "names": [
+      "לאוטומציה"
+    ],
+    "search": "לאוטומציה"
+  },
+  {
+    "names": [
+      "פוסטים"
+    ],
+    "search": "פוסטים"
+  },
+  {
+    "names": [
+      "פילטרים"
+    ],
+    "search": "פילטרים"
+  },
+  {
+    "names": [
+      "חוזר"
+    ],
+    "search": "חוזר"
+  },
+  {
+    "names": [
+      "בנדל"
+    ],
+    "search": "בנדל"
+  },
+  {
+    "names": [
+      "שסטטוס"
+    ],
+    "search": "שסטטוס"
+  },
+  {
+    "names": [
+      "בנדלים"
+    ],
+    "search": "בנדלים"
+  },
+  {
+    "names": [
+      "שהאוטומציה"
+    ],
+    "search": "שהאוטומציה"
+  },
+  {
+    "names": [
+      "לפלטפורמה"
+    ],
+    "search": "לפלטפורמה"
+  },
+  {
+    "names": [
+      "פרויקטים"
+    ],
+    "search": "פרויקטים"
+  },
+  {
+    "names": [
+      "דשבורד"
+    ],
+    "search": "דשבורד"
+  },
+  {
+    "names": [
+      "בסנריו"
+    ],
+    "search": "בסנריו"
+  },
+  {
+    "names": [
+      "לדשבורד"
+    ],
+    "search": "לדשבורד"
+  },
+  {
+    "names": [
+      "סוגרים"
+    ],
+    "search": "סוגרים"
+  },
+  {
+    "names": [
+      "טמפרטורה"
+    ],
+    "search": "טמפרטורה"
+  },
+  {
+    "names": [
+      "וקיבלנו"
+    ],
+    "search": "וקיבלנו"
+  },
+  {
+    "names": [
+      "דומיין"
+    ],
+    "search": "דומיין"
+  },
+  {
+    "names": [
+      "למודל"
+    ],
+    "search": "למודל"
+  },
+  {
+    "names": [
+      "שהמודול"
+    ],
+    "search": "שהמודול"
+  },
+  {
+    "names": [
+      "הפייסבוק"
+    ],
+    "search": "הפייסבוק"
+  },
+  {
+    "names": [
+      "הראוטר"
+    ],
+    "search": "הראוטר"
+  },
+  {
+    "names": [
+      "והאוטומציה"
+    ],
+    "search": "והאוטומציה"
+  },
+  {
+    "names": [
+      "שמייק"
+    ],
+    "search": "שמייק"
+  },
+  {
+    "names": [
+      "ההבדלים"
+    ],
+    "search": "ההבדלים"
+  },
+  {
+    "names": [
+      "פלטפורמת"
+    ],
+    "search": "פלטפורמת"
+  },
+  {
+    "names": [
+      "הבוט"
+    ],
+    "search": "הבוט"
+  },
+  {
+    "names": [
+      "דראפט"
+    ],
+    "search": "דראפט"
+  },
+  {
+    "names": [
+      "הקטע"
+    ],
+    "search": "הקטע"
+  },
+  {
+    "names": [
+      "יצטרך"
+    ],
+    "search": "יצטרך"
+  },
+  {
+    "names": [
+      "חזרה"
+    ],
+    "search": "חזרה"
+  },
+  {
+    "names": [
+      "פרומטים"
+    ],
+    "search": "פרומטים"
+  },
+  {
+    "names": [
+      "קונטקסט"
+    ],
+    "search": "קונטקסט"
+  },
+  {
+    "names": [
+      "אלמנטים"
+    ],
+    "search": "אלמנטים"
+  },
+  {
+    "names": [
+      "הפרד"
+    ],
+    "search": "הפרד"
+  },
+  {
+    "names": [
+      "נטים"
+    ],
+    "search": "נטים"
+  },
+  {
+    "names": [
+      "בתפריט"
+    ],
+    "search": "בתפריט"
+  },
+  {
+    "names": [
+      "צטריך"
+    ],
+    "search": "צטריך"
+  },
+  {
+    "names": [
+      "האובייקט"
+    ],
+    "search": "האובייקט"
+  },
+  {
+    "names": [
+      "אובייקט"
+    ],
+    "search": "אובייקט"
+  },
+  {
+    "names": [
+      "לפונקציה"
+    ],
+    "search": "לפונקציה"
+  },
+  {
+    "names": [
+      "במודולים"
+    ],
+    "search": "במודולים"
+  },
+  {
+    "names": [
+      "קבלת"
+    ],
+    "search": "קבלת"
+  },
+  {
+    "names": [
+      "הקונטקסט"
+    ],
+    "search": "הקונטקסט"
+  },
+  {
+    "names": [
+      "במספר"
+    ],
+    "search": "במספר"
+  },
+  {
+    "names": [
+      "טוקן"
+    ],
+    "search": "טוקן"
+  },
+  {
+    "names": [
+      "בפרטי"
+    ],
+    "search": "בפרטי"
+  },
+  {
+    "names": [
+      "טריקי"
+    ],
+    "search": "טריקי"
+  },
+  {
+    "names": [
+      "המגבלה"
+    ],
+    "search": "המגבלה"
+  },
+  {
+    "names": [
+      "לרדת"
+    ],
+    "search": "לרדת"
+  },
+  {
+    "names": [
+      "הדומיין"
+    ],
+    "search": "הדומיין"
+  },
+  {
+    "names": [
+      "שהמודל"
+    ],
+    "search": "שהמודל"
+  },
+  {
+    "names": [
+      "מגבלה"
+    ],
+    "search": "מגבלה"
+  },
+  {
+    "names": [
+      "תקבלו"
+    ],
+    "search": "תקבלו"
+  },
+  {
+    "names": [
+      "המאגר"
+    ],
+    "search": "המאגר"
+  },
+  {
+    "names": [
+      "סוגר"
+    ],
+    "search": "סוגר"
+  },
+  {
+    "names": [
+      "מאגר"
+    ],
+    "search": "מאגר"
+  },
+  {
+    "names": [
+      "לסנריוז"
+    ],
+    "search": "לסנריוז"
+  },
+  {
+    "names": [
+      "קטנות"
+    ],
+    "search": "קטנות"
+  },
+  {
+    "names": [
+      "קיבלת"
+    ],
+    "search": "קיבלת"
+  },
+  {
+    "names": [
+      "טמפליט"
+    ],
+    "search": "טמפליט"
+  },
+  {
+    "names": [
+      "בבוט"
+    ],
+    "search": "בבוט"
+  },
+  {
+    "names": [
+      "לבוט"
+    ],
+    "search": "לבוט"
+  },
+  {
+    "names": [
+      "היוזר"
+    ],
+    "search": "היוזר"
+  },
+  {
+    "names": [
+      "פליט"
+    ],
+    "search": "פליט"
+  },
+  {
+    "names": [
+      "הטמפליט"
+    ],
+    "search": "הטמפליט"
+  },
+  {
+    "names": [
+      "טמפלייט"
+    ],
+    "search": "טמפלייט"
+  },
+  {
+    "names": [
+      "הטמפלייט"
+    ],
+    "search": "הטמפלייט"
+  },
+  {
+    "names": [
+      "הפרויקט"
+    ],
+    "search": "הפרויקט"
+  },
+  {
+    "names": [
+      "טמפלייטים"
+    ],
+    "search": "טמפלייטים"
+  },
+  {
+    "names": [
+      "שהבוט"
+    ],
+    "search": "שהבוט"
+  },
+  {
+    "names": [
+      "טריק"
+    ],
+    "search": "טריק"
+  },
+  {
+    "names": [
+      "קמפיין"
+    ],
+    "search": "קמפיין"
+  },
+  {
+    "names": [
+      "מפייסבוק"
+    ],
+    "search": "מפייסבוק"
+  },
+  {
+    "names": [
+      "דליי"
+    ],
+    "search": "דליי"
+  },
+  {
+    "names": [
+      "הקונטקט"
+    ],
+    "search": "הקונטקט"
+  },
+  {
+    "names": [
+      "בסטטוס"
+    ],
+    "search": "בסטטוס"
+  },
+  {
+    "names": [
+      "בפרויקט"
+    ],
+    "search": "בפרויקט"
+  },
+  {
+    "names": [
+      "אשתדל"
+    ],
+    "search": "אשתדל"
+  },
+  {
+    "names": [
+      "בוטים"
+    ],
+    "search": "בוטים"
+  },
+  {
+    "names": [
+      "קונטקט"
+    ],
+    "search": "קונטקט"
+  },
+  {
+    "names": [
+      "לטלפון"
+    ],
+    "search": "לטלפון"
+  },
+  {
+    "names": [
+      "מטורף"
+    ],
+    "search": "מטורף"
+  },
+  {
+    "names": [
+      "בקטע"
+    ],
+    "search": "בקטע"
+  },
+  {
+    "names": [
+      "המשפט"
+    ],
+    "search": "המשפט"
+  },
+  {
+    "names": [
+      "הדשבורד"
+    ],
+    "search": "הדשבורד"
+  },
+  {
+    "names": [
+      "סטור"
+    ],
+    "search": "סטור"
+  },
+  {
+    "names": [
+      "במאגר"
+    ],
+    "search": "במאגר"
+  },
+  {
+    "names": [
+      "סנריוז"
+    ],
+    "search": "סנריוז"
+  },
+  {
+    "names": [
+      "הפרו"
+    ],
+    "search": "הפרו"
+  },
+  {
+    "names": [
+      "האלמנטים"
+    ],
+    "search": "האלמנטים"
+  },
+  {
+    "names": [
+      "לאפליקציה"
+    ],
+    "search": "לאפליקציה"
+  },
+  {
+    "names": [
+      "באפליקציה"
+    ],
+    "search": "באפליקציה"
+  },
+  {
+    "names": [
+      "פרטיים"
+    ],
+    "search": "פרטיים"
+  },
+  {
+    "names": [
+      "אפליקציות"
+    ],
+    "search": "אפליקציות"
+  },
+  {
+    "names": [
+      "לתפריט"
+    ],
+    "search": "לתפריט"
+  },
+  {
+    "names": [
+      "תפריט"
+    ],
+    "search": "תפריט"
+  },
+  {
+    "names": [
+      "קונקשן"
+    ],
+    "search": "קונקשן"
+  },
+  {
+    "names": [
+      "מטרת"
+    ],
+    "search": "מטרת"
+  },
+  {
+    "names": [
+      "הטוקן"
+    ],
+    "search": "הטוקן"
+  },
+  {
+    "names": [
+      "המגבלות"
+    ],
+    "search": "המגבלות"
+  },
+  {
+    "names": [
+      "עוזרת"
+    ],
+    "search": "עוזרת"
+  },
+  {
+    "names": [
+      "פרמטר"
+    ],
+    "search": "פרמטר"
+  },
+  {
+    "names": [
+      "מחדל"
+    ],
+    "search": "מחדל"
+  },
+  {
+    "names": [
+      "תחזרו"
+    ],
+    "search": "תחזרו"
+  },
+  {
+    "names": [
+      "התקבל"
+    ],
+    "search": "התקבל"
+  },
+  {
+    "names": [
+      "וטלפון"
+    ],
+    "search": "וטלפון"
+  },
+  {
+    "names": [
+      "סליקה"
+    ],
+    "search": "סליקה"
+  },
+  {
+    "names": [
+      "נפרד"
+    ],
+    "search": "נפרד"
+  },
+  {
+    "names": [
+      "שהסנריו"
+    ],
+    "search": "שהסנריו"
+  },
+  {
+    "names": [
+      "דיוור"
+    ],
+    "search": "דיוור"
+  },
+  {
+    "names": [
+      "גודל"
+    ],
+    "search": "גודל"
+  },
+  {
+    "names": [
+      "גרין"
+    ],
+    "search": "גרין"
+  },
+  {
+    "names": [
+      "לגרום"
+    ],
+    "search": "לגרום"
+  },
+  {
+    "names": [
+      "שנקבל"
+    ],
+    "search": "שנקבל"
+  },
+  {
+    "names": [
+      "להדליק"
+    ],
+    "search": "להדליק"
+  },
+  {
+    "names": [
+      "ולקבל"
+    ],
+    "search": "ולקבל"
+  },
+  {
+    "names": [
+      "לטפל"
+    ],
+    "search": "לטפל"
+  },
+  {
+    "names": [
+      "קולקשן"
+    ],
+    "search": "קולקשן"
+  },
+  {
+    "names": [
+      "בקולקשן"
+    ],
+    "search": "בקולקשן"
+  },
+  {
+    "names": [
+      "לבטל"
+    ],
+    "search": "לבטל"
+  },
+  {
+    "names": [
+      "פרקטי"
+    ],
+    "search": "פרקטי"
+  },
+  {
+    "names": [
+      "אוירם"
+    ],
+    "search": "אוירם"
+  },
+  {
+    "names": [
+      "גורם"
+    ],
+    "search": "גורם"
+  },
+  {
+    "names": [
+      "דשבורדים"
+    ],
+    "search": "דשבורדים"
+  },
+  {
+    "names": [
+      "נטייה"
+    ],
+    "search": "נטייה"
+  },
+  {
+    "names": [
+      "דיגיטלית"
+    ],
+    "search": "דיגיטלית"
+  },
+  {
+    "names": [
+      "זרימה"
+    ],
+    "search": "זרימה"
+  },
+  {
+    "names": [
+      "האובייקטים"
+    ],
+    "search": "האובייקטים"
+  },
+  {
+    "names": [
+      "קליסט"
+    ],
+    "search": "קליסט"
+  },
+  {
+    "names": [
+      "הדשבורדים"
+    ],
+    "search": "הדשבורדים"
+  },
+  {
+    "names": [
+      "לפרקטיקה"
+    ],
+    "search": "לפרקטיקה"
+  },
+  {
+    "names": [
+      "גרוק"
+    ],
+    "search": "גרוק"
+  },
+  {
+    "names": [
+      "שהפונקציה"
+    ],
+    "search": "שהפונקציה"
+  },
+  {
+    "names": [
+      "למספרים"
+    ],
+    "search": "למספרים"
+  },
+  {
+    "names": [
+      "התפריט"
+    ],
+    "search": "התפריט"
+  },
+  {
+    "names": [
+      "עזרה"
+    ],
+    "search": "עזרה"
+  },
+  {
+    "names": [
+      "בלילה"
+    ],
+    "search": "בלילה"
+  },
+  {
+    "names": [
+      "מדליק"
+    ],
+    "search": "מדליק"
+  },
+  {
+    "names": [
+      "בלחיצה"
+    ],
+    "search": "בלחיצה"
+  },
+  {
+    "names": [
+      "בדשבורד"
+    ],
+    "search": "בדשבורד"
+  },
+  {
+    "names": [
+      "טלגרם"
+    ],
+    "search": "טלגרם"
+  },
+  {
+    "names": [
+      "שהטריגר"
+    ],
+    "search": "שהטריגר"
+  },
+  {
+    "names": [
+      "לטריגרים"
+    ],
+    "search": "לטריגרים"
+  },
+  {
+    "names": [
+      "הטריגרים"
+    ],
+    "search": "הטריגרים"
+  },
+  {
+    "names": [
+      "מוגבלת"
+    ],
+    "search": "מוגבלת"
+  },
+  {
+    "names": [
+      "מקבלת"
+    ],
+    "search": "מקבלת"
+  },
+  {
+    "names": [
+      "מוגבל"
+    ],
+    "search": "מוגבל"
+  },
+  {
+    "names": [
+      "שאוטומציה"
+    ],
+    "search": "שאוטומציה"
+  },
+  {
+    "names": [
+      "בגרסה"
+    ],
+    "search": "בגרסה"
+  },
+  {
+    "names": [
+      "ואוטומציות"
+    ],
+    "search": "ואוטומציות"
+  },
+  {
+    "names": [
+      "זריז"
+    ],
+    "search": "זריז"
+  },
+  {
+    "names": [
+      "לשכפל"
+    ],
+    "search": "לשכפל"
+  },
+  {
+    "names": [
+      "קונטרול"
+    ],
+    "search": "קונטרול"
+  },
+  {
+    "names": [
+      "מתרגר"
+    ],
+    "search": "מתרגר"
+  },
+  {
+    "names": [
+      "שהתקבל"
+    ],
+    "search": "שהתקבל"
+  },
+  {
+    "names": [
+      "סגרתי"
+    ],
+    "search": "סגרתי"
+  },
+  {
+    "names": [
+      "סטודיו"
+    ],
+    "search": "סטודיו"
+  },
+  {
+    "names": [
+      "לגרור"
+    ],
+    "search": "לגרור"
+  },
+  {
+    "names": [
+      "בפרויקטים"
+    ],
+    "search": "בפרויקטים"
+  },
+  {
+    "names": [
+      "פומפט"
+    ],
+    "search": "פומפט"
+  },
+  {
+    "names": [
+      "יבלבל"
+    ],
+    "search": "יבלבל"
+  },
+  {
+    "names": [
+      "הספר"
+    ],
+    "search": "הספר"
+  },
+  {
+    "names": [
+      "לבלבל"
+    ],
+    "search": "לבלבל"
+  },
+  {
+    "names": [
+      "בלבד"
+    ],
+    "search": "בלבד"
+  },
+  {
+    "names": [
+      "פרטיות"
+    ],
+    "search": "פרטיות"
+  },
+  {
+    "names": [
+      "פרפלקס"
+    ],
+    "search": "פרפלקס"
+  },
+  {
+    "names": [
+      "האקשן"
+    ],
+    "search": "האקשן"
+  },
+  {
+    "names": [
+      "משפר"
+    ],
+    "search": "משפר"
+  },
+  {
+    "names": [
+      "הפוסטים"
+    ],
+    "search": "הפוסטים"
+  },
+  {
+    "names": [
+      "שיקבל"
+    ],
+    "search": "שיקבל"
+  },
+  {
+    "names": [
+      "קופיילוט"
+    ],
+    "search": "קופיילוט"
+  },
+  {
+    "names": [
+      "שהאפליקציה"
+    ],
+    "search": "שהאפליקציה"
+  },
+  {
+    "names": [
+      "הטקסטואלי"
+    ],
+    "search": "הטקסטואלי"
+  },
+  {
+    "names": [
+      "משפט"
+    ],
+    "search": "משפט"
+  },
+  {
+    "names": [
+      "שהמטרה"
+    ],
+    "search": "שהמטרה"
+  },
+  {
+    "names": [
+      "אטבוטים"
+    ],
+    "search": "אטבוטים"
+  },
+  {
+    "names": [
+      "הפרמטר"
+    ],
+    "search": "הפרמטר"
+  },
+  {
+    "names": [
+      "טיקטוק"
+    ],
+    "search": "טיקטוק"
+  },
+  {
+    "names": [
+      "פרופיל"
+    ],
+    "search": "פרופיל"
+  },
+  {
+    "names": [
+      "אקשן"
+    ],
+    "search": "אקשן"
+  },
+  {
+    "names": [
+      "רנדומיזר"
+    ],
+    "search": "רנדומיזר"
+  },
+  {
+    "names": [
+      "פרסומת"
+    ],
+    "search": "פרסומת"
+  },
+  {
+    "names": [
+      "הגרלות"
+    ],
+    "search": "הגרלות"
+  },
+  {
+    "names": [
+      "מסלול"
+    ],
+    "search": "מסלול"
+  },
+  {
+    "names": [
+      "אסטרטגי"
+    ],
+    "search": "אסטרטגי"
+  },
+  {
+    "names": [
+      "תזרים"
+    ],
+    "search": "תזרים"
+  },
+  {
+    "names": [
+      "סטטוסים"
+    ],
+    "search": "סטטוסים"
+  },
+  {
+    "names": [
+      "לסטטוס"
+    ],
+    "search": "לסטטוס"
+  },
+  {
+    "names": [
+      "מטרות"
+    ],
+    "search": "מטרות"
+  },
+  {
+    "names": [
+      "בלבבל"
+    ],
+    "search": "בלבבל"
+  },
+  {
+    "names": [
+      "שהפרויקט"
+    ],
+    "search": "שהפרויקט"
+  },
+  {
+    "names": [
+      "אטריס"
+    ],
+    "search": "אטריס"
+  },
+  {
+    "names": [
+      "גאנט"
+    ],
+    "search": "גאנט"
+  },
+  {
+    "names": [
+      "סקירה"
+    ],
+    "search": "סקירה"
+  },
+  {
+    "names": [
+      "הגדרת"
+    ],
+    "search": "הגדרת"
+  },
+  {
+    "names": [
+      "נחיתה"
+    ],
+    "search": "נחיתה"
+  },
+  {
+    "names": [
+      "אוקיי"
+    ],
+    "search": "אוקיי"
+  },
+  {
+    "names": [
+      "החשבון"
+    ],
+    "search": "החשבון"
+  },
+  {
+    "names": [
+      "שגיעה"
+    ],
+    "search": "שגיעה"
+  },
+  {
+    "names": [
+      "פתרון"
+    ],
+    "search": "פתרון"
+  },
+  {
+    "names": [
+      "בעיות"
+    ],
+    "search": "בעיות"
+  },
+  {
+    "names": [
+      "הבנתי"
+    ],
+    "search": "הבנתי"
+  },
+  {
+    "names": [
+      "בפורמט"
+    ],
+    "search": "בפורמט"
+  },
+  {
+    "names": [
+      "הגיוני"
+    ],
+    "search": "הגיוני"
+  },
+  {
+    "names": [
+      "כלומר"
+    ],
+    "search": "כלומר"
+  },
+  {
+    "names": [
+      "המספר"
+    ],
+    "search": "המספר"
+  },
+  {
+    "names": [
+      "אנחנו"
+    ],
+    "search": "אנחנו"
+  },
+  {
+    "names": [
+      "צריכים"
+    ],
+    "search": "צריכים"
+  },
+  {
+    "names": [
+      "עושים"
+    ],
+    "search": "עושים"
+  },
+  {
+    "names": [
+      "ראיתם"
+    ],
+    "search": "ראיתם"
+  },
+  {
+    "names": [
+      "באמצע"
+    ],
+    "search": "באמצע"
+  },
+  {
+    "names": [
+      "בישראל"
+    ],
+    "search": "בישראל"
+  },
+  {
+    "names": [
+      "שקורה"
+    ],
+    "search": "שקורה"
+  },
+  {
+    "names": [
+      "רואים"
+    ],
+    "search": "רואים"
+  },
+  {
+    "names": [
+      "בסופו"
+    ],
+    "search": "בסופו"
+  },
+  {
+    "names": [
+      "סיימנו"
+    ],
+    "search": "סיימנו"
+  },
+  {
+    "names": [
+      "מקווה"
+    ],
+    "search": "מקווה"
+  },
+  {
+    "names": [
+      "מדהים"
+    ],
+    "search": "מדהים"
+  },
+  {
+    "names": [
+      "פרטים"
+    ],
+    "search": "פרטים"
+  },
+  {
+    "names": [
+      "לקורס"
+    ],
+    "search": "לקורס"
+  },
+  {
+    "names": [
+      "לחזור"
+    ],
+    "search": "לחזור"
+  },
+  {
+    "names": [
+      "בקרוב"
+    ],
+    "search": "בקרוב"
+  },
+  {
+    "names": [
+      "תשימו"
+    ],
+    "search": "תשימו"
+  },
+  {
+    "names": [
+      "שיותר"
+    ],
+    "search": "שיותר"
+  },
+  {
+    "names": [
+      "מגניב"
+    ],
+    "search": "מגניב"
+  },
+  {
+    "names": [
+      "בינתיים"
+    ],
+    "search": "בינתיים"
+  },
+  {
+    "names": [
+      "לעקוב"
+    ],
+    "search": "לעקוב"
+  },
+  {
+    "names": [
+      "רשתות"
+    ],
+    "search": "רשתות"
+  },
+  {
+    "names": [
+      "חברתיות"
+    ],
+    "search": "חברתיות"
+  },
+  {
+    "names": [
+      "הלינק"
+    ],
+    "search": "הלינק"
+  },
+  {
+    "names": [
+      "מכירים"
+    ],
+    "search": "מכירים"
+  },
+  {
+    "names": [
+      "תצוגה"
+    ],
+    "search": "תצוגה"
+  },
+  {
+    "names": [
+      "ובדיקה"
+    ],
+    "search": "ובדיקה"
+  },
+  {
+    "names": [
+      "ממליץ"
+    ],
+    "search": "ממליץ"
+  },
+  {
+    "names": [
+      "במערכות"
+    ],
+    "search": "במערכות"
+  },
+  {
+    "names": [
+      "מסוימות"
+    ],
+    "search": "מסוימות"
+  },
+  {
+    "names": [
+      "לאחסן"
+    ],
+    "search": "לאחסן"
+  },
+  {
+    "names": [
+      "המלצה"
+    ],
+    "search": "המלצה"
+  },
+  {
+    "names": [
+      "המנוי"
+    ],
+    "search": "המנוי"
+  },
+  {
+    "names": [
+      "שאמרנו"
+    ],
+    "search": "שאמרנו"
+  },
+  {
+    "names": [
+      "שלושה"
+    ],
+    "search": "שלושה"
+  },
+  {
+    "names": [
+      "בתשלום"
+    ],
+    "search": "בתשלום"
+  },
+  {
+    "names": [
+      "בהצלחה"
+    ],
+    "search": "בהצלחה"
+  },
+  {
+    "names": [
+      "לוגיקה"
+    ],
+    "search": "לוגיקה"
+  },
+  {
+    "names": [
+      "ותנאים"
+    ],
+    "search": "ותנאים"
+  },
+  {
+    "names": [
+      "שנעבור"
+    ],
+    "search": "שנעבור"
+  },
+  {
+    "names": [
+      "שעברנו"
+    ],
+    "search": "שעברנו"
+  },
+  {
+    "names": [
+      "עליהם"
+    ],
+    "search": "עליהם"
+  },
+  {
+    "names": [
+      "הקודם"
+    ],
+    "search": "הקודם"
+  },
+  {
+    "names": [
+      "פעולה"
+    ],
+    "search": "פעולה"
+  },
+  {
+    "names": [
+      "איזשהיא"
+    ],
+    "search": "איזשהיא"
+  },
+  {
+    "names": [
+      "בשיעורים"
+    ],
+    "search": "בשיעורים"
+  },
+  {
+    "names": [
+      "שלמדנו"
+    ],
+    "search": "שלמדנו"
+  },
+  {
+    "names": [
+      "ביטוי"
+    ],
+    "search": "ביטוי"
+  },
+  {
+    "names": [
+      "ובעצם"
+    ],
+    "search": "ובעצם"
+  },
+  {
+    "names": [
+      "לבדוק"
+    ],
+    "search": "לבדוק"
+  },
+  {
+    "names": [
+      "המשתנה"
+    ],
+    "search": "המשתנה"
+  },
+  {
+    "names": [
+      "נחזור"
+    ],
+    "search": "נחזור"
+  },
+  {
+    "names": [
+      "נוסיף"
+    ],
+    "search": "נוסיף"
+  },
+  {
+    "names": [
+      "נגדיר"
+    ],
+    "search": "נגדיר"
+  },
+  {
+    "names": [
+      "מבצאים"
+    ],
+    "search": "מבצאים"
+  },
+  {
+    "names": [
+      "השוואה"
+    ],
+    "search": "השוואה"
+  },
+  {
+    "names": [
+      "חלקים"
+    ],
+    "search": "חלקים"
+  },
+  {
+    "names": [
+      "הקבוצות"
+    ],
+    "search": "הקבוצות"
+  },
+  {
+    "names": [
+      "למבנה"
+    ],
+    "search": "למבנה"
+  },
+  {
+    "names": [
+      "נעבור"
+    ],
+    "search": "נעבור"
+  },
+  {
+    "names": [
+      "בסיסיים"
+    ],
+    "search": "בסיסיים"
+  },
+  {
+    "names": [
+      "מתחיל"
+    ],
+    "search": "מתחיל"
+  },
+  {
+    "names": [
+      "לתאריך"
+    ],
+    "search": "לתאריך"
+  },
+  {
+    "names": [
+      "תאריך"
+    ],
+    "search": "תאריך"
+  },
+  {
+    "names": [
+      "לדאוג"
+    ],
+    "search": "לדאוג"
+  },
+  {
+    "names": [
+      "שעשינו"
+    ],
+    "search": "שעשינו"
+  },
+  {
+    "names": [
+      "בדוגמה"
+    ],
+    "search": "בדוגמה"
+  },
+  {
+    "names": [
+      "התנאי"
+    ],
+    "search": "התנאי"
+  },
+  {
+    "names": [
+      "קוראים"
+    ],
+    "search": "קוראים"
+  },
+  {
+    "names": [
+      "אכתוב"
+    ],
+    "search": "אכתוב"
+  },
+  {
+    "names": [
+      "אמורים"
+    ],
+    "search": "אמורים"
+  },
+  {
+    "names": [
+      "מזכיר"
+    ],
+    "search": "מזכיר"
+  },
+  {
+    "names": [
+      "לוגים"
+    ],
+    "search": "לוגים"
+  },
+  {
+    "names": [
+      "שאומר"
+    ],
+    "search": "שאומר"
+  },
+  {
+    "names": [
+      "ביניהם"
+    ],
+    "search": "ביניהם"
+  },
+  {
+    "names": [
+      "הביטוי"
+    ],
+    "search": "הביטוי"
+  },
+  {
+    "names": [
+      "גדולים"
+    ],
+    "search": "גדולים"
+  },
+  {
+    "names": [
+      "לעומת"
+    ],
+    "search": "לעומת"
+  },
+  {
+    "names": [
+      "חייבים"
+    ],
+    "search": "חייבים"
+  },
+  {
+    "names": [
+      "הקבוצה"
+    ],
+    "search": "הקבוצה"
+  },
+  {
+    "names": [
+      "נכונה"
+    ],
+    "search": "נכונה"
+  },
+  {
+    "names": [
+      "באותה"
+    ],
+    "search": "באותה"
+  },
+  {
+    "names": [
+      "אחרים"
+    ],
+    "search": "אחרים"
+  },
+  {
+    "names": [
+      "אומרים"
+    ],
+    "search": "אומרים"
+  },
+  {
+    "names": [
+      "מספיק"
+    ],
+    "search": "מספיק"
+  },
+  {
+    "names": [
+      "נשתמש"
+    ],
+    "search": "נשתמש"
+  },
+  {
+    "names": [
+      "לפחות"
+    ],
+    "search": "לפחות"
+  },
+  {
+    "names": [
+      "מסובך"
+    ],
+    "search": "מסובך"
+  },
+  {
+    "names": [
+      "ונראה"
+    ],
+    "search": "ונראה"
+  },
+  {
+    "names": [
+      "הראשונה"
+    ],
+    "search": "הראשונה"
+  },
+  {
+    "names": [
+      "קבוצה"
+    ],
+    "search": "קבוצה"
+  },
+  {
+    "names": [
+      "שאומרת"
+    ],
+    "search": "שאומרת"
+  },
+  {
+    "names": [
+      "אחליף"
+    ],
+    "search": "אחליף"
+  },
+  {
+    "names": [
+      "התנאים"
+    ],
+    "search": "התנאים"
+  },
+  {
+    "names": [
+      "עברנו"
+    ],
+    "search": "עברנו"
+  },
+  {
+    "names": [
+      "נחליף"
+    ],
+    "search": "נחליף"
+  },
+  {
+    "names": [
+      "קבוצות"
+    ],
+    "search": "קבוצות"
+  },
+  {
+    "names": [
+      "הראשונית"
+    ],
+    "search": "הראשונית"
+  },
+  {
+    "names": [
+      "באותו"
+    ],
+    "search": "באותו"
+  },
+  {
+    "names": [
+      "שנעשה"
+    ],
+    "search": "שנעשה"
+  },
+  {
+    "names": [
+      "השנייה"
+    ],
+    "search": "השנייה"
+  },
+  {
+    "names": [
+      "מעניין"
+    ],
+    "search": "מעניין"
+  },
+  {
+    "names": [
+      "מורכב"
+    ],
+    "search": "מורכב"
+  },
+  {
+    "names": [
+      "היכולת"
+    ],
+    "search": "היכולת"
+  },
+  {
+    "names": [
+      "לייצר"
+    ],
+    "search": "לייצר"
+  },
+  {
+    "names": [
+      "תנאים"
+    ],
+    "search": "תנאים"
+  },
+  {
+    "names": [
+      "מורכבים"
+    ],
+    "search": "מורכבים"
+  },
+  {
+    "names": [
+      "בדברים"
+    ],
+    "search": "בדברים"
+  },
+  {
+    "names": [
+      "בתהליך"
+    ],
+    "search": "בתהליך"
+  },
+  {
+    "names": [
+      "אחרון"
+    ],
+    "search": "אחרון"
+  },
+  {
+    "names": [
+      "מסיימים"
+    ],
+    "search": "מסיימים"
+  },
+  {
+    "names": [
+      "השיעור"
+    ],
+    "search": "השיעור"
+  },
+  {
+    "names": [
+      "מייצרים"
+    ],
+    "search": "מייצרים"
+  },
+  {
+    "names": [
+      "באמצעות"
+    ],
+    "search": "באמצעות"
+  },
+  {
+    "names": [
+      "אוסיף"
+    ],
+    "search": "אוסיף"
+  },
+  {
+    "names": [
+      "שחשוב"
+    ],
+    "search": "שחשוב"
+  },
+  {
+    "names": [
+      "הפעולות"
+    ],
+    "search": "הפעולות"
+  },
+  {
+    "names": [
+      "להיות"
+    ],
+    "search": "להיות"
+  },
+  {
+    "names": [
+      "בנוגע"
+    ],
+    "search": "בנוגע"
+  },
+  {
+    "names": [
+      "תמשיכו"
+    ],
+    "search": "תמשיכו"
+  },
+  {
+    "names": [
+      "לשיעור"
+    ],
+    "search": "לשיעור"
+  },
+  {
+    "names": [
+      "יוצרים"
+    ],
+    "search": "יוצרים"
+  },
+  {
+    "names": [
+      "שנוכל"
+    ],
+    "search": "שנוכל"
+  },
+  {
+    "names": [
+      "חיצוניות"
+    ],
+    "search": "חיצוניות"
+  },
+  {
+    "names": [
+      "למערכת"
+    ],
+    "search": "למערכת"
+  },
+  {
+    "names": [
+      "ולבצע"
+    ],
+    "search": "ולבצע"
+  },
+  {
+    "names": [
+      "אופציות"
+    ],
+    "search": "אופציות"
+  },
+  {
+    "names": [
+      "הפנימיות"
+    ],
+    "search": "הפנימיות"
+  },
+  {
+    "names": [
+      "נוספות"
+    ],
+    "search": "נוספות"
+  },
+  {
+    "names": [
+      "בקצרה"
+    ],
+    "search": "בקצרה"
+  },
+  {
+    "names": [
+      "מחרוזת"
+    ],
+    "search": "מחרוזת"
+  },
+  {
+    "names": [
+      "תווים"
+    ],
+    "search": "תווים"
+  },
+  {
+    "names": [
+      "המשתמש"
+    ],
+    "search": "המשתמש"
+  },
+  {
+    "names": [
+      "פעולות"
+    ],
+    "search": "פעולות"
+  },
+  {
+    "names": [
+      "כשאנחנו"
+    ],
+    "search": "כשאנחנו"
+  },
+  {
+    "names": [
+      "שמאוד"
+    ],
+    "search": "שמאוד"
+  },
+  {
+    "names": [
+      "בונים"
+    ],
+    "search": "בונים"
+  },
+  {
+    "names": [
+      "במערכת"
+    ],
+    "search": "במערכת"
+  },
+  {
+    "names": [
+      "התמונה"
+    ],
+    "search": "התמונה"
+  },
+  {
+    "names": [
+      "למעלה"
+    ],
+    "search": "למעלה"
+  },
+  {
+    "names": [
+      "לוחצים"
+    ],
+    "search": "לוחצים"
+  },
+  {
+    "names": [
+      "יופיע"
+    ],
+    "search": "יופיע"
+  },
+  {
+    "names": [
+      "יוכלו"
+    ],
+    "search": "יוכלו"
+  },
+  {
+    "names": [
+      "המפתח"
+    ],
+    "search": "המפתח"
+  },
+  {
+    "names": [
+      "למשתמש"
+    ],
+    "search": "למשתמש"
+  },
+  {
+    "names": [
+      "מהמשתמש"
+    ],
+    "search": "מהמשתמש"
+  },
+  {
+    "names": [
+      "סצנריו"
+    ],
+    "search": "סצנריו"
+  },
+  {
+    "names": [
+      "ונבחר"
+    ],
+    "search": "ונבחר"
+  },
+  {
+    "names": [
+      "מחובר"
+    ],
+    "search": "מחובר"
+  },
+  {
+    "names": [
+      "לאיזשהו"
+    ],
+    "search": "לאיזשהו"
+  },
+  {
+    "names": [
+      "חשבון"
+    ],
+    "search": "חשבון"
+  },
+  {
+    "names": [
+      "לחשבון"
+    ],
+    "search": "לחשבון"
+  },
+  {
+    "names": [
+      "החיבור"
+    ],
+    "search": "החיבור"
+  },
+  {
+    "names": [
+      "אדביק"
+    ],
+    "search": "אדביק"
+  },
+  {
+    "names": [
+      "למנדי"
+    ],
+    "search": "למנדי"
+  },
+  {
+    "names": [
+      "הקודמת"
+    ],
+    "search": "הקודמת"
+  },
+  {
+    "names": [
+      "שכאשר"
+    ],
+    "search": "שכאשר"
+  },
+  {
+    "names": [
+      "יעבור"
+    ],
+    "search": "יעבור"
+  },
+  {
+    "names": [
+      "בטיפול"
+    ],
+    "search": "בטיפול"
+  },
+  {
+    "names": [
+      "שנראה"
+    ],
+    "search": "שנראה"
+  },
+  {
+    "names": [
+      "למשהו"
+    ],
+    "search": "למשהו"
+  },
+  {
+    "names": [
+      "תעביר"
+    ],
+    "search": "תעביר"
+  },
+  {
+    "names": [
+      "לקבוצה"
+    ],
+    "search": "לקבוצה"
+  },
+  {
+    "names": [
+      "במנדי"
+    ],
+    "search": "במנדי"
+  },
+  {
+    "names": [
+      "השתנה"
+    ],
+    "search": "השתנה"
+  },
+  {
+    "names": [
+      "שאפשר"
+    ],
+    "search": "שאפשר"
+  },
+  {
+    "names": [
+      "עמודה"
+    ],
+    "search": "עמודה"
+  },
+  {
+    "names": [
+      "מסוימת"
+    ],
+    "search": "מסוימת"
+  },
+  {
+    "names": [
+      "בבורד"
+    ],
+    "search": "בבורד"
+  },
+  {
+    "names": [
+      "להזין"
+    ],
+    "search": "להזין"
+  },
+  {
+    "names": [
+      "בעמודת"
+    ],
+    "search": "בעמודת"
+  },
+  {
+    "names": [
+      "כתובת"
+    ],
+    "search": "כתובת"
+  },
+  {
+    "names": [
+      "שברגע"
+    ],
+    "search": "שברגע"
+  },
+  {
+    "names": [
+      "השינוי"
+    ],
+    "search": "השינוי"
+  },
+  {
+    "names": [
+      "קריאה"
+    ],
+    "search": "קריאה"
+  },
+  {
+    "names": [
+      "לכתובת"
+    ],
+    "search": "לכתובת"
+  },
+  {
+    "names": [
+      "לוודא"
+    ],
+    "search": "לוודא"
+  },
+  {
+    "names": [
+      "בחשבון"
+    ],
+    "search": "בחשבון"
+  },
+  {
+    "names": [
+      "הנכון"
+    ],
+    "search": "הנכון"
+  },
+  {
+    "names": [
+      "ונוכל"
+    ],
+    "search": "ונוכל"
+  },
+  {
+    "names": [
+      "הבורד"
+    ],
+    "search": "הבורד"
+  },
+  {
+    "names": [
+      "אצלנו"
+    ],
+    "search": "אצלנו"
+  },
+  {
+    "names": [
+      "ספציפית"
+    ],
+    "search": "ספציפית"
+  },
+  {
+    "names": [
+      "רשומה"
+    ],
+    "search": "רשומה"
+  },
+  {
+    "names": [
+      "ונלחץ"
+    ],
+    "search": "ונלחץ"
+  },
+  {
+    "names": [
+      "שינוי"
+    ],
+    "search": "שינוי"
+  },
+  {
+    "names": [
+      "לבורד"
+    ],
+    "search": "לבורד"
+  },
+  {
+    "names": [
+      "הנתונים"
+    ],
+    "search": "הנתונים"
+  },
+  {
+    "names": [
+      "המזהה"
+    ],
+    "search": "המזהה"
+  },
+  {
+    "names": [
+      "הרשומה"
+    ],
+    "search": "הרשומה"
+  },
+  {
+    "names": [
+      "אייטם"
+    ],
+    "search": "אייטם"
+  },
+  {
+    "names": [
+      "העמודה"
+    ],
+    "search": "העמודה"
+  },
+  {
+    "names": [
+      "שונים"
+    ],
+    "search": "שונים"
+  },
+  {
+    "names": [
+      "זוכרים"
+    ],
+    "search": "זוכרים"
+  },
+  {
+    "names": [
+      "וחשוב"
+    ],
+    "search": "וחשוב"
+  },
+  {
+    "names": [
+      "כותבים"
+    ],
+    "search": "כותבים"
+  },
+  {
+    "names": [
+      "נכתוב"
+    ],
+    "search": "נכתוב"
+  },
+  {
+    "names": [
+      "שכתוב"
+    ],
+    "search": "שכתוב"
+  },
+  {
+    "names": [
+      "אמרנו"
+    ],
+    "search": "אמרנו"
+  },
+  {
+    "names": [
+      "האייטם"
+    ],
+    "search": "האייטם"
+  },
+  {
+    "names": [
+      "שאמרתי"
+    ],
+    "search": "שאמרתי"
+  },
+  {
+    "names": [
+      "המילה"
+    ],
+    "search": "המילה"
+  },
+  {
+    "names": [
+      "עובדים"
+    ],
+    "search": "עובדים"
+  },
+  {
+    "names": [
+      "שליטה"
+    ],
+    "search": "שליטה"
+  },
+  {
+    "names": [
+      "להפעיל"
+    ],
+    "search": "להפעיל"
+  },
+  {
+    "names": [
+      "עובדת"
+    ],
+    "search": "עובדת"
+  },
+  {
+    "names": [
+      "אמורה"
+    ],
+    "search": "אמורה"
+  },
+  {
+    "names": [
+      "האוטומטיה"
+    ],
+    "search": "האוטומטיה"
+  },
+  {
+    "names": [
+      "ולהכניס"
+    ],
+    "search": "ולהכניס"
+  },
+  {
+    "names": [
+      "שלפעמים"
+    ],
+    "search": "שלפעמים"
+  },
+  {
+    "names": [
+      "מחפשים"
+    ],
+    "search": "מחפשים"
+  },
+  {
+    "names": [
+      "הכוונה"
+    ],
+    "search": "הכוונה"
+  },
+  {
+    "names": [
+      "ספציפי"
+    ],
+    "search": "ספציפי"
+  },
+  {
+    "names": [
+      "הפעולה"
+    ],
+    "search": "הפעולה"
+  },
+  {
+    "names": [
+      "ניצור"
+    ],
+    "search": "ניצור"
+  },
+  {
+    "names": [
+      "הובוק"
+    ],
+    "search": "הובוק"
+  },
+  {
+    "names": [
+      "ונקרא"
+    ],
+    "search": "ונקרא"
+  },
+  {
+    "names": [
+      "להעתיק"
+    ],
+    "search": "להעתיק"
+  },
+  {
+    "names": [
+      "הכתובת"
+    ],
+    "search": "הכתובת"
+  },
+  {
+    "names": [
+      "שדיברנו"
+    ],
+    "search": "שדיברנו"
+  },
+  {
+    "names": [
+      "בעמודה"
+    ],
+    "search": "בעמודה"
+  },
+  {
+    "names": [
+      "לאיפה"
+    ],
+    "search": "לאיפה"
+  },
+  {
+    "names": [
+      "ופשוט"
+    ],
+    "search": "ופשוט"
+  },
+  {
+    "names": [
+      "נדביק"
+    ],
+    "search": "נדביק"
+  },
+  {
+    "names": [
+      "עמודת"
+    ],
+    "search": "עמודת"
+  },
+  {
+    "names": [
+      "שבנינו"
+    ],
+    "search": "שבנינו"
+  },
+  {
+    "names": [
+      "שהגדרנו"
+    ],
+    "search": "שהגדרנו"
+  },
+  {
+    "names": [
+      "מאחורי"
+    ],
+    "search": "מאחורי"
+  },
+  {
+    "names": [
+      "הקלים"
+    ],
+    "search": "הקלים"
+  },
+  {
+    "names": [
+      "מובנה"
+    ],
+    "search": "מובנה"
+  },
+  {
+    "names": [
+      "ידנית"
+    ],
+    "search": "ידנית"
+  },
+  {
+    "names": [
+      "אוטומטי"
+    ],
+    "search": "אוטומטי"
+  },
+  {
+    "names": [
+      "ונעשה"
+    ],
+    "search": "ונעשה"
+  },
+  {
+    "names": [
+      "במקרים"
+    ],
+    "search": "במקרים"
+  },
+  {
+    "names": [
+      "ספציפיים"
+    ],
+    "search": "ספציפיים"
+  },
+  {
+    "names": [
+      "הספציפי"
+    ],
+    "search": "הספציפי"
+  },
+  {
+    "names": [
+      "שראינו"
+    ],
+    "search": "שראינו"
+  },
+  {
+    "names": [
+      "ולבנות"
+    ],
+    "search": "ולבנות"
+  },
+  {
+    "names": [
+      "היחיד"
+    ],
+    "search": "היחיד"
+  },
+  {
+    "names": [
+      "שקשורות"
+    ],
+    "search": "שקשורות"
+  },
+  {
+    "names": [
+      "הבאים"
+    ],
+    "search": "הבאים"
+  },
+  {
+    "names": [
+      "ניכנס"
+    ],
+    "search": "ניכנס"
+  },
+  {
+    "names": [
+      "האחרון"
+    ],
+    "search": "האחרון"
+  },
+  {
+    "names": [
+      "לצפות"
+    ],
+    "search": "לצפות"
+  },
+  {
+    "names": [
+      "בניית"
+    ],
+    "search": "בניית"
+  },
+  {
+    "names": [
+      "סרטון"
+    ],
+    "search": "סרטון"
+  },
+  {
+    "names": [
+      "הסרטון"
+    ],
+    "search": "הסרטון"
+  },
+  {
+    "names": [
+      "התמלול"
+    ],
+    "search": "התמלול"
+  },
+  {
+    "names": [
+      "וליצור"
+    ],
+    "search": "וליצור"
+  },
+  {
+    "names": [
+      "מעלים"
+    ],
+    "search": "מעלים"
+  },
+  {
+    "names": [
+      "למייל"
+    ],
+    "search": "למייל"
+  },
+  {
+    "names": [
+      "לעלות"
+    ],
+    "search": "לעלות"
+  },
+  {
+    "names": [
+      "מדויק"
+    ],
+    "search": "מדויק"
+  },
+  {
+    "names": [
+      "להעלות"
+    ],
+    "search": "להעלות"
+  },
+  {
+    "names": [
+      "התוכן"
+    ],
+    "search": "התוכן"
+  },
+  {
+    "names": [
+      "אישור"
+    ],
+    "search": "אישור"
+  },
+  {
+    "names": [
+      "האופציות"
+    ],
+    "search": "האופציות"
+  },
+  {
+    "names": [
+      "לפנות"
+    ],
+    "search": "לפנות"
+  },
+  {
+    "names": [
+      "ביקשתי"
+    ],
+    "search": "ביקשתי"
+  },
+  {
+    "names": [
+      "תכתוב"
+    ],
+    "search": "תכתוב"
+  },
+  {
+    "names": [
+      "תמלול"
+    ],
+    "search": "תמלול"
+  },
+  {
+    "names": [
+      "עשיתי"
+    ],
+    "search": "עשיתי"
+  },
+  {
+    "names": [
+      "הדוגמה"
+    ],
+    "search": "הדוגמה"
+  },
+  {
+    "names": [
+      "בעברית"
+    ],
+    "search": "בעברית"
+  },
+  {
+    "names": [
+      "אמרתי"
+    ],
+    "search": "אמרתי"
+  },
+  {
+    "names": [
+      "בהכרח"
+    ],
+    "search": "בהכרח"
+  },
+  {
+    "names": [
+      "אשתמש"
+    ],
+    "search": "אשתמש"
+  },
+  {
+    "names": [
+      "כתבתי"
+    ],
+    "search": "כתבתי"
+  },
+  {
+    "names": [
+      "שנותן"
+    ],
+    "search": "שנותן"
+  },
+  {
+    "names": [
+      "התוצאות"
+    ],
+    "search": "התוצאות"
+  },
+  {
+    "names": [
+      "טובות"
+    ],
+    "search": "טובות"
+  },
+  {
+    "names": [
+      "דוגמאות"
+    ],
+    "search": "דוגמאות"
+  },
+  {
+    "names": [
+      "ואיזה"
+    ],
+    "search": "ואיזה"
+  },
+  {
+    "names": [
+      "שכתבתי"
+    ],
+    "search": "שכתבתי"
+  },
+  {
+    "names": [
+      "קבצים"
+    ],
+    "search": "קבצים"
+  },
+  {
+    "names": [
+      "בפועל"
+    ],
+    "search": "בפועל"
+  },
+  {
+    "names": [
+      "שתיים"
+    ],
+    "search": "שתיים"
+  },
+  {
+    "names": [
+      "לממשק"
+    ],
+    "search": "לממשק"
+  },
+  {
+    "names": [
+      "מוסיף"
+    ],
+    "search": "מוסיף"
+  },
+  {
+    "names": [
+      "במשהו"
+    ],
+    "search": "במשהו"
+  },
+  {
+    "names": [
+      "יחסית"
+    ],
+    "search": "יחסית"
+  },
+  {
+    "names": [
+      "בסיסי"
+    ],
+    "search": "בסיסי"
+  },
+  {
+    "names": [
+      "ובואו"
+    ],
+    "search": "ובואו"
+  },
+  {
+    "names": [
+      "מתחבר"
+    ],
+    "search": "מתחבר"
+  },
+  {
+    "names": [
+      "העמוד"
+    ],
+    "search": "העמוד"
+  },
+  {
+    "names": [
+      "שניים"
+    ],
+    "search": "שניים"
+  },
+  {
+    "names": [
+      "הטמלול"
+    ],
+    "search": "הטמלול"
+  },
+  {
+    "names": [
+      "להפוך"
+    ],
+    "search": "להפוך"
+  },
+  {
+    "names": [
+      "לקובץ"
+    ],
+    "search": "לקובץ"
+  },
+  {
+    "names": [
+      "תמשיך"
+    ],
+    "search": "תמשיך"
+  },
+  {
+    "names": [
+      "בחרתי"
+    ],
+    "search": "בחרתי"
+  },
+  {
+    "names": [
+      "בדיקה"
+    ],
+    "search": "בדיקה"
+  },
+  {
+    "names": [
+      "לעברית"
+    ],
+    "search": "לעברית"
+  },
+  {
+    "names": [
+      "התחלה"
+    ],
+    "search": "התחלה"
+  },
+  {
+    "names": [
+      "מסיים"
+    ],
+    "search": "מסיים"
+  },
+  {
+    "names": [
+      "לפעולה"
+    ],
+    "search": "לפעולה"
+  },
+  {
+    "names": [
+      "בסרטון"
+    ],
+    "search": "בסרטון"
+  },
+  {
+    "names": [
+      "מבינים"
+    ],
+    "search": "מבינים"
+  },
+  {
+    "names": [
+      "ובאמת"
+    ],
+    "search": "ובאמת"
+  },
+  {
+    "names": [
+      "יעבוד"
+    ],
+    "search": "יעבוד"
+  },
+  {
+    "names": [
+      "במידה"
+    ],
+    "search": "במידה"
+  },
+  {
+    "names": [
+      "שעושה"
+    ],
+    "search": "שעושה"
+  },
+  {
+    "names": [
+      "תמונה"
+    ],
+    "search": "תמונה"
+  },
+  {
+    "names": [
+      "סוכנים"
+    ],
+    "search": "סוכנים"
+  },
+  {
+    "names": [
+      "ועושה"
+    ],
+    "search": "ועושה"
+  },
+  {
+    "names": [
+      "ומכאן"
+    ],
+    "search": "ומכאן"
+  },
+  {
+    "names": [
+      "עניין"
+    ],
+    "search": "עניין"
+  },
+  {
+    "names": [
+      "לערוך"
+    ],
+    "search": "לערוך"
+  },
+  {
+    "names": [
+      "באיזשהו"
+    ],
+    "search": "באיזשהו"
+  },
+  {
+    "names": [
+      "אפשרויות"
+    ],
+    "search": "אפשרויות"
+  },
+  {
+    "names": [
+      "בקיצור"
+    ],
+    "search": "בקיצור"
+  },
+  {
+    "names": [
+      "הקובץ"
+    ],
+    "search": "הקובץ"
+  },
+  {
+    "names": [
+      "התאריך"
+    ],
+    "search": "התאריך"
+  },
+  {
+    "names": [
+      "רשומות"
+    ],
+    "search": "רשומות"
+  },
+  {
+    "names": [
+      "לאיזה"
+    ],
+    "search": "לאיזה"
+  },
+  {
+    "names": [
+      "ללמוד"
+    ],
+    "search": "ללמוד"
+  },
+  {
+    "names": [
+      "משמעותי"
+    ],
+    "search": "משמעותי"
+  },
+  {
+    "names": [
+      "מכניס"
+    ],
+    "search": "מכניס"
+  },
+  {
+    "names": [
+      "ויכול"
+    ],
+    "search": "ויכול"
+  },
+  {
+    "names": [
+      "שיחות"
+    ],
+    "search": "שיחות"
+  },
+  {
+    "names": [
+      "שולחים"
+    ],
+    "search": "שולחים"
+  },
+  {
+    "names": [
+      "ללקוחות"
+    ],
+    "search": "ללקוחות"
+  },
+  {
+    "names": [
+      "יצירת"
+    ],
+    "search": "יצירת"
+  },
+  {
+    "names": [
+      "להתחבר"
+    ],
+    "search": "להתחבר"
+  },
+  {
+    "names": [
+      "בחודש"
+    ],
+    "search": "בחודש"
+  },
+  {
+    "names": [
+      "לטעון"
+    ],
+    "search": "לטעון"
+  },
+  {
+    "names": [
+      "פיתוח"
+    ],
+    "search": "פיתוח"
+  },
+  {
+    "names": [
+      "להרבה"
+    ],
+    "search": "להרבה"
+  },
+  {
+    "names": [
+      "קרדיטים"
+    ],
+    "search": "קרדיטים"
+  },
+  {
+    "names": [
+      "באיזה"
+    ],
+    "search": "באיזה"
+  },
+  {
+    "names": [
+      "להכניס"
+    ],
+    "search": "להכניס"
+  },
+  {
+    "names": [
+      "להגיע"
+    ],
+    "search": "להגיע"
+  },
+  {
+    "names": [
+      "ברורה"
+    ],
+    "search": "ברורה"
+  },
+  {
+    "names": [
+      "שעשיתי"
+    ],
+    "search": "שעשיתי"
+  },
+  {
+    "names": [
+      "בעצמי"
+    ],
+    "search": "בעצמי"
+  },
+  {
+    "names": [
+      "נכנסתי"
+    ],
+    "search": "נכנסתי"
+  },
+  {
+    "names": [
+      "השלבים"
+    ],
+    "search": "השלבים"
+  },
+  {
+    "names": [
+      "נכנסים"
+    ],
+    "search": "נכנסים"
+  },
+  {
+    "names": [
+      "נמצאים"
+    ],
+    "search": "נמצאים"
+  },
+  {
+    "names": [
+      "לפתוח"
+    ],
+    "search": "לפתוח"
+  },
+  {
+    "names": [
+      "הארגון"
+    ],
+    "search": "הארגון"
+  },
+  {
+    "names": [
+      "אותכם"
+    ],
+    "search": "אותכם"
+  },
+  {
+    "names": [
+      "בוחרים"
+    ],
+    "search": "בוחרים"
+  },
+  {
+    "names": [
+      "בעולם"
+    ],
+    "search": "בעולם"
+  },
+  {
+    "names": [
+      "טוקנים"
+    ],
+    "search": "טוקנים"
+  },
+  {
+    "names": [
+      "איכותי"
+    ],
+    "search": "איכותי"
+  },
+  {
+    "names": [
+      "לוקחת"
+    ],
+    "search": "לוקחת"
+  },
+  {
+    "names": [
+      "פעמיים"
+    ],
+    "search": "פעמיים"
+  },
+  {
+    "names": [
+      "מאיפה"
+    ],
+    "search": "מאיפה"
+  },
+  {
+    "names": [
+      "להמשיך"
+    ],
+    "search": "להמשיך"
+  },
+  {
+    "names": [
+      "חמישה"
+    ],
+    "search": "חמישה"
+  },
+  {
+    "names": [
+      "לדעתי"
+    ],
+    "search": "לדעתי"
+  },
+  {
+    "names": [
+      "חודשים"
+    ],
+    "search": "חודשים"
+  },
+  {
+    "names": [
+      "תבינו"
+    ],
+    "search": "תבינו"
+  },
+  {
+    "names": [
+      "אשראי"
+    ],
+    "search": "אשראי"
+  },
+  {
+    "names": [
+      "התראה"
+    ],
+    "search": "התראה"
+  },
+  {
+    "names": [
+      "בממשק"
+    ],
+    "search": "בממשק"
+  },
+  {
+    "names": [
+      "תוכלו"
+    ],
+    "search": "תוכלו"
+  },
+  {
+    "names": [
+      "להכיר"
+    ],
+    "search": "להכיר"
+  },
+  {
+    "names": [
+      "לשימוש"
+    ],
+    "search": "לשימוש"
+  },
+  {
+    "names": [
+      "לכמות"
+    ],
+    "search": "לכמות"
+  },
+  {
+    "names": [
+      "להראות"
+    ],
+    "search": "להראות"
+  },
+  {
+    "names": [
+      "התשובה"
+    ],
+    "search": "התשובה"
+  },
+  {
+    "names": [
+      "הכותרות"
+    ],
+    "search": "הכותרות"
+  },
+  {
+    "names": [
+      "מתקדמים"
+    ],
+    "search": "מתקדמים"
+  },
+  {
+    "names": [
+      "יחזיר"
+    ],
+    "search": "יחזיר"
+  },
+  {
+    "names": [
+      "תחזיר"
+    ],
+    "search": "תחזיר"
+  },
+  {
+    "names": [
+      "הרגיל"
+    ],
+    "search": "הרגיל"
+  },
+  {
+    "names": [
+      "שיקרה"
+    ],
+    "search": "שיקרה"
+  },
+  {
+    "names": [
+      "מתאים"
+    ],
+    "search": "מתאים"
+  },
+  {
+    "names": [
+      "ייסון"
+    ],
+    "search": "ייסון"
+  },
+  {
+    "names": [
+      "נוסחה"
+    ],
+    "search": "נוסחה"
+  },
+  {
+    "names": [
+      "שפשוט"
+    ],
+    "search": "שפשוט"
+  },
+  {
+    "names": [
+      "שמופיע"
+    ],
+    "search": "שמופיע"
+  },
+  {
+    "names": [
+      "ונותן"
+    ],
+    "search": "ונותן"
+  },
+  {
+    "names": [
+      "הייתה"
+    ],
+    "search": "הייתה"
+  },
+  {
+    "names": [
+      "להודעה"
+    ],
+    "search": "להודעה"
+  },
+  {
+    "names": [
+      "שתכירו"
+    ],
+    "search": "שתכירו"
+  },
+  {
+    "names": [
+      "להחזיר"
+    ],
+    "search": "להחזיר"
+  },
+  {
+    "names": [
+      "החזיר"
+    ],
+    "search": "החזיר"
+  },
+  {
+    "names": [
+      "ונגיד"
+    ],
+    "search": "ונגיד"
+  },
+  {
+    "names": [
+      "תשובה"
+    ],
+    "search": "תשובה"
+  },
+  {
+    "names": [
+      "פורמט"
+    ],
+    "search": "פורמט"
+  },
+  {
+    "names": [
+      "להדגים"
+    ],
+    "search": "להדגים"
+  },
+  {
+    "names": [
+      "שימוש"
+    ],
+    "search": "שימוש"
+  },
+  {
+    "names": [
+      "תשובות"
+    ],
+    "search": "תשובות"
+  },
+  {
+    "names": [
+      "שאלון"
+    ],
+    "search": "שאלון"
+  },
+  {
+    "names": [
+      "שעכשיו"
+    ],
+    "search": "שעכשיו"
+  },
+  {
+    "names": [
+      "ולשלוח"
+    ],
+    "search": "ולשלוח"
+  },
+  {
+    "names": [
+      "בהתאם"
+    ],
+    "search": "בהתאם"
+  },
+  {
+    "names": [
+      "שליחת"
+    ],
+    "search": "שליחת"
+  },
+  {
+    "names": [
+      "עלינו"
+    ],
+    "search": "עלינו"
+  },
+  {
+    "names": [
+      "עסקית"
+    ],
+    "search": "עסקית"
+  },
+  {
+    "names": [
+      "השאלות"
+    ],
+    "search": "השאלות"
+  },
+  {
+    "names": [
+      "בשאלות"
+    ],
+    "search": "בשאלות"
+  },
+  {
+    "names": [
+      "אישית"
+    ],
+    "search": "אישית"
+  },
+  {
+    "names": [
+      "מגדיר"
+    ],
+    "search": "מגדיר"
+  },
+  {
+    "names": [
+      "שיווק"
+    ],
+    "search": "שיווק"
+  },
+  {
+    "names": [
+      "הצורך"
+    ],
+    "search": "הצורך"
+  },
+  {
+    "names": [
+      "להגדיל"
+    ],
+    "search": "להגדיל"
+  },
+  {
+    "names": [
+      "נוספת"
+    ],
+    "search": "נוספת"
+  },
+  {
+    "names": [
+      "חדשים"
+    ],
+    "search": "חדשים"
+  },
+  {
+    "names": [
+      "מלאכותית"
+    ],
+    "search": "מלאכותית"
+  },
+  {
+    "names": [
+      "התשובות"
+    ],
+    "search": "התשובות"
+  },
+  {
+    "names": [
+      "לוובינר"
+    ],
+    "search": "לוובינר"
+  },
+  {
+    "names": [
+      "הערות"
+    ],
+    "search": "הערות"
+  },
+  {
+    "names": [
+      "העיניים"
+    ],
+    "search": "העיניים"
+  },
+  {
+    "names": [
+      "הלייב"
+    ],
+    "search": "הלייב"
+  },
+  {
+    "names": [
+      "וכמובן"
+    ],
+    "search": "וכמובן"
+  },
+  {
+    "names": [
+      "מהמקרים"
+    ],
+    "search": "מהמקרים"
+  },
+  {
+    "names": [
+      "מילים"
+    ],
+    "search": "מילים"
+  },
+  {
+    "names": [
+      "שההודעה"
+    ],
+    "search": "שההודעה"
+  },
+  {
+    "names": [
+      "ההודעות"
+    ],
+    "search": "ההודעות"
+  },
+  {
+    "names": [
+      "ייצור"
+    ],
+    "search": "ייצור"
+  },
+  {
+    "names": [
+      "בתחום"
+    ],
+    "search": "בתחום"
+  },
+  {
+    "names": [
+      "למצוא"
+    ],
+    "search": "למצוא"
+  },
+  {
+    "names": [
+      "בחיים"
+    ],
+    "search": "בחיים"
+  },
+  {
+    "names": [
+      "להזמין"
+    ],
+    "search": "להזמין"
+  },
+  {
+    "names": [
+      "חדשות"
+    ],
+    "search": "חדשות"
+  },
+  {
+    "names": [
+      "נתראה"
+    ],
+    "search": "נתראה"
+  },
+  {
+    "names": [
+      "שתבינו"
+    ],
+    "search": "שתבינו"
+  },
+  {
+    "names": [
+      "השימוש"
+    ],
+    "search": "השימוש"
+  },
+  {
+    "names": [
+      "בעצמכם"
+    ],
+    "search": "בעצמכם"
+  },
+  {
+    "names": [
+      "מושלם"
+    ],
+    "search": "מושלם"
+  },
+  {
+    "names": [
+      "ושולח"
+    ],
+    "search": "ושולח"
+  },
+  {
+    "names": [
+      "מדברים"
+    ],
+    "search": "מדברים"
+  },
+  {
+    "names": [
+      "לעזור"
+    ],
+    "search": "לעזור"
+  },
+  {
+    "names": [
+      "להיכנס"
+    ],
+    "search": "להיכנס"
+  },
+  {
+    "names": [
+      "ראיתי"
+    ],
+    "search": "ראיתי"
+  },
+  {
+    "names": [
+      "הראשוני"
+    ],
+    "search": "הראשוני"
+  },
+  {
+    "names": [
+      "השיחה"
+    ],
+    "search": "השיחה"
+  },
+  {
+    "names": [
+      "ההקלטה"
+    ],
+    "search": "ההקלטה"
+  },
+  {
+    "names": [
+      "מסביר"
+    ],
+    "search": "מסביר"
+  },
+  {
+    "names": [
+      "ניתוח"
+    ],
+    "search": "ניתוח"
+  },
+  {
+    "names": [
+      "הסיבה"
+    ],
+    "search": "הסיבה"
+  },
+  {
+    "names": [
+      "לזהות"
+    ],
+    "search": "לזהות"
+  },
+  {
+    "names": [
+      "שניות"
+    ],
+    "search": "שניות"
+  },
+  {
+    "names": [
+      "לשירות"
+    ],
+    "search": "לשירות"
+  },
+  {
+    "names": [
+      "סיכום"
+    ],
+    "search": "סיכום"
+  },
+  {
+    "names": [
+      "מחזיר"
+    ],
+    "search": "מחזיר"
+  },
+  {
+    "names": [
+      "שעובד"
+    ],
+    "search": "שעובד"
+  },
+  {
+    "names": [
+      "המרצה"
+    ],
+    "search": "המרצה"
+  },
+  {
+    "names": [
+      "איתכם"
+    ],
+    "search": "איתכם"
+  },
+  {
+    "names": [
+      "תמונות"
+    ],
+    "search": "תמונות"
+  },
+  {
+    "names": [
+      "שלישי"
+    ],
+    "search": "שלישי"
+  },
+  {
+    "names": [
+      "פתאום"
+    ],
+    "search": "פתאום"
+  },
+  {
+    "names": [
+      "פשוטה"
+    ],
+    "search": "פשוטה"
+  },
+  {
+    "names": [
+      "לעבודה"
+    ],
+    "search": "לעבודה"
+  },
+  {
+    "names": [
+      "השבוע"
+    ],
+    "search": "השבוע"
+  },
+  {
+    "names": [
+      "מאחורה"
+    ],
+    "search": "מאחורה"
+  },
+  {
+    "names": [
+      "להתקין"
+    ],
+    "search": "להתקין"
+  },
+  {
+    "names": [
+      "הגישה"
+    ],
+    "search": "הגישה"
+  },
+  {
+    "names": [
+      "מתחילים"
+    ],
+    "search": "מתחילים"
+  },
+  {
+    "names": [
+      "ואפשר"
+    ],
+    "search": "ואפשר"
+  },
+  {
+    "names": [
+      "תהליכים"
+    ],
+    "search": "תהליכים"
+  },
+  {
+    "names": [
+      "מצוינת"
+    ],
+    "search": "מצוינת"
+  },
+  {
+    "names": [
+      "התחלתי"
+    ],
+    "search": "התחלתי"
+  },
+  {
+    "names": [
+      "המערכות"
+    ],
+    "search": "המערכות"
+  },
+  {
+    "names": [
+      "ניסיון"
+    ],
+    "search": "ניסיון"
+  },
+  {
+    "names": [
+      "לכולכם"
+    ],
+    "search": "לכולכם"
+  },
+  {
+    "names": [
+      "בעתיד"
+    ],
+    "search": "בעתיד"
+  },
+  {
+    "names": [
+      "מבחינה"
+    ],
+    "search": "מבחינה"
+  },
+  {
+    "names": [
+      "השאלה"
+    ],
+    "search": "השאלה"
+  },
+  {
+    "names": [
+      "בהיבט"
+    ],
+    "search": "בהיבט"
+  },
+  {
+    "names": [
+      "שמדובר"
+    ],
+    "search": "שמדובר"
+  },
+  {
+    "names": [
+      "דווקא"
+    ],
+    "search": "דווקא"
+  },
+  {
+    "names": [
+      "מהסיבה"
+    ],
+    "search": "מהסיבה"
+  },
+  {
+    "names": [
+      "בנושא"
+    ],
+    "search": "בנושא"
+  },
+  {
+    "names": [
+      "החודש"
+    ],
+    "search": "החודש"
+  },
+  {
+    "names": [
+      "רציתי"
+    ],
+    "search": "רציתי"
+  },
+  {
+    "names": [
+      "יאללה"
+    ],
+    "search": "יאללה"
+  },
+  {
+    "names": [
+      "המימוש"
+    ],
+    "search": "המימוש"
+  },
+  {
+    "names": [
+      "העבודה"
+    ],
+    "search": "העבודה"
+  },
+  {
+    "names": [
+      "והרבה"
+    ],
+    "search": "והרבה"
+  },
+  {
+    "names": [
+      "מסתכל"
+    ],
+    "search": "מסתכל"
+  },
+  {
+    "names": [
+      "יכולה"
+    ],
+    "search": "יכולה"
+  },
+  {
+    "names": [
+      "להשקיע"
+    ],
+    "search": "להשקיע"
+  },
+  {
+    "names": [
+      "מדהימה"
+    ],
+    "search": "מדהימה"
+  },
+  {
+    "names": [
+      "מתעסקים"
+    ],
+    "search": "מתעסקים"
+  },
+  {
+    "names": [
+      "נראים"
+    ],
+    "search": "נראים"
+  },
+  {
+    "names": [
+      "מסוימים"
+    ],
+    "search": "מסוימים"
+  },
+  {
+    "names": [
+      "לחשוב"
+    ],
+    "search": "לחשוב"
+  },
+  {
+    "names": [
+      "שאחרי"
+    ],
+    "search": "שאחרי"
+  },
+  {
+    "names": [
+      "יתרון"
+    ],
+    "search": "יתרון"
+  },
+  {
+    "names": [
+      "מאמין"
+    ],
+    "search": "מאמין"
+  },
+  {
+    "names": [
+      "אסביר"
+    ],
+    "search": "אסביר"
+  },
+  {
+    "names": [
+      "מוקלט"
+    ],
+    "search": "מוקלט"
+  },
+  {
+    "names": [
+      "המייל"
+    ],
+    "search": "המייל"
+  },
+  {
+    "names": [
+      "לאסוף"
+    ],
+    "search": "לאסוף"
+  },
+  {
+    "names": [
+      "חשבוניות"
+    ],
+    "search": "חשבוניות"
+  },
+  {
+    "names": [
+      "מאיזשהו"
+    ],
+    "search": "מאיזשהו"
+  },
+  {
+    "names": [
+      "לדברים"
+    ],
+    "search": "לדברים"
+  },
+  {
+    "names": [
+      "לעצור"
+    ],
+    "search": "לעצור"
+  },
+  {
+    "names": [
+      "דרכים"
+    ],
+    "search": "דרכים"
+  },
+  {
+    "names": [
+      "שראיתם"
+    ],
+    "search": "שראיתם"
+  },
+  {
+    "names": [
+      "שמכיר"
+    ],
+    "search": "שמכיר"
+  },
+  {
+    "names": [
+      "החשבוניות"
+    ],
+    "search": "החשבוניות"
+  },
+  {
+    "names": [
+      "סוגים"
+    ],
+    "search": "סוגים"
+  },
+  {
+    "names": [
+      "חשבונית"
+    ],
+    "search": "חשבונית"
+  },
+  {
+    "names": [
+      "החשבונית"
+    ],
+    "search": "החשבונית"
+  },
+  {
+    "names": [
+      "לכולם"
+    ],
+    "search": "לכולם"
+  },
+  {
+    "names": [
+      "ויזואלית"
+    ],
+    "search": "ויזואלית"
+  },
+  {
+    "names": [
+      "מיילים"
+    ],
+    "search": "מיילים"
+  },
+  {
+    "names": [
+      "שמגיעים"
+    ],
+    "search": "שמגיעים"
+  },
+  {
+    "names": [
+      "קישור"
+    ],
+    "search": "קישור"
+  },
+  {
+    "names": [
+      "נקודה"
+    ],
+    "search": "נקודה"
+  },
+  {
+    "names": [
+      "המקרה"
+    ],
+    "search": "המקרה"
+  },
+  {
+    "names": [
+      "לעומק"
+    ],
+    "search": "לעומק"
+  },
+  {
+    "names": [
+      "הכפתור"
+    ],
+    "search": "הכפתור"
+  },
+  {
+    "names": [
+      "במייל"
+    ],
+    "search": "במייל"
+  },
+  {
+    "names": [
+      "מוביל"
+    ],
+    "search": "מוביל"
+  },
+  {
+    "names": [
+      "נשאיר"
+    ],
+    "search": "נשאיר"
+  },
+  {
+    "names": [
+      "אפיון"
+    ],
+    "search": "אפיון"
+  },
+  {
+    "names": [
+      "שיעור"
+    ],
+    "search": "שיעור"
+  },
+  {
+    "names": [
+      "בהכשרה"
+    ],
+    "search": "בהכשרה"
+  },
+  {
+    "names": [
+      "שמגיע"
+    ],
+    "search": "שמגיע"
+  },
+  {
+    "names": [
+      "שמכיל"
+    ],
+    "search": "שמכיל"
+  },
+  {
+    "names": [
+      "דיברנו"
+    ],
+    "search": "דיברנו"
+  },
+  {
+    "names": [
+      "הנקודה"
+    ],
+    "search": "הנקודה"
+  },
+  {
+    "names": [
+      "הקבצים"
+    ],
+    "search": "הקבצים"
+  },
+  {
+    "names": [
+      "בכוונה"
+    ],
+    "search": "בכוונה"
+  },
+  {
+    "names": [
+      "מהדברים"
+    ],
+    "search": "מהדברים"
+  },
+  {
+    "names": [
+      "בניתי"
+    ],
+    "search": "בניתי"
+  },
+  {
+    "names": [
+      "להעמיר"
+    ],
+    "search": "להעמיר"
+  },
+  {
+    "names": [
+      "לתמונה"
+    ],
+    "search": "לתמונה"
+  },
+  {
+    "names": [
+      "וניתן"
+    ],
+    "search": "וניתן"
+  },
+  {
+    "names": [
+      "בקבוצת"
+    ],
+    "search": "בקבוצת"
+  },
+  {
+    "names": [
+      "האפיון"
+    ],
+    "search": "האפיון"
+  },
+  {
+    "names": [
+      "להכין"
+    ],
+    "search": "להכין"
+  },
+  {
+    "names": [
+      "הוספתי"
+    ],
+    "search": "הוספתי"
+  },
+  {
+    "names": [
+      "עמודות"
+    ],
+    "search": "עמודות"
+  },
+  {
+    "names": [
+      "להתאים"
+    ],
+    "search": "להתאים"
+  },
+  {
+    "names": [
+      "הסכום"
+    ],
+    "search": "הסכום"
+  },
+  {
+    "names": [
+      "כיוון"
+    ],
+    "search": "כיוון"
+  },
+  {
+    "names": [
+      "מתכוון"
+    ],
+    "search": "מתכוון"
+  },
+  {
+    "names": [
+      "ישירות"
+    ],
+    "search": "ישירות"
+  },
+  {
+    "names": [
+      "לאותו"
+    ],
+    "search": "לאותו"
+  },
+  {
+    "names": [
+      "והדבר"
+    ],
+    "search": "והדבר"
+  },
+  {
+    "names": [
+      "שישלח"
+    ],
+    "search": "שישלח"
+  },
+  {
+    "names": [
+      "מקודם"
+    ],
+    "search": "מקודם"
+  },
+  {
+    "names": [
+      "יצרתי"
+    ],
+    "search": "יצרתי"
+  },
+  {
+    "names": [
+      "מילות"
+    ],
+    "search": "מילות"
+  },
+  {
+    "names": [
+      "המיילים"
+    ],
+    "search": "המיילים"
+  },
+  {
+    "names": [
+      "בתוכו"
+    ],
+    "search": "בתוכו"
+  },
+  {
+    "names": [
+      "בתנאים"
+    ],
+    "search": "בתנאים"
+  },
+  {
+    "names": [
+      "לתיקייה"
+    ],
+    "search": "לתיקייה"
+  },
+  {
+    "names": [
+      "תיקיות"
+    ],
+    "search": "תיקיות"
+  },
+  {
+    "names": [
+      "אוטומטית"
+    ],
+    "search": "אוטומטית"
+  },
+  {
+    "names": [
+      "מעביר"
+    ],
+    "search": "מעביר"
+  },
+  {
+    "names": [
+      "מוציא"
+    ],
+    "search": "מוציא"
+  },
+  {
+    "names": [
+      "משמעות"
+    ],
+    "search": "משמעות"
+  },
+  {
+    "names": [
+      "לחלוטין"
+    ],
+    "search": "לחלוטין"
+  },
+  {
+    "names": [
+      "שכולכם"
+    ],
+    "search": "שכולכם"
+  },
+  {
+    "names": [
+      "מבוסס"
+    ],
+    "search": "מבוסס"
+  },
+  {
+    "names": [
+      "הצורה"
+    ],
+    "search": "הצורה"
+  },
+  {
+    "names": [
+      "שנוצר"
+    ],
+    "search": "שנוצר"
+  },
+  {
+    "names": [
+      "מייצר"
+    ],
+    "search": "מייצר"
+  },
+  {
+    "names": [
+      "הגדרות"
+    ],
+    "search": "הגדרות"
+  },
+  {
+    "names": [
+      "החלון"
+    ],
+    "search": "החלון"
+  },
+  {
+    "names": [
+      "להחליט"
+    ],
+    "search": "להחליט"
+  },
+  {
+    "names": [
+      "ומייל"
+    ],
+    "search": "ומייל"
+  },
+  {
+    "names": [
+      "הגדרה"
+    ],
+    "search": "הגדרה"
+  },
+  {
+    "names": [
+      "לשתיים"
+    ],
+    "search": "לשתיים"
+  },
+  {
+    "names": [
+      "המערך"
+    ],
+    "search": "המערך"
+  },
+  {
+    "names": [
+      "המשמעות"
+    ],
+    "search": "המשמעות"
+  },
+  {
+    "names": [
+      "שפחות"
+    ],
+    "search": "שפחות"
+  },
+  {
+    "names": [
+      "להכיל"
+    ],
+    "search": "להכיל"
+  },
+  {
+    "names": [
+      "בינרי"
+    ],
+    "search": "בינרי"
+  },
+  {
+    "names": [
+      "ולעשות"
+    ],
+    "search": "ולעשות"
+  },
+  {
+    "names": [
+      "האפשרויות"
+    ],
+    "search": "האפשרויות"
+  },
+  {
+    "names": [
+      "למערך"
+    ],
+    "search": "למערך"
+  },
+  {
+    "names": [
+      "רשימה"
+    ],
+    "search": "רשימה"
+  },
+  {
+    "names": [
+      "קופסה"
+    ],
+    "search": "קופסה"
+  },
+  {
+    "names": [
+      "הקופסה"
+    ],
+    "search": "הקופסה"
+  },
+  {
+    "names": [
+      "לשאלה"
+    ],
+    "search": "לשאלה"
+  },
+  {
+    "names": [
+      "יודעת"
+    ],
+    "search": "יודעת"
+  },
+  {
+    "names": [
+      "ההתחלה"
+    ],
+    "search": "ההתחלה"
+  },
+  {
+    "names": [
+      "יתפוס"
+    ],
+    "search": "יתפוס"
+  },
+  {
+    "names": [
+      "נראית"
+    ],
+    "search": "נראית"
+  },
+  {
+    "names": [
+      "ולהגיד"
+    ],
+    "search": "ולהגיד"
+  },
+  {
+    "names": [
+      "ויזואלי"
+    ],
+    "search": "ויזואלי"
+  },
+  {
+    "names": [
+      "חינמי"
+    ],
+    "search": "חינמי"
+  },
+  {
+    "names": [
+      "להירשם"
+    ],
+    "search": "להירשם"
+  },
+  {
+    "names": [
+      "נותנים"
+    ],
+    "search": "נותנים"
+  },
+  {
+    "names": [
+      "ומאוד"
+    ],
+    "search": "ומאוד"
+  },
+  {
+    "names": [
+      "העסקי"
+    ],
+    "search": "העסקי"
+  },
+  {
+    "names": [
+      "כשאתה"
+    ],
+    "search": "כשאתה"
+  },
+  {
+    "names": [
+      "שבאמת"
+    ],
+    "search": "שבאמת"
+  },
+  {
+    "names": [
+      "סיבות"
+    ],
+    "search": "סיבות"
+  },
+  {
+    "names": [
+      "ושתיים"
+    ],
+    "search": "ושתיים"
+  },
+  {
+    "names": [
+      "אתרים"
+    ],
+    "search": "אתרים"
+  },
+  {
+    "names": [
+      "התשלום"
+    ],
+    "search": "התשלום"
+  },
+  {
+    "names": [
+      "לקחתי"
+    ],
+    "search": "לקחתי"
+  },
+  {
+    "names": [
+      "והלקוח"
+    ],
+    "search": "והלקוח"
+  },
+  {
+    "names": [
+      "ולהעביר"
+    ],
+    "search": "ולהעביר"
+  },
+  {
+    "names": [
+      "לפתור"
+    ],
+    "search": "לפתור"
+  },
+  {
+    "names": [
+      "אחורה"
+    ],
+    "search": "אחורה"
+  },
+  {
+    "names": [
+      "הכמות"
+    ],
+    "search": "הכמות"
+  },
+  {
+    "names": [
+      "שימושים"
+    ],
+    "search": "שימושים"
+  },
+  {
+    "names": [
+      "נעתיק"
+    ],
+    "search": "נעתיק"
+  },
+  {
+    "names": [
+      "ונשלח"
+    ],
+    "search": "ונשלח"
+  },
+  {
+    "names": [
+      "הוסיף"
+    ],
+    "search": "הוסיף"
+  },
+  {
+    "names": [
+      "עשינו"
+    ],
+    "search": "עשינו"
+  },
+  {
+    "names": [
+      "להוריד"
+    ],
+    "search": "להוריד"
+  },
+  {
+    "names": [
+      "מעדיף"
+    ],
+    "search": "מעדיף"
+  },
+  {
+    "names": [
+      "בקורס"
+    ],
+    "search": "בקורס"
+  },
+  {
+    "names": [
+      "מומלץ"
+    ],
+    "search": "מומלץ"
+  },
+  {
+    "names": [
+      "יצירתי"
+    ],
+    "search": "יצירתי"
+  },
+  {
+    "names": [
+      "תוצאות"
+    ],
+    "search": "תוצאות"
+  },
+  {
+    "names": [
+      "ודברים"
+    ],
+    "search": "ודברים"
+  },
+  {
+    "names": [
+      "מכירה"
+    ],
+    "search": "מכירה"
+  },
+  {
+    "names": [
+      "חשבתי"
+    ],
+    "search": "חשבתי"
+  },
+  {
+    "names": [
+      "להסתכל"
+    ],
+    "search": "להסתכל"
+  },
+  {
+    "names": [
+      "שנגיד"
+    ],
+    "search": "שנגיד"
+  },
+  {
+    "names": [
+      "למפות"
+    ],
+    "search": "למפות"
+  },
+  {
+    "names": [
+      "פהסיב"
+    ],
+    "search": "פהסיב"
+  },
+  {
+    "names": [
+      "הגדרתי"
+    ],
+    "search": "הגדרתי"
+  },
+  {
+    "names": [
+      "מתקשר"
+    ],
+    "search": "מתקשר"
+  },
+  {
+    "names": [
+      "חשבונות"
+    ],
+    "search": "חשבונות"
+  },
+  {
+    "names": [
+      "להריץ"
+    ],
+    "search": "להריץ"
+  },
+  {
+    "names": [
+      "נוריד"
+    ],
+    "search": "נוריד"
+  },
+  {
+    "names": [
+      "שרוצה"
+    ],
+    "search": "שרוצה"
+  },
+  {
+    "names": [
+      "תשלום"
+    ],
+    "search": "תשלום"
+  },
+  {
+    "names": [
+      "כרטיס"
+    ],
+    "search": "כרטיס"
+  },
+  {
+    "names": [
+      "מוגדר"
+    ],
+    "search": "מוגדר"
+  },
+  {
+    "names": [
+      "תגידו"
+    ],
+    "search": "תגידו"
+  },
+  {
+    "names": [
+      "באנגלית"
+    ],
+    "search": "באנגלית"
+  },
+  {
+    "names": [
+      "לאיזשהיא"
+    ],
+    "search": "לאיזשהיא"
+  },
+  {
+    "names": [
+      "העיצוג"
+    ],
+    "search": "העיצוג"
+  },
+  {
+    "names": [
+      "הפורמט"
+    ],
+    "search": "הפורמט"
+  },
+  {
+    "names": [
+      "המהות"
+    ],
+    "search": "המהות"
+  },
+  {
+    "names": [
+      "שיצרתי"
+    ],
+    "search": "שיצרתי"
+  },
+  {
+    "names": [
+      "להוציא"
+    ],
+    "search": "להוציא"
+  },
+  {
+    "names": [
+      "שנתתי"
+    ],
+    "search": "שנתתי"
+  },
+  {
+    "names": [
+      "שהתהליך"
+    ],
+    "search": "שהתהליך"
+  },
+  {
+    "names": [
+      "ראשונה"
+    ],
+    "search": "ראשונה"
+  },
+  {
+    "names": [
+      "באיזשהיא"
+    ],
+    "search": "באיזשהיא"
+  },
+  {
+    "names": [
+      "שכאילו"
+    ],
+    "search": "שכאילו"
+  },
+  {
+    "names": [
+      "העיצוב"
+    ],
+    "search": "העיצוב"
+  },
+  {
+    "names": [
+      "כשאני"
+    ],
+    "search": "כשאני"
+  },
+  {
+    "names": [
+      "נתקדם"
+    ],
+    "search": "נתקדם"
+  },
+  {
+    "names": [
+      "שינויים"
+    ],
+    "search": "שינויים"
+  },
+  {
+    "names": [
+      "מוסיפים"
+    ],
+    "search": "מוסיפים"
+  },
+  {
+    "names": [
+      "מגיעים"
+    ],
+    "search": "מגיעים"
+  },
+  {
+    "names": [
+      "במערך"
+    ],
+    "search": "במערך"
+  },
+  {
+    "names": [
+      "לצערי"
+    ],
+    "search": "לצערי"
+  },
+  {
+    "names": [
+      "לאכול"
+    ],
+    "search": "לאכול"
+  },
+  {
+    "names": [
+      "השירות"
+    ],
+    "search": "השירות"
+  },
+  {
+    "names": [
+      "שמאפשר"
+    ],
+    "search": "שמאפשר"
+  },
+  {
+    "names": [
+      "נתעמק"
+    ],
+    "search": "נתעמק"
+  },
+  {
+    "names": [
+      "שמעניין"
+    ],
+    "search": "שמעניין"
+  },
+  {
+    "names": [
+      "ארשום"
+    ],
+    "search": "ארשום"
+  },
+  {
+    "names": [
+      "שמשתמש"
+    ],
+    "search": "שמשתמש"
+  },
+  {
+    "names": [
+      "אפשרות"
+    ],
+    "search": "אפשרות"
+  },
+  {
+    "names": [
+      "למשוך"
+    ],
+    "search": "למשוך"
+  },
+  {
+    "names": [
+      "כזאתי"
+    ],
+    "search": "כזאתי"
+  },
+  {
+    "names": [
+      "לשמור"
+    ],
+    "search": "לשמור"
+  },
+  {
+    "names": [
+      "חיצוני"
+    ],
+    "search": "חיצוני"
+  },
+  {
+    "names": [
+      "צריכה"
+    ],
+    "search": "צריכה"
+  },
+  {
+    "names": [
+      "לעדכן"
+    ],
+    "search": "לעדכן"
+  },
+  {
+    "names": [
+      "עדכון"
+    ],
+    "search": "עדכון"
+  },
+  {
+    "names": [
+      "להסתבך"
+    ],
+    "search": "להסתבך"
+  },
+  {
+    "names": [
+      "אפשרי"
+    ],
+    "search": "אפשרי"
+  },
+  {
+    "names": [
+      "לשנות"
+    ],
+    "search": "לשנות"
+  },
+  {
+    "names": [
+      "מורכבת"
+    ],
+    "search": "מורכבת"
+  },
+  {
+    "names": [
+      "להדביק"
+    ],
+    "search": "להדביק"
+  },
+  {
+    "names": [
+      "אדגים"
+    ],
+    "search": "אדגים"
+  },
+  {
+    "names": [
+      "לסגור"
+    ],
+    "search": "לסגור"
+  },
+  {
+    "names": [
+      "שיוצא"
+    ],
+    "search": "שיוצא"
+  },
+  {
+    "names": [
+      "שפתאום"
+    ],
+    "search": "שפתאום"
+  },
+  {
+    "names": [
+      "הפתרון"
+    ],
+    "search": "הפתרון"
+  },
+  {
+    "names": [
+      "דרייב"
+    ],
+    "search": "דרייב"
+  },
+  {
+    "names": [
+      "מבחינתי"
+    ],
+    "search": "מבחינתי"
+  },
+  {
+    "names": [
+      "תיקייה"
+    ],
+    "search": "תיקייה"
+  },
+  {
+    "names": [
+      "שיתוף"
+    ],
+    "search": "שיתוף"
+  },
+  {
+    "names": [
+      "הפייל"
+    ],
+    "search": "הפייל"
+  },
+  {
+    "names": [
+      "יכולות"
+    ],
+    "search": "יכולות"
+  },
+  {
+    "names": [
+      "ובסוף"
+    ],
+    "search": "ובסוף"
+  },
+  {
+    "names": [
+      "למחוק"
+    ],
+    "search": "למחוק"
+  },
+  {
+    "names": [
+      "היותר"
+    ],
+    "search": "היותר"
+  },
+  {
+    "names": [
+      "החינמי"
+    ],
+    "search": "החינמי"
+  },
+  {
+    "names": [
+      "במילה"
+    ],
+    "search": "במילה"
+  },
+  {
+    "names": [
+      "שהייתי"
+    ],
+    "search": "שהייתי"
+  },
+  {
+    "names": [
+      "בסגנון"
+    ],
+    "search": "בסגנון"
+  },
+  {
+    "names": [
+      "לחודש"
+    ],
+    "search": "לחודש"
+  },
+  {
+    "names": [
+      "המחיר"
+    ],
+    "search": "המחיר"
+  },
+  {
+    "names": [
+      "הקישור"
+    ],
+    "search": "הקישור"
+  },
+  {
+    "names": [
+      "מצליח"
+    ],
+    "search": "מצליח"
+  },
+  {
+    "names": [
+      "ללקוח"
+    ],
+    "search": "ללקוח"
+  },
+  {
+    "names": [
+      "משתנים"
+    ],
+    "search": "משתנים"
+  },
+  {
+    "names": [
+      "יספיק"
+    ],
+    "search": "יספיק"
+  },
+  {
+    "names": [
+      "השירותים"
+    ],
+    "search": "השירותים"
+  },
+  {
+    "names": [
+      "בבקשה"
+    ],
+    "search": "בבקשה"
+  },
+  {
+    "names": [
+      "תנועה"
+    ],
+    "search": "תנועה"
+  },
+  {
+    "names": [
+      "שבניתי"
+    ],
+    "search": "שבניתי"
+  },
+  {
+    "names": [
+      "לעצמי"
+    ],
+    "search": "לעצמי"
+  },
+  {
+    "names": [
+      "הרעיון"
+    ],
+    "search": "הרעיון"
+  },
+  {
+    "names": [
+      "הבעיה"
+    ],
+    "search": "הבעיה"
+  },
+  {
+    "names": [
+      "מצאתי"
+    ],
+    "search": "מצאתי"
+  },
+  {
+    "names": [
+      "וכאלה"
+    ],
+    "search": "וכאלה"
+  },
+  {
+    "names": [
+      "בחינם"
+    ],
+    "search": "בחינם"
+  },
+  {
+    "names": [
+      "הלוגיקה"
+    ],
+    "search": "הלוגיקה"
+  },
+  {
+    "names": [
+      "בטווח"
+    ],
+    "search": "בטווח"
+  },
+  {
+    "names": [
+      "התהליכים"
+    ],
+    "search": "התהליכים"
+  },
+  {
+    "names": [
+      "ראינו"
+    ],
+    "search": "ראינו"
+  },
+  {
+    "names": [
+      "כפתור"
+    ],
+    "search": "כפתור"
+  },
+  {
+    "names": [
+      "שגיעות"
+    ],
+    "search": "שגיעות"
+  },
+  {
+    "names": [
+      "נקודות"
+    ],
+    "search": "נקודות"
+  },
+  {
+    "names": [
+      "החיבורים"
+    ],
+    "search": "החיבורים"
+  },
+  {
+    "names": [
+      "להחליף"
+    ],
+    "search": "להחליף"
+  },
+  {
+    "names": [
+      "הקורס"
+    ],
+    "search": "הקורס"
+  },
+  {
+    "names": [
+      "הממשק"
+    ],
+    "search": "הממשק"
+  },
+  {
+    "names": [
+      "מצוין"
+    ],
+    "search": "מצוין"
+  },
+  {
+    "names": [
+      "תקציב"
+    ],
+    "search": "תקציב"
+  },
+  {
+    "names": [
+      "תוכנית"
+    ],
+    "search": "תוכנית"
+  },
+  {
+    "names": [
+      "מורכבות"
+    ],
+    "search": "מורכבות"
+  },
+  {
+    "names": [
+      "שואלת"
+    ],
+    "search": "שואלת"
+  },
+  {
+    "names": [
+      "רשימת"
+    ],
+    "search": "רשימת"
+  },
+  {
+    "names": [
+      "נמצאת"
+    ],
+    "search": "נמצאת"
+  },
+  {
+    "names": [
+      "פנימי"
+    ],
+    "search": "פנימי"
+  },
+  {
+    "names": [
+      "ואולי"
+    ],
+    "search": "ואולי"
+  },
+  {
+    "names": [
+      "למתקדמים"
+    ],
+    "search": "למתקדמים"
+  },
+  {
+    "names": [
+      "שכרגע"
+    ],
+    "search": "שכרגע"
+  },
+  {
+    "names": [
+      "הדגמה"
+    ],
+    "search": "הדגמה"
+  },
+  {
+    "names": [
+      "שכולם"
+    ],
+    "search": "שכולם"
+  },
+  {
+    "names": [
+      "שקשור"
+    ],
+    "search": "שקשור"
+  },
+  {
+    "names": [
+      "טעויות"
+    ],
+    "search": "טעויות"
+  },
+  {
+    "names": [
+      "מסודר"
+    ],
+    "search": "מסודר"
+  },
+  {
+    "names": [
+      "ולהשתמש"
+    ],
+    "search": "ולהשתמש"
+  },
+  {
+    "names": [
+      "שקשורים"
+    ],
+    "search": "שקשורים"
+  },
+  {
+    "names": [
+      "החלטה"
+    ],
+    "search": "החלטה"
+  },
+  {
+    "names": [
+      "בשיווק"
+    ],
+    "search": "בשיווק"
+  },
+  {
+    "names": [
+      "במקביל"
+    ],
+    "search": "במקביל"
+  },
+  {
+    "names": [
+      "משלמים"
+    ],
+    "search": "משלמים"
+  },
+  {
+    "names": [
+      "שומעים"
+    ],
+    "search": "שומעים"
+  },
+  {
+    "names": [
+      "שתהיה"
+    ],
+    "search": "שתהיה"
+  },
+  {
+    "names": [
+      "ההגדרה"
+    ],
+    "search": "ההגדרה"
+  },
+  {
+    "names": [
+      "שנכנס"
+    ],
+    "search": "שנכנס"
+  },
+  {
+    "names": [
+      "בתכלס"
+    ],
+    "search": "בתכלס"
+  },
+  {
+    "names": [
+      "מיידי"
+    ],
+    "search": "מיידי"
+  },
+  {
+    "names": [
+      "מפעיל"
+    ],
+    "search": "מפעיל"
+  },
+  {
+    "names": [
+      "לפעול"
+    ],
+    "search": "לפעול"
+  },
+  {
+    "names": [
+      "פעילות"
+    ],
+    "search": "פעילות"
+  },
+  {
+    "names": [
+      "היינו"
+    ],
+    "search": "היינו"
+  },
+  {
+    "names": [
+      "האחרונה"
+    ],
+    "search": "האחרונה"
+  },
+  {
+    "names": [
+      "רעיון"
+    ],
+    "search": "רעיון"
+  },
+  {
+    "names": [
+      "שהרבה"
+    ],
+    "search": "שהרבה"
+  },
+  {
+    "names": [
+      "עסקים"
+    ],
+    "search": "עסקים"
+  },
+  {
+    "names": [
+      "להציע"
+    ],
+    "search": "להציע"
+  },
+  {
+    "names": [
+      "שנמצא"
+    ],
+    "search": "שנמצא"
+  },
+  {
+    "names": [
+      "תשלחו"
+    ],
+    "search": "תשלחו"
+  },
+  {
+    "names": [
+      "רעיונות"
+    ],
+    "search": "רעיונות"
+  },
+  {
+    "names": [
+      "למרות"
+    ],
+    "search": "למרות"
+  },
+  {
+    "names": [
+      "לניהול"
+    ],
+    "search": "לניהול"
+  },
+  {
+    "names": [
+      "לסוכנות"
+    ],
+    "search": "לסוכנות"
+  },
+  {
+    "names": [
+      "ולהתחיל"
+    ],
+    "search": "ולהתחיל"
+  },
+  {
+    "names": [
+      "סוכנות"
+    ],
+    "search": "סוכנות"
+  },
+  {
+    "names": [
+      "הלקוחות"
+    ],
+    "search": "הלקוחות"
+  },
+  {
+    "names": [
+      "השתמשתי"
+    ],
+    "search": "השתמשתי"
+  },
+  {
+    "names": [
+      "שתוכלו"
+    ],
+    "search": "שתוכלו"
+  },
+  {
+    "names": [
+      "לגמרי"
+    ],
+    "search": "לגמרי"
+  },
+  {
+    "names": [
+      "ארבעה"
+    ],
+    "search": "ארבעה"
+  },
+  {
+    "names": [
+      "בחינמי"
+    ],
+    "search": "בחינמי"
+  },
+  {
+    "names": [
+      "פתרונות"
+    ],
+    "search": "פתרונות"
+  },
+  {
+    "names": [
+      "מסודרת"
+    ],
+    "search": "מסודרת"
+  },
+  {
+    "names": [
+      "החדשה"
+    ],
+    "search": "החדשה"
+  },
+  {
+    "names": [
+      "אימייל"
+    ],
+    "search": "אימייל"
+  },
+  {
+    "names": [
+      "כניסה"
+    ],
+    "search": "כניסה"
+  },
+  {
+    "names": [
+      "תזכורת"
+    ],
+    "search": "תזכורת"
+  },
+  {
+    "names": [
+      "בחירה"
+    ],
+    "search": "בחירה"
+  },
+  {
+    "names": [
+      "טכנית"
+    ],
+    "search": "טכנית"
+  },
+  {
+    "names": [
+      "להשאיר"
+    ],
+    "search": "להשאיר"
+  },
+  {
+    "names": [
+      "אשאיר"
+    ],
+    "search": "אשאיר"
+  },
+  {
+    "names": [
+      "ראשון"
+    ],
+    "search": "ראשון"
+  },
+  {
+    "names": [
+      "בנוסף"
+    ],
+    "search": "בנוסף"
+  },
+  {
+    "names": [
+      "משימות"
+    ],
+    "search": "משימות"
+  },
+  {
+    "names": [
+      "חשובה"
+    ],
+    "search": "חשובה"
+  },
+  {
+    "names": [
+      "המשימות"
+    ],
+    "search": "המשימות"
+  },
+  {
+    "names": [
+      "שונות"
+    ],
+    "search": "שונות"
+  },
+  {
+    "names": [
+      "תיאור"
+    ],
+    "search": "תיאור"
+  },
+  {
+    "names": [
+      "אחראי"
+    ],
+    "search": "אחראי"
+  },
+  {
+    "names": [
+      "המשימה"
+    ],
+    "search": "המשימה"
+  },
+  {
+    "names": [
+      "המכירות"
+    ],
+    "search": "המכירות"
+  },
+  {
+    "names": [
+      "משימה"
+    ],
+    "search": "משימה"
+  },
+  {
+    "names": [
+      "מוצרים"
+    ],
+    "search": "מוצרים"
+  },
+  {
+    "names": [
+      "גדולה"
+    ],
+    "search": "גדולה"
+  },
+  {
+    "names": [
+      "נפוצות"
+    ],
+    "search": "נפוצות"
+  },
+  {
+    "names": [
+      "מודעות"
+    ],
+    "search": "מודעות"
+  },
+  {
+    "names": [
+      "וברגע"
+    ],
+    "search": "וברגע"
+  },
+  {
+    "names": [
+      "יחזור"
+    ],
+    "search": "יחזור"
+  },
+  {
+    "names": [
+      "בהקשר"
+    ],
+    "search": "בהקשר"
+  },
+  {
+    "names": [
+      "הכנתי"
+    ],
+    "search": "הכנתי"
+  },
+  {
+    "names": [
+      "שאנשים"
+    ],
+    "search": "שאנשים"
+  },
+  {
+    "names": [
+      "ישראל"
+    ],
+    "search": "ישראל"
+  },
+  {
+    "names": [
+      "מייצג"
+    ],
+    "search": "מייצג"
+  },
+  {
+    "names": [
+      "פונקציות"
+    ],
+    "search": "פונקציות"
+  },
+  {
+    "names": [
+      "פגישת"
+    ],
+    "search": "פגישת"
+  },
+  {
+    "names": [
+      "ההדגמה"
+    ],
+    "search": "ההדגמה"
+  },
+  {
+    "names": [
+      "אעתיק"
+    ],
+    "search": "אעתיק"
+  },
+  {
+    "names": [
+      "להודעות"
+    ],
+    "search": "להודעות"
+  },
+  {
+    "names": [
+      "הקלטה"
+    ],
+    "search": "הקלטה"
+  },
+  {
+    "names": [
+      "קולית"
+    ],
+    "search": "קולית"
+  },
+  {
+    "names": [
+      "מצליחים"
+    ],
+    "search": "מצליחים"
+  },
+  {
+    "names": [
+      "יתחיל"
+    ],
+    "search": "יתחיל"
+  },
+  {
+    "names": [
+      "פגישות"
+    ],
+    "search": "פגישות"
+  },
+  {
+    "names": [
+      "אליכם"
+    ],
+    "search": "אליכם"
+  },
+  {
+    "names": [
+      "שלחתי"
+    ],
+    "search": "שלחתי"
+  },
+  {
+    "names": [
+      "וללחוץ"
+    ],
+    "search": "וללחוץ"
+  },
+  {
+    "names": [
+      "ושימו"
+    ],
+    "search": "ושימו"
+  },
+  {
+    "names": [
+      "משאיר"
+    ],
+    "search": "משאיר"
+  },
+  {
+    "names": [
+      "לאנשים"
+    ],
+    "search": "לאנשים"
+  },
+  {
+    "names": [
+      "הדרכה"
+    ],
+    "search": "הדרכה"
+  },
+  {
+    "names": [
+      "פגישה"
+    ],
+    "search": "פגישה"
+  },
+  {
+    "names": [
+      "להציג"
+    ],
+    "search": "להציג"
+  },
+  {
+    "names": [
+      "להסביר"
+    ],
+    "search": "להסביר"
+  },
+  {
+    "names": [
+      "קריטי"
+    ],
+    "search": "קריטי"
+  },
+  {
+    "names": [
+      "העולם"
+    ],
+    "search": "העולם"
+  },
+  {
+    "names": [
+      "בפנים"
+    ],
+    "search": "בפנים"
+  },
+  {
+    "names": [
+      "רושמים"
+    ],
+    "search": "רושמים"
+  },
+  {
+    "names": [
+      "למישהו"
+    ],
+    "search": "למישהו"
+  },
+  {
+    "names": [
+      "מכניסים"
+    ],
+    "search": "מכניסים"
+  },
+  {
+    "names": [
+      "קדימה"
+    ],
+    "search": "קדימה"
+  },
+  {
+    "names": [
+      "הטכנית"
+    ],
+    "search": "הטכנית"
+  },
+  {
+    "names": [
+      "אתחיל"
+    ],
+    "search": "אתחיל"
+  },
+  {
+    "names": [
+      "התיקייה"
+    ],
+    "search": "התיקייה"
+  },
+  {
+    "names": [
+      "השלישי"
+    ],
+    "search": "השלישי"
+  },
+  {
+    "names": [
+      "להביא"
+    ],
+    "search": "להביא"
+  },
+  {
+    "names": [
+      "הנושא"
+    ],
+    "search": "הנושא"
+  },
+  {
+    "names": [
+      "שתראו"
+    ],
+    "search": "שתראו"
+  },
+  {
+    "names": [
+      "חיבורים"
+    ],
+    "search": "חיבורים"
+  },
+  {
+    "names": [
+      "בחלון"
+    ],
+    "search": "בחלון"
+  },
+  {
+    "names": [
+      "בדרייב"
+    ],
+    "search": "בדרייב"
+  },
+  {
+    "names": [
+      "שואלים"
+    ],
+    "search": "שואלים"
+  },
+  {
+    "names": [
+      "חיפוש"
+    ],
+    "search": "חיפוש"
+  },
+  {
+    "names": [
+      "אעבור"
+    ],
+    "search": "אעבור"
+  },
+  {
+    "names": [
+      "אצלכם"
+    ],
+    "search": "אצלכם"
+  },
+  {
+    "names": [
+      "מדובר"
+    ],
+    "search": "מדובר"
+  },
+  {
+    "names": [
+      "הטופס"
+    ],
+    "search": "הטופס"
+  },
+  {
+    "names": [
+      "הצלחתי"
+    ],
+    "search": "הצלחתי"
+  },
+  {
+    "names": [
+      "שקוראים"
+    ],
+    "search": "שקוראים"
+  },
+  {
+    "names": [
+      "שורות"
+    ],
+    "search": "שורות"
+  },
+  {
+    "names": [
+      "פורסם"
+    ],
+    "search": "פורסם"
+  },
+  {
+    "names": [
+      "קורים"
+    ],
+    "search": "קורים"
+  },
+  {
+    "names": [
+      "האנשים"
+    ],
+    "search": "האנשים"
+  },
+  {
+    "names": [
+      "לקנות"
+    ],
+    "search": "לקנות"
+  },
+  {
+    "names": [
+      "שרציתי"
+    ],
+    "search": "שרציתי"
+  },
+  {
+    "names": [
+      "שמדבר"
+    ],
+    "search": "שמדבר"
+  },
+  {
+    "names": [
+      "השורה"
+    ],
+    "search": "השורה"
+  },
+  {
+    "names": [
+      "הריצה"
+    ],
+    "search": "הריצה"
+  },
+  {
+    "names": [
+      "ונריץ"
+    ],
+    "search": "ונריץ"
+  },
+  {
+    "names": [
+      "להיום"
+    ],
+    "search": "להיום"
+  },
+  {
+    "names": [
+      "הוסיפו"
+    ],
+    "search": "הוסיפו"
+  },
+  {
+    "names": [
+      "הוראות"
+    ],
+    "search": "הוראות"
+  },
+  {
+    "names": [
+      "התוכנה"
+    ],
+    "search": "התוכנה"
+  },
+  {
+    "names": [
+      "התוצאה"
+    ],
+    "search": "התוצאה"
+  },
+  {
+    "names": [
+      "לחיבור"
+    ],
+    "search": "לחיבור"
+  },
+  {
+    "names": [
+      "ניסיתי"
+    ],
+    "search": "ניסיתי"
+  },
+  {
+    "names": [
+      "וכאילו"
+    ],
+    "search": "וכאילו"
+  },
+  {
+    "names": [
+      "האישי"
+    ],
+    "search": "האישי"
+  },
+  {
+    "names": [
+      "בעיקר"
+    ],
+    "search": "בעיקר"
+  },
+  {
+    "names": [
+      "המקצועית"
+    ],
+    "search": "המקצועית"
+  },
+  {
+    "names": [
+      "קריאות"
+    ],
+    "search": "קריאות"
+  },
+  {
+    "names": [
+      "להגדרות"
+    ],
+    "search": "להגדרות"
+  },
+  {
+    "names": [
+      "מאיתנו"
+    ],
+    "search": "מאיתנו"
+  },
+  {
+    "names": [
+      "ההגדרות"
+    ],
+    "search": "ההגדרות"
+  },
+  {
+    "names": [
+      "בחרנו"
+    ],
+    "search": "בחרנו"
+  },
+  {
+    "names": [
+      "להתעסק"
+    ],
+    "search": "להתעסק"
+  },
+  {
+    "names": [
+      "אחזור"
+    ],
+    "search": "אחזור"
+  },
+  {
+    "names": [
+      "פשוטות"
+    ],
+    "search": "פשוטות"
+  },
+  {
+    "names": [
+      "תוכנה"
+    ],
+    "search": "תוכנה"
+  },
+  {
+    "names": [
+      "ליצירת"
+    ],
+    "search": "ליצירת"
+  },
+  {
+    "names": [
+      "להניח"
+    ],
+    "search": "להניח"
+  },
+  {
+    "names": [
+      "קריאת"
+    ],
+    "search": "קריאת"
+  },
+  {
+    "names": [
+      "שעתיים"
+    ],
+    "search": "שעתיים"
+  },
+  {
+    "names": [
+      "יצירה"
+    ],
+    "search": "יצירה"
+  },
+  {
+    "names": [
+      "גבוהה"
+    ],
+    "search": "גבוהה"
+  },
+  {
+    "names": [
+      "אימות"
+    ],
+    "search": "אימות"
+  },
+  {
+    "names": [
+      "לסיים"
+    ],
+    "search": "לסיים"
+  },
+  {
+    "names": [
+      "ולשים"
+    ],
+    "search": "ולשים"
+  },
+  {
+    "names": [
+      "הכרטיס"
+    ],
+    "search": "הכרטיס"
+  },
+  {
+    "names": [
+      "כשאתם"
+    ],
+    "search": "כשאתם"
+  },
+  {
+    "names": [
+      "לקרות"
+    ],
+    "search": "לקרות"
+  },
+  {
+    "names": [
+      "כפתורים"
+    ],
+    "search": "כפתורים"
+  },
+  {
+    "names": [
+      "נבדוק"
+    ],
+    "search": "נבדוק"
+  },
+  {
+    "names": [
+      "ימשיך"
+    ],
+    "search": "ימשיך"
+  },
+  {
+    "names": [
+      "ערכים"
+    ],
+    "search": "ערכים"
+  },
+  {
+    "names": [
+      "ואמרתי"
+    ],
+    "search": "ואמרתי"
+  },
+  {
+    "names": [
+      "לחצתי"
+    ],
+    "search": "לחצתי"
+  },
+  {
+    "names": [
+      "היופי"
+    ],
+    "search": "היופי"
+  },
+  {
+    "names": [
+      "התאריכים"
+    ],
+    "search": "התאריכים"
+  },
+  {
+    "names": [
+      "תאריכים"
+    ],
+    "search": "תאריכים"
+  },
+  {
+    "names": [
+      "יומיים"
+    ],
+    "search": "יומיים"
+  },
+  {
+    "names": [
+      "שבועיים"
+    ],
+    "search": "שבועיים"
+  },
+  {
+    "names": [
+      "תעבוד"
+    ],
+    "search": "תעבוד"
+  },
+  {
+    "names": [
+      "שבנית"
+    ],
+    "search": "שבנית"
+  },
+  {
+    "names": [
+      "ממשיך"
+    ],
+    "search": "ממשיך"
+  },
+  {
+    "names": [
+      "הקרדיטים"
+    ],
+    "search": "הקרדיטים"
+  },
+  {
+    "names": [
+      "הפגישה"
+    ],
+    "search": "הפגישה"
+  },
+  {
+    "names": [
+      "פותחים"
+    ],
+    "search": "פותחים"
+  },
+  {
+    "names": [
+      "אחריות"
+    ],
+    "search": "אחריות"
+  },
+  {
+    "names": [
+      "שבונה"
+    ],
+    "search": "שבונה"
+  },
+  {
+    "names": [
+      "אליהם"
+    ],
+    "search": "אליהם"
+  },
+  {
+    "names": [
+      "חודשי"
+    ],
+    "search": "חודשי"
+  },
+  {
+    "names": [
+      "המוצר"
+    ],
+    "search": "המוצר"
+  },
+  {
+    "names": [
+      "מתקדם"
+    ],
+    "search": "מתקדם"
+  },
+  {
+    "names": [
+      "השדות"
+    ],
+    "search": "השדות"
+  },
+  {
+    "names": [
+      "שהלקוח"
+    ],
+    "search": "שהלקוח"
+  },
+  {
+    "names": [
+      "ותראו"
+    ],
+    "search": "ותראו"
+  },
+  {
+    "names": [
+      "שמישהו"
+    ],
+    "search": "שמישהו"
+  },
+  {
+    "names": [
+      "וואלה"
+    ],
+    "search": "וואלה"
+  },
+  {
+    "names": [
+      "ששלחתי"
+    ],
+    "search": "ששלחתי"
+  },
+  {
+    "names": [
+      "משנים"
+    ],
+    "search": "משנים"
+  },
+  {
+    "names": [
+      "בשמחה"
+    ],
+    "search": "בשמחה"
+  },
+  {
+    "names": [
+      "ואנשים"
+    ],
+    "search": "ואנשים"
+  },
+  {
+    "names": [
+      "לשמוע"
+    ],
+    "search": "לשמוע"
+  },
+  {
+    "names": [
+      "מנדיי"
+    ],
+    "search": "מנדיי"
+  },
+  {
+    "names": [
+      "הטכני"
+    ],
+    "search": "הטכני"
+  },
+  {
+    "names": [
+      "מאפשר"
+    ],
+    "search": "מאפשר"
+  },
+  {
+    "names": [
+      "הסוכנים"
+    ],
+    "search": "הסוכנים"
+  },
+  {
+    "names": [
+      "הוציא"
+    ],
+    "search": "הוציא"
+  },
+  {
+    "names": [
+      "שנקראת"
+    ],
+    "search": "שנקראת"
+  },
+  {
+    "names": [
+      "תוספים"
+    ],
+    "search": "תוספים"
+  },
+  {
+    "names": [
+      "מסכים"
+    ],
+    "search": "מסכים"
+  },
+  {
+    "names": [
+      "ניגשים"
+    ],
+    "search": "ניגשים"
+  },
+  {
+    "names": [
+      "חופשי"
+    ],
+    "search": "חופשי"
+  },
+  {
+    "names": [
+      "יקפיץ"
+    ],
+    "search": "יקפיץ"
+  },
+  {
+    "names": [
+      "סגנון"
+    ],
+    "search": "סגנון"
+  },
+  {
+    "names": [
+      "שלמדתם"
+    ],
+    "search": "שלמדתם"
+  },
+  {
+    "names": [
+      "נוספים"
+    ],
+    "search": "נוספים"
+  },
+  {
+    "names": [
+      "בזיכרון"
+    ],
+    "search": "בזיכרון"
+  },
+  {
+    "names": [
+      "הטוקנים"
+    ],
+    "search": "הטוקנים"
+  },
+  {
+    "names": [
+      "נמשיך"
+    ],
+    "search": "נמשיך"
+  },
+  {
+    "names": [
+      "מהסוג"
+    ],
+    "search": "מהסוג"
+  },
+  {
+    "names": [
+      "להתממשק"
+    ],
+    "search": "להתממשק"
+  },
+  {
+    "names": [
+      "שיעזור"
+    ],
+    "search": "שיעזור"
+  },
+  {
+    "names": [
+      "לעסקים"
+    ],
+    "search": "לעסקים"
+  },
+  {
+    "names": [
+      "הוספנו"
+    ],
+    "search": "הוספנו"
+  },
+  {
+    "names": [
+      "העכבר"
+    ],
+    "search": "העכבר"
+  },
+  {
+    "names": [
+      "הרשימה"
+    ],
+    "search": "הרשימה"
+  },
+  {
+    "names": [
+      "תשתמשו"
+    ],
+    "search": "תשתמשו"
+  },
+  {
+    "names": [
+      "כרגיל"
+    ],
+    "search": "כרגיל"
+  },
+  {
+    "names": [
+      "בעצמו"
+    ],
+    "search": "בעצמו"
+  },
+  {
+    "names": [
+      "שיהיו"
+    ],
+    "search": "שיהיו"
+  },
+  {
+    "names": [
+      "מניצאט"
+    ],
+    "search": "מניצאט"
+  },
+  {
+    "names": [
+      "שאמור"
+    ],
+    "search": "שאמור"
+  },
+  {
+    "names": [
+      "המבנה"
+    ],
+    "search": "המבנה"
+  },
+  {
+    "names": [
+      "הגדרנו"
+    ],
+    "search": "הגדרנו"
+  },
+  {
+    "names": [
+      "שבמקרה"
+    ],
+    "search": "שבמקרה"
+  },
+  {
+    "names": [
+      "יכולת"
+    ],
+    "search": "יכולת"
+  },
+  {
+    "names": [
+      "בנינו"
+    ],
+    "search": "בנינו"
+  },
+  {
+    "names": [
+      "יפעיל"
+    ],
+    "search": "יפעיל"
+  },
+  {
+    "names": [
+      "הפונקציות"
+    ],
+    "search": "הפונקציות"
+  },
+  {
+    "names": [
+      "לנסות"
+    ],
+    "search": "לנסות"
+  },
+  {
+    "names": [
+      "השמות"
+    ],
+    "search": "השמות"
+  },
+  {
+    "names": [
+      "ולהבין"
+    ],
+    "search": "ולהבין"
+  },
+  {
+    "names": [
+      "התראות"
+    ],
+    "search": "התראות"
+  },
+  {
+    "names": [
+      "הסצנריו"
+    ],
+    "search": "הסצנריו"
+  },
+  {
+    "names": [
+      "נכנסת"
+    ],
+    "search": "נכנסת"
+  },
+  {
+    "names": [
+      "הקיים"
+    ],
+    "search": "הקיים"
+  },
+  {
+    "names": [
+      "ובוקים"
+    ],
+    "search": "ובוקים"
+  },
+  {
+    "names": [
+      "במסמך"
+    ],
+    "search": "במסמך"
+  },
+  {
+    "names": [
+      "וכשאני"
+    ],
+    "search": "וכשאני"
+  },
+  {
+    "names": [
+      "בקבוצה"
+    ],
+    "search": "בקבוצה"
+  },
+  {
+    "names": [
+      "אחרונה"
+    ],
+    "search": "אחרונה"
+  },
+  {
+    "names": [
+      "ממשיכים"
+    ],
+    "search": "ממשיכים"
+  },
+  {
+    "names": [
+      "נעבוד"
+    ],
+    "search": "נעבוד"
+  },
+  {
+    "names": [
+      "בכללי"
+    ],
+    "search": "בכללי"
+  },
+  {
+    "names": [
+      "מופיע"
+    ],
+    "search": "מופיע"
+  },
+  {
+    "names": [
+      "תחשבו"
+    ],
+    "search": "תחשבו"
+  },
+  {
+    "names": [
+      "החוצה"
+    ],
+    "search": "החוצה"
+  },
+  {
+    "names": [
+      "להודעת"
+    ],
+    "search": "להודעת"
+  },
+  {
+    "names": [
+      "חבילה"
+    ],
+    "search": "חבילה"
+  },
+  {
+    "names": [
+      "חינמית"
+    ],
+    "search": "חינמית"
+  },
+  {
+    "names": [
+      "החינמית"
+    ],
+    "search": "החינמית"
+  },
+  {
+    "names": [
+      "מאפשרת"
+    ],
+    "search": "מאפשרת"
+  },
+  {
+    "names": [
+      "ספיקר"
+    ],
+    "search": "ספיקר"
+  },
+  {
+    "names": [
+      "מחברים"
+    ],
+    "search": "מחברים"
+  },
+  {
+    "names": [
+      "יוסיף"
+    ],
+    "search": "יוסיף"
+  },
+  {
+    "names": [
+      "להסיר"
+    ],
+    "search": "להסיר"
+  },
+  {
+    "names": [
+      "לחכות"
+    ],
+    "search": "לחכות"
+  },
+  {
+    "names": [
+      "במהלך"
+    ],
+    "search": "במהלך"
+  },
+  {
+    "names": [
+      "המקורי"
+    ],
+    "search": "המקורי"
+  },
+  {
+    "names": [
+      "טמלול"
+    ],
+    "search": "טמלול"
+  },
+  {
+    "names": [
+      "הגדירו"
+    ],
+    "search": "הגדירו"
+  },
+  {
+    "names": [
+      "שרוצים"
+    ],
+    "search": "שרוצים"
+  },
+  {
+    "names": [
+      "שיכול"
+    ],
+    "search": "שיכול"
+  },
+  {
+    "names": [
+      "שהייתה"
+    ],
+    "search": "שהייתה"
+  },
+  {
+    "names": [
+      "הבקשה"
+    ],
+    "search": "הבקשה"
+  },
+  {
+    "names": [
+      "האישית"
+    ],
+    "search": "האישית"
+  },
+  {
+    "names": [
+      "התפקיד"
+    ],
+    "search": "התפקיד"
+  },
+  {
+    "names": [
+      "שאמרת"
+    ],
+    "search": "שאמרת"
+  },
+  {
+    "names": [
+      "יחידה"
+    ],
+    "search": "יחידה"
+  },
+  {
+    "names": [
+      "לענות"
+    ],
+    "search": "לענות"
+  },
+  {
+    "names": [
+      "שעושים"
+    ],
+    "search": "שעושים"
+  },
+  {
+    "names": [
+      "לעולם"
+    ],
+    "search": "לעולם"
+  },
+  {
+    "names": [
+      "צרכים"
+    ],
+    "search": "צרכים"
+  },
+  {
+    "names": [
+      "מקרים"
+    ],
+    "search": "מקרים"
+  },
+  {
+    "names": [
+      "מוריד"
+    ],
+    "search": "מוריד"
+  },
+  {
+    "names": [
+      "תרשמו"
+    ],
+    "search": "תרשמו"
+  },
+  {
+    "names": [
+      "המסמך"
+    ],
+    "search": "המסמך"
+  },
+  {
+    "names": [
+      "התוצר"
+    ],
+    "search": "התוצר"
+  },
+  {
+    "names": [
+      "מניסיון"
+    ],
+    "search": "מניסיון"
+  },
+  {
+    "names": [
+      "המלאכותית"
+    ],
+    "search": "המלאכותית"
+  },
+  {
+    "names": [
+      "תהליכי"
+    ],
+    "search": "תהליכי"
+  },
+  {
+    "names": [
+      "התחלנו"
+    ],
+    "search": "התחלנו"
+  },
+  {
+    "names": [
+      "לאפיין"
+    ],
+    "search": "לאפיין"
+  },
+  {
+    "names": [
+      "לתקשר"
+    ],
+    "search": "לתקשר"
+  },
+  {
+    "names": [
+      "להתקדם"
+    ],
+    "search": "להתקדם"
+  },
+  {
+    "names": [
+      "מצבים"
+    ],
+    "search": "מצבים"
+  },
+  {
+    "names": [
+      "ציפיות"
+    ],
+    "search": "ציפיות"
+  },
+  {
+    "names": [
+      "נותנת"
+    ],
+    "search": "נותנת"
+  },
+  {
+    "names": [
+      "שירותים"
+    ],
+    "search": "שירותים"
+  },
+  {
+    "names": [
+      "התחיל"
+    ],
+    "search": "התחיל"
+  },
+  {
+    "names": [
+      "לציין"
+    ],
+    "search": "לציין"
+  },
+  {
+    "names": [
+      "להקים"
+    ],
+    "search": "להקים"
+  },
+  {
+    "names": [
+      "גדולות"
+    ],
+    "search": "גדולות"
+  },
+  {
+    "names": [
+      "ועדיין"
+    ],
+    "search": "ועדיין"
+  },
+  {
+    "names": [
+      "לוקחים"
+    ],
+    "search": "לוקחים"
+  },
+  {
+    "names": [
+      "למנוע"
+    ],
+    "search": "למנוע"
+  },
+  {
+    "names": [
+      "אחרות"
+    ],
+    "search": "אחרות"
+  },
+  {
+    "names": [
+      "בשבוע"
+    ],
+    "search": "בשבוע"
+  },
+  {
+    "names": [
+      "לשיעורים"
+    ],
+    "search": "לשיעורים"
+  },
+  {
+    "names": [
+      "בסיסית"
+    ],
+    "search": "בסיסית"
+  },
+  {
+    "names": [
+      "שאלתי"
+    ],
+    "search": "שאלתי"
+  },
+  {
+    "names": [
+      "הכבוד"
+    ],
+    "search": "הכבוד"
+  },
+  {
+    "names": [
+      "תגובה"
+    ],
+    "search": "תגובה"
+  },
+  {
+    "names": [
+      "מכירות"
+    ],
+    "search": "מכירות"
+  },
+  {
+    "names": [
+      "סינון"
+    ],
+    "search": "סינון"
+  },
+  {
+    "names": [
+      "כביכול"
+    ],
+    "search": "כביכול"
+  },
+  {
+    "names": [
+      "כוללת"
+    ],
+    "search": "כוללת"
+  },
+  {
+    "names": [
+      "נסתכל"
+    ],
+    "search": "נסתכל"
+  },
+  {
+    "names": [
+      "עוברים"
+    ],
+    "search": "עוברים"
+  },
+  {
+    "names": [
+      "בפורטוגל"
+    ],
+    "search": "בפורטוגל"
+  },
+  {
+    "names": [
+      "עברית"
+    ],
+    "search": "עברית"
+  },
+  {
+    "names": [
+      "שאולי"
+    ],
+    "search": "שאולי"
+  },
+  {
+    "names": [
+      "במניצ"
+    ],
+    "search": "במניצ"
+  },
+  {
+    "names": [
+      "מניצט"
+    ],
+    "search": "מניצט"
+  },
+  {
+    "names": [
+      "לזכור"
+    ],
+    "search": "לזכור"
+  },
+  {
+    "names": [
+      "בהודעה"
+    ],
+    "search": "בהודעה"
+  },
+  {
+    "names": [
+      "לאישור"
+    ],
+    "search": "לאישור"
+  },
+  {
+    "names": [
+      "הבנייה"
+    ],
+    "search": "הבנייה"
+  },
+  {
+    "names": [
+      "אותיות"
+    ],
+    "search": "אותיות"
+  },
+  {
+    "names": [
+      "ולפעמים"
+    ],
+    "search": "ולפעמים"
+  },
+  {
+    "names": [
+      "אכניס"
+    ],
+    "search": "אכניס"
+  },
+  {
+    "names": [
+      "מאיזה"
+    ],
+    "search": "מאיזה"
+  },
+  {
+    "names": [
+      "מדינה"
+    ],
+    "search": "מדינה"
+  },
+  {
+    "names": [
+      "למניצ"
+    ],
+    "search": "למניצ"
+  },
+  {
+    "names": [
+      "שלקוח"
+    ],
+    "search": "שלקוח"
+  },
+  {
+    "names": [
+      "הכנסתי"
+    ],
+    "search": "הכנסתי"
+  },
+  {
+    "names": [
+      "בטעות"
+    ],
+    "search": "בטעות"
+  },
+  {
+    "names": [
+      "מאפשרים"
+    ],
+    "search": "מאפשרים"
+  },
+  {
+    "names": [
+      "שיכולים"
+    ],
+    "search": "שיכולים"
+  },
+  {
+    "names": [
+      "שנכנסו"
+    ],
+    "search": "שנכנסו"
+  },
+  {
+    "names": [
+      "לחסוך"
+    ],
+    "search": "לחסוך"
+  },
+  {
+    "names": [
+      "החברה"
+    ],
+    "search": "החברה"
+  },
+  {
+    "names": [
+      "מתחילה"
+    ],
+    "search": "מתחילה"
+  },
+  {
+    "names": [
+      "המוצרים"
+    ],
+    "search": "המוצרים"
+  },
+  {
+    "names": [
+      "אוהבים"
+    ],
+    "search": "אוהבים"
+  },
+  {
+    "names": [
+      "מערכים"
+    ],
+    "search": "מערכים"
+  },
+  {
+    "names": [
+      "המחירים"
+    ],
+    "search": "המחירים"
+  },
+  {
+    "names": [
+      "נכסים"
+    ],
+    "search": "נכסים"
+  },
+  {
+    "names": [
+      "במילים"
+    ],
+    "search": "במילים"
+  },
+  {
+    "names": [
+      "בדיקת"
+    ],
+    "search": "בדיקת"
+  },
+  {
+    "names": [
+      "שיעורים"
+    ],
+    "search": "שיעורים"
+  },
+  {
+    "names": [
+      "השיעורים"
+    ],
+    "search": "השיעורים"
+  },
+  {
+    "names": [
+      "מוזמנים"
+    ],
+    "search": "מוזמנים"
+  },
+  {
+    "names": [
+      "ספציפיות"
+    ],
+    "search": "ספציפיות"
+  },
+  {
+    "names": [
+      "ואחרים"
+    ],
+    "search": "ואחרים"
+  },
+  {
+    "names": [
+      "אנושי"
+    ],
+    "search": "אנושי"
+  },
+  {
+    "names": [
+      "מומחה"
+    ],
+    "search": "מומחה"
+  },
+  {
+    "names": [
+      "פתחתי"
+    ],
+    "search": "פתחתי"
+  },
+  {
+    "names": [
+      "בעיניי"
+    ],
+    "search": "בעיניי"
+  },
+  {
+    "names": [
+      "מהניסיון"
+    ],
+    "search": "מהניסיון"
+  },
+  {
+    "names": [
+      "שרשום"
+    ],
+    "search": "שרשום"
+  },
+  {
+    "names": [
+      "ויהיה"
+    ],
+    "search": "ויהיה"
+  },
+  {
+    "names": [
+      "שעובדים"
+    ],
+    "search": "שעובדים"
+  },
+  {
+    "names": [
+      "התמחור"
+    ],
+    "search": "התמחור"
+  },
+  {
+    "names": [
+      "השאלון"
+    ],
+    "search": "השאלון"
+  },
+  {
+    "names": [
+      "הנתיב"
+    ],
+    "search": "הנתיב"
+  },
+  {
+    "names": [
+      "מבקשים"
+    ],
+    "search": "מבקשים"
+  },
+  {
+    "names": [
+      "איזשהם"
+    ],
+    "search": "איזשהם"
+  },
+  {
+    "names": [
+      "אלינו"
+    ],
+    "search": "אלינו"
+  },
+  {
+    "names": [
+      "אוטומטיות"
+    ],
+    "search": "אוטומטיות"
+  },
+  {
+    "names": [
+      "מיוחד"
+    ],
+    "search": "מיוחד"
+  },
+  {
+    "names": [
+      "מדריך"
+    ],
+    "search": "מדריך"
+  },
+  {
+    "names": [
+      "ניהול"
+    ],
+    "search": "ניהול"
+  },
+  {
+    "names": [
+      "הרשעות"
+    ],
+    "search": "הרשעות"
+  },
+  {
+    "names": [
+      "הראשי"
+    ],
+    "search": "הראשי"
+  },
+  {
+    "names": [
+      "שיצרנו"
+    ],
+    "search": "שיצרנו"
+  },
+  {
+    "names": [
+      "הרשאות"
+    ],
+    "search": "הרשאות"
+  },
+  {
+    "names": [
+      "לאפשר"
+    ],
+    "search": "לאפשר"
+  },
+  {
+    "names": [
+      "ההרשאות"
+    ],
+    "search": "ההרשאות"
+  },
+  {
+    "names": [
+      "מגדירים"
+    ],
+    "search": "מגדירים"
+  },
+  {
+    "names": [
+      "וברוכים"
+    ],
+    "search": "וברוכים"
+  },
+  {
+    "names": [
+      "מעבירים"
+    ],
+    "search": "מעבירים"
+  },
+  {
+    "names": [
+      "ולהוסיף"
+    ],
+    "search": "ולהוסיף"
+  },
+  {
+    "names": [
+      "שליחה"
+    ],
+    "search": "שליחה"
+  },
+  {
+    "names": [
+      "עלסיב"
+    ],
+    "search": "עלסיב"
+  },
+  {
+    "names": [
+      "שתדעו"
+    ],
+    "search": "שתדעו"
+  },
+  {
+    "names": [
+      "מדהימים"
+    ],
+    "search": "מדהימים"
+  },
+  {
+    "names": [
+      "פברואר"
+    ],
+    "search": "פברואר"
+  },
+  {
+    "names": [
+      "שימושי"
+    ],
+    "search": "שימושי"
+  },
+  {
+    "names": [
+      "החיים"
+    ],
+    "search": "החיים"
+  },
+  {
+    "names": [
+      "הערכים"
+    ],
+    "search": "הערכים"
+  },
+  {
+    "names": [
+      "השלוש"
+    ],
+    "search": "השלוש"
+  },
+  {
+    "names": [
+      "נדרשים"
+    ],
+    "search": "נדרשים"
+  },
+  {
+    "names": [
+      "תקלות"
+    ],
+    "search": "תקלות"
+  },
+  {
+    "names": [
+      "אחריו"
+    ],
+    "search": "אחריו"
+  },
+  {
+    "names": [
+      "השינויים"
+    ],
+    "search": "השינויים"
+  },
+  {
+    "names": [
+      "בטוחים"
+    ],
+    "search": "בטוחים"
+  },
+  {
+    "names": [
+      "למסמך"
+    ],
+    "search": "למסמך"
+  },
+  {
+    "names": [
+      "לקלוט"
+    ],
+    "search": "לקלוט"
+  },
+  {
+    "names": [
+      "מגניבים"
+    ],
+    "search": "מגניבים"
+  },
+  {
+    "names": [
+      "יצרנו"
+    ],
+    "search": "יצרנו"
+  },
+  {
+    "names": [
+      "מקורות"
+    ],
+    "search": "מקורות"
+  },
+  {
+    "names": [
+      "למערכות"
+    ],
+    "search": "למערכות"
+  },
+  {
+    "names": [
+      "להגיב"
+    ],
+    "search": "להגיב"
+  },
+  {
+    "names": [
+      "לתפוס"
+    ],
+    "search": "לתפוס"
+  },
+  {
+    "names": [
+      "נגענו"
+    ],
+    "search": "נגענו"
+  },
+  {
+    "names": [
+      "תמיכה"
+    ],
+    "search": "תמיכה"
+  },
+  {
+    "names": [
+      "מפתחות"
+    ],
+    "search": "מפתחות"
+  },
+  {
+    "names": [
+      "השגיעה"
+    ],
+    "search": "השגיעה"
+  },
+  {
+    "names": [
+      "בהגדרות"
+    ],
+    "search": "בהגדרות"
+  },
+  {
+    "names": [
+      "שתמיד"
+    ],
+    "search": "שתמיד"
+  },
+  {
+    "names": [
+      "פונקציית"
+    ],
+    "search": "פונקציית"
+  },
+  {
+    "names": [
+      "יופיעו"
+    ],
+    "search": "יופיעו"
+  },
+  {
+    "names": [
+      "הזמנה"
+    ],
+    "search": "הזמנה"
+  },
+  {
+    "names": [
+      "תלחצו"
+    ],
+    "search": "תלחצו"
+  },
+  {
+    "names": [
+      "התופס"
+    ],
+    "search": "התופס"
+  },
+  {
+    "names": [
+      "מודעה"
+    ],
+    "search": "מודעה"
+  },
+  {
+    "names": [
+      "במידע"
+    ],
+    "search": "במידע"
+  },
+  {
+    "names": [
+      "שהגדרתי"
+    ],
+    "search": "שהגדרתי"
+  },
+  {
+    "names": [
+      "לאנשי"
+    ],
+    "search": "לאנשי"
+  },
+  {
+    "names": [
+      "יעזור"
+    ],
+    "search": "יעזור"
+  },
+  {
+    "names": [
+      "ביולי"
+    ],
+    "search": "ביולי"
+  },
+  {
+    "names": [
+      "לספור"
+    ],
+    "search": "לספור"
+  },
+  {
+    "names": [
+      "הרשומות"
+    ],
+    "search": "הרשומות"
+  },
+  {
+    "names": [
+      "קיימת"
+    ],
+    "search": "קיימת"
+  },
+  {
+    "names": [
+      "לעתכן"
+    ],
+    "search": "לעתכן"
+  },
+  {
+    "names": [
+      "תזכורות"
+    ],
+    "search": "תזכורות"
+  },
+  {
+    "names": [
+      "שגיאות"
+    ],
+    "search": "שגיאות"
+  },
+  {
+    "names": [
+      "בשירות"
+    ],
+    "search": "בשירות"
+  },
+  {
+    "names": [
+      "מסומן"
+    ],
+    "search": "מסומן"
+  },
+  {
+    "names": [
+      "להמשך"
+    ],
+    "search": "להמשך"
+  },
+  {
+    "names": [
+      "בשורה"
+    ],
+    "search": "בשורה"
+  },
+  {
+    "names": [
+      "הקודמים"
+    ],
+    "search": "הקודמים"
+  },
+  {
+    "names": [
+      "המחשב"
+    ],
+    "search": "המחשב"
+  },
+  {
+    "names": [
+      "ביותר"
+    ],
+    "search": "ביותר"
+  },
+  {
+    "names": [
+      "מיליון"
+    ],
+    "search": "מיליון"
+  },
+  {
+    "names": [
+      "המקום"
+    ],
+    "search": "המקום"
+  },
+  {
+    "names": [
+      "תסתכלו"
+    ],
+    "search": "תסתכלו"
+  },
+  {
+    "names": [
+      "שגיאה"
+    ],
+    "search": "שגיאה"
+  },
+  {
+    "names": [
+      "הנוכחי"
+    ],
+    "search": "הנוכחי"
+  },
+  {
+    "names": [
+      "תפוצה"
+    ],
+    "search": "תפוצה"
+  },
+  {
+    "names": [
+      "בתוכנית"
+    ],
+    "search": "בתוכנית"
+  },
+  {
+    "names": [
+      "התוכנית"
+    ],
+    "search": "התוכנית"
+  },
+  {
+    "names": [
+      "מחזור"
+    ],
+    "search": "מחזור"
+  },
+  {
+    "names": [
+      "בנתיב"
+    ],
+    "search": "בנתיב"
+  },
+  {
+    "names": [
+      "תקשורת"
+    ],
+    "search": "תקשורת"
+  },
+  {
+    "names": [
+      "לשאלות"
+    ],
+    "search": "לשאלות"
+  },
+  {
+    "names": [
+      "במחשב"
+    ],
+    "search": "במחשב"
+  },
+  {
+    "names": [
+      "ראשוני"
+    ],
+    "search": "ראשוני"
+  },
+  {
+    "names": [
+      "להיראות"
+    ],
+    "search": "להיראות"
+  },
+  {
+    "names": [
+      "עבורו"
+    ],
+    "search": "עבורו"
+  },
+  {
+    "names": [
+      "שהולך"
+    ],
+    "search": "שהולך"
+  },
+  {
+    "names": [
+      "ההקמה"
+    ],
+    "search": "ההקמה"
+  },
+  {
+    "names": [
+      "עומדים"
+    ],
+    "search": "עומדים"
+  },
+  {
+    "names": [
+      "טכנולוגיים"
+    ],
+    "search": "טכנולוגיים"
+  },
+  {
+    "names": [
+      "שצריכים"
+    ],
+    "search": "שצריכים"
+  },
+  {
+    "names": [
+      "מהרגע"
+    ],
+    "search": "מהרגע"
+  },
+  {
+    "names": [
+      "התקשורת"
+    ],
+    "search": "התקשורת"
+  },
+  {
+    "names": [
+      "שהבנו"
+    ],
+    "search": "שהבנו"
+  },
+  {
+    "names": [
+      "שלבים"
+    ],
+    "search": "שלבים"
+  },
+  {
+    "names": [
+      "המכירה"
+    ],
+    "search": "המכירה"
+  },
+  {
+    "names": [
+      "השאיר"
+    ],
+    "search": "השאיר"
+  },
+  {
+    "names": [
+      "לתהליך"
+    ],
+    "search": "לתהליך"
+  },
+  {
+    "names": [
+      "לכלול"
+    ],
+    "search": "לכלול"
+  },
+  {
+    "names": [
+      "בפגישה"
+    ],
+    "search": "בפגישה"
+  },
+  {
+    "names": [
+      "הזדמנויות"
+    ],
+    "search": "הזדמנויות"
+  },
+  {
+    "names": [
+      "הזדמנות"
+    ],
+    "search": "הזדמנות"
+  },
+  {
+    "names": [
+      "הצעות"
+    ],
+    "search": "הצעות"
+  },
+  {
+    "names": [
+      "בשיחה"
+    ],
+    "search": "בשיחה"
+  },
+  {
+    "names": [
+      "מסמכים"
+    ],
+    "search": "מסמכים"
+  },
+  {
+    "names": [
+      "שהליד"
+    ],
+    "search": "שהליד"
+  },
+  {
+    "names": [
+      "מהלקוח"
+    ],
+    "search": "מהלקוח"
+  },
+  {
+    "names": [
+      "אוטומטיים"
+    ],
+    "search": "אוטומטיים"
+  },
+  {
+    "names": [
+      "חברות"
+    ],
+    "search": "חברות"
+  },
+  {
+    "names": [
+      "האפשרות"
+    ],
+    "search": "האפשרות"
+  },
+  {
+    "names": [
+      "תרשים"
+    ],
+    "search": "תרשים"
+  },
+  {
+    "names": [
+      "קבוצת"
+    ],
+    "search": "קבוצת"
+  },
+  {
+    "names": [
+      "מרוצה"
+    ],
+    "search": "מרוצה"
+  },
+  {
+    "names": [
+      "שבסוף"
+    ],
+    "search": "שבסוף"
+  },
+  {
+    "names": [
+      "אייטמים"
+    ],
+    "search": "אייטמים"
+  },
+  {
+    "names": [
+      "ולהראות"
+    ],
+    "search": "ולהראות"
+  },
+  {
+    "names": [
+      "העמודות"
+    ],
+    "search": "העמודות"
+  },
+  {
+    "names": [
+      "פירוט"
+    ],
+    "search": "פירוט"
+  },
+  {
+    "names": [
+      "ובשיעור"
+    ],
+    "search": "ובשיעור"
+  },
+  {
+    "names": [
+      "תיבות"
+    ],
+    "search": "תיבות"
+  },
+  {
+    "names": [
+      "תפקיד"
+    ],
+    "search": "תפקיד"
+  },
+  {
+    "names": [
+      "בקשות"
+    ],
+    "search": "בקשות"
+  },
+  {
+    "names": [
+      "איתנו"
+    ],
+    "search": "איתנו"
+  },
+  {
+    "names": [
+      "אוטומטיה"
+    ],
+    "search": "אוטומטיה"
+  },
+  {
+    "names": [
+      "מובנים"
+    ],
+    "search": "מובנים"
+  },
+  {
+    "names": [
+      "טובים"
+    ],
+    "search": "טובים"
+  },
+  {
+    "names": [
+      "לבינה"
+    ],
+    "search": "לבינה"
+  },
+  {
+    "names": [
+      "מוכנים"
+    ],
+    "search": "מוכנים"
+  },
+  {
+    "names": [
+      "תדאגו"
+    ],
+    "search": "תדאגו"
+  },
+  {
+    "names": [
+      "המשתנים"
+    ],
+    "search": "המשתנים"
+  },
+  {
+    "names": [
+      "בקלוד"
+    ],
+    "search": "בקלוד"
+  },
+  {
+    "names": [
+      "לקלוד"
+    ],
+    "search": "לקלוד"
+  },
+  {
+    "names": [
+      "מרגיש"
+    ],
+    "search": "מרגיש"
+  },
+  {
+    "names": [
+      "תוצאה"
+    ],
+    "search": "תוצאה"
+  },
+  {
+    "names": [
+      "האמיתי"
+    ],
+    "search": "האמיתי"
+  },
+  {
+    "names": [
+      "בדיקות"
+    ],
+    "search": "בדיקות"
+  },
+  {
+    "names": [
+      "ונוסיף"
+    ],
+    "search": "ונוסיף"
+  },
+  {
+    "names": [
+      "ארחיב"
+    ],
+    "search": "ארחיב"
+  },
+  {
+    "names": [
+      "ממוצע"
+    ],
+    "search": "ממוצע"
+  },
+  {
+    "names": [
+      "ארוכה"
+    ],
+    "search": "ארוכה"
+  },
+  {
+    "names": [
+      "ונתחיל"
+    ],
+    "search": "ונתחיל"
+  },
+  {
+    "names": [
+      "השתמשו"
+    ],
+    "search": "השתמשו"
+  },
+  {
+    "names": [
+      "מנהלים"
+    ],
+    "search": "מנהלים"
+  },
+  {
+    "names": [
+      "המשתמשים"
+    ],
+    "search": "המשתמשים"
+  },
+  {
+    "names": [
+      "נתוני"
+    ],
+    "search": "נתוני"
+  },
+  {
+    "names": [
+      "המועדון"
+    ],
+    "search": "המועדון"
+  },
+  {
+    "names": [
+      "והיום"
+    ],
+    "search": "והיום"
+  },
+  {
+    "names": [
+      "במועדון"
+    ],
+    "search": "במועדון"
+  },
+  {
+    "names": [
+      "מבטיח"
+    ],
+    "search": "מבטיח"
+  },
+  {
+    "names": [
+      "איסוף"
+    ],
+    "search": "איסוף"
+  },
+  {
+    "names": [
+      "הרשמה"
+    ],
+    "search": "הרשמה"
+  },
+  {
+    "names": [
+      "למועדון"
+    ],
+    "search": "למועדון"
+  },
+  {
+    "names": [
+      "ההרשמה"
+    ],
+    "search": "ההרשמה"
+  },
+  {
+    "names": [
+      "ולחבר"
+    ],
+    "search": "ולחבר"
+  },
+  {
+    "names": [
+      "בבוקר"
+    ],
+    "search": "בבוקר"
+  },
+  {
+    "names": [
+      "שמפעיל"
+    ],
+    "search": "שמפעיל"
+  },
+  {
+    "names": [
+      "תוכנות"
+    ],
+    "search": "תוכנות"
+  },
+  {
+    "names": [
+      "מתחברים"
+    ],
+    "search": "מתחברים"
+  },
+  {
+    "names": [
+      "נצלול"
+    ],
+    "search": "נצלול"
+  },
+  {
+    "names": [
+      "להתמקד"
+    ],
+    "search": "להתמקד"
+  },
+  {
+    "names": [
+      "הבסיס"
+    ],
+    "search": "הבסיס"
+  },
+  {
+    "names": [
+      "מגניבה"
+    ],
+    "search": "מגניבה"
+  },
+  {
+    "names": [
+      "בעלות"
+    ],
+    "search": "בעלות"
+  },
+  {
+    "names": [
+      "מוציאים"
+    ],
+    "search": "מוציאים"
+  },
+  {
+    "names": [
+      "פידבק"
+    ],
+    "search": "פידבק"
+  },
+  {
+    "names": [
+      "תבניות"
+    ],
+    "search": "תבניות"
+  },
+  {
+    "names": [
+      "אשמור"
+    ],
+    "search": "אשמור"
+  },
+  {
+    "names": [
+      "שמואל"
+    ],
+    "search": "שמואל"
+  },
+  {
+    "names": [
+      "המפתחות"
+    ],
+    "search": "המפתחות"
+  },
+  {
+    "names": [
+      "הכלים"
+    ],
+    "search": "הכלים"
+  },
+  {
+    "names": [
+      "מוצלח"
+    ],
+    "search": "מוצלח"
+  },
+  {
+    "names": [
+      "בודקים"
+    ],
+    "search": "בודקים"
+  },
+  {
+    "names": [
+      "תקשיב"
+    ],
+    "search": "תקשיב"
+  },
+  {
+    "names": [
+      "ידעתי"
+    ],
+    "search": "ידעתי"
+  },
+  {
+    "names": [
+      "תוסיף"
+    ],
+    "search": "תוסיף"
+  },
+  {
+    "names": [
+      "כותרת"
+    ],
+    "search": "כותרת"
+  },
+  {
+    "names": [
+      "תגובות"
+    ],
+    "search": "תגובות"
+  },
+  {
+    "names": [
+      "הנקודות"
+    ],
+    "search": "הנקודות"
+  },
+  {
+    "names": [
+      "מועדון"
+    ],
+    "search": "מועדון"
+  },
+  {
+    "names": [
+      "בטופס"
+    ],
+    "search": "בטופס"
+  },
+  {
+    "names": [
+      "העסקית"
+    ],
+    "search": "העסקית"
+  },
+  {
+    "names": [
+      "הולדת"
+    ],
+    "search": "הולדת"
+  },
+  {
+    "names": [
+      "לומדים"
+    ],
+    "search": "לומדים"
+  },
+  {
+    "names": [
+      "ואומר"
+    ],
+    "search": "ואומר"
+  },
+  {
+    "names": [
+      "חושבים"
+    ],
+    "search": "חושבים"
+  },
+  {
+    "names": [
+      "מקצועי"
+    ],
+    "search": "מקצועי"
+  },
+  {
+    "names": [
+      "לאורך"
+    ],
+    "search": "לאורך"
+  },
+  {
+    "names": [
+      "בתיקייה"
+    ],
+    "search": "בתיקייה"
+  },
+  {
+    "names": [
+      "משפחה"
+    ],
+    "search": "משפחה"
+  },
+  {
+    "names": [
+      "נעליים"
+    ],
+    "search": "נעליים"
+  },
+  {
+    "names": [
+      "המחרוזת"
+    ],
+    "search": "המחרוזת"
+  },
+  {
+    "names": [
+      "מתקדמות"
+    ],
+    "search": "מתקדמות"
+  },
+  {
+    "names": [
+      "למדנו"
+    ],
+    "search": "למדנו"
+  },
+  {
+    "names": [
+      "לכאורה"
+    ],
+    "search": "לכאורה"
+  },
+  {
+    "names": [
+      "מפורט"
+    ],
+    "search": "מפורט"
+  },
+  {
+    "names": [
+      "לשמאל"
+    ],
+    "search": "לשמאל"
+  },
+  {
+    "names": [
+      "מימין"
+    ],
+    "search": "מימין"
+  },
+  {
+    "names": [
+      "תרשום"
+    ],
+    "search": "תרשום"
+  },
+  {
+    "names": [
+      "הולכת"
+    ],
+    "search": "הולכת"
+  },
+  {
+    "names": [
+      "סוכני"
+    ],
+    "search": "סוכני"
+  },
+  {
+    "names": [
+      "הרשמי"
+    ],
+    "search": "הרשמי"
+  },
+  {
+    "names": [
+      "לבניית"
+    ],
+    "search": "לבניית"
+  },
+  {
+    "names": [
+      "בפתרון"
+    ],
+    "search": "בפתרון"
+  },
+  {
+    "names": [
+      "הסופי"
+    ],
+    "search": "הסופי"
+  },
+  {
+    "names": [
+      "בפונקציות"
+    ],
+    "search": "בפונקציות"
+  },
+  {
+    "names": [
+      "פונקצית"
+    ],
+    "search": "פונקצית"
+  },
+  {
+    "names": [
+      "האינדקס"
+    ],
+    "search": "האינדקס"
+  },
+  {
+    "names": [
+      "אופציונלי"
+    ],
+    "search": "אופציונלי"
+  },
+  {
+    "names": [
+      "שהמערכת"
+    ],
+    "search": "שהמערכת"
+  },
+  {
+    "names": [
+      "האותיות"
+    ],
+    "search": "האותיות"
+  },
+  {
+    "names": [
+      "תגיעות"
+    ],
+    "search": "תגיעות"
+  },
+  {
+    "names": [
+      "פתיחה"
+    ],
+    "search": "פתיחה"
+  },
+  {
+    "names": [
+      "שרצינו"
+    ],
+    "search": "שרצינו"
+  },
+  {
+    "names": [
+      "חימום"
+    ],
+    "search": "חימום"
+  },
+  {
+    "names": [
+      "מרוצים"
+    ],
+    "search": "מרוצים"
+  },
+  {
+    "names": [
+      "העסקה"
+    ],
+    "search": "העסקה"
+  },
+  {
+    "names": [
+      "השיחות"
+    ],
+    "search": "השיחות"
+  },
+  {
+    "names": [
+      "מאפיינים"
+    ],
+    "search": "מאפיינים"
+  },
+  {
+    "names": [
+      "הגלגל"
+    ],
+    "search": "הגלגל"
+  },
+  {
+    "names": [
+      "השחיות"
+    ],
+    "search": "השחיות"
+  },
+  {
+    "names": [
+      "השחיה"
+    ],
+    "search": "השחיה"
+  },
+  {
+    "names": [
+      "הסיבוב"
+    ],
+    "search": "הסיבוב"
+  },
+  {
+    "names": [
+      "סיבוב"
+    ],
+    "search": "סיבוב"
+  },
+  {
+    "names": [
+      "לאפיון"
+    ],
+    "search": "לאפיון"
+  },
+  {
+    "names": [
+      "באפיון"
+    ],
+    "search": "באפיון"
+  },
+  {
+    "names": [
+      "השיווק"
+    ],
+    "search": "השיווק"
+  },
+  {
+    "names": [
+      "הצוות"
+    ],
+    "search": "הצוות"
+  },
+  {
+    "names": [
+      "לקראת"
+    ],
+    "search": "לקראת"
+  },
+  {
+    "names": [
+      "ההסכם"
+    ],
+    "search": "ההסכם"
+  },
+  {
+    "names": [
+      "מקושר"
+    ],
+    "search": "מקושר"
+  },
+  {
+    "names": [
+      "התרשים"
+    ],
+    "search": "התרשים"
+  },
+  {
+    "names": [
+      "תחזוקה"
+    ],
+    "search": "תחזוקה"
+  },
+  {
+    "names": [
+      "תקופת"
+    ],
+    "search": "תקופת"
+  },
+  {
+    "names": [
+      "החלטות"
+    ],
+    "search": "החלטות"
+  },
+  {
+    "names": [
+      "ההצעת"
+    ],
+    "search": "ההצעת"
+  },
+  {
+    "names": [
+      "העסקאות"
+    ],
+    "search": "העסקאות"
+  },
+  {
+    "names": [
+      "סגירת"
+    ],
+    "search": "סגירת"
+  },
+  {
+    "names": [
+      "שיקוף"
+    ],
+    "search": "שיקוף"
+  },
+  {
+    "names": [
+      "עסקאות"
+    ],
+    "search": "עסקאות"
+  },
+  {
+    "names": [
+      "בארים"
+    ],
+    "search": "בארים"
+  },
+  {
+    "names": [
+      "ליווי"
+    ],
+    "search": "ליווי"
+  },
+  {
+    "names": [
+      "הבורדים"
+    ],
+    "search": "הבורדים"
+  },
+  {
+    "names": [
+      "בורדים"
+    ],
+    "search": "בורדים"
+  },
+  {
+    "names": [
+      "email"
+    ],
+    "search": "email"
+  },
+  {
+    "names": [
+      "api"
+    ],
+    "search": "api"
+  },
+  {
+    "names": [
+      "assistant"
+    ],
+    "search": "assistant"
+  },
+  {
+    "names": [
+      "phone"
+    ],
+    "search": "phone"
+  }
+]

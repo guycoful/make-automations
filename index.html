@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>מוצא אוטומציות מייק</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1042,21 +1045,120 @@
     }
 
     // ─── Local fuzzy matching for tool names — no API call, instant ────────
-    const KNOWN_TOOLS = [
-      { names: ['prospero', 'פרוספרו'], search: 'prospero פרוספרו הצעת מחיר' },
-      { names: ['make', 'מייק', 'meyk'], search: 'make אוטומציה סנריו' },
-      { names: ['manychat', 'מאניצאט', 'מאניצ׳אט'], search: 'manychat צאטבוט בוט' },
-      { names: ['monday', 'מאנדיי'], search: 'monday crm ניהול' },
-      { names: ['whatsapp', 'ווטסאפ', 'וואטסאפ'], search: 'whatsapp הודעה ווטסאפ' },
-      { names: ['airtable', 'אירטייבל'], search: 'airtable טבלה בסיס נתונים' },
-      { names: ['fireberry', 'פיירברי'], search: 'fireberry crm' },
-      { names: ['pandadoc', 'פנדהדוק'], search: 'pandadoc חתימה דיגיטלית' },
-      { names: ['webhook', 'ובהוק'], search: 'webhook טריגר' },
-      { names: ['gmail', 'ג׳ימייל', 'גימייל'], search: 'gmail מייל' },
-      { names: ['calendly', 'קלנדלי'], search: 'calendly פגישה יומן' },
-      { names: ['twilio', 'טוויליו'], search: 'twilio sms' },
-      { names: ['fillout', 'פילאאוט'], search: 'fillout טופס' },
-      { names: ['greenapi', 'גרין'], search: 'greenapi whatsapp ווטסאפ' },
+    // Loaded dynamically — see known-tools.json (167 tools/concepts)
+    let KNOWN_TOOLS = [
+      // ── Automation platforms ──
+      { names: ['make', 'מייק', 'meyk'], search: 'make מייק אוטומציה סנריו סצנריו' },
+      { names: ['make.com'], search: 'make.com מייק אוטומציה סנריו' },
+      { names: ['manychat', 'מאניצאט', 'מאניצ׳אט'], search: 'manychat מאניצאט צאטבוט בוט' },
+      { names: ['zapier', 'זאפייר'], search: 'zapier אוטומציה' },
+      { names: ['n8n'], search: 'n8n אוטומציה קוד פתוח' },
+      { names: ['pabbly', 'פאבלי'], search: 'pabbly אוטומציה' },
+      // ── Make.com concepts ──
+      { names: ['webhook', 'ובהוק', 'וובהוק'], search: 'webhook ובהוק טריגר' },
+      { names: ['scenario', 'סנריו', 'סצנריו'], search: 'סנריו סצנריו scenario תרחיש' },
+      { names: ['trigger', 'טריגר'], search: 'טריגר trigger watch מודול' },
+      { names: ['module', 'מודול'], search: 'מודול module פעולה' },
+      { names: ['filter', 'פילטר'], search: 'פילטר filter תנאי' },
+      { names: ['router', 'ראוטר'], search: 'ראוטר router נתיב' },
+      { names: ['iterator', 'איטרטור'], search: 'איטרטור iterator מערך' },
+      { names: ['aggregator', 'אגרגטור'], search: 'אגרגטור aggregator איחוד' },
+      { names: ['blueprint', 'בלופרינט'], search: 'בלופרינט blueprint ייצוא ייבוא' },
+      { names: ['datastore', 'דאטאסטור'], search: 'דאטאסטור datastore מאגר נתונים' },
+      { names: ['connection', 'קונקשן'], search: 'קונקשן connection חיבור' },
+      { names: ['dashboard', 'דשבורד'], search: 'דשבורד dashboard לוח בקרה' },
+      { names: ['template', 'טמפלייט'], search: 'טמפלייט template תבנית' },
+      { names: ['integration', 'אינטגרציה'], search: 'אינטגרציה integration חיבור' },
+      { names: ['automation', 'אוטומציה'], search: 'אוטומציה automation תהליך אוטומטי' },
+      // ── CRM & business ──
+      { names: ['monday', 'מאנדיי'], search: 'monday מאנדיי crm ניהול לקוחות' },
+      { names: ['monday.com'], search: 'monday.com מאנדיי crm' },
+      { names: ['airtable', 'אירטייבל'], search: 'airtable אירטייבל טבלה בסיס נתונים' },
+      { names: ['fireberry', 'פיירברי'], search: 'fireberry פיירברי crm' },
+      { names: ['hubspot', 'האבספוט'], search: 'hubspot crm שיווק' },
+      { names: ['pipedrive', 'פייפדרייב'], search: 'pipedrive crm מכירות' },
+      { names: ['salesforce', 'סיילספורס'], search: 'salesforce crm' },
+      { names: ['clickup', 'קליקאפ'], search: 'clickup קליקאפ ניהול פרויקטים' },
+      // ── Proposals & docs ──
+      { names: ['prospero', 'פרוספרו'], search: 'prospero פרוספרו הצעת מחיר proposal' },
+      { names: ['pandadoc', 'פנדהדוק'], search: 'pandadoc פנדהדוק חתימה דיגיטלית' },
+      // ── Communication ──
+      { names: ['whatsapp', 'ווטסאפ', 'וואטסאפ'], search: 'whatsapp וואטסאפ ווטסאפ הודעה' },
+      { names: ['gmail', 'ג׳ימייל', 'גימייל'], search: 'gmail גימייל מייל אימייל' },
+      { names: ['telegram', 'טלגרם'], search: 'telegram טלגרם בוט הודעה' },
+      { names: ['twilio', 'טוויליו'], search: 'twilio טוויליו sms הודעה' },
+      { names: ['slack', 'סלאק'], search: 'slack סלאק הודעה ערוץ' },
+      { names: ['secnum', 'סקנאם'], search: 'secnum סקנאם מספר טלפון' },
+      { names: ['cellact', 'צלאקט'], search: 'cellact צלאקט sms' },
+      { names: ['messagebird'], search: 'messagebird הודעות sms' },
+      { names: ['messenger', 'מסנג׳ר'], search: 'messenger מסנג׳ר פייסבוק הודעה' },
+      // ── Social media ──
+      { names: ['linkedin', 'לינקדאין', 'לינקדין'], search: 'linkedin לינקדאין רשת חברתית פרופיל' },
+      { names: ['instagram', 'אינסטגרם'], search: 'instagram אינסטגרם רשת חברתית פוסט' },
+      { names: ['facebook', 'פייסבוק'], search: 'facebook פייסבוק דף עסקי פוסט מודעה' },
+      { names: ['tiktok', 'טיקטוק'], search: 'tiktok טיקטוק סרטון' },
+      { names: ['twitter', 'טוויטר'], search: 'twitter טוויטר ציוץ' },
+      { names: ['youtube', 'יוטיוב'], search: 'youtube יוטיוב סרטון' },
+      { names: ['meta', 'מטא'], search: 'meta מטא פייסבוק אינסטגרם business' },
+      // ── AI tools ──
+      { names: ['openai', 'אופנאיי'], search: 'openai GPT בינה מלאכותית AI' },
+      { names: ['chatgpt', 'צאטגיפיטי', 'צאטג׳יפיטי'], search: 'chatgpt GPT בינה מלאכותית סוכן' },
+      { names: ['claude', 'קלוד'], search: 'claude AI בינה מלאכותית' },
+      { names: ['gemini', 'ג׳מיני', 'גמיני'], search: 'gemini google AI בינה מלאכותית' },
+      { names: ['fastbots', 'פסטבוטס'], search: 'fastbots פסטבוטס צאטבוט AI' },
+      { names: ['prompt', 'פרומפט'], search: 'פרומפט prompt הנחיה AI' },
+      // ── Google ──
+      { names: ['google', 'גוגל'], search: 'google גוגל' },
+      { names: ['google sheets'], search: 'google sheets גיליון טבלה sheets' },
+      { names: ['google drive'], search: 'google drive קובץ תיקייה' },
+      { names: ['google calendar'], search: 'google calendar יומן אירוע' },
+      { names: ['google forms'], search: 'google forms טופס תשובה' },
+      // ── Scheduling & forms ──
+      { names: ['calendly', 'קלנדלי'], search: 'calendly קלנדלי פגישה יומן' },
+      { names: ['fillout', 'פילאאוט'], search: 'fillout פילאאוט טופס שאלון' },
+      { names: ['jotform', 'ג׳וטפורם'], search: 'jotform טופס שאלון' },
+      { names: ['typeform', 'טייפפורם'], search: 'typeform טופס שאלון' },
+      { names: ['zoom', 'זום'], search: 'zoom זום פגישה וידאו' },
+      // ── WhatsApp solutions ──
+      { names: ['greenapi', 'גרין'], search: 'greenapi גרין whatsapp וואטסאפ לא רשמי' },
+      // ── Websites & ecommerce ──
+      { names: ['wordpress', 'וורדפרס'], search: 'wordpress וורדפרס אתר בלוג' },
+      { names: ['shopify', 'שופיפיי'], search: 'shopify שופיפיי חנות מכירות' },
+      { names: ['wix', 'וויקס'], search: 'wix וויקס אתר דף נחיתה' },
+      { names: ['elementor', 'אלמנטור'], search: 'elementor אלמנטור דף נחיתה וורדפרס' },
+      // ── Project & productivity ──
+      { names: ['notion', 'נושן'], search: 'notion נושן דף בסיס נתונים' },
+      { names: ['trello', 'טרלו'], search: 'trello טרלו כרטיס לוח' },
+      { names: ['miro', 'מירו'], search: 'miro מירו לוח אפיון שרטוט' },
+      { names: ['canva', 'קנבה'], search: 'canva קנבה עיצוב' },
+      { names: ['loom', 'לום'], search: 'loom לום סרטון הסבר' },
+      { names: ['todoist', 'טודואיסט'], search: 'todoist משימה' },
+      { names: ['dropbox', 'דרופבוקס'], search: 'dropbox דרופבוקס קובץ' },
+      // ── Payments & finance ──
+      { names: ['stripe', 'סטרייפ'], search: 'stripe סטרייפ תשלום' },
+      { names: ['paypal', 'פייפל'], search: 'paypal פייפל תשלום' },
+      { names: ['mailchimp', 'מיילצימפ'], search: 'mailchimp מיילצימפ דיוור אימייל' },
+      // ── Agency & sales concepts ──
+      { names: ['lead', 'לידים', 'ליד'], search: 'לידים lead ליד לקוח פוטנציאלי' },
+      { names: ['followup', 'פולואפ'], search: 'פולואפ followup מעקב' },
+      { names: ['pilot', 'פיילוט'], search: 'פיילוט pilot ניסיון חינם' },
+      { names: ['onboarding', 'אונבורדינג'], search: 'אונבורדינג onboarding קליטה' },
+      { names: ['retainer', 'ריטיינר'], search: 'ריטיינר retainer מנוי חודשי' },
+      { names: ['proposal', 'פרופוזל'], search: 'פרופוזל proposal הצעה prospero' },
+      { names: ['brief', 'בריף'], search: 'בריף brief תיאור פרויקט' },
+      { names: ['funnel', 'פאנל'], search: 'פאנל funnel משפך מכירות' },
+      { names: ['chatbot', 'צאטבוט', 'צ׳אטבוט'], search: 'צאטבוט צ׳אטבוט chatbot בוט שיחה' },
+      { names: ['agent', 'סוכן'], search: 'סוכן agent AI אוטונומי' },
+      // ── Data formats ──
+      { names: ['csv'], search: 'csv קובץ ייצוא ייבוא נתונים' },
+      { names: ['json'], search: 'json מבנה נתונים פרסור' },
+      { names: ['http'], search: 'http בקשה api קריאה' },
+      { names: ['oauth'], search: 'oauth אימות הרשאה חיבור' },
+      { names: ['rss'], search: 'rss פיד עדכונים' },
+      { names: ['utm'], search: 'utm מעקב קמפיין שיווק' },
+      { names: ['dns'], search: 'dns דומיין הגדרות' },
+      { names: ['seo'], search: 'seo קידום אורגני חיפוש' },
+      { names: ['ads', 'מודעות'], search: 'ads מודעות פרסום ממומן קמפיין' },
     ];
 
     function levenshtein(a, b) {
@@ -1077,24 +1179,25 @@
     function expandQueryLocal(query) {
       const words = query.toLowerCase().split(/\s+/);
       const additions = [];
+      const matched = new Set();
       for (const word of words) {
         if (word.length < 3) continue;
         for (const tool of KNOWN_TOOLS) {
+          if (matched.has(tool.names[0])) continue;
           for (const name of tool.names) {
             const dist = levenshtein(word, name);
-            // Allow up to 2 edits for words 5+ chars, 1 edit for shorter
-            const threshold = name.length >= 5 ? 2 : 1;
-            if (dist <= threshold && dist > 0) {
+            // Normalized distance: ratio of edits to word length
+            // 0.4 threshold = up to 40% of characters can differ
+            // "FROPESO"→"prospero" = 3/8 = 0.375 ✓
+            // "PROPEZO"→"prospero" = 2/8 = 0.25 ✓
+            const maxLen = Math.max(word.length, name.length);
+            if (maxLen > 0 && dist / maxLen <= 0.4) {
               additions.push(tool.search);
-              break;
-            }
-            // Exact match — still add the search terms for synonym expansion
-            if (dist === 0) {
-              additions.push(tool.search);
+              matched.add(tool.names[0]);
               break;
             }
           }
-          if (additions.length > 3) break; // limit additions
+          if (matched.size > 3) break;
         }
       }
       return additions.length ? `${query} ${additions.join(' ')}` : query;
@@ -1107,22 +1210,25 @@
 
       // Build messages array with conversation history
       const messages = [
-        { role: 'system', content: `אתה מומחה ידידותי לאוטומציות Make.com, ManyChat ומערכות CRM. ענה בעברית על סמך המידע שמסופק.
+        { role: 'system', content: `אתה מומחה ידידותי לאוטומציות Make.com, ManyChat ומערכות CRM.
 
-סגנון שיחה:
-- תשובות קצרות וממוקדות — 3-5 משפטים מקסימום לכל תגובה
-- אחרי כל תשובה, שאל שאלת המשך אחת כדי להבין מה המשתמש צריך עכשיו
-- אל תציף בכל המידע בבת אחת. תן את השלב הבא בלבד וחכה לתגובה
-- דבר בגובה העיניים, כאילו אתה חבר שעוזר, לא מרצה
+תפקידך: לקחת מידע גולמי (תמלולי שיעורים) ולהפוך אותו למדריך מקצועי, מובנה וקריא.
 
-כללי עיצוב:
+כללי עיבוד התמלול:
+- התמלול שמגיע אליך הוא מתוך שיעורי וידאו. הוא כולל שפה מדוברת ("אהלן חברים", "בואו נבדוק", "אוקיי אז") — אל תעתיק את הטקסט כמו שהוא!
+- הפוך את התוכן למדריך מעשי צעד-אחר-צעד עם כותרות, מספור שלבים, ונקודות חשובות
+- שמור על הידע והשלבים שבתמלול אבל כתוב אותם בשפה מקצועית ונקייה
+
+מבנה התשובה:
+- פתח עם משפט אחד שמסביר מה הולכים לעשות
+- תן שלבים ממוספרים (1, 2, 3...) עם הוראות ברורות
 - הדגש מונחים חשובים עם **bold**
-- בבלוקי קוד: רק קוד נקי להדבקה, בלי הערות // בעברית
-- קישורים מלאים עם https://
+- סיים עם 💡 טיפ או שאלת המשך
 
-כללים חשובים:
+כללים:
+- ענה בעברית
 - אל תכתוב [מקור X] או שמות קבצים
-- אל תזכיר שמות אישיים
+- אל תזכיר שמות אישיים של מרצים
 - אם המידע לא מספיק, אמור זאת בכנות
 - השתמש בהיסטוריית השיחה כדי לענות בהקשר הנכון` }
       ];
@@ -1181,6 +1287,7 @@
 
     // Web search fallback — uses xAI's built-in search when KB has no results
     async function askWithWebSearch(apiKey, question, chatHistory = []) {
+      // Uses xAI Responses API with web_search tool
       const messages = [
         { role: 'system', content: `אתה מומחה ידידותי לאוטומציות Make.com, ManyChat ומערכות CRM.
 📡 לא נמצא מידע בקורס — אתה מחפש ברשת.
@@ -1206,15 +1313,34 @@
             model: 'grok-3-mini-fast',
             messages,
             max_tokens: 1500,
-            search_parameters: { mode: 'auto' }
+            useSearch: true
           }),
           signal: controller.signal
         });
         clearTimeout(timeout);
-        if (!res.ok) throw new Error('שגיאת שרת (' + res.status + ')');
+        if (!res.ok) {
+          const errBody = await res.text().catch(() => '');
+          console.error('Web search error:', res.status, errBody);
+          if (res.status === 401) throw new Error('מפתח API לא תקין.');
+          throw new Error('שגיאת חיפוש ווב (' + res.status + '): ' + (errBody.substring(0, 100) || 'unknown'));
+        }
         const data = await res.json();
-        if (!data.choices || !data.choices[0]) throw new Error('תשובה ריקה');
-        let answer = data.choices[0].message.content;
+        // Responses API returns output array with output_text type
+        let answer = '';
+        if (data.output) {
+          for (const item of data.output) {
+            if (item.type === 'message' && item.content) {
+              for (const block of item.content) {
+                if (block.type === 'output_text') answer += block.text;
+              }
+            }
+          }
+        }
+        // Fallback: chat completions format
+        if (!answer && data.choices && data.choices[0]) {
+          answer = data.choices[0].message.content;
+        }
+        if (!answer) throw new Error('תשובה ריקה');
         answer = answer.replace(/\[מקור\s*\d+\]/g, '');
         return answer.trim();
       } catch (err) {
@@ -2194,9 +2320,11 @@ ${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare
       useEffect(() => {
         Promise.all([
           fetch('kb-chunks.json').then(r => r.json()),
-          fetch('kb-index.json').then(r => r.json())
-        ]).then(([chunks, index]) => {
+          fetch('kb-index.json').then(r => r.json()),
+          fetch('known-tools.json').then(r => r.json()).catch(() => [])
+        ]).then(([chunks, index, dynamicTools]) => {
           setKbData({ chunks, index });
+          if (dynamicTools.length) KNOWN_TOOLS = dynamicTools;
           setKbLoading(false);
         }).catch(() => setKbLoading(false));
       }, []);
@@ -2205,7 +2333,7 @@ ${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare
         chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
       }, [messages]);
 
-      const sendMessage = async () => {
+      const sendMessage = async (forceWeb = false) => {
         if (!input.trim() || loading || !kbData) return;
         const question = input.trim();
         setInput('');
@@ -2215,21 +2343,37 @@ ${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare
         try {
           const currentHistory = [...messages, newUserMsg];
 
-          // Step 1: Local fuzzy expansion — instant, no API call
-          const expandedQuery = expandQueryLocal(question);
-
-          // Step 2: BM25 search with expanded query
-          const results = bm25Search(expandedQuery, kbData.index, kbData.chunks, 8);
-
-          if (results.length >= 2) {
-            // Good KB results — answer from knowledge base
-            const answer = await askExpert(apiKey, question, results, currentHistory);
-            const sources = results.slice(0, 5).map(r => ({ title: r.title, id: r.articleId }));
-            setMessages(prev => [...prev, { role: 'assistant', text: answer, sources }]);
-          } else {
-            // No/weak KB results — use xAI web search
+          if (forceWeb) {
             const answer = await askWithWebSearch(apiKey, question, currentHistory);
             setMessages(prev => [...prev, { role: 'assistant', text: answer, sources: [], fromWeb: true }]);
+          } else {
+            // Step 1: Local fuzzy expansion — instant, no API call
+            const expandedQuery = expandQueryLocal(question);
+            const wasExpanded = expandedQuery !== question;
+
+            // Step 2: BM25 search with expanded query
+            const results = bm25Search(expandedQuery, kbData.index, kbData.chunks, 8);
+
+            // Step 3: Check result quality — are results actually about the topic?
+            let resultsRelevant = results.length >= 2;
+            if (resultsRelevant && wasExpanded) {
+              const addedTerms = expandedQuery.substring(question.length).toLowerCase().split(/\s+/).filter(t => t.length >= 4);
+              const topResults = results.slice(0, 5);
+              const hasRelevant = topResults.some(r =>
+                addedTerms.some(term => r.text && r.text.toLowerCase().includes(term))
+              );
+              if (!hasRelevant) resultsRelevant = false;
+            }
+
+            if (resultsRelevant) {
+              const answer = await askExpert(apiKey, question, results, currentHistory);
+              const sources = results.slice(0, 5).map(r => ({ title: r.title, id: r.articleId }));
+              setMessages(prev => [...prev, { role: 'assistant', text: answer, sources }]);
+            } else {
+              // Auto fallback to web search
+              const answer = await askWithWebSearch(apiKey, question, currentHistory);
+              setMessages(prev => [...prev, { role: 'assistant', text: answer, sources: [], fromWeb: true }]);
+            }
           }
         } catch (err) {
           setMessages(prev => [...prev, { role: 'assistant', text: 'שגיאה: ' + (err.message || 'בעיית התחברות'), sources: [] }]);
@@ -2295,11 +2439,16 @@ ${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare
               <input type="text" placeholder="שאל שאלה..."
                 className="flex-1 border-2 border-slate-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-teal-200 focus:border-teal-400 transition-all"
                 value={input} onChange={e => setInput(e.target.value)}
-                onKeyDown={e => { if (e.key === 'Enter') sendMessage(); }}
+                onKeyDown={e => { if (e.key === 'Enter') sendMessage(false); }}
                 disabled={loading}/>
-              <button onClick={sendMessage} disabled={loading || !input.trim()}
-                className="bg-gradient-to-l from-teal-600 to-emerald-600 text-white px-6 py-3 rounded-xl font-bold hover:shadow-lg disabled:opacity-40 transition-all">
+              <button onClick={() => sendMessage(false)} disabled={loading || !input.trim()}
+                className="bg-gradient-to-l from-teal-600 to-emerald-600 text-white px-5 py-3 rounded-xl font-bold hover:shadow-lg disabled:opacity-40 transition-all whitespace-nowrap">
                 {loading ? <Spinner size={18} color="white"/> : 'שלח'}
+              </button>
+              <button onClick={() => sendMessage(true)} disabled={loading || !input.trim()}
+                className="bg-gradient-to-l from-blue-500 to-cyan-500 text-white px-4 py-3 rounded-xl font-bold hover:shadow-lg disabled:opacity-40 transition-all whitespace-nowrap text-sm"
+                title="שלח עם חיפוש ברשת">
+                {loading ? <Spinner size={18} color="white"/> : '🌐'}
               </button>
             </div>
           </div>
