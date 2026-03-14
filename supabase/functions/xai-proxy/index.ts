@@ -6,7 +6,7 @@ const CORS_HEADERS = {
   "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
 
-const XAI_TIMEOUT_MS = 30_000;
+const XAI_TIMEOUT_MS = 90_000;
 
 Deno.serve(async (req: Request) => {
   if (req.method === "OPTIONS") {
