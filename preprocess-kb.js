@@ -109,24 +109,14 @@ function redactNames(text) {
 
 function cleanContent(raw, filename) {
   let text = raw;
-  // Remove YAML frontmatter
-  text = text.replace(/^---[\s\S]*?---\s*/m, '');
-  // Remove UUID lines
-  text = text.replace(/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}\s*$/gm, '');
-  // Remove H1 title (first line starting with #)
-  text = text.replace(/^#\s+.+$/m, '');
-  // Remove filename repeated as first line (common in transcripts)
-  if (filename) {
-    const baseName = filename.replace(/\.(mp4|m4a|md|pdf)$/gi, '').trim();
-    if (baseName.length > 5) {
-      text = text.replace(new RegExp('^' + baseName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*$', 'm'), '');
-    }
-  }
-  // Remove image URLs
-  text = text.replace(/https?:\/\/lh\d+\.googleusercontent\.com\/[^\s]+/g, '');
+  // Remove only technical noise — keep ALL meaningful content
+  text = text.replace(/^---[\s\S]*?---\s*/m, '');  // YAML frontmatter
+  text = text.replace(/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}\s*$/gm, '');  // UUIDs
+  text = text.replace(/https?:\/\/lh\d+\.googleusercontent\.com\/[^\s]+/g, '');  // Google image URLs
+  // Keep H1 titles — they contain tool names and topic keywords
+  // Keep filenames — they contain searchable terms
   // Redact personal names
   text = redactNames(text);
-  // Clean up multiple newlines
   text = text.replace(/\n{3,}/g, '\n\n');
   return text.trim();
 }
@@ -282,18 +272,38 @@ function generateTakeaways(content, title) {
   return takeaways.slice(0, 5);
 }
 
+// Hebrew→Latin synonyms for tool/platform names used in course materials
+const SYNONYMS = {
+  'פרוספרו': 'prospero', 'לפרוספרו': 'prospero', 'בפרוספרו': 'prospero', 'מפרוספרו': 'prospero',
+  'פרוספירו': 'prospero', 'לפוספרו': 'prospero', 'בפוספרו': 'prospero',
+  'מאנדיי': 'monday', 'למאנדיי': 'monday', 'במאנדיי': 'monday',
+  'פיירברי': 'fireberry', 'לפיירברי': 'fireberry', 'בפיירברי': 'fireberry',
+  'ווטסאפ': 'whatsapp', 'וואטסאפ': 'whatsapp', 'בוואטסאפ': 'whatsapp', 'לוואטסאפ': 'whatsapp',
+  'מאניצאט': 'manychat', 'מאניצ׳אט': 'manychat', 'במאניצאט': 'manychat',
+  'אירטייבל': 'airtable', 'באירטייבל': 'airtable',
+  'פנדהדוק': 'pandadoc', 'בפנדהדוק': 'pandadoc',
+  'קלנדלי': 'calendly', 'בקלנדלי': 'calendly',
+  'טוויליו': 'twilio', 'בטוויליו': 'twilio',
+};
+
 function tokenize(text) {
   const hebrewPrefixes = /^[בלמכהושו]{1,2}/;
   return text.toLowerCase()
     .replace(/[^\u0590-\u05FEa-z0-9\s\-]/g, ' ')
     .split(/\s+/)
-    .map(t => {
+    .flatMap(t => {
+      // Check synonym table first (exact match on raw token)
+      if (SYNONYMS[t]) return [SYNONYMS[t], t];
       // Strip common Hebrew prefixes for better matching
       if (t.length > 3 && /[\u0590-\u05FE]/.test(t)) {
         const stripped = t.replace(hebrewPrefixes, '');
-        if (stripped.length >= 2) return stripped;
+        if (stripped.length >= 2) {
+          // Check synonym on stripped form too
+          if (SYNONYMS[stripped]) return [SYNONYMS[stripped], stripped];
+          return [stripped];
+        }
       }
-      return t;
+      return [t];
     })
     .filter(t => t.length > 1 && !STOP_WORDS.has(t));
 }

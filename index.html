@@ -981,23 +981,38 @@
     // ─── BM25 Search Engine + Hebrew Tokenizer ─────────────────────────────
     const HEBREW_STOP_WORDS = new Set(['של','את','זה','על','עם','כל','לא','אם','גם','אבל','או','כי','הוא','היא','הם','הן','אני','אתה','אנחנו','שלי','שלו','שלה','יש','אין','רק','עוד','מה','איך','למה','מתי','איפה','כמו','בין','אחרי','לפני','כדי','בגלל','אותו','אותה','כמה','מאוד','ביותר','פשוט','בעצם','ממש','אפשר','צריך','יכול','רוצה','חושב','יודע','עושה','נראה','אומר','כאן','שם','עכשיו','היום','אחד','שני','כאלה','עליו','עליה','שלהם']);
 
+    // Hebrew→Latin synonyms for tool names (aligned with preprocess-kb.js)
+    const SYNONYMS = {
+      'פרוספרו': 'prospero', 'לפרוספרו': 'prospero', 'בפרוספרו': 'prospero', 'מפרוספרו': 'prospero',
+      'פרוספירו': 'prospero', 'לפוספרו': 'prospero', 'בפוספרו': 'prospero',
+      'מאנדיי': 'monday', 'למאנדיי': 'monday', 'במאנדיי': 'monday',
+      'פיירברי': 'fireberry', 'לפיירברי': 'fireberry', 'בפיירברי': 'fireberry',
+      'ווטסאפ': 'whatsapp', 'וואטסאפ': 'whatsapp', 'בוואטסאפ': 'whatsapp', 'לוואטסאפ': 'whatsapp',
+      'מאניצאט': 'manychat', 'מאניצ׳אט': 'manychat', 'במאניצאט': 'manychat',
+      'אירטייבל': 'airtable', 'באירטייבל': 'airtable',
+      'פנדהדוק': 'pandadoc', 'בפנדהדוק': 'pandadoc',
+      'קלנדלי': 'calendly', 'בקלנדלי': 'calendly',
+      'טוויליו': 'twilio', 'בטוויליו': 'twilio',
+    };
+
     function tokenizeHebrew(text) {
+      // Aligned with preprocess-kb.js tokenize() — same prefix-stripping + synonyms
+      const hebrewPrefixes = /^[בלמכהושו]{1,2}/;
       return text.toLowerCase()
-        .replace(/[^\u0590-\u05FFa-zA-Z0-9\s]/g, ' ')
+        .replace(/[^\u0590-\u05FEa-z0-9\s\-]/g, ' ')
         .split(/\s+/)
-        .filter(w => w.length >= 3)
-        .map(w => {
-          if (w.length > 3) {
-            for (const p of ['וש','וב','ול','וכ','ומ','וה','שב','של','שמ','שה','מה','בו','לו']) {
-              if (w.startsWith(p)) return w.slice(p.length);
-            }
-            for (const p of ['ב','ל','מ','כ','ה','ו','ש']) {
-              if (w.startsWith(p)) return w.slice(1);
+        .flatMap(t => {
+          if (SYNONYMS[t]) return [SYNONYMS[t], t];
+          if (t.length > 3 && /[\u0590-\u05FE]/.test(t)) {
+            const stripped = t.replace(hebrewPrefixes, '');
+            if (stripped.length >= 2) {
+              if (SYNONYMS[stripped]) return [SYNONYMS[stripped], stripped];
+              return [stripped];
             }
           }
-          return w;
+          return [t];
         })
-        .filter(w => w.length >= 3 && !HEBREW_STOP_WORDS.has(w));
+        .filter(t => t.length > 1 && !HEBREW_STOP_WORDS.has(t));
     }
 
     function bm25Search(query, index, chunks, topK = 5) {
@@ -1026,14 +1041,73 @@
         .map(([idx]) => chunks[idx]);
     }
 
-    async function askExpert(apiKey, question, contexts, retries = 1) {
+    // ─── Local fuzzy matching for tool names — no API call, instant ────────
+    const KNOWN_TOOLS = [
+      { names: ['prospero', 'פרוספרו'], search: 'prospero פרוספרו הצעת מחיר' },
+      { names: ['make', 'מייק', 'meyk'], search: 'make אוטומציה סנריו' },
+      { names: ['manychat', 'מאניצאט', 'מאניצ׳אט'], search: 'manychat צאטבוט בוט' },
+      { names: ['monday', 'מאנדיי'], search: 'monday crm ניהול' },
+      { names: ['whatsapp', 'ווטסאפ', 'וואטסאפ'], search: 'whatsapp הודעה ווטסאפ' },
+      { names: ['airtable', 'אירטייבל'], search: 'airtable טבלה בסיס נתונים' },
+      { names: ['fireberry', 'פיירברי'], search: 'fireberry crm' },
+      { names: ['pandadoc', 'פנדהדוק'], search: 'pandadoc חתימה דיגיטלית' },
+      { names: ['webhook', 'ובהוק'], search: 'webhook טריגר' },
+      { names: ['gmail', 'ג׳ימייל', 'גימייל'], search: 'gmail מייל' },
+      { names: ['calendly', 'קלנדלי'], search: 'calendly פגישה יומן' },
+      { names: ['twilio', 'טוויליו'], search: 'twilio sms' },
+      { names: ['fillout', 'פילאאוט'], search: 'fillout טופס' },
+      { names: ['greenapi', 'גרין'], search: 'greenapi whatsapp ווטסאפ' },
+    ];
+
+    function levenshtein(a, b) {
+      const m = a.length, n = b.length;
+      if (m === 0) return n;
+      if (n === 0) return m;
+      let prev = Array.from({length: n + 1}, (_, i) => i);
+      for (let i = 1; i <= m; i++) {
+        const curr = [i];
+        for (let j = 1; j <= n; j++) {
+          curr[j] = a[i-1] === b[j-1] ? prev[j-1] : 1 + Math.min(prev[j-1], prev[j], curr[j-1]);
+        }
+        prev = curr;
+      }
+      return prev[n];
+    }
+
+    function expandQueryLocal(query) {
+      const words = query.toLowerCase().split(/\s+/);
+      const additions = [];
+      for (const word of words) {
+        if (word.length < 3) continue;
+        for (const tool of KNOWN_TOOLS) {
+          for (const name of tool.names) {
+            const dist = levenshtein(word, name);
+            // Allow up to 2 edits for words 5+ chars, 1 edit for shorter
+            const threshold = name.length >= 5 ? 2 : 1;
+            if (dist <= threshold && dist > 0) {
+              additions.push(tool.search);
+              break;
+            }
+            // Exact match — still add the search terms for synonym expansion
+            if (dist === 0) {
+              additions.push(tool.search);
+              break;
+            }
+          }
+          if (additions.length > 3) break; // limit additions
+        }
+      }
+      return additions.length ? `${query} ${additions.join(' ')}` : query;
+    }
+
+    async function askExpert(apiKey, question, contexts, chatHistory = [], retries = 1) {
       const contextText = contexts.map((c) =>
         c.text
       ).join('\n\n---\n\n');
-      const reqBody = {
-        model: MODEL_FAST,
-        messages: [
-          { role: 'system', content: `אתה מומחה ידידותי לאוטומציות Make.com, ManyChat ומערכות CRM. ענה בעברית על סמך המידע שמסופק.
+
+      // Build messages array with conversation history
+      const messages = [
+        { role: 'system', content: `אתה מומחה ידידותי לאוטומציות Make.com, ManyChat ומערכות CRM. ענה בעברית על סמך המידע שמסופק.
 
 סגנון שיחה:
 - תשובות קצרות וממוקדות — 3-5 משפטים מקסימום לכל תגובה
@@ -1049,9 +1123,22 @@
 כללים חשובים:
 - אל תכתוב [מקור X] או שמות קבצים
 - אל תזכיר שמות אישיים
-- אם המידע לא מספיק, אמור זאת בכנות` },
-          { role: 'user', content: `מידע:\n${contextText}\n\nשאלה: ${question}` }
-        ],
+- אם המידע לא מספיק, אמור זאת בכנות
+- השתמש בהיסטוריית השיחה כדי לענות בהקשר הנכון` }
+      ];
+
+      // Add last 5 conversation turns for context
+      const recentHistory = chatHistory.slice(-10); // 10 entries = 5 pairs (user+assistant)
+      for (const msg of recentHistory) {
+        messages.push({ role: msg.role, content: msg.role === 'user' ? msg.text : msg.text.substring(0, 500) });
+      }
+
+      // Add current question with KB context
+      messages.push({ role: 'user', content: `מידע רלוונטי מהמאגר:\n${contextText}\n\nשאלת המשתמש: ${question}` });
+
+      const reqBody = {
+        model: MODEL_FAST,
+        messages,
         max_tokens: 1500,
         apiKey
       };
@@ -1089,6 +1176,51 @@
           if (err.message === 'Failed to fetch') throw new Error('בעיית תקשורת עם השרת. בדקו חיבור אינטרנט ונסו שוב.');
           throw err;
         }
+      }
+    }
+
+    // Web search fallback — uses xAI's built-in search when KB has no results
+    async function askWithWebSearch(apiKey, question, chatHistory = []) {
+      const messages = [
+        { role: 'system', content: `אתה מומחה ידידותי לאוטומציות Make.com, ManyChat ומערכות CRM.
+📡 לא נמצא מידע בקורס — אתה מחפש ברשת.
+ציין בתחילת התשובה: "📡 לא מצאתי על זה בחומרי הקורס, אז חיפשתי ברשת:"
+ענה בעברית, קצר וממוקד, 3-5 משפטים.
+הדגש מונחים עם **bold**. קישורים מלאים עם https://
+אל תזכיר שמות אישיים.` }
+      ];
+      const recentHistory = chatHistory.slice(-10);
+      for (const msg of recentHistory) {
+        messages.push({ role: msg.role, content: msg.role === 'user' ? msg.text : msg.text.substring(0, 500) });
+      }
+      messages.push({ role: 'user', content: question });
+
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 45000);
+      try {
+        const res = await fetch('https://vuvavjmbvdqnwtleudqh.supabase.co/functions/v1/xai-proxy', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            apiKey,
+            model: 'grok-3-mini-fast',
+            messages,
+            max_tokens: 1500,
+            search_parameters: { mode: 'auto' }
+          }),
+          signal: controller.signal
+        });
+        clearTimeout(timeout);
+        if (!res.ok) throw new Error('שגיאת שרת (' + res.status + ')');
+        const data = await res.json();
+        if (!data.choices || !data.choices[0]) throw new Error('תשובה ריקה');
+        let answer = data.choices[0].message.content;
+        answer = answer.replace(/\[מקור\s*\d+\]/g, '');
+        return answer.trim();
+      } catch (err) {
+        clearTimeout(timeout);
+        if (err.name === 'AbortError') throw new Error('החיפוש ברשת ארך יותר מדי זמן. נסו שוב.');
+        throw err;
       }
     }
 
@@ -2077,16 +2209,27 @@ ${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare
         if (!input.trim() || loading || !kbData) return;
         const question = input.trim();
         setInput('');
-        setMessages(prev => [...prev, { role: 'user', text: question }]);
+        const newUserMsg = { role: 'user', text: question };
+        setMessages(prev => [...prev, newUserMsg]);
         setLoading(true);
         try {
-          const results = bm25Search(question, kbData.index, kbData.chunks, 5);
-          if (results.length === 0) {
-            setMessages(prev => [...prev, { role: 'assistant', text: 'לא מצאתי מידע רלוונטי. נסה לנסח אחרת.', sources: [] }]);
-          } else {
-            const answer = await askExpert(apiKey, question, results);
-            const sources = results.map(r => ({ title: r.title, id: r.articleId }));
+          const currentHistory = [...messages, newUserMsg];
+
+          // Step 1: Local fuzzy expansion — instant, no API call
+          const expandedQuery = expandQueryLocal(question);
+
+          // Step 2: BM25 search with expanded query
+          const results = bm25Search(expandedQuery, kbData.index, kbData.chunks, 8);
+
+          if (results.length >= 2) {
+            // Good KB results — answer from knowledge base
+            const answer = await askExpert(apiKey, question, results, currentHistory);
+            const sources = results.slice(0, 5).map(r => ({ title: r.title, id: r.articleId }));
             setMessages(prev => [...prev, { role: 'assistant', text: answer, sources }]);
+          } else {
+            // No/weak KB results — use xAI web search
+            const answer = await askWithWebSearch(apiKey, question, currentHistory);
+            setMessages(prev => [...prev, { role: 'assistant', text: answer, sources: [], fromWeb: true }]);
           }
         } catch (err) {
           setMessages(prev => [...prev, { role: 'assistant', text: 'שגיאה: ' + (err.message || 'בעיית התחברות'), sources: [] }]);

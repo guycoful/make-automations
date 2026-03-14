@@ -21,7 +21,7 @@ Deno.serve(async (req: Request) => {
   }
 
   try {
-    const { apiKey, messages, model, max_tokens, temperature, stream } = await req.json();
+    const { apiKey, messages, model, max_tokens, temperature, stream, search_parameters } = await req.json();
 
     if (!apiKey || !messages) {
       return new Response(
@@ -37,6 +37,7 @@ Deno.serve(async (req: Request) => {
     if (max_tokens) xaiBody.max_tokens = max_tokens;
     if (temperature !== undefined) xaiBody.temperature = temperature;
     if (stream) xaiBody.stream = stream;
+    if (search_parameters) xaiBody.search_parameters = search_parameters;
 
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), XAI_TIMEOUT_MS);
