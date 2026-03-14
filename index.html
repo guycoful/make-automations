@@ -1313,7 +1313,7 @@
       messages.push({ role: 'user', content: question });
 
       const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 45000);
+      const timeout = setTimeout(() => controller.abort(), 90000);
       try {
         const res = await fetch('https://vuvavjmbvdqnwtleudqh.supabase.co/functions/v1/xai-proxy', {
           method: 'POST',
