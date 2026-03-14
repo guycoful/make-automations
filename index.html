@@ -1027,21 +1027,25 @@
     }
 
     async function askExpert(apiKey, question, contexts, retries = 1) {
-      const contextText = contexts.map((c, i) =>
-        `[מקור ${i+1}: ${c.title}]\n${c.text}`
+      const contextText = contexts.map((c) =>
+        c.text
       ).join('\n\n---\n\n');
       const reqBody = {
         model: MODEL_FAST,
         messages: [
-          { role: 'system', content: `אתה מומחה לאוטומציות Make.com ו-ManyChat. ענה בעברית על סמך המידע שמסופק.
+          { role: 'system', content: `אתה מומחה לאוטומציות Make.com, ManyChat ומערכות CRM. ענה בעברית על סמך המידע שמסופק.
 
 כללי עיצוב תשובה:
 - השתמש ב-## לכותרות סעיפים עם אימוג'י מתאים (למשל: ## 🔌 חיבור, ## 📋 שלבים, ## 💡 טיפים)
 - מספר שלבים עם 1. 2. 3.
 - הדגש מונחים חשובים עם **bold**
 - בבלוקי קוד: כתוב רק קוד נקי להדבקה, בלי הערות // בעברית. הסבר על שדות שצריך להחליף כתוב מחוץ לבלוק הקוד
-- ציין מקורות בפורמט [מקור X]
-- אם המידע לא מספיק, אמור זאת בכנות.` },
+- אם המידע לא מספיק, אמור זאת בכנות
+
+כללים חשובים:
+- אל תציין מקורות, אל תכתוב [מקור X] או שמות קבצים. פשוט ענה כאילו אתה מומחה שיודע את החומר
+- אל תזכיר שמות אישיים של מרצים, מנטורים או תלמידים
+- כתוב קישורים מלאים עם https:// כדי שיהיו לחיצים` },
           { role: 'user', content: `מידע:\n${contextText}\n\nשאלה: ${question}` }
         ],
         max_tokens: 1500,
@@ -1066,7 +1070,12 @@
           }
           const data = await res.json();
           if (!data.choices || !data.choices[0]) throw new Error('תשובה ריקה מהשרת');
-          return data.choices[0].message.content;
+          // Strip any leftover [מקור X] citations and source file references
+          let answer = data.choices[0].message.content;
+          answer = answer.replace(/\[מקור\s*\d+\]/g, '');
+          answer = answer.replace(/\[מקור\s*\d+\s*:.*?\]/g, '');
+          answer = answer.replace(/📄\s*.{3,60}\.{3}\s*$/gm, '');
+          return answer.trim();
         } catch (err) {
           if (attempt < retries && (err.name === 'AbortError' || err.message === 'Failed to fetch')) {
             await new Promise(r => setTimeout(r, 2000));
@@ -1540,7 +1549,7 @@ ${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare
         const parts = [];
         let remaining = str;
         let idx = 0;
-        const inlineRx = /\*\*(.+?)\*\*|`([^`]+)`/g;
+        const inlineRx = /\*\*(.+?)\*\*|`([^`]+)`|\[([^\]]+)\]\((https?:\/\/[^\)]+)\)|(https?:\/\/[^\s\)]+)/g;
         let match;
         let lastIndex = 0;
         while ((match = inlineRx.exec(remaining)) !== null) {
@@ -1549,6 +1558,10 @@ ${item.scenarioFlow && item.scenarioFlow.includes('Schedule') ? '1. type:prepare
             parts.push(React.createElement('strong', { key: 'b-' + idx++, className: 'font-bold text-slate-900' }, match[1]));
           } else if (match[2]) {
             parts.push(React.createElement('code', { key: 'c-' + idx++, className: 'bg-slate-100 text-slate-800 px-1.5 py-0.5 rounded text-xs font-mono' }, match[2]));
+          } else if (match[3] && match[4]) {
+            parts.push(React.createElement('a', { key: 'a-' + idx++, href: match[4], target: '_blank', rel: 'noopener', className: 'text-blue-600 underline hover:text-blue-800 font-medium' }, '🔗 ' + match[3]));
+          } else if (match[5]) {
+            parts.push(React.createElement('a', { key: 'a-' + idx++, href: match[5], target: '_blank', rel: 'noopener', className: 'text-blue-600 underline hover:text-blue-800 font-medium' }, '🔗 ' + match[5].replace(/^https?:\/\/(www\.)?/, '').split('/')[0]));
           }
           lastIndex = inlineRx.lastIndex;
         }
